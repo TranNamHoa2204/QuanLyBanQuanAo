@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence xmlns="http://xmlns.jcp.org/xml/ns/persistence" version="2.2">
+  <persistence-unit name="QuanAoPU" transaction-type="RESOURCE_LOCAL">
+    <provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
+    <class>server.entity.NhanVien</class>
+    <class>server.entity.TaiKhoan</class>
+    <class>server.entity.SanPham</class>
+    <class>server.entity.BienThe</class>
+    <class>server.entity.AnhSanPham</class>
+    <class>server.entity.LoaiSanPham</class>
+    <class>server.entity.ThuongHieu</class>
+    <class>server.entity.HoaDon</class>
+    <class>server.entity.ChiTietHoaDon</class>
+    <class>server.entity.KhachHang</class>
+    <class>server.entity.KhuyenMai</class>
+    <class>server.entity.Thue</class>
+    <exclude-unlisted-classes>true</exclude-unlisted-classes>
+    <properties>
+      <property name="hibernate.dialect" value="org.hibernate.dialect.SQLServer2012Dialect"/>
+      <!-- Không tự tạo/xóa/sửa bảng của người dùng. -->
+      <property name="hibernate.hbm2ddl.auto" value="validate"/>
+      <property name="hibernate.show_sql" value="false"/>
+      <property name="hibernate.jdbc.time_zone" value="Asia/Ho_Chi_Minh"/>
+    </properties>
+  </persistence-unit>
+</persistence>

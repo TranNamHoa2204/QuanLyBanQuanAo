@@ -1,0 +1,20 @@
+@Entity => nói cho JPA: Class User tương ứng với một entity trong database.
+@Table(name = "[User]") => Sử dụng bảng có tên [User] trong SQL Server
+@Id + @GeneratedValue => Do trong database: user_id BIGINT PRIMARY KEY IDENTITY(1,1) 
+		      => Thì trong Java sẽ:     @Id
+						@GeneratedValue(strategy = GenerationType.IDENTITY)
+						@Column(name = "user_id")
+						private long userId;
+
+		      => JPA sẽ hiểu: 	SQL Server
+					user_id BIGINT IDENTITY
+        					↓
+					Java
+					long userId
+
+@Column => Java: @Column(name = "full_name", nullable = false, length = 100) # nullable là không có giá trị null, length = 100 tương đương với VARCHAR(100)
+		 private String fullName;
+	   
+	   liên kết: Java                    SQL Server
+		     fullName        <---->  full_name
+		     String          <---->  NVARCHAR(100)

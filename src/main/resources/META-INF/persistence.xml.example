@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Template only. Rename after selecting JPA API/provider and configuring entities.
+     This namespace is a JPA 2.2 example, not a commitment to javax vs jakarta.
+     Credentials must come from local environment, not versioned files.
+     Do not enable automatic schema recreation against the existing database. -->
+<persistence xmlns="http://xmlns.jcp.org/xml/ns/persistence" version="2.2">
+    <persistence-unit name="QuanAoPU" transaction-type="RESOURCE_LOCAL">
+        <!-- TODO: provider, entity registration, SQL Server JDBC and connection properties -->
+    </persistence-unit>
+</persistence>

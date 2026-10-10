@@ -1,0 +1,1694 @@
+{
+  "counts": {
+    "products": 40,
+    "variants": 152,
+    "images": 255,
+    "convertedFiles": 267
+  },
+  "colorChanges": [
+    {
+      "productId": 1005,
+      "from": "Xanh lơ",
+      "to": "Xanh"
+    },
+    {
+      "productId": 1005,
+      "from": "Xanh lơ",
+      "to": "Xanh"
+    },
+    {
+      "productId": 1036,
+      "from": "Đen",
+      "to": "Xám"
+    },
+    {
+      "productId": 1036,
+      "from": "Đen",
+      "to": "Xám"
+    },
+    {
+      "productId": 1005,
+      "from": "Xanh dương nhạt",
+      "to": "Xanh"
+    },
+    {
+      "productId": 1005,
+      "from": "Xanh dương nhạt",
+      "to": "Xanh"
+    },
+    {
+      "productId": 1005,
+      "from": "Xanh dương nhạt",
+      "to": "Xanh"
+    },
+    {
+      "productId": 1005,
+      "from": "Xanh dương nhạt",
+      "to": "Xanh"
+    },
+    {
+      "productId": 1006,
+      "from": "Đen",
+      "to": "Đen họa tiết"
+    },
+    {
+      "productId": 1006,
+      "from": "Đen",
+      "to": "Đen họa tiết"
+    },
+    {
+      "productId": 1006,
+      "from": "Đen",
+      "to": "Đen họa tiết"
+    },
+    {
+      "productId": 1006,
+      "from": "Đen",
+      "to": "Đen họa tiết"
+    },
+    {
+      "productId": 1006,
+      "from": "Đen",
+      "to": "Đen họa tiết"
+    },
+    {
+      "productId": 1007,
+      "from": "Đen họa tiết",
+      "to": "Đen"
+    },
+    {
+      "productId": 1007,
+      "from": "Đen họa tiết",
+      "to": "Đen"
+    },
+    {
+      "productId": 1007,
+      "from": "Đen họa tiết",
+      "to": "Đen"
+    }
+  ],
+  "imageMap": [
+    {
+      "source": "banner/bodybanner-1.jpg",
+      "target": "banner/bodybanner-1.jpg",
+      "width": 2000,
+      "height": 1080
+    },
+    {
+      "source": "banner/bodybanner-2.jpg",
+      "target": "banner/bodybanner-2.jpg",
+      "width": 2000,
+      "height": 1078
+    },
+    {
+      "source": "banner/bodybanner-3.jpg",
+      "target": "banner/bodybanner-3.jpg",
+      "width": 2000,
+      "height": 1125
+    },
+    {
+      "source": "banner/bodybanner-4.jpg",
+      "target": "banner/bodybanner-4.jpg",
+      "width": 2000,
+      "height": 1125
+    },
+    {
+      "source": "banner/topbanner-1.webp",
+      "target": "banner/topbanner-1.jpg",
+      "width": 3000,
+      "height": 1000
+    },
+    {
+      "source": "banner/topbanner-2.webp",
+      "target": "banner/topbanner-2.jpg",
+      "width": 2880,
+      "height": 960
+    },
+    {
+      "source": "banner/topbanner-3.webp",
+      "target": "banner/topbanner-3.jpg",
+      "width": 2880,
+      "height": 961
+    },
+    {
+      "source": "payment_Icons/payment-1.webp",
+      "target": "payment_icons/payment-1.jpg",
+      "width": 474,
+      "height": 366
+    },
+    {
+      "source": "payment_Icons/payment-2.jpg",
+      "target": "payment_icons/payment-2.jpg",
+      "width": 3300,
+      "height": 1200
+    },
+    {
+      "source": "payment_Icons/payment-3.png",
+      "target": "payment_icons/payment-3.png",
+      "width": 600,
+      "height": 600
+    },
+    {
+      "source": "payment_Icons/payment-4.png",
+      "target": "payment_icons/payment-4.png",
+      "width": 3840,
+      "height": 2160
+    },
+    {
+      "source": "products/1001/brown-1.webp",
+      "target": "products/1001/brown-1.jpg",
+      "width": 1517,
+      "height": 2000
+    },
+    {
+      "source": "products/1001/brown-2.webp",
+      "target": "products/1001/brown-2.jpg",
+      "width": 1517,
+      "height": 2000
+    },
+    {
+      "source": "products/1001/brown-3.webp",
+      "target": "products/1001/brown-3.jpg",
+      "width": 1517,
+      "height": 2000
+    },
+    {
+      "source": "products/1001/brown-4.webp",
+      "target": "products/1001/brown-4.jpg",
+      "width": 1517,
+      "height": 2000
+    },
+    {
+      "source": "products/1001/brown-5.webp",
+      "target": "products/1001/brown-5.jpg",
+      "width": 1517,
+      "height": 2000
+    },
+    {
+      "source": "products/1001/red-1.webp",
+      "target": "products/1001/red-1.jpg",
+      "width": 1517,
+      "height": 2000
+    },
+    {
+      "source": "products/1001/red-2.webp",
+      "target": "products/1001/red-2.jpg",
+      "width": 1517,
+      "height": 2000
+    },
+    {
+      "source": "products/1001/red-3.webp",
+      "target": "products/1001/red-3.jpg",
+      "width": 1517,
+      "height": 2000
+    },
+    {
+      "source": "products/1001/red-4.webp",
+      "target": "products/1001/red-4.jpg",
+      "width": 1517,
+      "height": 2000
+    },
+    {
+      "source": "products/1001/yellow-1.webp",
+      "target": "products/1001/yellow-1.jpg",
+      "width": 1517,
+      "height": 2000
+    },
+    {
+      "source": "products/1001/yellow-2.webp",
+      "target": "products/1001/yellow-2.jpg",
+      "width": 1517,
+      "height": 2000
+    },
+    {
+      "source": "products/1001/yellow-3.webp",
+      "target": "products/1001/yellow-3.jpg",
+      "width": 1517,
+      "height": 2000
+    },
+    {
+      "source": "products/1001/yellow-4.webp",
+      "target": "products/1001/yellow-4.jpg",
+      "width": 1517,
+      "height": 2000
+    },
+    {
+      "source": "products/1001/yellow-5.webp",
+      "target": "products/1001/yellow-5.jpg",
+      "width": 1517,
+      "height": 2000
+    },
+    {
+      "source": "products/1002/black-1.webp",
+      "target": "products/1002/black-1.jpg",
+      "width": 1517,
+      "height": 2000
+    },
+    {
+      "source": "products/1002/black-2.webp",
+      "target": "products/1002/black-2.jpg",
+      "width": 1517,
+      "height": 2000
+    },
+    {
+      "source": "products/1002/black-3.webp",
+      "target": "products/1002/black-3.jpg",
+      "width": 1517,
+      "height": 2000
+    },
+    {
+      "source": "products/1002/black-4.webp",
+      "target": "products/1002/black-4.jpg",
+      "width": 1517,
+      "height": 2000
+    },
+    {
+      "source": "products/1002/black-5.webp",
+      "target": "products/1002/black-5.jpg",
+      "width": 1517,
+      "height": 2000
+    },
+    {
+      "source": "products/1002/brown-1.webp",
+      "target": "products/1002/brown-1.jpg",
+      "width": 1517,
+      "height": 2000
+    },
+    {
+      "source": "products/1002/brown-2.webp",
+      "target": "products/1002/brown-2.jpg",
+      "width": 1517,
+      "height": 2000
+    },
+    {
+      "source": "products/1002/brown-3.webp",
+      "target": "products/1002/brown-3.jpg",
+      "width": 1517,
+      "height": 2000
+    },
+    {
+      "source": "products/1002/brown-4.webp",
+      "target": "products/1002/brown-4.jpg",
+      "width": 1517,
+      "height": 2000
+    },
+    {
+      "source": "products/1002/brown-5.webp",
+      "target": "products/1002/brown-5.jpg",
+      "width": 1517,
+      "height": 2000
+    },
+    {
+      "source": "products/1002/pink-1.webp",
+      "target": "products/1002/pink-1.jpg",
+      "width": 1517,
+      "height": 2000
+    },
+    {
+      "source": "products/1002/pink-2.webp",
+      "target": "products/1002/pink-2.jpg",
+      "width": 1517,
+      "height": 2000
+    },
+    {
+      "source": "products/1002/pink-3.webp",
+      "target": "products/1002/pink-3.jpg",
+      "width": 1517,
+      "height": 2000
+    },
+    {
+      "source": "products/1002/pink-4.webp",
+      "target": "products/1002/pink-4.jpg",
+      "width": 1517,
+      "height": 2000
+    },
+    {
+      "source": "products/1002/pink-5.webp",
+      "target": "products/1002/pink-5.jpg",
+      "width": 1517,
+      "height": 2000
+    },
+    {
+      "source": "products/1003/black-1.webp",
+      "target": "products/1003/black-1.jpg",
+      "width": 1517,
+      "height": 2000
+    },
+    {
+      "source": "products/1003/black-2.webp",
+      "target": "products/1003/black-2.jpg",
+      "width": 1517,
+      "height": 2000
+    },
+    {
+      "source": "products/1003/black-3.webp",
+      "target": "products/1003/black-3.jpg",
+      "width": 1517,
+      "height": 2000
+    },
+    {
+      "source": "products/1003/black-4.webp",
+      "target": "products/1003/black-4.jpg",
+      "width": 1517,
+      "height": 2000
+    },
+    {
+      "source": "products/1003/blue-1.webp",
+      "target": "products/1003/blue-1.jpg",
+      "width": 1517,
+      "height": 2000
+    },
+    {
+      "source": "products/1003/blue-2.webp",
+      "target": "products/1003/blue-2.jpg",
+      "width": 1517,
+      "height": 2000
+    },
+    {
+      "source": "products/1003/blue-3.webp",
+      "target": "products/1003/blue-3.jpg",
+      "width": 1517,
+      "height": 2000
+    },
+    {
+      "source": "products/1003/blue-4.webp",
+      "target": "products/1003/blue-4.jpg",
+      "width": 1517,
+      "height": 2000
+    },
+    {
+      "source": "products/1003/white-1.webp",
+      "target": "products/1003/white-1.jpg",
+      "width": 1517,
+      "height": 2000
+    },
+    {
+      "source": "products/1003/white-2.webp",
+      "target": "products/1003/white-2.jpg",
+      "width": 1517,
+      "height": 2000
+    },
+    {
+      "source": "products/1003/white-3.webp",
+      "target": "products/1003/white-3.jpg",
+      "width": 1517,
+      "height": 2000
+    },
+    {
+      "source": "products/1003/white-4.webp",
+      "target": "products/1003/white-4.jpg",
+      "width": 1517,
+      "height": 2000
+    },
+    {
+      "source": "products/1004/blue-1.webp",
+      "target": "products/1004/blue-1.jpg",
+      "width": 1517,
+      "height": 2000
+    },
+    {
+      "source": "products/1004/blue-2.webp",
+      "target": "products/1004/blue-2.jpg",
+      "width": 1517,
+      "height": 2000
+    },
+    {
+      "source": "products/1004/blue-3.webp",
+      "target": "products/1004/blue-3.jpg",
+      "width": 1517,
+      "height": 2000
+    },
+    {
+      "source": "products/1004/blue-4.webp",
+      "target": "products/1004/blue-4.jpg",
+      "width": 1517,
+      "height": 2000
+    },
+    {
+      "source": "products/1004/grey-1.webp",
+      "target": "products/1004/grey-1.jpg",
+      "width": 1517,
+      "height": 2000
+    },
+    {
+      "source": "products/1004/grey-2.webp",
+      "target": "products/1004/grey-2.jpg",
+      "width": 1517,
+      "height": 2000
+    },
+    {
+      "source": "products/1004/grey-3.webp",
+      "target": "products/1004/grey-3.jpg",
+      "width": 1517,
+      "height": 2000
+    },
+    {
+      "source": "products/1004/grey-4.webp",
+      "target": "products/1004/grey-4.jpg",
+      "width": 1517,
+      "height": 2000
+    },
+    {
+      "source": "products/1005/LightBlue-1.webp",
+      "target": "products/1005/lightblue-1.jpg",
+      "width": 1517,
+      "height": 2000
+    },
+    {
+      "source": "products/1005/LightBlue-2.webp",
+      "target": "products/1005/lightblue-2.jpg",
+      "width": 1517,
+      "height": 2000
+    },
+    {
+      "source": "products/1005/LightBlue-3.webp",
+      "target": "products/1005/lightblue-3.jpg",
+      "width": 1517,
+      "height": 2000
+    },
+    {
+      "source": "products/1005/LightBlue-4.webp",
+      "target": "products/1005/lightblue-4.jpg",
+      "width": 1517,
+      "height": 2000
+    },
+    {
+      "source": "products/1005/white-1.webp",
+      "target": "products/1005/white-1.jpg",
+      "width": 1517,
+      "height": 2000
+    },
+    {
+      "source": "products/1005/white-2.webp",
+      "target": "products/1005/white-2.jpg",
+      "width": 1517,
+      "height": 2000
+    },
+    {
+      "source": "products/1005/white-3.webp",
+      "target": "products/1005/white-3.jpg",
+      "width": 1517,
+      "height": 2000
+    },
+    {
+      "source": "products/1005/white-4.webp",
+      "target": "products/1005/white-4.jpg",
+      "width": 1517,
+      "height": 2000
+    },
+    {
+      "source": "products/1006/Black-1.webp",
+      "target": "products/1006/black-1.jpg",
+      "width": 1517,
+      "height": 2000
+    },
+    {
+      "source": "products/1006/Black-2.webp",
+      "target": "products/1006/black-2.jpg",
+      "width": 1517,
+      "height": 2000
+    },
+    {
+      "source": "products/1006/Black-3.webp",
+      "target": "products/1006/black-3.jpg",
+      "width": 1517,
+      "height": 2000
+    },
+    {
+      "source": "products/1006/Black-4.webp",
+      "target": "products/1006/black-4.jpg",
+      "width": 1517,
+      "height": 2000
+    },
+    {
+      "source": "products/1006/Black-5.webp",
+      "target": "products/1006/black-5.jpg",
+      "width": 1517,
+      "height": 2000
+    },
+    {
+      "source": "products/1006/Blue-1.webp",
+      "target": "products/1006/blue-1.jpg",
+      "width": 1517,
+      "height": 2000
+    },
+    {
+      "source": "products/1006/Blue-2.webp",
+      "target": "products/1006/blue-2.jpg",
+      "width": 1517,
+      "height": 2000
+    },
+    {
+      "source": "products/1006/Blue-3.webp",
+      "target": "products/1006/blue-3.jpg",
+      "width": 1517,
+      "height": 2000
+    },
+    {
+      "source": "products/1006/Blue-4.webp",
+      "target": "products/1006/blue-4.jpg",
+      "width": 1517,
+      "height": 2000
+    },
+    {
+      "source": "products/1006/Blue-5.webp",
+      "target": "products/1006/blue-5.jpg",
+      "width": 1517,
+      "height": 2000
+    },
+    {
+      "source": "products/1007/black-1.webp",
+      "target": "products/1007/black-1.jpg",
+      "width": 1517,
+      "height": 2000
+    },
+    {
+      "source": "products/1007/black-2.webp",
+      "target": "products/1007/black-2.jpg",
+      "width": 1517,
+      "height": 2000
+    },
+    {
+      "source": "products/1007/black-3.webp",
+      "target": "products/1007/black-3.jpg",
+      "width": 1517,
+      "height": 2000
+    },
+    {
+      "source": "products/1007/blue-1.webp",
+      "target": "products/1007/blue-1.jpg",
+      "width": 1517,
+      "height": 2000
+    },
+    {
+      "source": "products/1007/blue-2.webp",
+      "target": "products/1007/blue-2.jpg",
+      "width": 1517,
+      "height": 2000
+    },
+    {
+      "source": "products/1007/blue-3.webp",
+      "target": "products/1007/blue-3.jpg",
+      "width": 1517,
+      "height": 2000
+    },
+    {
+      "source": "products/1008/blue-1.webp",
+      "target": "products/1008/blue-1.jpg",
+      "width": 1517,
+      "height": 2000
+    },
+    {
+      "source": "products/1008/blue-2.webp",
+      "target": "products/1008/blue-2.jpg",
+      "width": 1517,
+      "height": 2000
+    },
+    {
+      "source": "products/1008/blue-3.webp",
+      "target": "products/1008/blue-3.jpg",
+      "width": 1517,
+      "height": 2000
+    },
+    {
+      "source": "products/1009/black-1.webp",
+      "target": "products/1009/black-1.jpg",
+      "width": 1517,
+      "height": 2000
+    },
+    {
+      "source": "products/1009/black-2.webp",
+      "target": "products/1009/black-2.jpg",
+      "width": 1517,
+      "height": 2000
+    },
+    {
+      "source": "products/1009/black-3.webp",
+      "target": "products/1009/black-3.jpg",
+      "width": 1517,
+      "height": 2000
+    },
+    {
+      "source": "products/1009/blue-1.webp",
+      "target": "products/1009/blue-1.jpg",
+      "width": 1517,
+      "height": 2000
+    },
+    {
+      "source": "products/1009/blue-2.webp",
+      "target": "products/1009/blue-2.jpg",
+      "width": 1517,
+      "height": 2000
+    },
+    {
+      "source": "products/1009/blue-3.webp",
+      "target": "products/1009/blue-3.jpg",
+      "width": 1517,
+      "height": 2000
+    },
+    {
+      "source": "products/1010/blue-1.webp",
+      "target": "products/1010/blue-1.jpg",
+      "width": 1517,
+      "height": 2000
+    },
+    {
+      "source": "products/1010/blue-2.webp",
+      "target": "products/1010/blue-2.jpg",
+      "width": 1517,
+      "height": 2000
+    },
+    {
+      "source": "products/1010/blue-3.webp",
+      "target": "products/1010/blue-3.jpg",
+      "width": 1517,
+      "height": 2000
+    },
+    {
+      "source": "products/1011/blue-1.webp",
+      "target": "products/1011/blue-1.jpg",
+      "width": 1517,
+      "height": 2000
+    },
+    {
+      "source": "products/1011/blue-2.webp",
+      "target": "products/1011/blue-2.jpg",
+      "width": 1517,
+      "height": 2000
+    },
+    {
+      "source": "products/1011/blue-3.webp",
+      "target": "products/1011/blue-3.jpg",
+      "width": 1517,
+      "height": 2000
+    },
+    {
+      "source": "products/1011/white-1.webp",
+      "target": "products/1011/white-1.jpg",
+      "width": 1517,
+      "height": 2000
+    },
+    {
+      "source": "products/1011/white-2.webp",
+      "target": "products/1011/white-2.jpg",
+      "width": 1517,
+      "height": 2000
+    },
+    {
+      "source": "products/1011/white-3.webp",
+      "target": "products/1011/white-3.jpg",
+      "width": 1517,
+      "height": 2000
+    },
+    {
+      "source": "products/1012/blue-1.webp",
+      "target": "products/1012/blue-1.jpg",
+      "width": 1517,
+      "height": 2000
+    },
+    {
+      "source": "products/1012/blue-2.webp",
+      "target": "products/1012/blue-2.jpg",
+      "width": 1517,
+      "height": 2000
+    },
+    {
+      "source": "products/1012/blue-3.webp",
+      "target": "products/1012/blue-3.jpg",
+      "width": 1517,
+      "height": 2000
+    },
+    {
+      "source": "products/1012/green-1.webp",
+      "target": "products/1012/green-1.jpg",
+      "width": 1517,
+      "height": 2000
+    },
+    {
+      "source": "products/1012/green-2.webp",
+      "target": "products/1012/green-2.jpg",
+      "width": 1517,
+      "height": 2000
+    },
+    {
+      "source": "products/1012/green-3.webp",
+      "target": "products/1012/green-3.jpg",
+      "width": 1517,
+      "height": 2000
+    },
+    {
+      "source": "products/1013/green-1.webp",
+      "target": "products/1013/green-1.jpg",
+      "width": 1517,
+      "height": 2000
+    },
+    {
+      "source": "products/1013/green-2.webp",
+      "target": "products/1013/green-2.jpg",
+      "width": 1517,
+      "height": 2000
+    },
+    {
+      "source": "products/1013/green-3.webp",
+      "target": "products/1013/green-3.jpg",
+      "width": 1517,
+      "height": 2000
+    },
+    {
+      "source": "products/1013/grey-1.webp",
+      "target": "products/1013/grey-1.jpg",
+      "width": 1517,
+      "height": 2000
+    },
+    {
+      "source": "products/1013/grey-2.webp",
+      "target": "products/1013/grey-2.jpg",
+      "width": 1517,
+      "height": 2000
+    },
+    {
+      "source": "products/1013/grey-3.webp",
+      "target": "products/1013/grey-3.jpg",
+      "width": 1517,
+      "height": 2000
+    },
+    {
+      "source": "products/1014/beige-1.webp",
+      "target": "products/1014/beige-1.jpg",
+      "width": 1517,
+      "height": 2000
+    },
+    {
+      "source": "products/1014/beige-2.webp",
+      "target": "products/1014/beige-2.jpg",
+      "width": 1517,
+      "height": 2000
+    },
+    {
+      "source": "products/1014/beige-3.webp",
+      "target": "products/1014/beige-3.jpg",
+      "width": 1517,
+      "height": 2000
+    },
+    {
+      "source": "products/1014/black-1.webp",
+      "target": "products/1014/black-1.jpg",
+      "width": 1517,
+      "height": 2000
+    },
+    {
+      "source": "products/1014/black-2.webp",
+      "target": "products/1014/black-2.jpg",
+      "width": 1517,
+      "height": 2000
+    },
+    {
+      "source": "products/1014/black-3.webp",
+      "target": "products/1014/black-3.jpg",
+      "width": 1517,
+      "height": 2000
+    },
+    {
+      "source": "products/1015/blue-1.webp",
+      "target": "products/1015/blue-1.jpg",
+      "width": 1517,
+      "height": 2000
+    },
+    {
+      "source": "products/1015/blue-2.webp",
+      "target": "products/1015/blue-2.jpg",
+      "width": 1517,
+      "height": 2000
+    },
+    {
+      "source": "products/1015/blue-3.webp",
+      "target": "products/1015/blue-3.jpg",
+      "width": 1517,
+      "height": 2000
+    },
+    {
+      "source": "products/1015/green-1.webp",
+      "target": "products/1015/green-1.jpg",
+      "width": 1517,
+      "height": 2000
+    },
+    {
+      "source": "products/1015/green-2.webp",
+      "target": "products/1015/green-2.jpg",
+      "width": 1517,
+      "height": 2000
+    },
+    {
+      "source": "products/1015/green-3.webp",
+      "target": "products/1015/green-3.jpg",
+      "width": 1517,
+      "height": 2000
+    },
+    {
+      "source": "products/1016/black-1.webp",
+      "target": "products/1016/black-1.jpg",
+      "width": 1517,
+      "height": 2000
+    },
+    {
+      "source": "products/1016/black-2.webp",
+      "target": "products/1016/black-2.jpg",
+      "width": 1517,
+      "height": 2000
+    },
+    {
+      "source": "products/1016/black-3.webp",
+      "target": "products/1016/black-3.jpg",
+      "width": 1517,
+      "height": 2000
+    },
+    {
+      "source": "products/1016/white-1.webp",
+      "target": "products/1016/white-1.jpg",
+      "width": 1517,
+      "height": 2000
+    },
+    {
+      "source": "products/1016/white-2.webp",
+      "target": "products/1016/white-2.jpg",
+      "width": 1517,
+      "height": 2000
+    },
+    {
+      "source": "products/1016/white-3.webp",
+      "target": "products/1016/white-3.jpg",
+      "width": 1517,
+      "height": 2000
+    },
+    {
+      "source": "products/1017/black-1.webp",
+      "target": "products/1017/black-1.jpg",
+      "width": 1517,
+      "height": 2000
+    },
+    {
+      "source": "products/1017/black-2.webp",
+      "target": "products/1017/black-2.jpg",
+      "width": 1517,
+      "height": 2000
+    },
+    {
+      "source": "products/1017/black-3.webp",
+      "target": "products/1017/black-3.jpg",
+      "width": 1517,
+      "height": 2000
+    },
+    {
+      "source": "products/1017/blue-1.webp",
+      "target": "products/1017/blue-1.jpg",
+      "width": 1517,
+      "height": 2000
+    },
+    {
+      "source": "products/1017/blue-2.webp",
+      "target": "products/1017/blue-2.jpg",
+      "width": 1517,
+      "height": 2000
+    },
+    {
+      "source": "products/1017/blue-3.webp",
+      "target": "products/1017/blue-3.jpg",
+      "width": 1517,
+      "height": 2000
+    },
+    {
+      "source": "products/1018/blue-1.webp",
+      "target": "products/1018/blue-1.jpg",
+      "width": 1517,
+      "height": 2000
+    },
+    {
+      "source": "products/1018/blue-2.webp",
+      "target": "products/1018/blue-2.jpg",
+      "width": 1517,
+      "height": 2000
+    },
+    {
+      "source": "products/1018/blue-3.webp",
+      "target": "products/1018/blue-3.jpg",
+      "width": 1517,
+      "height": 2000
+    },
+    {
+      "source": "products/1018/grey-1.webp",
+      "target": "products/1018/grey-1.jpg",
+      "width": 1517,
+      "height": 2000
+    },
+    {
+      "source": "products/1018/grey-2.webp",
+      "target": "products/1018/grey-2.jpg",
+      "width": 1517,
+      "height": 2000
+    },
+    {
+      "source": "products/1018/grey-3.webp",
+      "target": "products/1018/grey-3.jpg",
+      "width": 1517,
+      "height": 2000
+    },
+    {
+      "source": "products/1019/grey-1.webp",
+      "target": "products/1019/grey-1.jpg",
+      "width": 1517,
+      "height": 2000
+    },
+    {
+      "source": "products/1019/grey-2.webp",
+      "target": "products/1019/grey-2.jpg",
+      "width": 1517,
+      "height": 2000
+    },
+    {
+      "source": "products/1019/grey-3.webp",
+      "target": "products/1019/grey-3.jpg",
+      "width": 1517,
+      "height": 2000
+    },
+    {
+      "source": "products/1019/white-1.webp",
+      "target": "products/1019/white-1.jpg",
+      "width": 1517,
+      "height": 2000
+    },
+    {
+      "source": "products/1019/white-2.webp",
+      "target": "products/1019/white-2.jpg",
+      "width": 1517,
+      "height": 2000
+    },
+    {
+      "source": "products/1019/white-3.webp",
+      "target": "products/1019/white-3.jpg",
+      "width": 1517,
+      "height": 2000
+    },
+    {
+      "source": "products/1020/indigo-1.webp",
+      "target": "products/1020/indigo-1.jpg",
+      "width": 1517,
+      "height": 2000
+    },
+    {
+      "source": "products/1020/indigo-2.webp",
+      "target": "products/1020/indigo-2.jpg",
+      "width": 1517,
+      "height": 2000
+    },
+    {
+      "source": "products/1020/indigo-3.webp",
+      "target": "products/1020/indigo-3.jpg",
+      "width": 1517,
+      "height": 2000
+    },
+    {
+      "source": "products/1021/beige-1.webp",
+      "target": "products/1021/beige-1.jpg",
+      "width": 1517,
+      "height": 2000
+    },
+    {
+      "source": "products/1021/beige-2.webp",
+      "target": "products/1021/beige-2.jpg",
+      "width": 1517,
+      "height": 2000
+    },
+    {
+      "source": "products/1021/beige-3.webp",
+      "target": "products/1021/beige-3.jpg",
+      "width": 1517,
+      "height": 2000
+    },
+    {
+      "source": "products/1021/white-1.webp",
+      "target": "products/1021/white-1.jpg",
+      "width": 1517,
+      "height": 2000
+    },
+    {
+      "source": "products/1021/white-2.webp",
+      "target": "products/1021/white-2.jpg",
+      "width": 1517,
+      "height": 2000
+    },
+    {
+      "source": "products/1021/white-3.webp",
+      "target": "products/1021/white-3.jpg",
+      "width": 1517,
+      "height": 2000
+    },
+    {
+      "source": "products/1022/white-1.webp",
+      "target": "products/1022/white-1.jpg",
+      "width": 1517,
+      "height": 2000
+    },
+    {
+      "source": "products/1022/white-2.webp",
+      "target": "products/1022/white-2.jpg",
+      "width": 1517,
+      "height": 2000
+    },
+    {
+      "source": "products/1022/white-3.webp",
+      "target": "products/1022/white-3.jpg",
+      "width": 1517,
+      "height": 2000
+    },
+    {
+      "source": "products/1023/blue-1.webp",
+      "target": "products/1023/blue-1.jpg",
+      "width": 1517,
+      "height": 2000
+    },
+    {
+      "source": "products/1023/blue-2.webp",
+      "target": "products/1023/blue-2.jpg",
+      "width": 1517,
+      "height": 2000
+    },
+    {
+      "source": "products/1023/blue-3.webp",
+      "target": "products/1023/blue-3.jpg",
+      "width": 1517,
+      "height": 2000
+    },
+    {
+      "source": "products/1023/grey-1.webp",
+      "target": "products/1023/grey-1.jpg",
+      "width": 1517,
+      "height": 2000
+    },
+    {
+      "source": "products/1023/grey-2.webp",
+      "target": "products/1023/grey-2.jpg",
+      "width": 1517,
+      "height": 2000
+    },
+    {
+      "source": "products/1023/grey-3.webp",
+      "target": "products/1023/grey-3.jpg",
+      "width": 1517,
+      "height": 2000
+    },
+    {
+      "source": "products/1024/beige-1.webp",
+      "target": "products/1024/beige-1.jpg",
+      "width": 1517,
+      "height": 2000
+    },
+    {
+      "source": "products/1024/beige-2.webp",
+      "target": "products/1024/beige-2.jpg",
+      "width": 1517,
+      "height": 2000
+    },
+    {
+      "source": "products/1024/beige-3.webp",
+      "target": "products/1024/beige-3.jpg",
+      "width": 1517,
+      "height": 2000
+    },
+    {
+      "source": "products/1024/blue-1.webp",
+      "target": "products/1024/blue-1.jpg",
+      "width": 1517,
+      "height": 2000
+    },
+    {
+      "source": "products/1024/blue-2.webp",
+      "target": "products/1024/blue-2.jpg",
+      "width": 1517,
+      "height": 2000
+    },
+    {
+      "source": "products/1024/blue-3.webp",
+      "target": "products/1024/blue-3.jpg",
+      "width": 1517,
+      "height": 2000
+    },
+    {
+      "source": "products/1025/cyan-1.webp",
+      "target": "products/1025/cyan-1.jpg",
+      "width": 1517,
+      "height": 2000
+    },
+    {
+      "source": "products/1025/cyan-2.webp",
+      "target": "products/1025/cyan-2.jpg",
+      "width": 1517,
+      "height": 2000
+    },
+    {
+      "source": "products/1025/cyan-3.webp",
+      "target": "products/1025/cyan-3.jpg",
+      "width": 1517,
+      "height": 2000
+    },
+    {
+      "source": "products/1025/white-1.webp",
+      "target": "products/1025/white-1.jpg",
+      "width": 1517,
+      "height": 2000
+    },
+    {
+      "source": "products/1025/white-2.webp",
+      "target": "products/1025/white-2.jpg",
+      "width": 1517,
+      "height": 2000
+    },
+    {
+      "source": "products/1025/white-3.webp",
+      "target": "products/1025/white-3.jpg",
+      "width": 1517,
+      "height": 2000
+    },
+    {
+      "source": "products/1026/pink-1.webp",
+      "target": "products/1026/pink-1.jpg",
+      "width": 1517,
+      "height": 2000
+    },
+    {
+      "source": "products/1026/pink-2.webp",
+      "target": "products/1026/pink-2.jpg",
+      "width": 1517,
+      "height": 2000
+    },
+    {
+      "source": "products/1026/pink-34.webp",
+      "target": "products/1026/pink-3.jpg",
+      "width": 1517,
+      "height": 2000
+    },
+    {
+      "source": "products/1026/white-1.webp",
+      "target": "products/1026/white-1.jpg",
+      "width": 1517,
+      "height": 2000
+    },
+    {
+      "source": "products/1026/white-2.webp",
+      "target": "products/1026/white-2.jpg",
+      "width": 1517,
+      "height": 2000
+    },
+    {
+      "source": "products/1026/white-3.webp",
+      "target": "products/1026/white-3.jpg",
+      "width": 1517,
+      "height": 2000
+    },
+    {
+      "source": "products/1027/greenCaro-1.webp",
+      "target": "products/1027/greencaro-1.jpg",
+      "width": 1517,
+      "height": 2000
+    },
+    {
+      "source": "products/1027/greenCaro-2.webp",
+      "target": "products/1027/greencaro-2.jpg",
+      "width": 1517,
+      "height": 2000
+    },
+    {
+      "source": "products/1027/greenCaro-3.webp",
+      "target": "products/1027/greencaro-3.jpg",
+      "width": 1517,
+      "height": 2000
+    },
+    {
+      "source": "products/1027/redCaro-1.webp",
+      "target": "products/1027/redcaro-1.jpg",
+      "width": 1517,
+      "height": 2000
+    },
+    {
+      "source": "products/1027/redCaro-2.webp",
+      "target": "products/1027/redcaro-2.jpg",
+      "width": 1517,
+      "height": 2000
+    },
+    {
+      "source": "products/1027/redCaro-3.webp",
+      "target": "products/1027/redcaro-3.jpg",
+      "width": 1517,
+      "height": 2000
+    },
+    {
+      "source": "products/1028/greyCaro-1.webp",
+      "target": "products/1028/greycaro-1.jpg",
+      "width": 1517,
+      "height": 2000
+    },
+    {
+      "source": "products/1028/greyCaro-2.webp",
+      "target": "products/1028/greycaro-2.jpg",
+      "width": 1517,
+      "height": 2000
+    },
+    {
+      "source": "products/1028/greyCaro-3.webp",
+      "target": "products/1028/greycaro-3.jpg",
+      "width": 1517,
+      "height": 2000
+    },
+    {
+      "source": "products/1029/cyan-1.webp",
+      "target": "products/1029/cyan-1.jpg",
+      "width": 1517,
+      "height": 2000
+    },
+    {
+      "source": "products/1029/cyan-2.webp",
+      "target": "products/1029/cyan-2.jpg",
+      "width": 1517,
+      "height": 2000
+    },
+    {
+      "source": "products/1029/cyan-3.webp",
+      "target": "products/1029/cyan-3.jpg",
+      "width": 1517,
+      "height": 2000
+    },
+    {
+      "source": "products/1029/grey-1.webp",
+      "target": "products/1029/grey-1.jpg",
+      "width": 1517,
+      "height": 2000
+    },
+    {
+      "source": "products/1029/grey-2.webp",
+      "target": "products/1029/grey-2.jpg",
+      "width": 1517,
+      "height": 2000
+    },
+    {
+      "source": "products/1029/grey-3.webp",
+      "target": "products/1029/grey-3.jpg",
+      "width": 1517,
+      "height": 2000
+    },
+    {
+      "source": "products/1030/beige-1.webp",
+      "target": "products/1030/beige-1.jpg",
+      "width": 1517,
+      "height": 2000
+    },
+    {
+      "source": "products/1030/beige-2.webp",
+      "target": "products/1030/beige-2.jpg",
+      "width": 1517,
+      "height": 2000
+    },
+    {
+      "source": "products/1030/beige-3.webp",
+      "target": "products/1030/beige-3.jpg",
+      "width": 1517,
+      "height": 2000
+    },
+    {
+      "source": "products/1030/beige-4.webp",
+      "target": "products/1030/beige-4.jpg",
+      "width": 1517,
+      "height": 2000
+    },
+    {
+      "source": "products/1030/white-1.webp",
+      "target": "products/1030/white-1.jpg",
+      "width": 1517,
+      "height": 2000
+    },
+    {
+      "source": "products/1030/white-2.webp",
+      "target": "products/1030/white-2.jpg",
+      "width": 1517,
+      "height": 2000
+    },
+    {
+      "source": "products/1030/white-3.webp",
+      "target": "products/1030/white-3.jpg",
+      "width": 1517,
+      "height": 2000
+    },
+    {
+      "source": "products/1030/white-4.webp",
+      "target": "products/1030/white-4.jpg",
+      "width": 1517,
+      "height": 2000
+    },
+    {
+      "source": "products/1031/black-1.webp",
+      "target": "products/1031/black-1.jpg",
+      "width": 1517,
+      "height": 2000
+    },
+    {
+      "source": "products/1031/black-2.webp",
+      "target": "products/1031/black-2.jpg",
+      "width": 1517,
+      "height": 2000
+    },
+    {
+      "source": "products/1031/black-3.webp",
+      "target": "products/1031/black-3.jpg",
+      "width": 1517,
+      "height": 2000
+    },
+    {
+      "source": "products/1031/black-4.webp",
+      "target": "products/1031/black-4.jpg",
+      "width": 1517,
+      "height": 2000
+    },
+    {
+      "source": "products/1032/beige-1.webp",
+      "target": "products/1032/beige-1.jpg",
+      "width": 1517,
+      "height": 2000
+    },
+    {
+      "source": "products/1032/beige-2.webp",
+      "target": "products/1032/beige-2.jpg",
+      "width": 1517,
+      "height": 2000
+    },
+    {
+      "source": "products/1032/beige-3.webp",
+      "target": "products/1032/beige-3.jpg",
+      "width": 1517,
+      "height": 2000
+    },
+    {
+      "source": "products/1032/beige-4.webp",
+      "target": "products/1032/beige-4.jpg",
+      "width": 1517,
+      "height": 2000
+    },
+    {
+      "source": "products/1032/white-1.webp",
+      "target": "products/1032/white-1.jpg",
+      "width": 1517,
+      "height": 2000
+    },
+    {
+      "source": "products/1032/white-2.webp",
+      "target": "products/1032/white-2.jpg",
+      "width": 1517,
+      "height": 2000
+    },
+    {
+      "source": "products/1032/white-3.webp",
+      "target": "products/1032/white-3.jpg",
+      "width": 1517,
+      "height": 2000
+    },
+    {
+      "source": "products/1032/white-4.webp",
+      "target": "products/1032/white-4.jpg",
+      "width": 1517,
+      "height": 2000
+    },
+    {
+      "source": "products/1033/black-1.webp",
+      "target": "products/1033/black-1.jpg",
+      "width": 1517,
+      "height": 2000
+    },
+    {
+      "source": "products/1033/black-2.webp",
+      "target": "products/1033/black-2.jpg",
+      "width": 1517,
+      "height": 2000
+    },
+    {
+      "source": "products/1033/black-3.webp",
+      "target": "products/1033/black-3.jpg",
+      "width": 1517,
+      "height": 2000
+    },
+    {
+      "source": "products/1033/grey-1.webp",
+      "target": "products/1033/grey-1.jpg",
+      "width": 1517,
+      "height": 2000
+    },
+    {
+      "source": "products/1033/grey-2.webp",
+      "target": "products/1033/grey-2.jpg",
+      "width": 1517,
+      "height": 2000
+    },
+    {
+      "source": "products/1033/grey-3.webp",
+      "target": "products/1033/grey-3.jpg",
+      "width": 1517,
+      "height": 2000
+    },
+    {
+      "source": "products/1034/beige-1.webp",
+      "target": "products/1034/beige-1.jpg",
+      "width": 1517,
+      "height": 2000
+    },
+    {
+      "source": "products/1034/beige-2.webp",
+      "target": "products/1034/beige-2.jpg",
+      "width": 1517,
+      "height": 2000
+    },
+    {
+      "source": "products/1034/beige-3.webp",
+      "target": "products/1034/beige-3.jpg",
+      "width": 1517,
+      "height": 2000
+    },
+    {
+      "source": "products/1034/black-1.webp",
+      "target": "products/1034/black-1.jpg",
+      "width": 1517,
+      "height": 2000
+    },
+    {
+      "source": "products/1034/black-2.webp",
+      "target": "products/1034/black-2.jpg",
+      "width": 1517,
+      "height": 2000
+    },
+    {
+      "source": "products/1034/black-3.webp",
+      "target": "products/1034/black-3.jpg",
+      "width": 1517,
+      "height": 2000
+    },
+    {
+      "source": "products/1034/green-1.webp",
+      "target": "products/1034/green-1.jpg",
+      "width": 1517,
+      "height": 2000
+    },
+    {
+      "source": "products/1034/green-2.webp",
+      "target": "products/1034/green-2.jpg",
+      "width": 1517,
+      "height": 2000
+    },
+    {
+      "source": "products/1034/green-3.webp",
+      "target": "products/1034/green-3.jpg",
+      "width": 1517,
+      "height": 2000
+    },
+    {
+      "source": "products/1035/black-1.webp",
+      "target": "products/1035/black-1.jpg",
+      "width": 1517,
+      "height": 2000
+    },
+    {
+      "source": "products/1035/black-2.webp",
+      "target": "products/1035/black-2.jpg",
+      "width": 1517,
+      "height": 2000
+    },
+    {
+      "source": "products/1035/black-3.webp",
+      "target": "products/1035/black-3.jpg",
+      "width": 1517,
+      "height": 2000
+    },
+    {
+      "source": "products/1035/white-1.webp",
+      "target": "products/1035/white-1.jpg",
+      "width": 1517,
+      "height": 2000
+    },
+    {
+      "source": "products/1035/white-2.webp",
+      "target": "products/1035/white-2.jpg",
+      "width": 1517,
+      "height": 2000
+    },
+    {
+      "source": "products/1035/white-3.webp",
+      "target": "products/1035/white-3.jpg",
+      "width": 1517,
+      "height": 2000
+    },
+    {
+      "source": "products/1036/blue-1.webp",
+      "target": "products/1036/blue-1.jpg",
+      "width": 1517,
+      "height": 2000
+    },
+    {
+      "source": "products/1036/blue-2.webp",
+      "target": "products/1036/blue-2.jpg",
+      "width": 1517,
+      "height": 2000
+    },
+    {
+      "source": "products/1036/blue-3.webp",
+      "target": "products/1036/blue-3.jpg",
+      "width": 1517,
+      "height": 2000
+    },
+    {
+      "source": "products/1036/grey-1.webp",
+      "target": "products/1036/grey-1.jpg",
+      "width": 1517,
+      "height": 2000
+    },
+    {
+      "source": "products/1036/grey-2.webp",
+      "target": "products/1036/grey-2.jpg",
+      "width": 1517,
+      "height": 2000
+    },
+    {
+      "source": "products/1036/grey-3.webp",
+      "target": "products/1036/grey-3.jpg",
+      "width": 1517,
+      "height": 2000
+    },
+    {
+      "source": "products/1037/black-1.webp",
+      "target": "products/1037/black-1.jpg",
+      "width": 1517,
+      "height": 2000
+    },
+    {
+      "source": "products/1037/black-2.webp",
+      "target": "products/1037/black-2.jpg",
+      "width": 1517,
+      "height": 2000
+    },
+    {
+      "source": "products/1037/black-3.webp",
+      "target": "products/1037/black-3.jpg",
+      "width": 1517,
+      "height": 2000
+    },
+    {
+      "source": "products/1037/blue-1.webp",
+      "target": "products/1037/blue-1.jpg",
+      "width": 1517,
+      "height": 2000
+    },
+    {
+      "source": "products/1037/blue-2.webp",
+      "target": "products/1037/blue-2.jpg",
+      "width": 1517,
+      "height": 2000
+    },
+    {
+      "source": "products/1037/blue-3.webp",
+      "target": "products/1037/blue-3.jpg",
+      "width": 1517,
+      "height": 2000
+    },
+    {
+      "source": "products/1038/blue-1.webp",
+      "target": "products/1038/blue-1.jpg",
+      "width": 1517,
+      "height": 2000
+    },
+    {
+      "source": "products/1038/blue-2.webp",
+      "target": "products/1038/blue-2.jpg",
+      "width": 1517,
+      "height": 2000
+    },
+    {
+      "source": "products/1038/blue-3.webp",
+      "target": "products/1038/blue-3.jpg",
+      "width": 1517,
+      "height": 2000
+    },
+    {
+      "source": "products/1039/blue-1.webp",
+      "target": "products/1039/blue-1.jpg",
+      "width": 1517,
+      "height": 2000
+    },
+    {
+      "source": "products/1039/blue-2.webp",
+      "target": "products/1039/blue-2.jpg",
+      "width": 1517,
+      "height": 2000
+    },
+    {
+      "source": "products/1039/blue-3.webp",
+      "target": "products/1039/blue-3.jpg",
+      "width": 1517,
+      "height": 2000
+    },
+    {
+      "source": "products/1039/white-1.webp",
+      "target": "products/1039/white-1.jpg",
+      "width": 1517,
+      "height": 2000
+    },
+    {
+      "source": "products/1039/white-2.webp",
+      "target": "products/1039/white-2.jpg",
+      "width": 1517,
+      "height": 2000
+    },
+    {
+      "source": "products/1039/white-3.webp",
+      "target": "products/1039/white-3.jpg",
+      "width": 1517,
+      "height": 2000
+    },
+    {
+      "source": "products/1040/beige-1.webp",
+      "target": "products/1040/beige-1.jpg",
+      "width": 1517,
+      "height": 2000
+    },
+    {
+      "source": "products/1040/beige-2.webp",
+      "target": "products/1040/beige-2.jpg",
+      "width": 1517,
+      "height": 2000
+    },
+    {
+      "source": "products/1040/beige-3.webp",
+      "target": "products/1040/beige-3.jpg",
+      "width": 1517,
+      "height": 2000
+    },
+    {
+      "source": "store_logo/GroovyGean-logo.webp",
+      "target": "store_logo/groovygean-logo.jpg",
+      "width": 1024,
+      "height": 1024
+    }
+  ]
+}

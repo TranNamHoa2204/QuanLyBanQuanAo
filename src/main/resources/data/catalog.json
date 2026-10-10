@@ -1,0 +1,4163 @@
+{
+  "schemaVersion": 1,
+  "currency": "VND",
+  "dataPurpose": "DEMO_FROM_USER_FILES",
+  "categories": [
+    {
+      "maLoai": "LSP001",
+      "tenLoai": "Quần dài"
+    },
+    {
+      "maLoai": "LSP002",
+      "tenLoai": "Quần shorts"
+    },
+    {
+      "maLoai": "LSP003",
+      "tenLoai": "Áo Phông"
+    },
+    {
+      "maLoai": "LSP004",
+      "tenLoai": "Áo Polo"
+    },
+    {
+      "maLoai": "LSP005",
+      "tenLoai": "Áo khoác"
+    },
+    {
+      "maLoai": "LSP006",
+      "tenLoai": "Áo sơ mi"
+    }
+  ],
+  "brands": [
+    {
+      "maThuongHieu": "TH001",
+      "tenThuongHieu": "Canifa"
+    },
+    {
+      "maThuongHieu": "TH002",
+      "tenThuongHieu": "Owen"
+    },
+    {
+      "maThuongHieu": "TH003",
+      "tenThuongHieu": "Việt Tiến"
+    }
+  ],
+  "products": [
+    {
+      "maSP": "SP1001",
+      "sourceProductId": 1001,
+      "sourceCode": "6TS26A002-SR074",
+      "tenSP": "Áo phông nữ basic cổ tim",
+      "maLoai": "LSP003",
+      "maThuongHieu": "TH001",
+      "giaBan": 149000,
+      "trangThai": true
+    },
+    {
+      "maSP": "SP1002",
+      "sourceProductId": 1002,
+      "sourceCode": "6TS26A001-SN011",
+      "tenSP": "Áo phông nữ Cotton USA basic dáng suông",
+      "maLoai": "LSP003",
+      "maThuongHieu": "TH003",
+      "giaBan": 149000,
+      "trangThai": true
+    },
+    {
+      "maSP": "SP1003",
+      "sourceProductId": 1003,
+      "sourceCode": "3TS26C001-SW001",
+      "tenSP": "Áo phông active unisex trẻ em oversize | Wicking",
+      "maLoai": "LSP003",
+      "maThuongHieu": "TH001",
+      "giaBan": 279000,
+      "trangThai": true
+    },
+    {
+      "maSP": "SP1004",
+      "sourceProductId": 1004,
+      "sourceCode": "2BS26C004-SA014",
+      "tenSP": "Quần soóc bé trai túi hộp dáng rộng",
+      "maLoai": "LSP002",
+      "maThuongHieu": "TH003",
+      "giaBan": 349000,
+      "trangThai": true
+    },
+    {
+      "maSP": "SP1005",
+      "sourceProductId": 1005,
+      "sourceCode": "5TS26S006-SL267",
+      "tenSP": "Áo phông unisex người lớn dáng rộng hình in Mickey & Friends",
+      "maLoai": "LSP003",
+      "maThuongHieu": "TH001",
+      "giaBan": 244300,
+      "trangThai": true
+    },
+    {
+      "maSP": "SP1006",
+      "sourceProductId": 1006,
+      "sourceCode": "8TS26S006-FB660",
+      "tenSP": "Áo phông active nam có hình in | Wicking",
+      "maLoai": "LSP003",
+      "maThuongHieu": "TH001",
+      "giaBan": 399000,
+      "trangThai": true
+    },
+    {
+      "maSP": "SP1007",
+      "sourceProductId": 1007,
+      "sourceCode": "8TS26S003-SK010",
+      "tenSP": "Áo phông active nam | Wicking - Anti UV",
+      "maLoai": "LSP003",
+      "maThuongHieu": "TH003",
+      "giaBan": 399000,
+      "trangThai": true
+    },
+    {
+      "maSP": "SP1008",
+      "sourceProductId": 1008,
+      "sourceCode": "8TP26S006-SB262",
+      "tenSP": "Áo polo active nam phối màu | Anti UV - Wicking",
+      "maLoai": "LSP004",
+      "maThuongHieu": "TH002",
+      "giaBan": 499000,
+      "trangThai": true
+    },
+    {
+      "maSP": "SP1009",
+      "sourceProductId": 1009,
+      "sourceCode": "8TP26S005-SK010",
+      "tenSP": "Áo polo active nam | Anti UV - Wicking",
+      "maLoai": "LSP004",
+      "maThuongHieu": "TH001",
+      "giaBan": 499000,
+      "trangThai": true
+    },
+    {
+      "maSP": "SP1010",
+      "sourceProductId": 1010,
+      "sourceCode": "8TP26S014-PB547",
+      "tenSP": "Áo polo nam cotton kẻ ngang",
+      "maLoai": "LSP004",
+      "maThuongHieu": "TH001",
+      "giaBan": 599000,
+      "trangThai": true
+    },
+    {
+      "maSP": "SP1011",
+      "sourceProductId": 1011,
+      "sourceCode": "8TP26S011-SL394",
+      "tenSP": "Áo polo nam phối màu",
+      "maLoai": "LSP004",
+      "maThuongHieu": "TH002",
+      "giaBan": 599000,
+      "trangThai": true
+    },
+    {
+      "maSP": "SP1012",
+      "sourceProductId": 1012,
+      "sourceCode": "5TP26S004-SB001",
+      "tenSP": "Áo polo unisex người lớn cotton dáng boxy có hình in",
+      "maLoai": "LSP004",
+      "maThuongHieu": "TH001",
+      "giaBan": 419300,
+      "trangThai": true
+    },
+    {
+      "maSP": "SP1013",
+      "sourceProductId": 1013,
+      "sourceCode": "8BS26S025-SG287",
+      "tenSP": "Quần soóc cargo nam dáng suông",
+      "maLoai": "LSP002",
+      "maThuongHieu": "TH001",
+      "giaBan": 549000,
+      "trangThai": true
+    },
+    {
+      "maSP": "SP1014",
+      "sourceProductId": 1014,
+      "sourceCode": "8BS26S019-SE384",
+      "tenSP": "Quần soóc âu nam dáng suông",
+      "maLoai": "LSP002",
+      "maThuongHieu": "TH003",
+      "giaBan": 419000,
+      "trangThai": true
+    },
+    {
+      "maSP": "SP1015",
+      "sourceProductId": 1015,
+      "sourceCode": "8BS26S014-FG163",
+      "tenSP": "Quần soóc nam cotton họa tiết",
+      "maLoai": "LSP002",
+      "maThuongHieu": "TH001",
+      "giaBan": 419300,
+      "trangThai": true
+    },
+    {
+      "maSP": "SP1016",
+      "sourceProductId": 1016,
+      "sourceCode": "8BS26S004-SK010",
+      "tenSP": "Quần soóc active nam hai lớp | Wicking",
+      "maLoai": "LSP002",
+      "maThuongHieu": "TH001",
+      "giaBan": 419300,
+      "trangThai": true
+    },
+    {
+      "maSP": "SP1017",
+      "sourceProductId": 1017,
+      "sourceCode": "8BS26S011-SB001",
+      "tenSP": "Quần soóc nam cotton lưng chun cài cúc",
+      "maLoai": "LSP002",
+      "maThuongHieu": "TH001",
+      "giaBan": 384000,
+      "trangThai": true
+    },
+    {
+      "maSP": "SP1018",
+      "sourceProductId": 1018,
+      "sourceCode": "8BS26S022-SA124",
+      "tenSP": "Quần soóc nam cotton phối kẻ sọc",
+      "maLoai": "LSP002",
+      "maThuongHieu": "TH003",
+      "giaBan": 394000,
+      "trangThai": true
+    },
+    {
+      "maSP": "SP1019",
+      "sourceProductId": 1019,
+      "sourceCode": "8BS26S023-SW424",
+      "tenSP": "Quần soóc nam cotton dáng rộng",
+      "maLoai": "LSP002",
+      "maThuongHieu": "TH001",
+      "giaBan": 499000,
+      "trangThai": true
+    },
+    {
+      "maSP": "SP1020",
+      "sourceProductId": 1020,
+      "sourceCode": "5BS26S001-SJ967",
+      "tenSP": "Quần soóc jeans unisex người lớn cotton dáng bermuda",
+      "maLoai": "LSP002",
+      "maThuongHieu": "TH001",
+      "giaBan": 599000,
+      "trangThai": true
+    },
+    {
+      "maSP": "SP1021",
+      "sourceProductId": 1021,
+      "sourceCode": "8TH26S009-SW001",
+      "tenSP": "Áo sơ mi nam cotton ngắn tay",
+      "maLoai": "LSP006",
+      "maThuongHieu": "TH001",
+      "giaBan": 419300,
+      "trangThai": true
+    },
+    {
+      "maSP": "SP1022",
+      "sourceProductId": 1022,
+      "sourceCode": "8TH26S001-FW334",
+      "tenSP": "Áo sơ mi nam cotton họa tiết dáng rộng",
+      "maLoai": "LSP006",
+      "maThuongHieu": "TH003",
+      "giaBan": 599000,
+      "trangThai": true
+    },
+    {
+      "maSP": "SP1023",
+      "sourceProductId": 1023,
+      "sourceCode": "8TH26S012-PA173",
+      "tenSP": "Áo sơ mi nam cotton kẻ sọc dáng rộng",
+      "maLoai": "LSP006",
+      "maThuongHieu": "TH001",
+      "giaBan": 419300,
+      "trangThai": true
+    },
+    {
+      "maSP": "SP1024",
+      "sourceProductId": 1024,
+      "sourceCode": "5TH26S001-PE176",
+      "tenSP": "Áo sơ mi unisex người lớn cotton in hình Mickey",
+      "maLoai": "LSP006",
+      "maThuongHieu": "TH001",
+      "giaBan": 419300,
+      "trangThai": true
+    },
+    {
+      "maSP": "SP1025",
+      "sourceProductId": 1025,
+      "sourceCode": "8TH26S011-SL390",
+      "tenSP": "Áo sơ mi nam cotton basic dáng ôm",
+      "maLoai": "LSP006",
+      "maThuongHieu": "TH001",
+      "giaBan": 549000,
+      "trangThai": true
+    },
+    {
+      "maSP": "SP1026",
+      "sourceProductId": 1026,
+      "sourceCode": "8TH26A001-SW001",
+      "tenSP": "Áo sơ mi nam Cotton USA ngắn tay",
+      "maLoai": "LSP006",
+      "maThuongHieu": "TH003",
+      "giaBan": 279000,
+      "trangThai": true
+    },
+    {
+      "maSP": "SP1027",
+      "sourceProductId": 1027,
+      "sourceCode": "8TH25W001-CG100",
+      "tenSP": "Áo sơ mi flannel dài tay nam họa tiết kẻ",
+      "maLoai": "LSP006",
+      "maThuongHieu": "TH001",
+      "giaBan": 419300,
+      "trangThai": true
+    },
+    {
+      "maSP": "SP1028",
+      "sourceProductId": 1028,
+      "sourceCode": "8TH24W004",
+      "tenSP": "Áo sơ mi nam cotton flannel họa tiết kẻ",
+      "maLoai": "LSP006",
+      "maThuongHieu": "TH001",
+      "giaBan": 179000,
+      "trangThai": true
+    },
+    {
+      "maSP": "SP1029",
+      "sourceProductId": 1029,
+      "sourceCode": "8TH25W008",
+      "tenSP": "Áo sơ mi nam cotton dài tay dáng ôm",
+      "maLoai": "LSP006",
+      "maThuongHieu": "TH003",
+      "giaBan": 419300,
+      "trangThai": true
+    },
+    {
+      "maSP": "SP1030",
+      "sourceProductId": 1030,
+      "sourceCode": "6BJ26S005-SE321",
+      "tenSP": "Quần jeans nữ cotton cạp cao dáng suông",
+      "maLoai": "LSP001",
+      "maThuongHieu": "TH001",
+      "giaBan": 799000,
+      "trangThai": true
+    },
+    {
+      "maSP": "SP1031",
+      "sourceProductId": 1031,
+      "sourceCode": "6BL26S002-SK010",
+      "tenSP": "Quần leggings nữ dáng ôm | Wicking - Stretch",
+      "maLoai": "LSP001",
+      "maThuongHieu": "TH002",
+      "giaBan": 499000,
+      "trangThai": true
+    },
+    {
+      "maSP": "SP1032",
+      "sourceProductId": 1032,
+      "sourceCode": "6BP26S003-SE285",
+      "tenSP": "Quần dài nữ rayon linen dáng rộng",
+      "maLoai": "LSP001",
+      "maThuongHieu": "TH002",
+      "giaBan": 419300,
+      "trangThai": true
+    },
+    {
+      "maSP": "SP1033",
+      "sourceProductId": 1033,
+      "sourceCode": "6BP26S001-SK010",
+      "tenSP": "Quần dài nữ dáng suông ống đứng hai lớp",
+      "maLoai": "LSP001",
+      "maThuongHieu": "TH001",
+      "giaBan": 599000,
+      "trangThai": true
+    },
+    {
+      "maSP": "SP1034",
+      "sourceProductId": 1034,
+      "sourceCode": "6BP26S006-SE086",
+      "tenSP": "Quần dài nữ túi hộp dáng suông",
+      "maLoai": "LSP001",
+      "maThuongHieu": "TH001",
+      "giaBan": 699000,
+      "trangThai": true
+    },
+    {
+      "maSP": "SP1035",
+      "sourceProductId": 1035,
+      "sourceCode": "6BK26S001-SK010",
+      "tenSP": "Quần khaki nữ dáng suông",
+      "maLoai": "LSP001",
+      "maThuongHieu": "TH003",
+      "giaBan": 419300,
+      "trangThai": true
+    },
+    {
+      "maSP": "SP1036",
+      "sourceProductId": 1036,
+      "sourceCode": "8OT26S004-SB001",
+      "tenSP": "Áo khoác chống nắng nam | Anti UV - Wicking",
+      "maLoai": "LSP005",
+      "maThuongHieu": "TH001",
+      "giaBan": 699000,
+      "trangThai": true
+    },
+    {
+      "maSP": "SP1037",
+      "sourceProductId": 1037,
+      "sourceCode": "8OT26S002-SB001",
+      "tenSP": "Áo khoác gió active nam trượt nước | Anti UV - Light weight",
+      "maLoai": "LSP005",
+      "maThuongHieu": "TH001",
+      "giaBan": 524000,
+      "trangThai": true
+    },
+    {
+      "maSP": "SP1038",
+      "sourceProductId": 1038,
+      "sourceCode": "8OT25C003",
+      "tenSP": "Áo khoác măng tô nam 2 lớp trượt nước",
+      "maLoai": "LSP005",
+      "maThuongHieu": "TH002",
+      "giaBan": 2999000,
+      "trangThai": true
+    },
+    {
+      "maSP": "SP1039",
+      "sourceProductId": 1039,
+      "sourceCode": "8OT25W021",
+      "tenSP": "Áo khoác lông vũ nam chống thấm nước",
+      "maLoai": "LSP005",
+      "maThuongHieu": "TH003",
+      "giaBan": 1199200,
+      "trangThai": true
+    },
+    {
+      "maSP": "SP1040",
+      "sourceProductId": 1040,
+      "sourceCode": "8OT25W022",
+      "tenSP": "Áo khoác active nam interlock, wicking",
+      "maLoai": "LSP005",
+      "maThuongHieu": "TH002",
+      "giaBan": 899000,
+      "trangThai": true
+    }
+  ],
+  "variants": [
+    {
+      "maBienThe": "BT000001",
+      "sourceVariantId": 1,
+      "sourceSku": "6TS26A002-SR074-DO-S",
+      "maSP": "SP1001",
+      "mauSac": "Đỏ",
+      "kichCo": "S",
+      "soLuongTon": 10,
+      "trangThai": true,
+      "phienBan": 0
+    },
+    {
+      "maBienThe": "BT000002",
+      "sourceVariantId": 2,
+      "sourceSku": "6TS26A002-SR074-DO-M",
+      "maSP": "SP1001",
+      "mauSac": "Đỏ",
+      "kichCo": "M",
+      "soLuongTon": 10,
+      "trangThai": true,
+      "phienBan": 0
+    },
+    {
+      "maBienThe": "BT000003",
+      "sourceVariantId": 3,
+      "sourceSku": "6TS26A002-SR074-VANG-S",
+      "maSP": "SP1001",
+      "mauSac": "Vàng",
+      "kichCo": "S",
+      "soLuongTon": 20,
+      "trangThai": true,
+      "phienBan": 0
+    },
+    {
+      "maBienThe": "BT000004",
+      "sourceVariantId": 4,
+      "sourceSku": "6TS26A002-SR074-VANG-M",
+      "maSP": "SP1001",
+      "mauSac": "Vàng",
+      "kichCo": "M",
+      "soLuongTon": 10,
+      "trangThai": true,
+      "phienBan": 0
+    },
+    {
+      "maBienThe": "BT000005",
+      "sourceVariantId": 5,
+      "sourceSku": "6TS26A002-SR074-NAU-S",
+      "maSP": "SP1001",
+      "mauSac": "Nâu",
+      "kichCo": "S",
+      "soLuongTon": 5,
+      "trangThai": true,
+      "phienBan": 0
+    },
+    {
+      "maBienThe": "BT000006",
+      "sourceVariantId": 6,
+      "sourceSku": "6TS26A002-SR074-NAU-M",
+      "maSP": "SP1001",
+      "mauSac": "Nâu",
+      "kichCo": "M",
+      "soLuongTon": 10,
+      "trangThai": true,
+      "phienBan": 0
+    },
+    {
+      "maBienThe": "BT000007",
+      "sourceVariantId": 7,
+      "sourceSku": "6TS26A001-SN011-NAU-S",
+      "maSP": "SP1002",
+      "mauSac": "Nâu",
+      "kichCo": "S",
+      "soLuongTon": 10,
+      "trangThai": true,
+      "phienBan": 0
+    },
+    {
+      "maBienThe": "BT000008",
+      "sourceVariantId": 8,
+      "sourceSku": "6TS26A001-SN011-NAU-M",
+      "maSP": "SP1002",
+      "mauSac": "Nâu",
+      "kichCo": "M",
+      "soLuongTon": 10,
+      "trangThai": true,
+      "phienBan": 0
+    },
+    {
+      "maBienThe": "BT000009",
+      "sourceVariantId": 9,
+      "sourceSku": "6TS26A001-SN011-DEN-S",
+      "maSP": "SP1002",
+      "mauSac": "Đen",
+      "kichCo": "S",
+      "soLuongTon": 10,
+      "trangThai": true,
+      "phienBan": 0
+    },
+    {
+      "maBienThe": "BT000010",
+      "sourceVariantId": 10,
+      "sourceSku": "6TS26A001-SN011-DEN-M",
+      "maSP": "SP1002",
+      "mauSac": "Đen",
+      "kichCo": "M",
+      "soLuongTon": 10,
+      "trangThai": true,
+      "phienBan": 0
+    },
+    {
+      "maBienThe": "BT000011",
+      "sourceVariantId": 11,
+      "sourceSku": "6TS26A001-SN011-HONG-S",
+      "maSP": "SP1002",
+      "mauSac": "Hồng",
+      "kichCo": "S",
+      "soLuongTon": 10,
+      "trangThai": true,
+      "phienBan": 0
+    },
+    {
+      "maBienThe": "BT000012",
+      "sourceVariantId": 12,
+      "sourceSku": "6TS26A001-SN011-HONG-M",
+      "maSP": "SP1002",
+      "mauSac": "Hồng",
+      "kichCo": "M",
+      "soLuongTon": 10,
+      "trangThai": true,
+      "phienBan": 0
+    },
+    {
+      "maBienThe": "BT000013",
+      "sourceVariantId": 13,
+      "sourceSku": "3TS26C001-SW001-TRANG-S",
+      "maSP": "SP1003",
+      "mauSac": "Trắng",
+      "kichCo": "S",
+      "soLuongTon": 10,
+      "trangThai": true,
+      "phienBan": 0
+    },
+    {
+      "maBienThe": "BT000014",
+      "sourceVariantId": 14,
+      "sourceSku": "3TS26C001-SW001-TRANG-M",
+      "maSP": "SP1003",
+      "mauSac": "Trắng",
+      "kichCo": "M",
+      "soLuongTon": 10,
+      "trangThai": true,
+      "phienBan": 0
+    },
+    {
+      "maBienThe": "BT000015",
+      "sourceVariantId": 15,
+      "sourceSku": "3TS26C001-SW001-XANHDUON-S",
+      "maSP": "SP1003",
+      "mauSac": "Xanh dương",
+      "kichCo": "S",
+      "soLuongTon": 10,
+      "trangThai": true,
+      "phienBan": 0
+    },
+    {
+      "maBienThe": "BT000016",
+      "sourceVariantId": 16,
+      "sourceSku": "3TS26C001-SW001-XANHDUON-M",
+      "maSP": "SP1003",
+      "mauSac": "Xanh dương",
+      "kichCo": "M",
+      "soLuongTon": 10,
+      "trangThai": true,
+      "phienBan": 0
+    },
+    {
+      "maBienThe": "BT000017",
+      "sourceVariantId": 17,
+      "sourceSku": "3TS26C001-SW001-DEN-S",
+      "maSP": "SP1003",
+      "mauSac": "Đen",
+      "kichCo": "S",
+      "soLuongTon": 10,
+      "trangThai": true,
+      "phienBan": 0
+    },
+    {
+      "maBienThe": "BT000018",
+      "sourceVariantId": 18,
+      "sourceSku": "3TS26C001-SW001-DEN-M",
+      "maSP": "SP1003",
+      "mauSac": "Đen",
+      "kichCo": "M",
+      "soLuongTon": 10,
+      "trangThai": true,
+      "phienBan": 0
+    },
+    {
+      "maBienThe": "BT000019",
+      "sourceVariantId": 19,
+      "sourceSku": "2BS26C004-SA014-XANHDUON-S",
+      "maSP": "SP1004",
+      "mauSac": "Xanh dương",
+      "kichCo": "S",
+      "soLuongTon": 10,
+      "trangThai": true,
+      "phienBan": 0
+    },
+    {
+      "maBienThe": "BT000020",
+      "sourceVariantId": 20,
+      "sourceSku": "2BS26C004-SA014-XANHDUON-M",
+      "maSP": "SP1004",
+      "mauSac": "Xanh dương",
+      "kichCo": "M",
+      "soLuongTon": 10,
+      "trangThai": true,
+      "phienBan": 0
+    },
+    {
+      "maBienThe": "BT000021",
+      "sourceVariantId": 21,
+      "sourceSku": "2BS26C004-SA014-XAM-S",
+      "maSP": "SP1004",
+      "mauSac": "Xám",
+      "kichCo": "S",
+      "soLuongTon": 10,
+      "trangThai": true,
+      "phienBan": 0
+    },
+    {
+      "maBienThe": "BT000022",
+      "sourceVariantId": 22,
+      "sourceSku": "2BS26C004-SA014-XAM-M",
+      "maSP": "SP1004",
+      "mauSac": "Xám",
+      "kichCo": "M",
+      "soLuongTon": 10,
+      "trangThai": true,
+      "phienBan": 0
+    },
+    {
+      "maBienThe": "BT000023",
+      "sourceVariantId": 23,
+      "sourceSku": "5TS26S006-SL267-XANHLO-S",
+      "maSP": "SP1005",
+      "mauSac": "Xanh",
+      "kichCo": "S",
+      "soLuongTon": 10,
+      "trangThai": true,
+      "phienBan": 0
+    },
+    {
+      "maBienThe": "BT000024",
+      "sourceVariantId": 24,
+      "sourceSku": "5TS26S006-SL267-XANHLO-M",
+      "maSP": "SP1005",
+      "mauSac": "Xanh",
+      "kichCo": "M",
+      "soLuongTon": 10,
+      "trangThai": true,
+      "phienBan": 0
+    },
+    {
+      "maBienThe": "BT000025",
+      "sourceVariantId": 25,
+      "sourceSku": "5TS26S006-SL267-TRANG-S",
+      "maSP": "SP1005",
+      "mauSac": "Trắng",
+      "kichCo": "S",
+      "soLuongTon": 10,
+      "trangThai": true,
+      "phienBan": 0
+    },
+    {
+      "maBienThe": "BT000026",
+      "sourceVariantId": 26,
+      "sourceSku": "5TS26S006-SL267-TRANG-M",
+      "maSP": "SP1005",
+      "mauSac": "Trắng",
+      "kichCo": "M",
+      "soLuongTon": 10,
+      "trangThai": true,
+      "phienBan": 0
+    },
+    {
+      "maBienThe": "BT000027",
+      "sourceVariantId": 27,
+      "sourceSku": "8TS26S006-FB660-XANHHOAT-S",
+      "maSP": "SP1006",
+      "mauSac": "Xanh họa tiết",
+      "kichCo": "S",
+      "soLuongTon": 10,
+      "trangThai": true,
+      "phienBan": 0
+    },
+    {
+      "maBienThe": "BT000028",
+      "sourceVariantId": 28,
+      "sourceSku": "8TS26S006-FB660-XANHHOAT-M",
+      "maSP": "SP1006",
+      "mauSac": "Xanh họa tiết",
+      "kichCo": "M",
+      "soLuongTon": 10,
+      "trangThai": true,
+      "phienBan": 0
+    },
+    {
+      "maBienThe": "BT000029",
+      "sourceVariantId": 29,
+      "sourceSku": "8TS26S006-FB660-DENHOATI-S",
+      "maSP": "SP1006",
+      "mauSac": "Đen họa tiết",
+      "kichCo": "S",
+      "soLuongTon": 10,
+      "trangThai": true,
+      "phienBan": 0
+    },
+    {
+      "maBienThe": "BT000030",
+      "sourceVariantId": 30,
+      "sourceSku": "8TS26S006-FB660-DENHOATI-M",
+      "maSP": "SP1006",
+      "mauSac": "Đen họa tiết",
+      "kichCo": "M",
+      "soLuongTon": 10,
+      "trangThai": true,
+      "phienBan": 0
+    },
+    {
+      "maBienThe": "BT000031",
+      "sourceVariantId": 31,
+      "sourceSku": "8TS26S003-SK010-DEN-S",
+      "maSP": "SP1007",
+      "mauSac": "Đen",
+      "kichCo": "S",
+      "soLuongTon": 10,
+      "trangThai": true,
+      "phienBan": 0
+    },
+    {
+      "maBienThe": "BT000032",
+      "sourceVariantId": 32,
+      "sourceSku": "8TS26S003-SK010-DEN-M",
+      "maSP": "SP1007",
+      "mauSac": "Đen",
+      "kichCo": "M",
+      "soLuongTon": 10,
+      "trangThai": true,
+      "phienBan": 0
+    },
+    {
+      "maBienThe": "BT000033",
+      "sourceVariantId": 33,
+      "sourceSku": "8TS26S003-SK010-XANHDUON-S",
+      "maSP": "SP1007",
+      "mauSac": "Xanh dương",
+      "kichCo": "S",
+      "soLuongTon": 10,
+      "trangThai": true,
+      "phienBan": 0
+    },
+    {
+      "maBienThe": "BT000034",
+      "sourceVariantId": 34,
+      "sourceSku": "8TS26S003-SK010-XANHDUON-M",
+      "maSP": "SP1007",
+      "mauSac": "Xanh dương",
+      "kichCo": "M",
+      "soLuongTon": 10,
+      "trangThai": true,
+      "phienBan": 0
+    },
+    {
+      "maBienThe": "BT000035",
+      "sourceVariantId": 35,
+      "sourceSku": "8TP26S006-SB262-XANHDUON-S",
+      "maSP": "SP1008",
+      "mauSac": "Xanh dương",
+      "kichCo": "S",
+      "soLuongTon": 10,
+      "trangThai": true,
+      "phienBan": 0
+    },
+    {
+      "maBienThe": "BT000036",
+      "sourceVariantId": 36,
+      "sourceSku": "8TP26S006-SB262-XANHDUON-M",
+      "maSP": "SP1008",
+      "mauSac": "Xanh dương",
+      "kichCo": "M",
+      "soLuongTon": 10,
+      "trangThai": true,
+      "phienBan": 0
+    },
+    {
+      "maBienThe": "BT000037",
+      "sourceVariantId": 37,
+      "sourceSku": "8TP26S005-SK010-DEN-S",
+      "maSP": "SP1009",
+      "mauSac": "Đen",
+      "kichCo": "S",
+      "soLuongTon": 10,
+      "trangThai": true,
+      "phienBan": 0
+    },
+    {
+      "maBienThe": "BT000038",
+      "sourceVariantId": 38,
+      "sourceSku": "8TP26S005-SK010-DEN-M",
+      "maSP": "SP1009",
+      "mauSac": "Đen",
+      "kichCo": "M",
+      "soLuongTon": 10,
+      "trangThai": true,
+      "phienBan": 0
+    },
+    {
+      "maBienThe": "BT000039",
+      "sourceVariantId": 39,
+      "sourceSku": "8TP26S005-SK010-XANHDUON-S",
+      "maSP": "SP1009",
+      "mauSac": "Xanh dương",
+      "kichCo": "S",
+      "soLuongTon": 10,
+      "trangThai": true,
+      "phienBan": 0
+    },
+    {
+      "maBienThe": "BT000040",
+      "sourceVariantId": 40,
+      "sourceSku": "8TP26S005-SK010-XANHDUON-L",
+      "maSP": "SP1009",
+      "mauSac": "Xanh dương",
+      "kichCo": "L",
+      "soLuongTon": 10,
+      "trangThai": true,
+      "phienBan": 0
+    },
+    {
+      "maBienThe": "BT000041",
+      "sourceVariantId": 41,
+      "sourceSku": "8TP26S014-PB547-XANHDUON-S",
+      "maSP": "SP1010",
+      "mauSac": "Xanh dương kẻ sọc",
+      "kichCo": "S",
+      "soLuongTon": 10,
+      "trangThai": true,
+      "phienBan": 0
+    },
+    {
+      "maBienThe": "BT000042",
+      "sourceVariantId": 42,
+      "sourceSku": "8TP26S014-PB547-XANHDUON-M",
+      "maSP": "SP1010",
+      "mauSac": "Xanh dương kẻ sọc",
+      "kichCo": "M",
+      "soLuongTon": 5,
+      "trangThai": true,
+      "phienBan": 0
+    },
+    {
+      "maBienThe": "BT000043",
+      "sourceVariantId": 43,
+      "sourceSku": "8TP26S011-SL394-XANHLO-M",
+      "maSP": "SP1011",
+      "mauSac": "Xanh lơ",
+      "kichCo": "M",
+      "soLuongTon": 10,
+      "trangThai": true,
+      "phienBan": 0
+    },
+    {
+      "maBienThe": "BT000044",
+      "sourceVariantId": 44,
+      "sourceSku": "8TP26S011-SL394-XANHLO-L",
+      "maSP": "SP1011",
+      "mauSac": "Xanh lơ",
+      "kichCo": "L",
+      "soLuongTon": 20,
+      "trangThai": true,
+      "phienBan": 0
+    },
+    {
+      "maBienThe": "BT000045",
+      "sourceVariantId": 45,
+      "sourceSku": "8TP26S011-SL394-TRANG-M",
+      "maSP": "SP1011",
+      "mauSac": "Trắng",
+      "kichCo": "M",
+      "soLuongTon": 30,
+      "trangThai": true,
+      "phienBan": 0
+    },
+    {
+      "maBienThe": "BT000046",
+      "sourceVariantId": 46,
+      "sourceSku": "8TP26S011-SL394-TRANG-L",
+      "maSP": "SP1011",
+      "mauSac": "Trắng",
+      "kichCo": "L",
+      "soLuongTon": 40,
+      "trangThai": true,
+      "phienBan": 0
+    },
+    {
+      "maBienThe": "BT000047",
+      "sourceVariantId": 47,
+      "sourceSku": "5TP26S004-SB001-XANHDUON-XS",
+      "maSP": "SP1012",
+      "mauSac": "Xanh dương",
+      "kichCo": "XS",
+      "soLuongTon": 10,
+      "trangThai": true,
+      "phienBan": 0
+    },
+    {
+      "maBienThe": "BT000048",
+      "sourceVariantId": 48,
+      "sourceSku": "5TP26S004-SB001-XANHDUON-L",
+      "maSP": "SP1012",
+      "mauSac": "Xanh dương",
+      "kichCo": "L",
+      "soLuongTon": 10,
+      "trangThai": true,
+      "phienBan": 0
+    },
+    {
+      "maBienThe": "BT000049",
+      "sourceVariantId": 49,
+      "sourceSku": "5TP26S004-SB001-XANHLA-XS",
+      "maSP": "SP1012",
+      "mauSac": "Xanh lá",
+      "kichCo": "XS",
+      "soLuongTon": 10,
+      "trangThai": true,
+      "phienBan": 0
+    },
+    {
+      "maBienThe": "BT000050",
+      "sourceVariantId": 50,
+      "sourceSku": "5TP26S004-SB001-XANHLA-S",
+      "maSP": "SP1012",
+      "mauSac": "Xanh lá",
+      "kichCo": "S",
+      "soLuongTon": 10,
+      "trangThai": true,
+      "phienBan": 0
+    },
+    {
+      "maBienThe": "BT000051",
+      "sourceVariantId": 51,
+      "sourceSku": "8BS26S025-SG287-XANHLA-XS",
+      "maSP": "SP1013",
+      "mauSac": "Xanh lá",
+      "kichCo": "XS",
+      "soLuongTon": 10,
+      "trangThai": true,
+      "phienBan": 0
+    },
+    {
+      "maBienThe": "BT000052",
+      "sourceVariantId": 52,
+      "sourceSku": "8BS26S025-SG287-XANHLA-S",
+      "maSP": "SP1013",
+      "mauSac": "Xanh lá",
+      "kichCo": "S",
+      "soLuongTon": 10,
+      "trangThai": true,
+      "phienBan": 0
+    },
+    {
+      "maBienThe": "BT000053",
+      "sourceVariantId": 53,
+      "sourceSku": "8BS26S025-SG287-XAM-XS",
+      "maSP": "SP1013",
+      "mauSac": "Xám",
+      "kichCo": "XS",
+      "soLuongTon": 10,
+      "trangThai": true,
+      "phienBan": 0
+    },
+    {
+      "maBienThe": "BT000054",
+      "sourceVariantId": 54,
+      "sourceSku": "8BS26S025-SG287-XAM-L",
+      "maSP": "SP1013",
+      "mauSac": "Xám",
+      "kichCo": "L",
+      "soLuongTon": 10,
+      "trangThai": true,
+      "phienBan": 0
+    },
+    {
+      "maBienThe": "BT000055",
+      "sourceVariantId": 55,
+      "sourceSku": "8BS26S019-SE384-BE-XS",
+      "maSP": "SP1014",
+      "mauSac": "Be",
+      "kichCo": "XS",
+      "soLuongTon": 10,
+      "trangThai": true,
+      "phienBan": 0
+    },
+    {
+      "maBienThe": "BT000056",
+      "sourceVariantId": 56,
+      "sourceSku": "8BS26S019-SE384-BE-L",
+      "maSP": "SP1014",
+      "mauSac": "Be",
+      "kichCo": "L",
+      "soLuongTon": 10,
+      "trangThai": true,
+      "phienBan": 0
+    },
+    {
+      "maBienThe": "BT000057",
+      "sourceVariantId": 57,
+      "sourceSku": "8BS26S019-SE384-DEN-XS",
+      "maSP": "SP1014",
+      "mauSac": "Đen",
+      "kichCo": "XS",
+      "soLuongTon": 10,
+      "trangThai": true,
+      "phienBan": 0
+    },
+    {
+      "maBienThe": "BT000058",
+      "sourceVariantId": 58,
+      "sourceSku": "8BS26S019-SE384-DEN-L",
+      "maSP": "SP1014",
+      "mauSac": "Đen",
+      "kichCo": "L",
+      "soLuongTon": 10,
+      "trangThai": true,
+      "phienBan": 0
+    },
+    {
+      "maBienThe": "BT000059",
+      "sourceVariantId": 59,
+      "sourceSku": "8BS26S014-FG163-XANHLAHO-S",
+      "maSP": "SP1015",
+      "mauSac": "Xanh lá họa tiết",
+      "kichCo": "S",
+      "soLuongTon": 10,
+      "trangThai": true,
+      "phienBan": 0
+    },
+    {
+      "maBienThe": "BT000060",
+      "sourceVariantId": 60,
+      "sourceSku": "8BS26S014-FG163-XANHLAHO-M",
+      "maSP": "SP1015",
+      "mauSac": "Xanh lá họa tiết",
+      "kichCo": "M",
+      "soLuongTon": 10,
+      "trangThai": true,
+      "phienBan": 0
+    },
+    {
+      "maBienThe": "BT000061",
+      "sourceVariantId": 61,
+      "sourceSku": "8BS26S014-FG163-XANHHOAT-S",
+      "maSP": "SP1015",
+      "mauSac": "Xanh họa tiết",
+      "kichCo": "S",
+      "soLuongTon": 10,
+      "trangThai": true,
+      "phienBan": 0
+    },
+    {
+      "maBienThe": "BT000062",
+      "sourceVariantId": 62,
+      "sourceSku": "8BS26S014-FG163-XANHHOAT-M",
+      "maSP": "SP1015",
+      "mauSac": "Xanh họa tiết",
+      "kichCo": "M",
+      "soLuongTon": 10,
+      "trangThai": true,
+      "phienBan": 0
+    },
+    {
+      "maBienThe": "BT000063",
+      "sourceVariantId": 63,
+      "sourceSku": "8BS26S004-SK010-DEN-S",
+      "maSP": "SP1016",
+      "mauSac": "Đen",
+      "kichCo": "S",
+      "soLuongTon": 10,
+      "trangThai": true,
+      "phienBan": 0
+    },
+    {
+      "maBienThe": "BT000064",
+      "sourceVariantId": 64,
+      "sourceSku": "8BS26S004-SK010-DEN-M",
+      "maSP": "SP1016",
+      "mauSac": "Đen",
+      "kichCo": "M",
+      "soLuongTon": 10,
+      "trangThai": true,
+      "phienBan": 0
+    },
+    {
+      "maBienThe": "BT000065",
+      "sourceVariantId": 65,
+      "sourceSku": "8BS26S004-SK010-TRANG-S",
+      "maSP": "SP1016",
+      "mauSac": "Trắng",
+      "kichCo": "S",
+      "soLuongTon": 10,
+      "trangThai": true,
+      "phienBan": 0
+    },
+    {
+      "maBienThe": "BT000066",
+      "sourceVariantId": 66,
+      "sourceSku": "8BS26S004-SK010-TRANG-M",
+      "maSP": "SP1016",
+      "mauSac": "Trắng",
+      "kichCo": "M",
+      "soLuongTon": 10,
+      "trangThai": true,
+      "phienBan": 0
+    },
+    {
+      "maBienThe": "BT000067",
+      "sourceVariantId": 67,
+      "sourceSku": "8BS26S011-SB001-DEN-L",
+      "maSP": "SP1017",
+      "mauSac": "Đen",
+      "kichCo": "L",
+      "soLuongTon": 10,
+      "trangThai": true,
+      "phienBan": 0
+    },
+    {
+      "maBienThe": "BT000068",
+      "sourceVariantId": 68,
+      "sourceSku": "8BS26S011-SB001-DEN-XS",
+      "maSP": "SP1017",
+      "mauSac": "Đen",
+      "kichCo": "XS",
+      "soLuongTon": 10,
+      "trangThai": true,
+      "phienBan": 0
+    },
+    {
+      "maBienThe": "BT000069",
+      "sourceVariantId": 69,
+      "sourceSku": "8BS26S011-SB001-XANHDUON-L",
+      "maSP": "SP1017",
+      "mauSac": "Xanh dương",
+      "kichCo": "L",
+      "soLuongTon": 10,
+      "trangThai": true,
+      "phienBan": 0
+    },
+    {
+      "maBienThe": "BT000070",
+      "sourceVariantId": 70,
+      "sourceSku": "8BS26S011-SB001-XANHDUON-XS",
+      "maSP": "SP1017",
+      "mauSac": "Xanh dương",
+      "kichCo": "XS",
+      "soLuongTon": 10,
+      "trangThai": true,
+      "phienBan": 0
+    },
+    {
+      "maBienThe": "BT000071",
+      "sourceVariantId": 71,
+      "sourceSku": "8BS26S022-SA124-XAM-M",
+      "maSP": "SP1018",
+      "mauSac": "Xám",
+      "kichCo": "M",
+      "soLuongTon": 10,
+      "trangThai": true,
+      "phienBan": 0
+    },
+    {
+      "maBienThe": "BT000072",
+      "sourceVariantId": 72,
+      "sourceSku": "8BS26S022-SA124-XAM-L",
+      "maSP": "SP1018",
+      "mauSac": "Xám",
+      "kichCo": "L",
+      "soLuongTon": 10,
+      "trangThai": true,
+      "phienBan": 0
+    },
+    {
+      "maBienThe": "BT000073",
+      "sourceVariantId": 73,
+      "sourceSku": "8BS26S022-SA124-XANHDUON-XS",
+      "maSP": "SP1018",
+      "mauSac": "Xanh dương",
+      "kichCo": "XS",
+      "soLuongTon": 10,
+      "trangThai": true,
+      "phienBan": 0
+    },
+    {
+      "maBienThe": "BT000074",
+      "sourceVariantId": 74,
+      "sourceSku": "8BS26S022-SA124-XANHDUON-L",
+      "maSP": "SP1018",
+      "mauSac": "Xanh dương",
+      "kichCo": "L",
+      "soLuongTon": 10,
+      "trangThai": true,
+      "phienBan": 0
+    },
+    {
+      "maBienThe": "BT000075",
+      "sourceVariantId": 75,
+      "sourceSku": "8BS26S023-SW424-TRANG-M",
+      "maSP": "SP1019",
+      "mauSac": "Trắng",
+      "kichCo": "M",
+      "soLuongTon": 10,
+      "trangThai": true,
+      "phienBan": 0
+    },
+    {
+      "maBienThe": "BT000076",
+      "sourceVariantId": 76,
+      "sourceSku": "8BS26S023-SW424-TRANG-L",
+      "maSP": "SP1019",
+      "mauSac": "Trắng",
+      "kichCo": "L",
+      "soLuongTon": 10,
+      "trangThai": true,
+      "phienBan": 0
+    },
+    {
+      "maBienThe": "BT000077",
+      "sourceVariantId": 77,
+      "sourceSku": "8BS26S023-SW424-XAM-XS",
+      "maSP": "SP1019",
+      "mauSac": "Xám",
+      "kichCo": "XS",
+      "soLuongTon": 10,
+      "trangThai": true,
+      "phienBan": 0
+    },
+    {
+      "maBienThe": "BT000078",
+      "sourceVariantId": 78,
+      "sourceSku": "8BS26S023-SW424-XAM-L",
+      "maSP": "SP1019",
+      "mauSac": "Xám",
+      "kichCo": "L",
+      "soLuongTon": 10,
+      "trangThai": true,
+      "phienBan": 0
+    },
+    {
+      "maBienThe": "BT000079",
+      "sourceVariantId": 79,
+      "sourceSku": "5BS26S001-SJ967-INDIGO-XS",
+      "maSP": "SP1020",
+      "mauSac": "Xanh Indigo",
+      "kichCo": "XS",
+      "soLuongTon": 10,
+      "trangThai": true,
+      "phienBan": 0
+    },
+    {
+      "maBienThe": "BT000080",
+      "sourceVariantId": 80,
+      "sourceSku": "5BS26S001-SJ967-INDIGO-L",
+      "maSP": "SP1020",
+      "mauSac": "Xanh Indigo",
+      "kichCo": "L",
+      "soLuongTon": 10,
+      "trangThai": true,
+      "phienBan": 0
+    },
+    {
+      "maBienThe": "BT000081",
+      "sourceVariantId": 81,
+      "sourceSku": "8TH26S009-SW001-TRANG-L",
+      "maSP": "SP1021",
+      "mauSac": "Trắng",
+      "kichCo": "L",
+      "soLuongTon": 10,
+      "trangThai": true,
+      "phienBan": 0
+    },
+    {
+      "maBienThe": "BT000082",
+      "sourceVariantId": 82,
+      "sourceSku": "8TH26S009-SW001-TRANG-XS",
+      "maSP": "SP1021",
+      "mauSac": "Trắng",
+      "kichCo": "XS",
+      "soLuongTon": 10,
+      "trangThai": true,
+      "phienBan": 0
+    },
+    {
+      "maBienThe": "BT000083",
+      "sourceVariantId": 83,
+      "sourceSku": "8TH26S009-SW001-BE-L",
+      "maSP": "SP1021",
+      "mauSac": "Be",
+      "kichCo": "L",
+      "soLuongTon": 10,
+      "trangThai": true,
+      "phienBan": 0
+    },
+    {
+      "maBienThe": "BT000084",
+      "sourceVariantId": 84,
+      "sourceSku": "8TH26S009-SW001-BE-XS",
+      "maSP": "SP1021",
+      "mauSac": "Be",
+      "kichCo": "XS",
+      "soLuongTon": 10,
+      "trangThai": true,
+      "phienBan": 0
+    },
+    {
+      "maBienThe": "BT000085",
+      "sourceVariantId": 85,
+      "sourceSku": "8TH26S001-FW334-TRANGHOA-L",
+      "maSP": "SP1022",
+      "mauSac": "Trắng họa tiết",
+      "kichCo": "L",
+      "soLuongTon": 10,
+      "trangThai": true,
+      "phienBan": 0
+    },
+    {
+      "maBienThe": "BT000086",
+      "sourceVariantId": 86,
+      "sourceSku": "8TH26S001-FW334-TRANGHOA-XS",
+      "maSP": "SP1022",
+      "mauSac": "Trắng họa tiết",
+      "kichCo": "XS",
+      "soLuongTon": 10,
+      "trangThai": true,
+      "phienBan": 0
+    },
+    {
+      "maBienThe": "BT000087",
+      "sourceVariantId": 87,
+      "sourceSku": "8TH26S012-PA173-XAMKESOC-S",
+      "maSP": "SP1023",
+      "mauSac": "Xám kẻ sọc",
+      "kichCo": "S",
+      "soLuongTon": 10,
+      "trangThai": true,
+      "phienBan": 0
+    },
+    {
+      "maBienThe": "BT000088",
+      "sourceVariantId": 88,
+      "sourceSku": "8TH26S012-PA173-XAMKESOC-M",
+      "maSP": "SP1023",
+      "mauSac": "Xám kẻ sọc",
+      "kichCo": "M",
+      "soLuongTon": 10,
+      "trangThai": true,
+      "phienBan": 0
+    },
+    {
+      "maBienThe": "BT000089",
+      "sourceVariantId": 89,
+      "sourceSku": "8TH26S012-PA173-XANHDUON-S",
+      "maSP": "SP1023",
+      "mauSac": "Xanh dương kẻ sọc",
+      "kichCo": "S",
+      "soLuongTon": 10,
+      "trangThai": true,
+      "phienBan": 0
+    },
+    {
+      "maBienThe": "BT000090",
+      "sourceVariantId": 90,
+      "sourceSku": "8TH26S012-PA173-XANHDUON-M",
+      "maSP": "SP1023",
+      "mauSac": "Xanh dương kẻ sọc",
+      "kichCo": "M",
+      "soLuongTon": 10,
+      "trangThai": true,
+      "phienBan": 0
+    },
+    {
+      "maBienThe": "BT000091",
+      "sourceVariantId": 91,
+      "sourceSku": "5TH26S001-PE176-BEKESOC-S",
+      "maSP": "SP1024",
+      "mauSac": "Be kẻ sọc",
+      "kichCo": "S",
+      "soLuongTon": 10,
+      "trangThai": true,
+      "phienBan": 0
+    },
+    {
+      "maBienThe": "BT000092",
+      "sourceVariantId": 92,
+      "sourceSku": "5TH26S001-PE176-BEKESOC-M",
+      "maSP": "SP1024",
+      "mauSac": "Be kẻ sọc",
+      "kichCo": "M",
+      "soLuongTon": 10,
+      "trangThai": true,
+      "phienBan": 0
+    },
+    {
+      "maBienThe": "BT000093",
+      "sourceVariantId": 93,
+      "sourceSku": "5TH26S001-PE176-XANHDUON-S",
+      "maSP": "SP1024",
+      "mauSac": "Xanh dương kẻ sọc",
+      "kichCo": "S",
+      "soLuongTon": 10,
+      "trangThai": true,
+      "phienBan": 0
+    },
+    {
+      "maBienThe": "BT000094",
+      "sourceVariantId": 94,
+      "sourceSku": "5TH26S001-PE176-XANHDUON-M",
+      "maSP": "SP1024",
+      "mauSac": "Xanh dương kẻ sọc",
+      "kichCo": "M",
+      "soLuongTon": 10,
+      "trangThai": true,
+      "phienBan": 0
+    },
+    {
+      "maBienThe": "BT000095",
+      "sourceVariantId": 95,
+      "sourceSku": "8TH26S011-SL390-XANHLO-S",
+      "maSP": "SP1025",
+      "mauSac": "Xanh lơ",
+      "kichCo": "S",
+      "soLuongTon": 10,
+      "trangThai": true,
+      "phienBan": 0
+    },
+    {
+      "maBienThe": "BT000096",
+      "sourceVariantId": 96,
+      "sourceSku": "8TH26S011-SL390-XANHLO-M",
+      "maSP": "SP1025",
+      "mauSac": "Xanh lơ",
+      "kichCo": "M",
+      "soLuongTon": 10,
+      "trangThai": true,
+      "phienBan": 0
+    },
+    {
+      "maBienThe": "BT000097",
+      "sourceVariantId": 97,
+      "sourceSku": "8TH26S011-SL390-TRANG-S",
+      "maSP": "SP1025",
+      "mauSac": "Trắng",
+      "kichCo": "S",
+      "soLuongTon": 10,
+      "trangThai": true,
+      "phienBan": 0
+    },
+    {
+      "maBienThe": "BT000098",
+      "sourceVariantId": 98,
+      "sourceSku": "8TH26S011-SL390-TRANG-M",
+      "maSP": "SP1025",
+      "mauSac": "Trắng",
+      "kichCo": "M",
+      "soLuongTon": 10,
+      "trangThai": true,
+      "phienBan": 0
+    },
+    {
+      "maBienThe": "BT000099",
+      "sourceVariantId": 99,
+      "sourceSku": "8TH26A001-SW001-TRANG-S",
+      "maSP": "SP1026",
+      "mauSac": "Trắng",
+      "kichCo": "S",
+      "soLuongTon": 10,
+      "trangThai": true,
+      "phienBan": 0
+    },
+    {
+      "maBienThe": "BT000100",
+      "sourceVariantId": 100,
+      "sourceSku": "8TH26A001-SW001-TRANG-M",
+      "maSP": "SP1026",
+      "mauSac": "Trắng",
+      "kichCo": "M",
+      "soLuongTon": 10,
+      "trangThai": true,
+      "phienBan": 0
+    },
+    {
+      "maBienThe": "BT000101",
+      "sourceVariantId": 101,
+      "sourceSku": "8TH26A001-SW001-HONG-S",
+      "maSP": "SP1026",
+      "mauSac": "Hồng",
+      "kichCo": "S",
+      "soLuongTon": 10,
+      "trangThai": true,
+      "phienBan": 0
+    },
+    {
+      "maBienThe": "BT000102",
+      "sourceVariantId": 102,
+      "sourceSku": "8TH26A001-SW001-HONG-M",
+      "maSP": "SP1026",
+      "mauSac": "Hồng",
+      "kichCo": "M",
+      "soLuongTon": 10,
+      "trangThai": true,
+      "phienBan": 0
+    },
+    {
+      "maBienThe": "BT000103",
+      "sourceVariantId": 103,
+      "sourceSku": "8TH25W001-CG100-XANHLACA-S",
+      "maSP": "SP1027",
+      "mauSac": "Xanh lá caro",
+      "kichCo": "S",
+      "soLuongTon": 10,
+      "trangThai": true,
+      "phienBan": 0
+    },
+    {
+      "maBienThe": "BT000104",
+      "sourceVariantId": 104,
+      "sourceSku": "8TH25W001-CG100-XANHLACA-M",
+      "maSP": "SP1027",
+      "mauSac": "Xanh lá caro",
+      "kichCo": "M",
+      "soLuongTon": 10,
+      "trangThai": true,
+      "phienBan": 0
+    },
+    {
+      "maBienThe": "BT000105",
+      "sourceVariantId": 105,
+      "sourceSku": "8TH25W001-CG100-DOCARO-S",
+      "maSP": "SP1027",
+      "mauSac": "Đỏ caro",
+      "kichCo": "S",
+      "soLuongTon": 10,
+      "trangThai": true,
+      "phienBan": 0
+    },
+    {
+      "maBienThe": "BT000106",
+      "sourceVariantId": 106,
+      "sourceSku": "8TH25W001-CG100-DOCARO-M",
+      "maSP": "SP1027",
+      "mauSac": "Đỏ caro",
+      "kichCo": "M",
+      "soLuongTon": 10,
+      "trangThai": true,
+      "phienBan": 0
+    },
+    {
+      "maBienThe": "BT000107",
+      "sourceVariantId": 107,
+      "sourceSku": "8TH24W004-XAM-S",
+      "maSP": "SP1028",
+      "mauSac": "Xám caro",
+      "kichCo": "S",
+      "soLuongTon": 10,
+      "trangThai": true,
+      "phienBan": 0
+    },
+    {
+      "maBienThe": "BT000108",
+      "sourceVariantId": 108,
+      "sourceSku": "8TH24W004-XAM-M",
+      "maSP": "SP1028",
+      "mauSac": "Xám caro",
+      "kichCo": "M",
+      "soLuongTon": 10,
+      "trangThai": true,
+      "phienBan": 0
+    },
+    {
+      "maBienThe": "BT000109",
+      "sourceVariantId": 109,
+      "sourceSku": "8TH25W008-XAM-S",
+      "maSP": "SP1029",
+      "mauSac": "Xám",
+      "kichCo": "S",
+      "soLuongTon": 10,
+      "trangThai": true,
+      "phienBan": 0
+    },
+    {
+      "maBienThe": "BT000110",
+      "sourceVariantId": 110,
+      "sourceSku": "8TH25W008-XAM-M",
+      "maSP": "SP1029",
+      "mauSac": "Xám",
+      "kichCo": "M",
+      "soLuongTon": 10,
+      "trangThai": true,
+      "phienBan": 0
+    },
+    {
+      "maBienThe": "BT000111",
+      "sourceVariantId": 111,
+      "sourceSku": "8TH25W008-XANHLO-S",
+      "maSP": "SP1029",
+      "mauSac": "Xanh lơ",
+      "kichCo": "S",
+      "soLuongTon": 10,
+      "trangThai": true,
+      "phienBan": 0
+    },
+    {
+      "maBienThe": "BT000112",
+      "sourceVariantId": 112,
+      "sourceSku": "8TH25W008-XANHLO-M",
+      "maSP": "SP1029",
+      "mauSac": "Xanh lơ",
+      "kichCo": "M",
+      "soLuongTon": 10,
+      "trangThai": true,
+      "phienBan": 0
+    },
+    {
+      "maBienThe": "BT000113",
+      "sourceVariantId": 113,
+      "sourceSku": "6BJ26S005-SE321-BE-S",
+      "maSP": "SP1030",
+      "mauSac": "Be",
+      "kichCo": "S",
+      "soLuongTon": 10,
+      "trangThai": true,
+      "phienBan": 0
+    },
+    {
+      "maBienThe": "BT000114",
+      "sourceVariantId": 114,
+      "sourceSku": "6BJ26S005-SE321-BE-M",
+      "maSP": "SP1030",
+      "mauSac": "Be",
+      "kichCo": "M",
+      "soLuongTon": 10,
+      "trangThai": true,
+      "phienBan": 0
+    },
+    {
+      "maBienThe": "BT000115",
+      "sourceVariantId": 115,
+      "sourceSku": "6BJ26S005-SE321-TRANG-S",
+      "maSP": "SP1030",
+      "mauSac": "Trắng",
+      "kichCo": "S",
+      "soLuongTon": 10,
+      "trangThai": true,
+      "phienBan": 0
+    },
+    {
+      "maBienThe": "BT000116",
+      "sourceVariantId": 116,
+      "sourceSku": "6BJ26S005-SE321-TRANG-M",
+      "maSP": "SP1030",
+      "mauSac": "Trắng",
+      "kichCo": "M",
+      "soLuongTon": 10,
+      "trangThai": true,
+      "phienBan": 0
+    },
+    {
+      "maBienThe": "BT000117",
+      "sourceVariantId": 117,
+      "sourceSku": "6BL26S002-SK010-DEN-S",
+      "maSP": "SP1031",
+      "mauSac": "Đen",
+      "kichCo": "S",
+      "soLuongTon": 10,
+      "trangThai": true,
+      "phienBan": 0
+    },
+    {
+      "maBienThe": "BT000118",
+      "sourceVariantId": 118,
+      "sourceSku": "6BL26S002-SK010-DEN-M",
+      "maSP": "SP1031",
+      "mauSac": "Đen",
+      "kichCo": "M",
+      "soLuongTon": 10,
+      "trangThai": true,
+      "phienBan": 0
+    },
+    {
+      "maBienThe": "BT000119",
+      "sourceVariantId": 119,
+      "sourceSku": "6BP26S003-SE285-BE-XS",
+      "maSP": "SP1032",
+      "mauSac": "Be",
+      "kichCo": "XS",
+      "soLuongTon": 10,
+      "trangThai": true,
+      "phienBan": 0
+    },
+    {
+      "maBienThe": "BT000120",
+      "sourceVariantId": 120,
+      "sourceSku": "6BP26S003-SE285-BE-S",
+      "maSP": "SP1032",
+      "mauSac": "Be",
+      "kichCo": "S",
+      "soLuongTon": 10,
+      "trangThai": true,
+      "phienBan": 0
+    },
+    {
+      "maBienThe": "BT000121",
+      "sourceVariantId": 121,
+      "sourceSku": "6BP26S003-SE285-TRANG-M",
+      "maSP": "SP1032",
+      "mauSac": "Trắng",
+      "kichCo": "M",
+      "soLuongTon": 10,
+      "trangThai": true,
+      "phienBan": 0
+    },
+    {
+      "maBienThe": "BT000122",
+      "sourceVariantId": 122,
+      "sourceSku": "6BP26S003-SE285-TRANG-S",
+      "maSP": "SP1032",
+      "mauSac": "Trắng",
+      "kichCo": "S",
+      "soLuongTon": 10,
+      "trangThai": true,
+      "phienBan": 0
+    },
+    {
+      "maBienThe": "BT000123",
+      "sourceVariantId": 123,
+      "sourceSku": "6BP26S001-SK010-DEN-L",
+      "maSP": "SP1033",
+      "mauSac": "Đen",
+      "kichCo": "L",
+      "soLuongTon": 10,
+      "trangThai": true,
+      "phienBan": 0
+    },
+    {
+      "maBienThe": "BT000124",
+      "sourceVariantId": 124,
+      "sourceSku": "6BP26S001-SK010-DEN-XL",
+      "maSP": "SP1033",
+      "mauSac": "Đen",
+      "kichCo": "XL",
+      "soLuongTon": 10,
+      "trangThai": true,
+      "phienBan": 0
+    },
+    {
+      "maBienThe": "BT000125",
+      "sourceVariantId": 125,
+      "sourceSku": "6BP26S001-SK010-XAM-L",
+      "maSP": "SP1033",
+      "mauSac": "Xám",
+      "kichCo": "L",
+      "soLuongTon": 10,
+      "trangThai": true,
+      "phienBan": 0
+    },
+    {
+      "maBienThe": "BT000126",
+      "sourceVariantId": 126,
+      "sourceSku": "6BP26S001-SK010-XAM-XL",
+      "maSP": "SP1033",
+      "mauSac": "Xám",
+      "kichCo": "XL",
+      "soLuongTon": 10,
+      "trangThai": true,
+      "phienBan": 0
+    },
+    {
+      "maBienThe": "BT000127",
+      "sourceVariantId": 127,
+      "sourceSku": "6BP26S006-SE086-BE-S",
+      "maSP": "SP1034",
+      "mauSac": "Be",
+      "kichCo": "S",
+      "soLuongTon": 10,
+      "trangThai": true,
+      "phienBan": 0
+    },
+    {
+      "maBienThe": "BT000128",
+      "sourceVariantId": 128,
+      "sourceSku": "6BP26S006-SE086-BE-M",
+      "maSP": "SP1034",
+      "mauSac": "Be",
+      "kichCo": "M",
+      "soLuongTon": 10,
+      "trangThai": true,
+      "phienBan": 0
+    },
+    {
+      "maBienThe": "BT000129",
+      "sourceVariantId": 129,
+      "sourceSku": "6BP26S006-SE086-XANHLA-S",
+      "maSP": "SP1034",
+      "mauSac": "Xanh lá",
+      "kichCo": "S",
+      "soLuongTon": 10,
+      "trangThai": true,
+      "phienBan": 0
+    },
+    {
+      "maBienThe": "BT000130",
+      "sourceVariantId": 130,
+      "sourceSku": "6BP26S006-SE086-XANHLA-L",
+      "maSP": "SP1034",
+      "mauSac": "Xanh lá",
+      "kichCo": "L",
+      "soLuongTon": 10,
+      "trangThai": true,
+      "phienBan": 0
+    },
+    {
+      "maBienThe": "BT000131",
+      "sourceVariantId": 131,
+      "sourceSku": "6BP26S006-SE086-DEN-XL",
+      "maSP": "SP1034",
+      "mauSac": "Đen",
+      "kichCo": "XL",
+      "soLuongTon": 10,
+      "trangThai": true,
+      "phienBan": 0
+    },
+    {
+      "maBienThe": "BT000132",
+      "sourceVariantId": 132,
+      "sourceSku": "6BP26S006-SE086-DEN-L",
+      "maSP": "SP1034",
+      "mauSac": "Đen",
+      "kichCo": "L",
+      "soLuongTon": 10,
+      "trangThai": true,
+      "phienBan": 0
+    },
+    {
+      "maBienThe": "BT000133",
+      "sourceVariantId": 133,
+      "sourceSku": "6BK26S001-SK010-DEN-XL",
+      "maSP": "SP1035",
+      "mauSac": "Đen",
+      "kichCo": "XL",
+      "soLuongTon": 10,
+      "trangThai": true,
+      "phienBan": 0
+    },
+    {
+      "maBienThe": "BT000134",
+      "sourceVariantId": 134,
+      "sourceSku": "6BK26S001-SK010-DEN-L",
+      "maSP": "SP1035",
+      "mauSac": "Đen",
+      "kichCo": "L",
+      "soLuongTon": 10,
+      "trangThai": true,
+      "phienBan": 0
+    },
+    {
+      "maBienThe": "BT000135",
+      "sourceVariantId": 135,
+      "sourceSku": "6BK26S001-SK010-TRANG-XL",
+      "maSP": "SP1035",
+      "mauSac": "Trắng",
+      "kichCo": "XL",
+      "soLuongTon": 10,
+      "trangThai": true,
+      "phienBan": 0
+    },
+    {
+      "maBienThe": "BT000136",
+      "sourceVariantId": 136,
+      "sourceSku": "6BK26S001-SK010-TRANG-S",
+      "maSP": "SP1035",
+      "mauSac": "Trắng",
+      "kichCo": "S",
+      "soLuongTon": 10,
+      "trangThai": true,
+      "phienBan": 0
+    },
+    {
+      "maBienThe": "BT000137",
+      "sourceVariantId": 137,
+      "sourceSku": "8OT26S004-SB001-XANHDUON-XL",
+      "maSP": "SP1036",
+      "mauSac": "Xanh dương",
+      "kichCo": "XL",
+      "soLuongTon": 10,
+      "trangThai": true,
+      "phienBan": 0
+    },
+    {
+      "maBienThe": "BT000138",
+      "sourceVariantId": 138,
+      "sourceSku": "8OT26S004-SB001-XANHDUON-L",
+      "maSP": "SP1036",
+      "mauSac": "Xanh dương",
+      "kichCo": "L",
+      "soLuongTon": 10,
+      "trangThai": true,
+      "phienBan": 0
+    },
+    {
+      "maBienThe": "BT000139",
+      "sourceVariantId": 139,
+      "sourceSku": "8OT26S004-SB001-DEN-XL",
+      "maSP": "SP1036",
+      "mauSac": "Xám",
+      "kichCo": "XL",
+      "soLuongTon": 10,
+      "trangThai": true,
+      "phienBan": 0
+    },
+    {
+      "maBienThe": "BT000140",
+      "sourceVariantId": 140,
+      "sourceSku": "8OT26S004-SB001-DEN-S",
+      "maSP": "SP1036",
+      "mauSac": "Xám",
+      "kichCo": "S",
+      "soLuongTon": 10,
+      "trangThai": true,
+      "phienBan": 0
+    },
+    {
+      "maBienThe": "BT000141",
+      "sourceVariantId": 141,
+      "sourceSku": "8OT26S002-SB001-XANHDUON-XL",
+      "maSP": "SP1037",
+      "mauSac": "Xanh dương",
+      "kichCo": "XL",
+      "soLuongTon": 10,
+      "trangThai": true,
+      "phienBan": 0
+    },
+    {
+      "maBienThe": "BT000142",
+      "sourceVariantId": 142,
+      "sourceSku": "8OT26S002-SB001-XANHDUON-L",
+      "maSP": "SP1037",
+      "mauSac": "Xanh dương",
+      "kichCo": "L",
+      "soLuongTon": 10,
+      "trangThai": true,
+      "phienBan": 0
+    },
+    {
+      "maBienThe": "BT000143",
+      "sourceVariantId": 143,
+      "sourceSku": "8OT26S002-SB001-DEN-XL",
+      "maSP": "SP1037",
+      "mauSac": "Đen",
+      "kichCo": "XL",
+      "soLuongTon": 10,
+      "trangThai": true,
+      "phienBan": 0
+    },
+    {
+      "maBienThe": "BT000144",
+      "sourceVariantId": 144,
+      "sourceSku": "8OT26S002-SB001-DEN-S",
+      "maSP": "SP1037",
+      "mauSac": "Đen",
+      "kichCo": "S",
+      "soLuongTon": 10,
+      "trangThai": true,
+      "phienBan": 0
+    },
+    {
+      "maBienThe": "BT000145",
+      "sourceVariantId": 145,
+      "sourceSku": "8OT25C003-XANHDUON-S",
+      "maSP": "SP1038",
+      "mauSac": "Xanh dương",
+      "kichCo": "S",
+      "soLuongTon": 10,
+      "trangThai": true,
+      "phienBan": 0
+    },
+    {
+      "maBienThe": "BT000146",
+      "sourceVariantId": 146,
+      "sourceSku": "8OT25C003-XANHDUON-M",
+      "maSP": "SP1038",
+      "mauSac": "Xanh dương",
+      "kichCo": "M",
+      "soLuongTon": 10,
+      "trangThai": true,
+      "phienBan": 0
+    },
+    {
+      "maBienThe": "BT000147",
+      "sourceVariantId": 147,
+      "sourceSku": "8OT25W021-TRANG-XL",
+      "maSP": "SP1039",
+      "mauSac": "Trắng",
+      "kichCo": "XL",
+      "soLuongTon": 10,
+      "trangThai": true,
+      "phienBan": 0
+    },
+    {
+      "maBienThe": "BT000148",
+      "sourceVariantId": 148,
+      "sourceSku": "8OT25W021-TRANG-S",
+      "maSP": "SP1039",
+      "mauSac": "Trắng",
+      "kichCo": "S",
+      "soLuongTon": 10,
+      "trangThai": true,
+      "phienBan": 0
+    },
+    {
+      "maBienThe": "BT000149",
+      "sourceVariantId": 149,
+      "sourceSku": "8OT25W021-XANHDUON-S",
+      "maSP": "SP1039",
+      "mauSac": "Xanh dương",
+      "kichCo": "S",
+      "soLuongTon": 10,
+      "trangThai": true,
+      "phienBan": 0
+    },
+    {
+      "maBienThe": "BT000150",
+      "sourceVariantId": 150,
+      "sourceSku": "8OT25W021-XANHDUON-M",
+      "maSP": "SP1039",
+      "mauSac": "Xanh dương",
+      "kichCo": "M",
+      "soLuongTon": 10,
+      "trangThai": true,
+      "phienBan": 0
+    },
+    {
+      "maBienThe": "BT000151",
+      "sourceVariantId": 151,
+      "sourceSku": "8OT25W022-BE-S",
+      "maSP": "SP1040",
+      "mauSac": "Be",
+      "kichCo": "S",
+      "soLuongTon": 10,
+      "trangThai": true,
+      "phienBan": 0
+    },
+    {
+      "maBienThe": "BT000152",
+      "sourceVariantId": 152,
+      "sourceSku": "8OT25W022-BE-M",
+      "maSP": "SP1040",
+      "mauSac": "Be",
+      "kichCo": "M",
+      "soLuongTon": 10,
+      "trangThai": true,
+      "phienBan": 0
+    }
+  ],
+  "images": [
+    {
+      "maAnh": "ANH000001",
+      "maSP": "SP1001",
+      "mauSac": "Đỏ",
+      "duongDan": "images/products/1001/red-1.jpg",
+      "thuTu": 1,
+      "anhChinh": true
+    },
+    {
+      "maAnh": "ANH000002",
+      "maSP": "SP1001",
+      "mauSac": "Đỏ",
+      "duongDan": "images/products/1001/red-2.jpg",
+      "thuTu": 2,
+      "anhChinh": false
+    },
+    {
+      "maAnh": "ANH000003",
+      "maSP": "SP1001",
+      "mauSac": "Đỏ",
+      "duongDan": "images/products/1001/red-3.jpg",
+      "thuTu": 3,
+      "anhChinh": false
+    },
+    {
+      "maAnh": "ANH000004",
+      "maSP": "SP1001",
+      "mauSac": "Đỏ",
+      "duongDan": "images/products/1001/red-4.jpg",
+      "thuTu": 4,
+      "anhChinh": false
+    },
+    {
+      "maAnh": "ANH000005",
+      "maSP": "SP1001",
+      "mauSac": "Vàng",
+      "duongDan": "images/products/1001/yellow-1.jpg",
+      "thuTu": 1,
+      "anhChinh": true
+    },
+    {
+      "maAnh": "ANH000006",
+      "maSP": "SP1001",
+      "mauSac": "Vàng",
+      "duongDan": "images/products/1001/yellow-2.jpg",
+      "thuTu": 2,
+      "anhChinh": false
+    },
+    {
+      "maAnh": "ANH000007",
+      "maSP": "SP1001",
+      "mauSac": "Vàng",
+      "duongDan": "images/products/1001/yellow-3.jpg",
+      "thuTu": 3,
+      "anhChinh": false
+    },
+    {
+      "maAnh": "ANH000008",
+      "maSP": "SP1001",
+      "mauSac": "Vàng",
+      "duongDan": "images/products/1001/yellow-4.jpg",
+      "thuTu": 4,
+      "anhChinh": false
+    },
+    {
+      "maAnh": "ANH000009",
+      "maSP": "SP1001",
+      "mauSac": "Vàng",
+      "duongDan": "images/products/1001/yellow-5.jpg",
+      "thuTu": 5,
+      "anhChinh": false
+    },
+    {
+      "maAnh": "ANH000010",
+      "maSP": "SP1001",
+      "mauSac": "Nâu",
+      "duongDan": "images/products/1001/brown-1.jpg",
+      "thuTu": 1,
+      "anhChinh": true
+    },
+    {
+      "maAnh": "ANH000011",
+      "maSP": "SP1001",
+      "mauSac": "Nâu",
+      "duongDan": "images/products/1001/brown-2.jpg",
+      "thuTu": 2,
+      "anhChinh": false
+    },
+    {
+      "maAnh": "ANH000012",
+      "maSP": "SP1001",
+      "mauSac": "Nâu",
+      "duongDan": "images/products/1001/brown-3.jpg",
+      "thuTu": 3,
+      "anhChinh": false
+    },
+    {
+      "maAnh": "ANH000013",
+      "maSP": "SP1001",
+      "mauSac": "Nâu",
+      "duongDan": "images/products/1001/brown-4.jpg",
+      "thuTu": 4,
+      "anhChinh": false
+    },
+    {
+      "maAnh": "ANH000014",
+      "maSP": "SP1001",
+      "mauSac": "Nâu",
+      "duongDan": "images/products/1001/brown-5.jpg",
+      "thuTu": 5,
+      "anhChinh": false
+    },
+    {
+      "maAnh": "ANH000015",
+      "maSP": "SP1002",
+      "mauSac": "Nâu",
+      "duongDan": "images/products/1002/brown-1.jpg",
+      "thuTu": 1,
+      "anhChinh": true
+    },
+    {
+      "maAnh": "ANH000016",
+      "maSP": "SP1002",
+      "mauSac": "Nâu",
+      "duongDan": "images/products/1002/brown-2.jpg",
+      "thuTu": 2,
+      "anhChinh": false
+    },
+    {
+      "maAnh": "ANH000017",
+      "maSP": "SP1002",
+      "mauSac": "Nâu",
+      "duongDan": "images/products/1002/brown-3.jpg",
+      "thuTu": 3,
+      "anhChinh": false
+    },
+    {
+      "maAnh": "ANH000018",
+      "maSP": "SP1002",
+      "mauSac": "Nâu",
+      "duongDan": "images/products/1002/brown-4.jpg",
+      "thuTu": 4,
+      "anhChinh": false
+    },
+    {
+      "maAnh": "ANH000019",
+      "maSP": "SP1002",
+      "mauSac": "Nâu",
+      "duongDan": "images/products/1002/brown-5.jpg",
+      "thuTu": 5,
+      "anhChinh": false
+    },
+    {
+      "maAnh": "ANH000020",
+      "maSP": "SP1002",
+      "mauSac": "Đen",
+      "duongDan": "images/products/1002/black-1.jpg",
+      "thuTu": 1,
+      "anhChinh": true
+    },
+    {
+      "maAnh": "ANH000021",
+      "maSP": "SP1002",
+      "mauSac": "Đen",
+      "duongDan": "images/products/1002/black-2.jpg",
+      "thuTu": 2,
+      "anhChinh": false
+    },
+    {
+      "maAnh": "ANH000022",
+      "maSP": "SP1002",
+      "mauSac": "Đen",
+      "duongDan": "images/products/1002/black-3.jpg",
+      "thuTu": 3,
+      "anhChinh": false
+    },
+    {
+      "maAnh": "ANH000023",
+      "maSP": "SP1002",
+      "mauSac": "Đen",
+      "duongDan": "images/products/1002/black-4.jpg",
+      "thuTu": 4,
+      "anhChinh": false
+    },
+    {
+      "maAnh": "ANH000024",
+      "maSP": "SP1002",
+      "mauSac": "Đen",
+      "duongDan": "images/products/1002/black-5.jpg",
+      "thuTu": 5,
+      "anhChinh": false
+    },
+    {
+      "maAnh": "ANH000025",
+      "maSP": "SP1002",
+      "mauSac": "Hồng",
+      "duongDan": "images/products/1002/pink-1.jpg",
+      "thuTu": 1,
+      "anhChinh": true
+    },
+    {
+      "maAnh": "ANH000026",
+      "maSP": "SP1002",
+      "mauSac": "Hồng",
+      "duongDan": "images/products/1002/pink-2.jpg",
+      "thuTu": 2,
+      "anhChinh": false
+    },
+    {
+      "maAnh": "ANH000027",
+      "maSP": "SP1002",
+      "mauSac": "Hồng",
+      "duongDan": "images/products/1002/pink-3.jpg",
+      "thuTu": 3,
+      "anhChinh": false
+    },
+    {
+      "maAnh": "ANH000028",
+      "maSP": "SP1002",
+      "mauSac": "Hồng",
+      "duongDan": "images/products/1002/pink-4.jpg",
+      "thuTu": 4,
+      "anhChinh": false
+    },
+    {
+      "maAnh": "ANH000029",
+      "maSP": "SP1002",
+      "mauSac": "Hồng",
+      "duongDan": "images/products/1002/pink-5.jpg",
+      "thuTu": 5,
+      "anhChinh": false
+    },
+    {
+      "maAnh": "ANH000030",
+      "maSP": "SP1003",
+      "mauSac": "Đen",
+      "duongDan": "images/products/1003/black-1.jpg",
+      "thuTu": 1,
+      "anhChinh": true
+    },
+    {
+      "maAnh": "ANH000031",
+      "maSP": "SP1003",
+      "mauSac": "Đen",
+      "duongDan": "images/products/1003/black-2.jpg",
+      "thuTu": 2,
+      "anhChinh": false
+    },
+    {
+      "maAnh": "ANH000032",
+      "maSP": "SP1003",
+      "mauSac": "Đen",
+      "duongDan": "images/products/1003/black-3.jpg",
+      "thuTu": 3,
+      "anhChinh": false
+    },
+    {
+      "maAnh": "ANH000033",
+      "maSP": "SP1003",
+      "mauSac": "Đen",
+      "duongDan": "images/products/1003/black-4.jpg",
+      "thuTu": 4,
+      "anhChinh": false
+    },
+    {
+      "maAnh": "ANH000034",
+      "maSP": "SP1003",
+      "mauSac": "Xanh dương",
+      "duongDan": "images/products/1003/blue-1.jpg",
+      "thuTu": 1,
+      "anhChinh": true
+    },
+    {
+      "maAnh": "ANH000035",
+      "maSP": "SP1003",
+      "mauSac": "Xanh dương",
+      "duongDan": "images/products/1003/blue-2.jpg",
+      "thuTu": 2,
+      "anhChinh": false
+    },
+    {
+      "maAnh": "ANH000036",
+      "maSP": "SP1003",
+      "mauSac": "Xanh dương",
+      "duongDan": "images/products/1003/blue-3.jpg",
+      "thuTu": 3,
+      "anhChinh": false
+    },
+    {
+      "maAnh": "ANH000037",
+      "maSP": "SP1003",
+      "mauSac": "Xanh dương",
+      "duongDan": "images/products/1003/blue-4.jpg",
+      "thuTu": 4,
+      "anhChinh": false
+    },
+    {
+      "maAnh": "ANH000038",
+      "maSP": "SP1003",
+      "mauSac": "Trắng",
+      "duongDan": "images/products/1003/white-1.jpg",
+      "thuTu": 1,
+      "anhChinh": true
+    },
+    {
+      "maAnh": "ANH000039",
+      "maSP": "SP1003",
+      "mauSac": "Trắng",
+      "duongDan": "images/products/1003/white-2.jpg",
+      "thuTu": 2,
+      "anhChinh": false
+    },
+    {
+      "maAnh": "ANH000040",
+      "maSP": "SP1003",
+      "mauSac": "Trắng",
+      "duongDan": "images/products/1003/white-3.jpg",
+      "thuTu": 3,
+      "anhChinh": false
+    },
+    {
+      "maAnh": "ANH000041",
+      "maSP": "SP1003",
+      "mauSac": "Trắng",
+      "duongDan": "images/products/1003/white-4.jpg",
+      "thuTu": 4,
+      "anhChinh": false
+    },
+    {
+      "maAnh": "ANH000042",
+      "maSP": "SP1004",
+      "mauSac": "Xanh dương",
+      "duongDan": "images/products/1004/blue-1.jpg",
+      "thuTu": 1,
+      "anhChinh": true
+    },
+    {
+      "maAnh": "ANH000043",
+      "maSP": "SP1004",
+      "mauSac": "Xanh dương",
+      "duongDan": "images/products/1004/blue-2.jpg",
+      "thuTu": 2,
+      "anhChinh": false
+    },
+    {
+      "maAnh": "ANH000044",
+      "maSP": "SP1004",
+      "mauSac": "Xanh dương",
+      "duongDan": "images/products/1004/blue-3.jpg",
+      "thuTu": 3,
+      "anhChinh": false
+    },
+    {
+      "maAnh": "ANH000045",
+      "maSP": "SP1004",
+      "mauSac": "Xanh dương",
+      "duongDan": "images/products/1004/blue-4.jpg",
+      "thuTu": 4,
+      "anhChinh": false
+    },
+    {
+      "maAnh": "ANH000046",
+      "maSP": "SP1004",
+      "mauSac": "Xám",
+      "duongDan": "images/products/1004/grey-1.jpg",
+      "thuTu": 1,
+      "anhChinh": true
+    },
+    {
+      "maAnh": "ANH000047",
+      "maSP": "SP1004",
+      "mauSac": "Xám",
+      "duongDan": "images/products/1004/grey-2.jpg",
+      "thuTu": 2,
+      "anhChinh": false
+    },
+    {
+      "maAnh": "ANH000048",
+      "maSP": "SP1004",
+      "mauSac": "Xám",
+      "duongDan": "images/products/1004/grey-3.jpg",
+      "thuTu": 3,
+      "anhChinh": false
+    },
+    {
+      "maAnh": "ANH000049",
+      "maSP": "SP1004",
+      "mauSac": "Xám",
+      "duongDan": "images/products/1004/grey-4.jpg",
+      "thuTu": 4,
+      "anhChinh": false
+    },
+    {
+      "maAnh": "ANH000050",
+      "maSP": "SP1005",
+      "mauSac": "Xanh",
+      "duongDan": "images/products/1005/lightblue-1.jpg",
+      "thuTu": 1,
+      "anhChinh": true
+    },
+    {
+      "maAnh": "ANH000051",
+      "maSP": "SP1005",
+      "mauSac": "Xanh",
+      "duongDan": "images/products/1005/lightblue-2.jpg",
+      "thuTu": 2,
+      "anhChinh": false
+    },
+    {
+      "maAnh": "ANH000052",
+      "maSP": "SP1005",
+      "mauSac": "Xanh",
+      "duongDan": "images/products/1005/lightblue-3.jpg",
+      "thuTu": 3,
+      "anhChinh": false
+    },
+    {
+      "maAnh": "ANH000053",
+      "maSP": "SP1005",
+      "mauSac": "Xanh",
+      "duongDan": "images/products/1005/lightblue-4.jpg",
+      "thuTu": 4,
+      "anhChinh": false
+    },
+    {
+      "maAnh": "ANH000054",
+      "maSP": "SP1005",
+      "mauSac": "Trắng",
+      "duongDan": "images/products/1005/white-1.jpg",
+      "thuTu": 1,
+      "anhChinh": true
+    },
+    {
+      "maAnh": "ANH000055",
+      "maSP": "SP1005",
+      "mauSac": "Trắng",
+      "duongDan": "images/products/1005/white-2.jpg",
+      "thuTu": 2,
+      "anhChinh": false
+    },
+    {
+      "maAnh": "ANH000056",
+      "maSP": "SP1005",
+      "mauSac": "Trắng",
+      "duongDan": "images/products/1005/white-3.jpg",
+      "thuTu": 3,
+      "anhChinh": false
+    },
+    {
+      "maAnh": "ANH000057",
+      "maSP": "SP1005",
+      "mauSac": "Trắng",
+      "duongDan": "images/products/1005/white-4.jpg",
+      "thuTu": 4,
+      "anhChinh": false
+    },
+    {
+      "maAnh": "ANH000058",
+      "maSP": "SP1006",
+      "mauSac": "Đen họa tiết",
+      "duongDan": "images/products/1006/black-1.jpg",
+      "thuTu": 1,
+      "anhChinh": true
+    },
+    {
+      "maAnh": "ANH000059",
+      "maSP": "SP1006",
+      "mauSac": "Đen họa tiết",
+      "duongDan": "images/products/1006/black-2.jpg",
+      "thuTu": 2,
+      "anhChinh": false
+    },
+    {
+      "maAnh": "ANH000060",
+      "maSP": "SP1006",
+      "mauSac": "Đen họa tiết",
+      "duongDan": "images/products/1006/black-3.jpg",
+      "thuTu": 3,
+      "anhChinh": false
+    },
+    {
+      "maAnh": "ANH000061",
+      "maSP": "SP1006",
+      "mauSac": "Đen họa tiết",
+      "duongDan": "images/products/1006/black-4.jpg",
+      "thuTu": 4,
+      "anhChinh": false
+    },
+    {
+      "maAnh": "ANH000062",
+      "maSP": "SP1006",
+      "mauSac": "Đen họa tiết",
+      "duongDan": "images/products/1006/black-5.jpg",
+      "thuTu": 5,
+      "anhChinh": false
+    },
+    {
+      "maAnh": "ANH000063",
+      "maSP": "SP1006",
+      "mauSac": "Xanh họa tiết",
+      "duongDan": "images/products/1006/blue-1.jpg",
+      "thuTu": 1,
+      "anhChinh": true
+    },
+    {
+      "maAnh": "ANH000064",
+      "maSP": "SP1006",
+      "mauSac": "Xanh họa tiết",
+      "duongDan": "images/products/1006/blue-2.jpg",
+      "thuTu": 2,
+      "anhChinh": false
+    },
+    {
+      "maAnh": "ANH000065",
+      "maSP": "SP1006",
+      "mauSac": "Xanh họa tiết",
+      "duongDan": "images/products/1006/blue-3.jpg",
+      "thuTu": 3,
+      "anhChinh": false
+    },
+    {
+      "maAnh": "ANH000066",
+      "maSP": "SP1006",
+      "mauSac": "Xanh họa tiết",
+      "duongDan": "images/products/1006/blue-4.jpg",
+      "thuTu": 4,
+      "anhChinh": false
+    },
+    {
+      "maAnh": "ANH000067",
+      "maSP": "SP1006",
+      "mauSac": "Xanh họa tiết",
+      "duongDan": "images/products/1006/blue-5.jpg",
+      "thuTu": 5,
+      "anhChinh": false
+    },
+    {
+      "maAnh": "ANH000068",
+      "maSP": "SP1007",
+      "mauSac": "Đen",
+      "duongDan": "images/products/1007/black-1.jpg",
+      "thuTu": 1,
+      "anhChinh": true
+    },
+    {
+      "maAnh": "ANH000069",
+      "maSP": "SP1007",
+      "mauSac": "Đen",
+      "duongDan": "images/products/1007/black-2.jpg",
+      "thuTu": 2,
+      "anhChinh": false
+    },
+    {
+      "maAnh": "ANH000070",
+      "maSP": "SP1007",
+      "mauSac": "Đen",
+      "duongDan": "images/products/1007/black-3.jpg",
+      "thuTu": 3,
+      "anhChinh": false
+    },
+    {
+      "maAnh": "ANH000071",
+      "maSP": "SP1007",
+      "mauSac": "Xanh dương",
+      "duongDan": "images/products/1007/blue-1.jpg",
+      "thuTu": 1,
+      "anhChinh": true
+    },
+    {
+      "maAnh": "ANH000072",
+      "maSP": "SP1007",
+      "mauSac": "Xanh dương",
+      "duongDan": "images/products/1007/blue-2.jpg",
+      "thuTu": 2,
+      "anhChinh": false
+    },
+    {
+      "maAnh": "ANH000073",
+      "maSP": "SP1007",
+      "mauSac": "Xanh dương",
+      "duongDan": "images/products/1007/blue-3.jpg",
+      "thuTu": 3,
+      "anhChinh": false
+    },
+    {
+      "maAnh": "ANH000074",
+      "maSP": "SP1008",
+      "mauSac": "Xanh dương",
+      "duongDan": "images/products/1008/blue-1.jpg",
+      "thuTu": 1,
+      "anhChinh": true
+    },
+    {
+      "maAnh": "ANH000075",
+      "maSP": "SP1008",
+      "mauSac": "Xanh dương",
+      "duongDan": "images/products/1008/blue-2.jpg",
+      "thuTu": 2,
+      "anhChinh": false
+    },
+    {
+      "maAnh": "ANH000076",
+      "maSP": "SP1008",
+      "mauSac": "Xanh dương",
+      "duongDan": "images/products/1008/blue-3.jpg",
+      "thuTu": 3,
+      "anhChinh": false
+    },
+    {
+      "maAnh": "ANH000077",
+      "maSP": "SP1009",
+      "mauSac": "Đen",
+      "duongDan": "images/products/1009/black-1.jpg",
+      "thuTu": 1,
+      "anhChinh": true
+    },
+    {
+      "maAnh": "ANH000078",
+      "maSP": "SP1009",
+      "mauSac": "Đen",
+      "duongDan": "images/products/1009/black-2.jpg",
+      "thuTu": 2,
+      "anhChinh": false
+    },
+    {
+      "maAnh": "ANH000079",
+      "maSP": "SP1009",
+      "mauSac": "Đen",
+      "duongDan": "images/products/1009/black-3.jpg",
+      "thuTu": 3,
+      "anhChinh": false
+    },
+    {
+      "maAnh": "ANH000080",
+      "maSP": "SP1009",
+      "mauSac": "Xanh dương",
+      "duongDan": "images/products/1009/blue-1.jpg",
+      "thuTu": 1,
+      "anhChinh": true
+    },
+    {
+      "maAnh": "ANH000081",
+      "maSP": "SP1009",
+      "mauSac": "Xanh dương",
+      "duongDan": "images/products/1009/blue-2.jpg",
+      "thuTu": 2,
+      "anhChinh": false
+    },
+    {
+      "maAnh": "ANH000082",
+      "maSP": "SP1009",
+      "mauSac": "Xanh dương",
+      "duongDan": "images/products/1009/blue-3.jpg",
+      "thuTu": 3,
+      "anhChinh": false
+    },
+    {
+      "maAnh": "ANH000083",
+      "maSP": "SP1010",
+      "mauSac": "Xanh dương kẻ sọc",
+      "duongDan": "images/products/1010/blue-1.jpg",
+      "thuTu": 1,
+      "anhChinh": true
+    },
+    {
+      "maAnh": "ANH000084",
+      "maSP": "SP1010",
+      "mauSac": "Xanh dương kẻ sọc",
+      "duongDan": "images/products/1010/blue-2.jpg",
+      "thuTu": 2,
+      "anhChinh": false
+    },
+    {
+      "maAnh": "ANH000085",
+      "maSP": "SP1010",
+      "mauSac": "Xanh dương kẻ sọc",
+      "duongDan": "images/products/1010/blue-3.jpg",
+      "thuTu": 3,
+      "anhChinh": false
+    },
+    {
+      "maAnh": "ANH000086",
+      "maSP": "SP1011",
+      "mauSac": "Xanh lơ",
+      "duongDan": "images/products/1011/blue-1.jpg",
+      "thuTu": 1,
+      "anhChinh": true
+    },
+    {
+      "maAnh": "ANH000087",
+      "maSP": "SP1011",
+      "mauSac": "Xanh lơ",
+      "duongDan": "images/products/1011/blue-2.jpg",
+      "thuTu": 2,
+      "anhChinh": false
+    },
+    {
+      "maAnh": "ANH000088",
+      "maSP": "SP1011",
+      "mauSac": "Xanh lơ",
+      "duongDan": "images/products/1011/blue-3.jpg",
+      "thuTu": 3,
+      "anhChinh": false
+    },
+    {
+      "maAnh": "ANH000089",
+      "maSP": "SP1011",
+      "mauSac": "Trắng",
+      "duongDan": "images/products/1011/white-1.jpg",
+      "thuTu": 1,
+      "anhChinh": true
+    },
+    {
+      "maAnh": "ANH000090",
+      "maSP": "SP1011",
+      "mauSac": "Trắng",
+      "duongDan": "images/products/1011/white-2.jpg",
+      "thuTu": 2,
+      "anhChinh": false
+    },
+    {
+      "maAnh": "ANH000091",
+      "maSP": "SP1011",
+      "mauSac": "Trắng",
+      "duongDan": "images/products/1011/white-3.jpg",
+      "thuTu": 3,
+      "anhChinh": false
+    },
+    {
+      "maAnh": "ANH000092",
+      "maSP": "SP1012",
+      "mauSac": "Xanh dương",
+      "duongDan": "images/products/1012/blue-1.jpg",
+      "thuTu": 1,
+      "anhChinh": true
+    },
+    {
+      "maAnh": "ANH000093",
+      "maSP": "SP1012",
+      "mauSac": "Xanh dương",
+      "duongDan": "images/products/1012/blue-2.jpg",
+      "thuTu": 2,
+      "anhChinh": false
+    },
+    {
+      "maAnh": "ANH000094",
+      "maSP": "SP1012",
+      "mauSac": "Xanh dương",
+      "duongDan": "images/products/1012/blue-3.jpg",
+      "thuTu": 3,
+      "anhChinh": false
+    },
+    {
+      "maAnh": "ANH000095",
+      "maSP": "SP1012",
+      "mauSac": "Xanh lá",
+      "duongDan": "images/products/1012/green-1.jpg",
+      "thuTu": 1,
+      "anhChinh": true
+    },
+    {
+      "maAnh": "ANH000096",
+      "maSP": "SP1012",
+      "mauSac": "Xanh lá",
+      "duongDan": "images/products/1012/green-2.jpg",
+      "thuTu": 2,
+      "anhChinh": false
+    },
+    {
+      "maAnh": "ANH000097",
+      "maSP": "SP1012",
+      "mauSac": "Xanh lá",
+      "duongDan": "images/products/1012/green-3.jpg",
+      "thuTu": 3,
+      "anhChinh": false
+    },
+    {
+      "maAnh": "ANH000098",
+      "maSP": "SP1013",
+      "mauSac": "Xanh lá",
+      "duongDan": "images/products/1013/green-1.jpg",
+      "thuTu": 1,
+      "anhChinh": true
+    },
+    {
+      "maAnh": "ANH000099",
+      "maSP": "SP1013",
+      "mauSac": "Xanh lá",
+      "duongDan": "images/products/1013/green-2.jpg",
+      "thuTu": 2,
+      "anhChinh": false
+    },
+    {
+      "maAnh": "ANH000100",
+      "maSP": "SP1013",
+      "mauSac": "Xanh lá",
+      "duongDan": "images/products/1013/green-3.jpg",
+      "thuTu": 3,
+      "anhChinh": false
+    },
+    {
+      "maAnh": "ANH000101",
+      "maSP": "SP1013",
+      "mauSac": "Xám",
+      "duongDan": "images/products/1013/grey-1.jpg",
+      "thuTu": 1,
+      "anhChinh": true
+    },
+    {
+      "maAnh": "ANH000102",
+      "maSP": "SP1013",
+      "mauSac": "Xám",
+      "duongDan": "images/products/1013/grey-2.jpg",
+      "thuTu": 2,
+      "anhChinh": false
+    },
+    {
+      "maAnh": "ANH000103",
+      "maSP": "SP1013",
+      "mauSac": "Xám",
+      "duongDan": "images/products/1013/grey-3.jpg",
+      "thuTu": 3,
+      "anhChinh": false
+    },
+    {
+      "maAnh": "ANH000104",
+      "maSP": "SP1014",
+      "mauSac": "Be",
+      "duongDan": "images/products/1014/beige-1.jpg",
+      "thuTu": 1,
+      "anhChinh": true
+    },
+    {
+      "maAnh": "ANH000105",
+      "maSP": "SP1014",
+      "mauSac": "Be",
+      "duongDan": "images/products/1014/beige-2.jpg",
+      "thuTu": 2,
+      "anhChinh": false
+    },
+    {
+      "maAnh": "ANH000106",
+      "maSP": "SP1014",
+      "mauSac": "Be",
+      "duongDan": "images/products/1014/beige-3.jpg",
+      "thuTu": 3,
+      "anhChinh": false
+    },
+    {
+      "maAnh": "ANH000107",
+      "maSP": "SP1014",
+      "mauSac": "Đen",
+      "duongDan": "images/products/1014/black-1.jpg",
+      "thuTu": 1,
+      "anhChinh": true
+    },
+    {
+      "maAnh": "ANH000108",
+      "maSP": "SP1014",
+      "mauSac": "Đen",
+      "duongDan": "images/products/1014/black-2.jpg",
+      "thuTu": 2,
+      "anhChinh": false
+    },
+    {
+      "maAnh": "ANH000109",
+      "maSP": "SP1014",
+      "mauSac": "Đen",
+      "duongDan": "images/products/1014/black-3.jpg",
+      "thuTu": 3,
+      "anhChinh": false
+    },
+    {
+      "maAnh": "ANH000110",
+      "maSP": "SP1015",
+      "mauSac": "Xanh họa tiết",
+      "duongDan": "images/products/1015/blue-1.jpg",
+      "thuTu": 1,
+      "anhChinh": true
+    },
+    {
+      "maAnh": "ANH000111",
+      "maSP": "SP1015",
+      "mauSac": "Xanh họa tiết",
+      "duongDan": "images/products/1015/blue-2.jpg",
+      "thuTu": 2,
+      "anhChinh": false
+    },
+    {
+      "maAnh": "ANH000112",
+      "maSP": "SP1015",
+      "mauSac": "Xanh họa tiết",
+      "duongDan": "images/products/1015/blue-3.jpg",
+      "thuTu": 3,
+      "anhChinh": false
+    },
+    {
+      "maAnh": "ANH000113",
+      "maSP": "SP1015",
+      "mauSac": "Xanh lá họa tiết",
+      "duongDan": "images/products/1015/green-1.jpg",
+      "thuTu": 1,
+      "anhChinh": true
+    },
+    {
+      "maAnh": "ANH000114",
+      "maSP": "SP1015",
+      "mauSac": "Xanh lá họa tiết",
+      "duongDan": "images/products/1015/green-2.jpg",
+      "thuTu": 2,
+      "anhChinh": false
+    },
+    {
+      "maAnh": "ANH000115",
+      "maSP": "SP1015",
+      "mauSac": "Xanh lá họa tiết",
+      "duongDan": "images/products/1015/green-3.jpg",
+      "thuTu": 3,
+      "anhChinh": false
+    },
+    {
+      "maAnh": "ANH000116",
+      "maSP": "SP1016",
+      "mauSac": "Đen",
+      "duongDan": "images/products/1016/black-1.jpg",
+      "thuTu": 1,
+      "anhChinh": true
+    },
+    {
+      "maAnh": "ANH000117",
+      "maSP": "SP1016",
+      "mauSac": "Đen",
+      "duongDan": "images/products/1016/black-2.jpg",
+      "thuTu": 2,
+      "anhChinh": false
+    },
+    {
+      "maAnh": "ANH000118",
+      "maSP": "SP1016",
+      "mauSac": "Đen",
+      "duongDan": "images/products/1016/black-3.jpg",
+      "thuTu": 3,
+      "anhChinh": false
+    },
+    {
+      "maAnh": "ANH000119",
+      "maSP": "SP1016",
+      "mauSac": "Trắng",
+      "duongDan": "images/products/1016/white-1.jpg",
+      "thuTu": 1,
+      "anhChinh": true
+    },
+    {
+      "maAnh": "ANH000120",
+      "maSP": "SP1016",
+      "mauSac": "Trắng",
+      "duongDan": "images/products/1016/white-2.jpg",
+      "thuTu": 2,
+      "anhChinh": false
+    },
+    {
+      "maAnh": "ANH000121",
+      "maSP": "SP1016",
+      "mauSac": "Trắng",
+      "duongDan": "images/products/1016/white-3.jpg",
+      "thuTu": 3,
+      "anhChinh": false
+    },
+    {
+      "maAnh": "ANH000122",
+      "maSP": "SP1017",
+      "mauSac": "Đen",
+      "duongDan": "images/products/1017/black-1.jpg",
+      "thuTu": 1,
+      "anhChinh": true
+    },
+    {
+      "maAnh": "ANH000123",
+      "maSP": "SP1017",
+      "mauSac": "Đen",
+      "duongDan": "images/products/1017/black-2.jpg",
+      "thuTu": 2,
+      "anhChinh": false
+    },
+    {
+      "maAnh": "ANH000124",
+      "maSP": "SP1017",
+      "mauSac": "Đen",
+      "duongDan": "images/products/1017/black-3.jpg",
+      "thuTu": 3,
+      "anhChinh": false
+    },
+    {
+      "maAnh": "ANH000125",
+      "maSP": "SP1017",
+      "mauSac": "Xanh dương",
+      "duongDan": "images/products/1017/blue-1.jpg",
+      "thuTu": 1,
+      "anhChinh": true
+    },
+    {
+      "maAnh": "ANH000126",
+      "maSP": "SP1017",
+      "mauSac": "Xanh dương",
+      "duongDan": "images/products/1017/blue-2.jpg",
+      "thuTu": 2,
+      "anhChinh": false
+    },
+    {
+      "maAnh": "ANH000127",
+      "maSP": "SP1017",
+      "mauSac": "Xanh dương",
+      "duongDan": "images/products/1017/blue-3.jpg",
+      "thuTu": 3,
+      "anhChinh": false
+    },
+    {
+      "maAnh": "ANH000128",
+      "maSP": "SP1018",
+      "mauSac": "Xanh dương",
+      "duongDan": "images/products/1018/blue-1.jpg",
+      "thuTu": 1,
+      "anhChinh": true
+    },
+    {
+      "maAnh": "ANH000129",
+      "maSP": "SP1018",
+      "mauSac": "Xanh dương",
+      "duongDan": "images/products/1018/blue-2.jpg",
+      "thuTu": 2,
+      "anhChinh": false
+    },
+    {
+      "maAnh": "ANH000130",
+      "maSP": "SP1018",
+      "mauSac": "Xanh dương",
+      "duongDan": "images/products/1018/blue-3.jpg",
+      "thuTu": 3,
+      "anhChinh": false
+    },
+    {
+      "maAnh": "ANH000131",
+      "maSP": "SP1018",
+      "mauSac": "Xám",
+      "duongDan": "images/products/1018/grey-1.jpg",
+      "thuTu": 1,
+      "anhChinh": true
+    },
+    {
+      "maAnh": "ANH000132",
+      "maSP": "SP1018",
+      "mauSac": "Xám",
+      "duongDan": "images/products/1018/grey-2.jpg",
+      "thuTu": 2,
+      "anhChinh": false
+    },
+    {
+      "maAnh": "ANH000133",
+      "maSP": "SP1018",
+      "mauSac": "Xám",
+      "duongDan": "images/products/1018/grey-3.jpg",
+      "thuTu": 3,
+      "anhChinh": false
+    },
+    {
+      "maAnh": "ANH000134",
+      "maSP": "SP1019",
+      "mauSac": "Xám",
+      "duongDan": "images/products/1019/grey-1.jpg",
+      "thuTu": 1,
+      "anhChinh": true
+    },
+    {
+      "maAnh": "ANH000135",
+      "maSP": "SP1019",
+      "mauSac": "Xám",
+      "duongDan": "images/products/1019/grey-2.jpg",
+      "thuTu": 2,
+      "anhChinh": false
+    },
+    {
+      "maAnh": "ANH000136",
+      "maSP": "SP1019",
+      "mauSac": "Xám",
+      "duongDan": "images/products/1019/grey-3.jpg",
+      "thuTu": 3,
+      "anhChinh": false
+    },
+    {
+      "maAnh": "ANH000137",
+      "maSP": "SP1019",
+      "mauSac": "Trắng",
+      "duongDan": "images/products/1019/white-1.jpg",
+      "thuTu": 1,
+      "anhChinh": true
+    },
+    {
+      "maAnh": "ANH000138",
+      "maSP": "SP1019",
+      "mauSac": "Trắng",
+      "duongDan": "images/products/1019/white-2.jpg",
+      "thuTu": 2,
+      "anhChinh": false
+    },
+    {
+      "maAnh": "ANH000139",
+      "maSP": "SP1019",
+      "mauSac": "Trắng",
+      "duongDan": "images/products/1019/white-3.jpg",
+      "thuTu": 3,
+      "anhChinh": false
+    },
+    {
+      "maAnh": "ANH000140",
+      "maSP": "SP1020",
+      "mauSac": "Xanh Indigo",
+      "duongDan": "images/products/1020/indigo-1.jpg",
+      "thuTu": 1,
+      "anhChinh": true
+    },
+    {
+      "maAnh": "ANH000141",
+      "maSP": "SP1020",
+      "mauSac": "Xanh Indigo",
+      "duongDan": "images/products/1020/indigo-2.jpg",
+      "thuTu": 2,
+      "anhChinh": false
+    },
+    {
+      "maAnh": "ANH000142",
+      "maSP": "SP1020",
+      "mauSac": "Xanh Indigo",
+      "duongDan": "images/products/1020/indigo-3.jpg",
+      "thuTu": 3,
+      "anhChinh": false
+    },
+    {
+      "maAnh": "ANH000143",
+      "maSP": "SP1021",
+      "mauSac": "Be",
+      "duongDan": "images/products/1021/beige-1.jpg",
+      "thuTu": 1,
+      "anhChinh": true
+    },
+    {
+      "maAnh": "ANH000144",
+      "maSP": "SP1021",
+      "mauSac": "Be",
+      "duongDan": "images/products/1021/beige-2.jpg",
+      "thuTu": 2,
+      "anhChinh": false
+    },
+    {
+      "maAnh": "ANH000145",
+      "maSP": "SP1021",
+      "mauSac": "Be",
+      "duongDan": "images/products/1021/beige-3.jpg",
+      "thuTu": 3,
+      "anhChinh": false
+    },
+    {
+      "maAnh": "ANH000146",
+      "maSP": "SP1021",
+      "mauSac": "Trắng",
+      "duongDan": "images/products/1021/white-1.jpg",
+      "thuTu": 1,
+      "anhChinh": true
+    },
+    {
+      "maAnh": "ANH000147",
+      "maSP": "SP1021",
+      "mauSac": "Trắng",
+      "duongDan": "images/products/1021/white-2.jpg",
+      "thuTu": 2,
+      "anhChinh": false
+    },
+    {
+      "maAnh": "ANH000148",
+      "maSP": "SP1021",
+      "mauSac": "Trắng",
+      "duongDan": "images/products/1021/white-3.jpg",
+      "thuTu": 3,
+      "anhChinh": false
+    },
+    {
+      "maAnh": "ANH000149",
+      "maSP": "SP1022",
+      "mauSac": "Trắng họa tiết",
+      "duongDan": "images/products/1022/white-1.jpg",
+      "thuTu": 1,
+      "anhChinh": true
+    },
+    {
+      "maAnh": "ANH000150",
+      "maSP": "SP1022",
+      "mauSac": "Trắng họa tiết",
+      "duongDan": "images/products/1022/white-2.jpg",
+      "thuTu": 2,
+      "anhChinh": false
+    },
+    {
+      "maAnh": "ANH000151",
+      "maSP": "SP1022",
+      "mauSac": "Trắng họa tiết",
+      "duongDan": "images/products/1022/white-3.jpg",
+      "thuTu": 3,
+      "anhChinh": false
+    },
+    {
+      "maAnh": "ANH000152",
+      "maSP": "SP1023",
+      "mauSac": "Xanh dương kẻ sọc",
+      "duongDan": "images/products/1023/blue-1.jpg",
+      "thuTu": 1,
+      "anhChinh": true
+    },
+    {
+      "maAnh": "ANH000153",
+      "maSP": "SP1023",
+      "mauSac": "Xanh dương kẻ sọc",
+      "duongDan": "images/products/1023/blue-2.jpg",
+      "thuTu": 2,
+      "anhChinh": false
+    },
+    {
+      "maAnh": "ANH000154",
+      "maSP": "SP1023",
+      "mauSac": "Xanh dương kẻ sọc",
+      "duongDan": "images/products/1023/blue-3.jpg",
+      "thuTu": 3,
+      "anhChinh": false
+    },
+    {
+      "maAnh": "ANH000155",
+      "maSP": "SP1023",
+      "mauSac": "Xám kẻ sọc",
+      "duongDan": "images/products/1023/grey-1.jpg",
+      "thuTu": 1,
+      "anhChinh": true
+    },
+    {
+      "maAnh": "ANH000156",
+      "maSP": "SP1023",
+      "mauSac": "Xám kẻ sọc",
+      "duongDan": "images/products/1023/grey-2.jpg",
+      "thuTu": 2,
+      "anhChinh": false
+    },
+    {
+      "maAnh": "ANH000157",
+      "maSP": "SP1023",
+      "mauSac": "Xám kẻ sọc",
+      "duongDan": "images/products/1023/grey-3.jpg",
+      "thuTu": 3,
+      "anhChinh": false
+    },
+    {
+      "maAnh": "ANH000158",
+      "maSP": "SP1024",
+      "mauSac": "Be kẻ sọc",
+      "duongDan": "images/products/1024/beige-1.jpg",
+      "thuTu": 1,
+      "anhChinh": true
+    },
+    {
+      "maAnh": "ANH000159",
+      "maSP": "SP1024",
+      "mauSac": "Be kẻ sọc",
+      "duongDan": "images/products/1024/beige-2.jpg",
+      "thuTu": 2,
+      "anhChinh": false
+    },
+    {
+      "maAnh": "ANH000160",
+      "maSP": "SP1024",
+      "mauSac": "Be kẻ sọc",
+      "duongDan": "images/products/1024/beige-3.jpg",
+      "thuTu": 3,
+      "anhChinh": false
+    },
+    {
+      "maAnh": "ANH000161",
+      "maSP": "SP1024",
+      "mauSac": "Xanh dương kẻ sọc",
+      "duongDan": "images/products/1024/blue-1.jpg",
+      "thuTu": 1,
+      "anhChinh": true
+    },
+    {
+      "maAnh": "ANH000162",
+      "maSP": "SP1024",
+      "mauSac": "Xanh dương kẻ sọc",
+      "duongDan": "images/products/1024/blue-2.jpg",
+      "thuTu": 2,
+      "anhChinh": false
+    },
+    {
+      "maAnh": "ANH000163",
+      "maSP": "SP1024",
+      "mauSac": "Xanh dương kẻ sọc",
+      "duongDan": "images/products/1024/blue-3.jpg",
+      "thuTu": 3,
+      "anhChinh": false
+    },
+    {
+      "maAnh": "ANH000164",
+      "maSP": "SP1025",
+      "mauSac": "Xanh lơ",
+      "duongDan": "images/products/1025/cyan-1.jpg",
+      "thuTu": 1,
+      "anhChinh": true
+    },
+    {
+      "maAnh": "ANH000165",
+      "maSP": "SP1025",
+      "mauSac": "Xanh lơ",
+      "duongDan": "images/products/1025/cyan-2.jpg",
+      "thuTu": 2,
+      "anhChinh": false
+    },
+    {
+      "maAnh": "ANH000166",
+      "maSP": "SP1025",
+      "mauSac": "Xanh lơ",
+      "duongDan": "images/products/1025/cyan-3.jpg",
+      "thuTu": 3,
+      "anhChinh": false
+    },
+    {
+      "maAnh": "ANH000167",
+      "maSP": "SP1025",
+      "mauSac": "Trắng",
+      "duongDan": "images/products/1025/white-1.jpg",
+      "thuTu": 1,
+      "anhChinh": true
+    },
+    {
+      "maAnh": "ANH000168",
+      "maSP": "SP1025",
+      "mauSac": "Trắng",
+      "duongDan": "images/products/1025/white-2.jpg",
+      "thuTu": 2,
+      "anhChinh": false
+    },
+    {
+      "maAnh": "ANH000169",
+      "maSP": "SP1025",
+      "mauSac": "Trắng",
+      "duongDan": "images/products/1025/white-3.jpg",
+      "thuTu": 3,
+      "anhChinh": false
+    },
+    {
+      "maAnh": "ANH000170",
+      "maSP": "SP1026",
+      "mauSac": "Hồng",
+      "duongDan": "images/products/1026/pink-1.jpg",
+      "thuTu": 1,
+      "anhChinh": true
+    },
+    {
+      "maAnh": "ANH000171",
+      "maSP": "SP1026",
+      "mauSac": "Hồng",
+      "duongDan": "images/products/1026/pink-2.jpg",
+      "thuTu": 2,
+      "anhChinh": false
+    },
+    {
+      "maAnh": "ANH000172",
+      "maSP": "SP1026",
+      "mauSac": "Hồng",
+      "duongDan": "images/products/1026/pink-3.jpg",
+      "thuTu": 3,
+      "anhChinh": false
+    },
+    {
+      "maAnh": "ANH000173",
+      "maSP": "SP1026",
+      "mauSac": "Trắng",
+      "duongDan": "images/products/1026/white-1.jpg",
+      "thuTu": 1,
+      "anhChinh": true
+    },
+    {
+      "maAnh": "ANH000174",
+      "maSP": "SP1026",
+      "mauSac": "Trắng",
+      "duongDan": "images/products/1026/white-2.jpg",
+      "thuTu": 2,
+      "anhChinh": false
+    },
+    {
+      "maAnh": "ANH000175",
+      "maSP": "SP1026",
+      "mauSac": "Trắng",
+      "duongDan": "images/products/1026/white-3.jpg",
+      "thuTu": 3,
+      "anhChinh": false
+    },
+    {
+      "maAnh": "ANH000176",
+      "maSP": "SP1027",
+      "mauSac": "Xanh lá caro",
+      "duongDan": "images/products/1027/greencaro-1.jpg",
+      "thuTu": 1,
+      "anhChinh": true
+    },
+    {
+      "maAnh": "ANH000177",
+      "maSP": "SP1027",
+      "mauSac": "Xanh lá caro",
+      "duongDan": "images/products/1027/greencaro-2.jpg",
+      "thuTu": 2,
+      "anhChinh": false
+    },
+    {
+      "maAnh": "ANH000178",
+      "maSP": "SP1027",
+      "mauSac": "Xanh lá caro",
+      "duongDan": "images/products/1027/greencaro-3.jpg",
+      "thuTu": 3,
+      "anhChinh": false
+    },
+    {
+      "maAnh": "ANH000179",
+      "maSP": "SP1027",
+      "mauSac": "Đỏ caro",
+      "duongDan": "images/products/1027/redcaro-1.jpg",
+      "thuTu": 1,
+      "anhChinh": true
+    },
+    {
+      "maAnh": "ANH000180",
+      "maSP": "SP1027",
+      "mauSac": "Đỏ caro",
+      "duongDan": "images/products/1027/redcaro-2.jpg",
+      "thuTu": 2,
+      "anhChinh": false
+    },
+    {
+      "maAnh": "ANH000181",
+      "maSP": "SP1027",
+      "mauSac": "Đỏ caro",
+      "duongDan": "images/products/1027/redcaro-3.jpg",
+      "thuTu": 3,
+      "anhChinh": false
+    },
+    {
+      "maAnh": "ANH000182",
+      "maSP": "SP1028",
+      "mauSac": "Xám caro",
+      "duongDan": "images/products/1028/greycaro-1.jpg",
+      "thuTu": 1,
+      "anhChinh": true
+    },
+    {
+      "maAnh": "ANH000183",
+      "maSP": "SP1028",
+      "mauSac": "Xám caro",
+      "duongDan": "images/products/1028/greycaro-2.jpg",
+      "thuTu": 2,
+      "anhChinh": false
+    },
+    {
+      "maAnh": "ANH000184",
+      "maSP": "SP1028",
+      "mauSac": "Xám caro",
+      "duongDan": "images/products/1028/greycaro-3.jpg",
+      "thuTu": 3,
+      "anhChinh": false
+    },
+    {
+      "maAnh": "ANH000185",
+      "maSP": "SP1029",
+      "mauSac": "Xanh lơ",
+      "duongDan": "images/products/1029/cyan-1.jpg",
+      "thuTu": 1,
+      "anhChinh": true
+    },
+    {
+      "maAnh": "ANH000186",
+      "maSP": "SP1029",
+      "mauSac": "Xanh lơ",
+      "duongDan": "images/products/1029/cyan-2.jpg",
+      "thuTu": 2,
+      "anhChinh": false
+    },
+    {
+      "maAnh": "ANH000187",
+      "maSP": "SP1029",
+      "mauSac": "Xanh lơ",
+      "duongDan": "images/products/1029/cyan-3.jpg",
+      "thuTu": 3,
+      "anhChinh": false
+    },
+    {
+      "maAnh": "ANH000188",
+      "maSP": "SP1029",
+      "mauSac": "Xám",
+      "duongDan": "images/products/1029/grey-1.jpg",
+      "thuTu": 1,
+      "anhChinh": true
+    },
+    {
+      "maAnh": "ANH000189",
+      "maSP": "SP1029",
+      "mauSac": "Xám",
+      "duongDan": "images/products/1029/grey-2.jpg",
+      "thuTu": 2,
+      "anhChinh": false
+    },
+    {
+      "maAnh": "ANH000190",
+      "maSP": "SP1029",
+      "mauSac": "Xám",
+      "duongDan": "images/products/1029/grey-3.jpg",
+      "thuTu": 3,
+      "anhChinh": false
+    },
+    {
+      "maAnh": "ANH000191",
+      "maSP": "SP1030",
+      "mauSac": "Be",
+      "duongDan": "images/products/1030/beige-1.jpg",
+      "thuTu": 1,
+      "anhChinh": true
+    },
+    {
+      "maAnh": "ANH000192",
+      "maSP": "SP1030",
+      "mauSac": "Be",
+      "duongDan": "images/products/1030/beige-2.jpg",
+      "thuTu": 2,
+      "anhChinh": false
+    },
+    {
+      "maAnh": "ANH000193",
+      "maSP": "SP1030",
+      "mauSac": "Be",
+      "duongDan": "images/products/1030/beige-3.jpg",
+      "thuTu": 3,
+      "anhChinh": false
+    },
+    {
+      "maAnh": "ANH000194",
+      "maSP": "SP1030",
+      "mauSac": "Be",
+      "duongDan": "images/products/1030/beige-4.jpg",
+      "thuTu": 4,
+      "anhChinh": false
+    },
+    {
+      "maAnh": "ANH000195",
+      "maSP": "SP1030",
+      "mauSac": "Trắng",
+      "duongDan": "images/products/1030/white-1.jpg",
+      "thuTu": 1,
+      "anhChinh": true
+    },
+    {
+      "maAnh": "ANH000196",
+      "maSP": "SP1030",
+      "mauSac": "Trắng",
+      "duongDan": "images/products/1030/white-2.jpg",
+      "thuTu": 2,
+      "anhChinh": false
+    },
+    {
+      "maAnh": "ANH000197",
+      "maSP": "SP1030",
+      "mauSac": "Trắng",
+      "duongDan": "images/products/1030/white-3.jpg",
+      "thuTu": 3,
+      "anhChinh": false
+    },
+    {
+      "maAnh": "ANH000198",
+      "maSP": "SP1030",
+      "mauSac": "Trắng",
+      "duongDan": "images/products/1030/white-4.jpg",
+      "thuTu": 4,
+      "anhChinh": false
+    },
+    {
+      "maAnh": "ANH000199",
+      "maSP": "SP1031",
+      "mauSac": "Đen",
+      "duongDan": "images/products/1031/black-1.jpg",
+      "thuTu": 1,
+      "anhChinh": true
+    },
+    {
+      "maAnh": "ANH000200",
+      "maSP": "SP1031",
+      "mauSac": "Đen",
+      "duongDan": "images/products/1031/black-2.jpg",
+      "thuTu": 2,
+      "anhChinh": false
+    },
+    {
+      "maAnh": "ANH000201",
+      "maSP": "SP1031",
+      "mauSac": "Đen",
+      "duongDan": "images/products/1031/black-3.jpg",
+      "thuTu": 3,
+      "anhChinh": false
+    },
+    {
+      "maAnh": "ANH000202",
+      "maSP": "SP1031",
+      "mauSac": "Đen",
+      "duongDan": "images/products/1031/black-4.jpg",
+      "thuTu": 4,
+      "anhChinh": false
+    },
+    {
+      "maAnh": "ANH000203",
+      "maSP": "SP1032",
+      "mauSac": "Be",
+      "duongDan": "images/products/1032/beige-1.jpg",
+      "thuTu": 1,
+      "anhChinh": true
+    },
+    {
+      "maAnh": "ANH000204",
+      "maSP": "SP1032",
+      "mauSac": "Be",
+      "duongDan": "images/products/1032/beige-2.jpg",
+      "thuTu": 2,
+      "anhChinh": false
+    },
+    {
+      "maAnh": "ANH000205",
+      "maSP": "SP1032",
+      "mauSac": "Be",
+      "duongDan": "images/products/1032/beige-3.jpg",
+      "thuTu": 3,
+      "anhChinh": false
+    },
+    {
+      "maAnh": "ANH000206",
+      "maSP": "SP1032",
+      "mauSac": "Be",
+      "duongDan": "images/products/1032/beige-4.jpg",
+      "thuTu": 4,
+      "anhChinh": false
+    },
+    {
+      "maAnh": "ANH000207",
+      "maSP": "SP1032",
+      "mauSac": "Trắng",
+      "duongDan": "images/products/1032/white-1.jpg",
+      "thuTu": 1,
+      "anhChinh": true
+    },
+    {
+      "maAnh": "ANH000208",
+      "maSP": "SP1032",
+      "mauSac": "Trắng",
+      "duongDan": "images/products/1032/white-2.jpg",
+      "thuTu": 2,
+      "anhChinh": false
+    },
+    {
+      "maAnh": "ANH000209",
+      "maSP": "SP1032",
+      "mauSac": "Trắng",
+      "duongDan": "images/products/1032/white-3.jpg",
+      "thuTu": 3,
+      "anhChinh": false
+    },
+    {
+      "maAnh": "ANH000210",
+      "maSP": "SP1032",
+      "mauSac": "Trắng",
+      "duongDan": "images/products/1032/white-4.jpg",
+      "thuTu": 4,
+      "anhChinh": false
+    },
+    {
+      "maAnh": "ANH000211",
+      "maSP": "SP1033",
+      "mauSac": "Đen",
+      "duongDan": "images/products/1033/black-1.jpg",
+      "thuTu": 1,
+      "anhChinh": true
+    },
+    {
+      "maAnh": "ANH000212",
+      "maSP": "SP1033",
+      "mauSac": "Đen",
+      "duongDan": "images/products/1033/black-2.jpg",
+      "thuTu": 2,
+      "anhChinh": false
+    },
+    {
+      "maAnh": "ANH000213",
+      "maSP": "SP1033",
+      "mauSac": "Đen",
+      "duongDan": "images/products/1033/black-3.jpg",
+      "thuTu": 3,
+      "anhChinh": false
+    },
+    {
+      "maAnh": "ANH000214",
+      "maSP": "SP1033",
+      "mauSac": "Xám",
+      "duongDan": "images/products/1033/grey-1.jpg",
+      "thuTu": 1,
+      "anhChinh": true
+    },
+    {
+      "maAnh": "ANH000215",
+      "maSP": "SP1033",
+      "mauSac": "Xám",
+      "duongDan": "images/products/1033/grey-2.jpg",
+      "thuTu": 2,
+      "anhChinh": false
+    },
+    {
+      "maAnh": "ANH000216",
+      "maSP": "SP1033",
+      "mauSac": "Xám",
+      "duongDan": "images/products/1033/grey-3.jpg",
+      "thuTu": 3,
+      "anhChinh": false
+    },
+    {
+      "maAnh": "ANH000217",
+      "maSP": "SP1034",
+      "mauSac": "Be",
+      "duongDan": "images/products/1034/beige-1.jpg",
+      "thuTu": 1,
+      "anhChinh": true
+    },
+    {
+      "maAnh": "ANH000218",
+      "maSP": "SP1034",
+      "mauSac": "Be",
+      "duongDan": "images/products/1034/beige-2.jpg",
+      "thuTu": 2,
+      "anhChinh": false
+    },
+    {
+      "maAnh": "ANH000219",
+      "maSP": "SP1034",
+      "mauSac": "Be",
+      "duongDan": "images/products/1034/beige-3.jpg",
+      "thuTu": 3,
+      "anhChinh": false
+    },
+    {
+      "maAnh": "ANH000220",
+      "maSP": "SP1034",
+      "mauSac": "Đen",
+      "duongDan": "images/products/1034/black-1.jpg",
+      "thuTu": 1,
+      "anhChinh": true
+    },
+    {
+      "maAnh": "ANH000221",
+      "maSP": "SP1034",
+      "mauSac": "Đen",
+      "duongDan": "images/products/1034/black-2.jpg",
+      "thuTu": 2,
+      "anhChinh": false
+    },
+    {
+      "maAnh": "ANH000222",
+      "maSP": "SP1034",
+      "mauSac": "Đen",
+      "duongDan": "images/products/1034/black-3.jpg",
+      "thuTu": 3,
+      "anhChinh": false
+    },
+    {
+      "maAnh": "ANH000223",
+      "maSP": "SP1034",
+      "mauSac": "Xanh lá",
+      "duongDan": "images/products/1034/green-1.jpg",
+      "thuTu": 1,
+      "anhChinh": true
+    },
+    {
+      "maAnh": "ANH000224",
+      "maSP": "SP1034",
+      "mauSac": "Xanh lá",
+      "duongDan": "images/products/1034/green-2.jpg",
+      "thuTu": 2,
+      "anhChinh": false
+    },
+    {
+      "maAnh": "ANH000225",
+      "maSP": "SP1034",
+      "mauSac": "Xanh lá",
+      "duongDan": "images/products/1034/green-3.jpg",
+      "thuTu": 3,
+      "anhChinh": false
+    },
+    {
+      "maAnh": "ANH000226",
+      "maSP": "SP1035",
+      "mauSac": "Đen",
+      "duongDan": "images/products/1035/black-1.jpg",
+      "thuTu": 1,
+      "anhChinh": true
+    },
+    {
+      "maAnh": "ANH000227",
+      "maSP": "SP1035",
+      "mauSac": "Đen",
+      "duongDan": "images/products/1035/black-2.jpg",
+      "thuTu": 2,
+      "anhChinh": false
+    },
+    {
+      "maAnh": "ANH000228",
+      "maSP": "SP1035",
+      "mauSac": "Đen",
+      "duongDan": "images/products/1035/black-3.jpg",
+      "thuTu": 3,
+      "anhChinh": false
+    },
+    {
+      "maAnh": "ANH000229",
+      "maSP": "SP1035",
+      "mauSac": "Trắng",
+      "duongDan": "images/products/1035/white-1.jpg",
+      "thuTu": 1,
+      "anhChinh": true
+    },
+    {
+      "maAnh": "ANH000230",
+      "maSP": "SP1035",
+      "mauSac": "Trắng",
+      "duongDan": "images/products/1035/white-2.jpg",
+      "thuTu": 2,
+      "anhChinh": false
+    },
+    {
+      "maAnh": "ANH000231",
+      "maSP": "SP1035",
+      "mauSac": "Trắng",
+      "duongDan": "images/products/1035/white-3.jpg",
+      "thuTu": 3,
+      "anhChinh": false
+    },
+    {
+      "maAnh": "ANH000232",
+      "maSP": "SP1036",
+      "mauSac": "Xanh dương",
+      "duongDan": "images/products/1036/blue-1.jpg",
+      "thuTu": 1,
+      "anhChinh": true
+    },
+    {
+      "maAnh": "ANH000233",
+      "maSP": "SP1036",
+      "mauSac": "Xanh dương",
+      "duongDan": "images/products/1036/blue-2.jpg",
+      "thuTu": 2,
+      "anhChinh": false
+    },
+    {
+      "maAnh": "ANH000234",
+      "maSP": "SP1036",
+      "mauSac": "Xanh dương",
+      "duongDan": "images/products/1036/blue-3.jpg",
+      "thuTu": 3,
+      "anhChinh": false
+    },
+    {
+      "maAnh": "ANH000235",
+      "maSP": "SP1036",
+      "mauSac": "Xám",
+      "duongDan": "images/products/1036/grey-1.jpg",
+      "thuTu": 1,
+      "anhChinh": true
+    },
+    {
+      "maAnh": "ANH000236",
+      "maSP": "SP1036",
+      "mauSac": "Xám",
+      "duongDan": "images/products/1036/grey-2.jpg",
+      "thuTu": 2,
+      "anhChinh": false
+    },
+    {
+      "maAnh": "ANH000237",
+      "maSP": "SP1036",
+      "mauSac": "Xám",
+      "duongDan": "images/products/1036/grey-3.jpg",
+      "thuTu": 3,
+      "anhChinh": false
+    },
+    {
+      "maAnh": "ANH000238",
+      "maSP": "SP1037",
+      "mauSac": "Đen",
+      "duongDan": "images/products/1037/black-1.jpg",
+      "thuTu": 1,
+      "anhChinh": true
+    },
+    {
+      "maAnh": "ANH000239",
+      "maSP": "SP1037",
+      "mauSac": "Đen",
+      "duongDan": "images/products/1037/black-2.jpg",
+      "thuTu": 2,
+      "anhChinh": false
+    },
+    {
+      "maAnh": "ANH000240",
+      "maSP": "SP1037",
+      "mauSac": "Đen",
+      "duongDan": "images/products/1037/black-3.jpg",
+      "thuTu": 3,
+      "anhChinh": false
+    },
+    {
+      "maAnh": "ANH000241",
+      "maSP": "SP1037",
+      "mauSac": "Xanh dương",
+      "duongDan": "images/products/1037/blue-1.jpg",
+      "thuTu": 1,
+      "anhChinh": true
+    },
+    {
+      "maAnh": "ANH000242",
+      "maSP": "SP1037",
+      "mauSac": "Xanh dương",
+      "duongDan": "images/products/1037/blue-2.jpg",
+      "thuTu": 2,
+      "anhChinh": false
+    },
+    {
+      "maAnh": "ANH000243",
+      "maSP": "SP1037",
+      "mauSac": "Xanh dương",
+      "duongDan": "images/products/1037/blue-3.jpg",
+      "thuTu": 3,
+      "anhChinh": false
+    },
+    {
+      "maAnh": "ANH000244",
+      "maSP": "SP1038",
+      "mauSac": "Xanh dương",
+      "duongDan": "images/products/1038/blue-1.jpg",
+      "thuTu": 1,
+      "anhChinh": true
+    },
+    {
+      "maAnh": "ANH000245",
+      "maSP": "SP1038",
+      "mauSac": "Xanh dương",
+      "duongDan": "images/products/1038/blue-2.jpg",
+      "thuTu": 2,
+      "anhChinh": false
+    },
+    {
+      "maAnh": "ANH000246",
+      "maSP": "SP1038",
+      "mauSac": "Xanh dương",
+      "duongDan": "images/products/1038/blue-3.jpg",
+      "thuTu": 3,
+      "anhChinh": false
+    },
+    {
+      "maAnh": "ANH000247",
+      "maSP": "SP1039",
+      "mauSac": "Xanh dương",
+      "duongDan": "images/products/1039/blue-1.jpg",
+      "thuTu": 1,
+      "anhChinh": true
+    },
+    {
+      "maAnh": "ANH000248",
+      "maSP": "SP1039",
+      "mauSac": "Xanh dương",
+      "duongDan": "images/products/1039/blue-2.jpg",
+      "thuTu": 2,
+      "anhChinh": false
+    },
+    {
+      "maAnh": "ANH000249",
+      "maSP": "SP1039",
+      "mauSac": "Xanh dương",
+      "duongDan": "images/products/1039/blue-3.jpg",
+      "thuTu": 3,
+      "anhChinh": false
+    },
+    {
+      "maAnh": "ANH000250",
+      "maSP": "SP1039",
+      "mauSac": "Trắng",
+      "duongDan": "images/products/1039/white-1.jpg",
+      "thuTu": 1,
+      "anhChinh": true
+    },
+    {
+      "maAnh": "ANH000251",
+      "maSP": "SP1039",
+      "mauSac": "Trắng",
+      "duongDan": "images/products/1039/white-2.jpg",
+      "thuTu": 2,
+      "anhChinh": false
+    },
+    {
+      "maAnh": "ANH000252",
+      "maSP": "SP1039",
+      "mauSac": "Trắng",
+      "duongDan": "images/products/1039/white-3.jpg",
+      "thuTu": 3,
+      "anhChinh": false
+    },
+    {
+      "maAnh": "ANH000253",
+      "maSP": "SP1040",
+      "mauSac": "Be",
+      "duongDan": "images/products/1040/beige-1.jpg",
+      "thuTu": 1,
+      "anhChinh": true
+    },
+    {
+      "maAnh": "ANH000254",
+      "maSP": "SP1040",
+      "mauSac": "Be",
+      "duongDan": "images/products/1040/beige-2.jpg",
+      "thuTu": 2,
+      "anhChinh": false
+    },
+    {
+      "maAnh": "ANH000255",
+      "maSP": "SP1040",
+      "mauSac": "Be",
+      "duongDan": "images/products/1040/beige-3.jpg",
+      "thuTu": 3,
+      "anhChinh": false
+    }
+  ]
+}

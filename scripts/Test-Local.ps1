@@ -3,7 +3,7 @@ param(
     [string]$JavaDirectory = $JdkDirectory,
     [string[]]$TestClasses = @('DependencySmokeTest', 'SecurityProtocolTest', 'AuthIntegrationTest',
         'ProductIntegrationTest', 'NormalizedCatalogTest', 'ProductUiTest', 'InvoiceIntegrationTest', 'InvoiceUiTest', 'FlatLafUiTest',
-        'CatalogManagementIntegrationTest', 'CatalogManagementUiTest')
+        'CatalogManagementIntegrationTest', 'CatalogManagementUiTest', 'StoreManagementIntegrationTest', 'StoreManagementUiTest')
 )
 $ErrorActionPreference = 'Stop'
 $projectDirectory = (Resolve-Path (Join-Path $PSScriptRoot '..')).Path

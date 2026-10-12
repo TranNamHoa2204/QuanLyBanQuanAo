@@ -138,6 +138,10 @@ public final class HoaDonService {
             draft(invoice, request.getPhienBan());
             List<ChiTietHoaDon> lines = lines(em, invoice);
             if (lines.isEmpty()) { throw invalid("Hóa đơn phải có ít nhất một mặt hàng."); }
+            // Giữ trạng thái khách/khuyến mãi ổn định tới commit thanh toán.
+            // Các màn quản lý chỉ khóa từng danh mục này, không khóa hóa đơn theo chiều ngược lại.
+            if (invoice.getKhuyenMai() != null) { em.refresh(invoice.getKhuyenMai(), LockModeType.PESSIMISTIC_WRITE); }
+            if (invoice.getKhachHang() != null) { em.refresh(invoice.getKhachHang(), LockModeType.PESSIMISTIC_WRITE); }
             validRates(invoice);
             if (invoice.getPhanTramThue().compareTo(invoice.getThue().getPhanTram()) != 0
                     || invoice.getPhanTramGiam().compareTo(invoice.getKhuyenMai() == null ? BigDecimal.ZERO

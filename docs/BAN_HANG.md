@@ -39,7 +39,7 @@
   hoặc khuyến mãi hết hạn, không thanh toán nháp với cấu hình cũ:
   hủy nháp và tạo hóa đơn mới sau khi kiểm tra thông tin.
 - Ghi hóa đơn và trừ tồn trong cùng một transaction JPA.
-  Server khóa hóa đơn, các sản phẩm rồi từng biến thể theo thứ tự mã cố định; kiểm tra tất cả
+  Server khóa hóa đơn, khuyến mãi/khách (nếu có), các sản phẩm rồi từng biến thể theo thứ tự mã cố định; kiểm tra tất cả
   tồn trước khi trừ. Lỗi ở một mặt hàng rollback cả giao dịch.
 - phienBan + @Version kiểm tra màn hình cũ; nếu VERSION_CONFLICT, Tải lại
   trước khi chỉnh tiếp. Phiên bản tăng nhưng không cần tăng đúng một đơn vị.
@@ -69,5 +69,5 @@ H2 fixture không mô phỏng computed column đó; DTO tính lại từ đơn g
 Nên thử quy trình trên CSDL demo SQL Server trước khi dùng dữ liệu thật.
 
 Quản lý danh mục/sản phẩm và điều chỉnh tồn cơ bản đã có; xem QUAN_LY_DANH_MUC_SAN_PHAM.md.
-Quản lý nhân viên/khách hàng/khuyến mãi, phiếu nhập hàng, thống kê và in hóa đơn
-vẫn là các bước tiếp theo.
+Nhân viên/tài khoản, khách hàng, khuyến mãi và thống kê đã có; xem QUAN_LY_CUA_HANG_THONG_KE.md.
+Phiếu nhập hàng, đổi trả và in hóa đơn vẫn chưa triển khai.

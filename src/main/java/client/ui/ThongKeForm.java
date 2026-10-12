@@ -1,5 +1,7 @@
 package client.ui;
-
-/** TODO: Khung màn hình ThongKe. Chưa chọn Swing/JavaFX; hiện chưa có giao diện thực tế. */
-public class ThongKeForm {
+import client.api.ManagementApi;
+/** View ThongKe Swing/FlatLaf, được nhúng trong MainForm. */
+public final class ThongKeForm extends ThongKePanel {
+    private static final long serialVersionUID = 1L;
+    public ThongKeForm(ManagementApi api) { super(api); }
 }

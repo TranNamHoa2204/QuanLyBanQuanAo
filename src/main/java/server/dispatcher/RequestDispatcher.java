@@ -14,12 +14,24 @@ public final class RequestDispatcher {
     private final AuthService auth;
     private final SanPhamService sanPham;
     private final server.service.HoaDonService hoaDon;
+    private server.service.NhanVienService employees;
+    private server.service.KhachHangService customers;
+    private server.service.KhuyenMaiService promotions;
+    private server.service.ThongKeService reports;
     public RequestDispatcher(AuthService auth) { this(auth, null); }
     public RequestDispatcher(AuthService auth, SanPhamService sanPham) {
         this(auth, sanPham, null);
     }
     public RequestDispatcher(AuthService auth, SanPhamService sanPham, server.service.HoaDonService hoaDon) {
         this.auth = auth; this.sanPham = sanPham; this.hoaDon = hoaDon;
+    }
+    public RequestDispatcher(AuthService auth, SanPhamService products, server.service.HoaDonService invoices,
+            server.persistence.JpaManager jpa) {
+        this(auth, products, invoices);
+        employees = new server.service.NhanVienService(jpa, auth);
+        customers = new server.service.KhachHangService(jpa, auth);
+        promotions = new server.service.KhuyenMaiService(jpa, auth);
+        reports = new server.service.ThongKeService(jpa, auth);
     }
     public Response<?> dispatch(Request<JsonNode> request) {
         String id = request == null ? null : request.getRequestId();
@@ -30,6 +42,31 @@ public final class RequestDispatcher {
         }
         try {
             switch (request.getAction()) {
+            case TRA_CUU_KHACH_HANG:
+                configured(customers); return Response.success(id, customers.search(request.getSessionToken(), payload(request, ManagementSearchRequest.class)));
+            case THEM_KHACH_HANG:
+            case CAP_NHAT_KHACH_HANG:
+            case NGUNG_HOAT_DONG_KHACH_HANG:
+                configured(customers); return Response.success(id, customers.save(request.getSessionToken(), payload(request, ManagementSaveRequest.class),
+                        request.getAction() == Action.THEM_KHACH_HANG ? 0 : request.getAction() == Action.CAP_NHAT_KHACH_HANG ? 1 : 2));
+            case TRA_CUU_NHAN_VIEN:
+                configured(employees); return Response.success(id, employees.search(request.getSessionToken(), payload(request, ManagementSearchRequest.class)));
+            case THEM_NHAN_VIEN:
+            case CAP_NHAT_NHAN_VIEN:
+            case NGUNG_HOAT_DONG_NHAN_VIEN:
+                configured(employees); return Response.success(id, employees.save(request.getSessionToken(), payload(request, ManagementSaveRequest.class),
+                        request.getAction() == Action.THEM_NHAN_VIEN ? 0 : request.getAction() == Action.CAP_NHAT_NHAN_VIEN ? 1 : 2));
+            case TRA_CUU_KHUYEN_MAI:
+                configured(promotions); return Response.success(id, promotions.search(request.getSessionToken(), payload(request, ManagementSearchRequest.class)));
+            case THEM_KHUYEN_MAI:
+            case CAP_NHAT_KHUYEN_MAI:
+            case NGUNG_HOAT_DONG_KHUYEN_MAI:
+                configured(promotions); return Response.success(id, promotions.save(request.getSessionToken(), payload(request, ManagementSaveRequest.class),
+                        request.getAction() == Action.THEM_KHUYEN_MAI ? 0 : request.getAction() == Action.CAP_NHAT_KHUYEN_MAI ? 1 : 2));
+            case THONG_KE_DOANH_THU_THEO_THOI_GIAN:
+            case THONG_KE_DOANH_THU_THEO_SAN_PHAM:
+                configured(reports); return Response.success(id, reports.report(request.getSessionToken(), payload(request, RevenueRequest.class),
+                        request.getAction() == Action.THONG_KE_DOANH_THU_THEO_SAN_PHAM));
             case THEM_LOAI_SAN_PHAM:
             case CAP_NHAT_LOAI_SAN_PHAM:
                 return Response.success(id, products().management().category(request.getSessionToken(),
@@ -113,6 +150,9 @@ public final class RequestDispatcher {
         JsonNode node = request.getPayload();
         if (node == null || !node.isObject()) { throw new IllegalArgumentException("Missing payload"); }
         return JsonCodec.mapper().treeToValue(node, type);
+    }
+    private static void configured(Object service) {
+        if (service == null) { throw new BusinessException(ErrorCode.INVALID_REQUEST, "Dịch vụ chưa được cấu hình."); }
     }
     private SanPhamService products() {
         if (sanPham == null) {

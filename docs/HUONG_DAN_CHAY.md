@@ -142,4 +142,7 @@ có thể dùng PowerShell với JDK 9+ để biên dịch --release 8:
 Tra cứu sản phẩm/biến thể/ảnh đã triển khai; xem TRA_CUU_SAN_PHAM.md.
 Hóa đơn, thanh toán và trừ tồn kho đã triển khai; xem BAN_HANG.md.
 Quản lý danh mục/sản phẩm đã có; xem QUAN_LY_DANH_MUC_SAN_PHAM.md.
-Tiếp theo bổ sung quản lý nhân viên/tài khoản, khách hàng/khuyến mãi, in hóa đơn và thống kê.
+Khách hàng, nhân viên/tài khoản, khuyến mãi và thống kê đã có;
+xem QUAN_LY_CUA_HANG_THONG_KE.md. Dừng cả server/client cũ và chạy lại để nhận action mới.
+Không cần chạy migration SQL hoặc import lại dữ liệu.
+In hóa đơn, đổi trả và phiếu nhập kho chưa triển khai.

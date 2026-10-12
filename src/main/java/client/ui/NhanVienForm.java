@@ -1,5 +1,7 @@
 package client.ui;
-
-/** TODO: Khung màn hình NhanVien. Chưa chọn Swing/JavaFX; hiện chưa có giao diện thực tế. */
-public class NhanVienForm {
+import client.api.ManagementApi;
+/** View NhanVien Swing/FlatLaf, được nhúng trong MainForm. */
+public final class NhanVienForm extends ManagementPanel {
+    private static final long serialVersionUID = 1L;
+    public NhanVienForm(ManagementApi api) { super(api, ManagementApi.Kind.EMPLOYEE); }
 }

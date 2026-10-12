@@ -28,10 +28,10 @@ public class FlatLafUiTest {
                 findButton(shell, "Sản phẩm").doClick(); assertEquals(1, products.get());
                 findButton(shell, "Bán hàng & hóa đơn").doClick(); assertEquals(1, sales.get());
                 findButton(shell, "Danh mục & sản phẩm").doClick(); assertEquals(1, management.get());
-                assertFalse(findButton(shell, "Nhân viên  ·  Sắp có").isEnabled());
+                assertFalse(findButton(shell, "Nhân viên & tài khoản").isEnabled());
                 login.setVaiTro(VaiTro.NHAN_VIEN_BAN_HANG);
                 MainShellPanel staff = new MainShellPanel(login, () -> {}, () -> {}, () -> {}, () -> {}, b -> {});
-                assertNull(findButton(staff, "Nhân viên  ·  Sắp có"));
+                assertNull(findButton(staff, "Nhân viên & tài khoản"));
                 assertNull(findButton(staff, "Danh mục & sản phẩm"));
                 JPanel view = new JPanel(); shell.showPage("Sản phẩm", view); assertTrue(SwingUtilities.isDescendingFrom(view, shell));
                 NhanVienProfilePanel profile = new NhanVienProfilePanel(); NhanVienDTO e = new NhanVienDTO();

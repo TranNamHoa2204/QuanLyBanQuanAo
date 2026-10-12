@@ -48,6 +48,15 @@ public final class AuthService {
         } finally { Arrays.fill(password, '\0'); }
     }
     public void logout(String token) { sessions.require(token); sessions.revoke(token); }
+    /** Chỉ cấp tài khoản mới; không bao giờ trả hash cho client. */
+    String hashInitialPassword(String password) {
+        if (!validPasswordLength(password, 8)) {
+            throw new BusinessException(ErrorCode.VALIDATION_ERROR, "Mật khẩu ban đầu phải dài 8–128 ký tự.");
+        }
+        char[] chars = password.toCharArray();
+        try { return hasher.hash(chars); } finally { Arrays.fill(chars, '\0'); }
+    }
+    void revokeUser(String username) { sessions.revokeUser(username); }
     public NhanVienDTO profile(String token) {
         return jpa.transaction(em -> toDto(authenticated(em, token, false).getNhanVien()));
     }

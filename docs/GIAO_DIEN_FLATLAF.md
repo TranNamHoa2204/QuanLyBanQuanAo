@@ -19,7 +19,7 @@ thêm dependency Socket. Không chạy SQL mới cho thay đổi giao diện nà
 
 - Đăng nhập: hai cột, phần nhận diện cửa hàng và form tài khoản; Enter để đăng nhập.
   Mật khẩu được che mặc định; có nút hiện/ẩn khi nhập.
-- Màn hình chính: sidebar Tổng quan / Sản phẩm / Bán hàng & hóa đơn;
+- Màn hình chính: sidebar Tổng quan / Sản phẩm / Bán hàng & hóa đơn / Khách hàng;
   khu vực tài khoản, vai trò và các lối tắt công việc.
   THREAD là tên nhận diện minh họa cho giao diện, có thể đổi trong MainShellPanel
   và DangNhapPanel; không phải tên thương hiệu từ dữ liệu sản phẩm.
@@ -33,7 +33,9 @@ thêm dependency Socket. Không chạy SQL mới cho thay đổi giao diện nà
 
 Danh mục & sản phẩm đã mở cho quản lý, gồm bốn tab: sản phẩm, loại, thương hiệu,
 biến thể & tồn. Xem QUAN_LY_DANH_MUC_SAN_PHAM.md.
-Nhân viên / Khuyến mãi / Thống kê vẫn ghi “Sắp có” và bị vô hiệu hóa.
+Nhân viên & tài khoản / Khuyến mãi / Thống kê đã mở cho quản lý;
+Khách hàng mở cho cả hai vai trò. Xem QUAN_LY_CUA_HANG_THONG_KE.md.
+Sidebar có thanh cuộn khi không đủ chiều cao.
 Không có số liệu thống kê giả trên Tổng quan.
 
 ## Tổ chức mã giao diện
@@ -46,6 +48,9 @@ Không có số liệu thống kê giả trên Tổng quan.
   tách khỏi JFrame/JDialog để render và kiểm thử headless.
 - SanPhamPanel / SanPhamDetailPanel / BanHangPanel: các view nghiệp vụ thật,
   không thay bằng mock HTML.
+- ManagementPanel / ManagementEditorPanel: bảng phân trang và form CRUD dùng chung.
+  KhachHangForm / NhanVienForm / KhuyenMaiForm nhúng các view này trong MainForm.
+- ThongKePanel / ThongKeForm: biểu số tổng và bảng thống kê có phân trang.
 
 Client vẫn gọi Socket qua API; entity/JPA/repository chỉ nằm ở server.
 I/O vẫn chạy bằng SwingWorker, không chặn EDT. Quy tắc giá, phân quyền,
@@ -57,6 +62,7 @@ FlatLafUiTest render view thật vào .tmp/flatlaf-ui, kiểm tra look-and-feel,
 điều hướng, quyền hiển thị menu và thanh cuộn ở cửa sổ nhỏ.
 ProductUiTest và InvoiceUiTest cũng dùng UiTheme/FlatLaf để kiểm tra bố cục hiện tại.
 Ảnh render dùng dữ liệu fixture cho QA, không phải dữ liệu từ SQL Server của bạn.
+StoreManagementUiTest bổ sung ảnh QA tại .tmp/store-management-ui.
 
 Trong Eclipse dùng Run As → Maven build → Goals: test.
 scripts/Test-Local.ps1 hỗ trợ dependency trong .m2 và bản jar tạm .tmp/dependencies

@@ -12,6 +12,10 @@ public final class MainForm extends JFrame {
     private SanPhamPanel productPanel;
     private BanHangPanel salesPanel;
     private QuanLySanPhamPanel managementPanel;
+    private KhachHangForm customersPanel;
+    private NhanVienForm employeesPanel;
+    private KhuyenMaiForm promotionsPanel;
+    private ThongKeForm reportsPanel;
     private MainShellPanel shell;
     public MainForm(AuthApi api, ClientSession session) {
         super("Quản lý cửa hàng quần áo");
@@ -36,6 +40,18 @@ public final class MainForm extends JFrame {
                 managementPanel = new QuanLySanPhamPanel(new client.controller.QuanLySanPhamController(api.products()));
             }
             shell.showPage("Danh mục & sản phẩm", managementPanel); managementPanel.initialize();
+        }, () -> {
+            if (customersPanel == null) { customersPanel = new KhachHangForm(api.management()); }
+            shell.showPage("Khách hàng", customersPanel); customersPanel.initialize();
+        }, () -> {
+            if (employeesPanel == null) { employeesPanel = new NhanVienForm(api.management()); }
+            shell.showPage("Nhân viên & tài khoản", employeesPanel); employeesPanel.initialize();
+        }, () -> {
+            if (promotionsPanel == null) { promotionsPanel = new KhuyenMaiForm(api.management()); }
+            shell.showPage("Khuyến mãi", promotionsPanel); promotionsPanel.initialize();
+        }, () -> {
+            if (reportsPanel == null) { reportsPanel = new ThongKeForm(api.management()); }
+            shell.showPage("Thống kê", reportsPanel);
         });
         add(shell);
         Rectangle screen = getGraphicsConfiguration().getBounds();

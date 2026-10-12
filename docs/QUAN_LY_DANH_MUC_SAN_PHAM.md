@@ -61,7 +61,8 @@ Các test tự động chỉ dùng H2 trong bộ nhớ; chưa chạy hoặc ghi 
   Sửa tồn hiện là thao tác kiểm kê cơ bản cho đồ án, không phải hệ thống nhập hàng hoàn chỉnh.
 - Chưa có tải ảnh mới qua Socket hoặc quản lý thêm/sửa metadata ảnh.
   Ảnh đã chuẩn hóa trong resources vẫn được dùng; sản phẩm mới chưa có ảnh sẽ hiện thông báo thiếu ảnh.
-- Chưa quản lý nhân viên/tài khoản, khách hàng, khuyến mãi hoặc thống kê.
+- Nhân viên/tài khoản, khách hàng, khuyến mãi và thống kê đã có ở menu riêng;
+  xem QUAN_LY_CUA_HANG_THONG_KE.md.
 - Không có migration SQL mới; vẫn dùng schema 11 bảng gốc + AnhSanPham
   và hbm2ddl.auto=validate. Không có xóa cứng hoặc sửa cấu trúc tự động.
 

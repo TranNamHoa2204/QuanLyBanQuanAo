@@ -1,5 +1,7 @@
 package client.ui;
-
-/** TODO: Khung màn hình KhuyenMai. Chưa chọn Swing/JavaFX; hiện chưa có giao diện thực tế. */
-public class KhuyenMaiForm {
+import client.api.ManagementApi;
+/** View KhuyenMai Swing/FlatLaf, được nhúng trong MainForm. */
+public final class KhuyenMaiForm extends ManagementPanel {
+    private static final long serialVersionUID = 1L;
+    public KhuyenMaiForm(ManagementApi api) { super(api, ManagementApi.Kind.PROMOTION); }
 }

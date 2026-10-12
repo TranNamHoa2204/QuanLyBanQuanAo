@@ -12,13 +12,14 @@ Các package gốc: `client`, `common`, `server`; groupId: `vn.edu.iuh`.
 - Đã có TCP Socket: JSON UTF-8 với frame độ dài, timeout và giới hạn kích thước.
 - Đã có đăng nhập, hồ sơ cá nhân, đổi mật khẩu và đăng xuất xuyên suốt client/server.
 - Giao diện Swing + FlatLaf 3.7: đăng nhập, sidebar, sản phẩm, bán hàng,
-  hồ sơ và đổi mật khẩu. Xem [docs/GIAO_DIEN_FLATLAF.md](docs/GIAO_DIEN_FLATLAF.md).
+  hồ sơ, đổi mật khẩu và các màn quản lý/thống kê. Xem [docs/GIAO_DIEN_FLATLAF.md](docs/GIAO_DIEN_FLATLAF.md).
 - PBKDF2 có salt; token ngẫu nhiên hết hạn sau 30 phút; đổi mật khẩu thu hồi phiên.
 - Đã ánh xạ JPA đủ 12 entity; có bán hàng, hóa đơn nháp, chỉnh dòng, hủy nháp,
   danh sách/chi tiết hóa đơn và thanh toán/trừ tồn trong transaction chung.
 - Đã có thêm/sửa loại, thương hiệu, sản phẩm; ngừng bán/kinh doanh lại,
   thêm biến thể và sửa tồn/trạng thái có kiểm tra xung đột.
-- Quản lý nhân viên, khách hàng, khuyến mãi và thống kê chưa triển khai.
+- Đã có khách hàng; quản lý nhân viên/cấp tài khoản, khuyến mãi và thống kê theo
+  ngày/tháng/năm/sản phẩm. Xem [docs/QUAN_LY_CUA_HANG_THONG_KE.md](docs/QUAN_LY_CUA_HANG_THONG_KE.md).
 - Chưa kết nối/ghi dữ liệu lên SQL Server thực tế trong quá trình viết code.
 - Công cụ AccountSetupMain chỉ tạo quản lý đầu tiên khi chạy chủ động, không có mật khẩu mặc định.
 
@@ -44,7 +45,7 @@ src/main/java
 │   ├── config     ServerConfig, DatabaseConfig
 │   ├── repository GenericDao và 11 DAO theo bảng (giữ tên class bạn đang dùng)
 │   ├── dispatcher RequestDispatcher
-│   ├── entity     12 mô hình; 7 entity tài khoản/sản phẩm đã ánh xạ JPA
+│   ├── entity     12 entity đã ánh xạ JPA
 │   ├── network    SocketServer, ClientHandler
 │   ├── persistence JpaManager
 │   ├── security   PasswordHasher, PermissionChecker
@@ -57,7 +58,7 @@ src/main/java
     ├── controller Xử lý sự kiện của các màn hình
     ├── network    SocketClient
     ├── session    ClientSession
-    ├── ui         Swing cho tài khoản, tra cứu và chi tiết sản phẩm
+    ├── ui         Swing/FlatLaf cho tài khoản, bán hàng, quản lý và thống kê
     └── ClientMain
 ```
 
@@ -108,8 +109,7 @@ https://github.com/FasterXML/jackson/wiki/Jackson-Release-2.21.
 
 - Hiện dùng Swing và javax.persistence; không trộn javax.persistence
   với jakarta.persistence. Khi nâng JDK, cập nhật pom.xml và cấu hình Eclipse đồng bộ.
-- META-INF/persistence.xml đang dùng, liệt kê 7 entity tài khoản/sản phẩm.
-  Các entity khác phải ánh xạ và bổ sung vào persistence-unit khi triển khai chức năng.
+- META-INF/persistence.xml đang dùng, liệt kê đầy đủ 12 entity.
   Production dùng validate, không tự sửa schema. File .example cũ không được nạp.
 - SQL hiện tại là nguồn đối chiếu cho mapping. maCTHD là IDENTITY; phienBan dùng
   @Version; ChiTietHoaDon.thanhTien là cột tính toán, mapping chỉ đọc.
@@ -134,5 +134,6 @@ Dữ liệu ảnh/Excel đã chuẩn hóa: xem data/README_DuLieu.md.
 Có sql/01_ThemBangAnhSanPham.sql và sql/02_NhapDuLieuQuanAo.sql để chạy thủ công trong SSMS.
 Hai script này không được tự chạy trong code; AnhSanPham đã ánh xạ JPA.
 
-Tiếp theo: hóa đơn/thanh toán/tồn kho → quản lý danh mục/nhân viên/khuyến mãi → thống kê.
+Các module cốt lõi đã có. Tiếp theo kiểm thử demo SQL Server và hoàn thiện tài liệu;
+in hóa đơn/đổi trả/phiếu nhập kho chưa thuộc bản hiện tại.
 Thống nhất hợp đồng common trước khi chia một bạn làm server và một bạn làm client.

@@ -5,6 +5,7 @@ import org.hibernate.annotations.Nationalized;
 import java.time.LocalDateTime;
 
 import common.enums.TrangThaiHoaDon;
+import common.enums.PhuongThucThanhToan;
 
 import java.math.BigDecimal;
 
@@ -28,6 +29,20 @@ public class HoaDon {
     private Thue thue;
     @Column(nullable = false)
     private LocalDateTime ngayLap;
+    @Column(name = "ngayThanhToan")
+    private LocalDateTime ngayThanhToan;
+    @Enumerated(EnumType.STRING) @Column(name = "phuongThucThanhToan", length = 20)
+    private PhuongThucThanhToan phuongThucThanhToan;
+    @Column(name = "tienKhachDua", precision = 18, scale = 2)
+    private BigDecimal tienKhachDua;
+    @Column(name = "tienThua", precision = 18, scale = 2)
+    private BigDecimal tienThua;
+    @Column(name = "nhanVienXacNhanChuyenKhoan")
+    private Boolean nhanVienXacNhanChuyenKhoan;
+    @Nationalized @Column(name = "tenNhanVienSnapshot", length = 100)
+    private String tenNhanVienSnapshot;
+    @Nationalized @Column(name = "tenKhachHangSnapshot", length = 100)
+    private String tenKhachHangSnapshot;
     @Column(nullable = false, precision = 18, scale = 2)
     private BigDecimal tamTinh;
     @Column(nullable = false, precision = 5, scale = 2)
@@ -96,6 +111,39 @@ public class HoaDon {
 
     public void setNgayLap(LocalDateTime ngayLap) {
         this.ngayLap = ngayLap;
+    }
+
+    public LocalDateTime getNgayThanhToan() {
+        return ngayThanhToan;
+    }
+
+    public void setNgayThanhToan(LocalDateTime ngayThanhToan) {
+        this.ngayThanhToan = ngayThanhToan;
+    }
+
+    public PhuongThucThanhToan getPhuongThucThanhToan() { return phuongThucThanhToan; }
+    public void setPhuongThucThanhToan(PhuongThucThanhToan phuongThucThanhToan) { this.phuongThucThanhToan = phuongThucThanhToan; }
+    public BigDecimal getTienKhachDua() { return tienKhachDua; }
+    public void setTienKhachDua(BigDecimal tienKhachDua) { this.tienKhachDua = tienKhachDua; }
+    public BigDecimal getTienThua() { return tienThua; }
+    public void setTienThua(BigDecimal tienThua) { this.tienThua = tienThua; }
+    public Boolean getNhanVienXacNhanChuyenKhoan() { return nhanVienXacNhanChuyenKhoan; }
+    public void setNhanVienXacNhanChuyenKhoan(Boolean value) { this.nhanVienXacNhanChuyenKhoan = value; }
+
+    public String getTenNhanVienSnapshot() {
+        return tenNhanVienSnapshot;
+    }
+
+    public void setTenNhanVienSnapshot(String tenNhanVienSnapshot) {
+        this.tenNhanVienSnapshot = tenNhanVienSnapshot;
+    }
+
+    public String getTenKhachHangSnapshot() {
+        return tenKhachHangSnapshot;
+    }
+
+    public void setTenKhachHangSnapshot(String tenKhachHangSnapshot) {
+        this.tenKhachHangSnapshot = tenKhachHangSnapshot;
     }
 
     public BigDecimal getTamTinh() {

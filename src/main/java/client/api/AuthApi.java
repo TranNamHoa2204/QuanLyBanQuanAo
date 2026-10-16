@@ -13,6 +13,7 @@ public final class AuthApi {
     public AuthApi(SocketClient client, ClientSession session) { this.client = client; this.session = session; }
     public SanPhamApi products() { return new SanPhamApi(client, session); }
     public HoaDonApi invoices() { return new HoaDonApi(client, session); }
+    public LichSuKhoApi stockHistory() { return new LichSuKhoApi(client, session); }
     public LoginResponse login(String username, String password) throws IOException {
         LoginRequest request = new LoginRequest();
         request.setUsername(username); request.setPassword(password);

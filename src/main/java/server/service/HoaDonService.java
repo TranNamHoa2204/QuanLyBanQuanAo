@@ -1,6 +1,7 @@
 package server.service;
 
 import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.time.*;
 import java.util.*;
 import java.util.stream.Collectors;
@@ -19,7 +20,11 @@ public final class HoaDonService {
     private final AuthService auth;
     private final Clock clock;
     public HoaDonService(JpaManager jpa, AuthService auth) { this(jpa, auth, Clock.system(ZoneId.of("Asia/Ho_Chi_Minh"))); }
-    public HoaDonService(JpaManager jpa, AuthService auth, Clock clock) { this.jpa = jpa; this.auth = auth; this.clock = clock; }
+    public HoaDonService(JpaManager jpa, AuthService auth, Clock clock) {
+        this.jpa = Objects.requireNonNull(jpa, "jpa");
+        this.auth = Objects.requireNonNull(auth, "auth");
+        this.clock = Objects.requireNonNull(clock, "clock").withZone(ZoneId.of("Asia/Ho_Chi_Minh"));
+    }
 
     public HoaDonDetailDTO create(String token, HoaDonCreateRequest request) {
         return jpa.transaction(em -> {
@@ -129,7 +134,7 @@ public final class HoaDonService {
             em.flush(); return detailDto(em, invoice);
         });
     }
-    public HoaDonDetailDTO pay(String token, HoaDonVersionRequest request) {
+    public HoaDonDetailDTO pay(String token, HoaDonThanhToanRequest request) {
         return jpa.transaction(em -> {
             TaiKhoan account = auth.requireAuthenticated(em, token);
             if (request == null) { throw invalid("Thiếu yêu cầu thanh toán."); }
@@ -147,6 +152,16 @@ public final class HoaDonService {
             if (invoice.getKhachHang() != null && !invoice.getKhachHang().getTrangThai()) {
                 throw invalid("Khách hàng đã ngừng hoạt động.");
             }
+            BigDecimal savedTotal = invoice.getTongTien();
+            totals(invoice, lines);
+            BigDecimal calculatedTotal = invoice.getTongTien();
+            BigDecimal reviewedTotal = exactMoney(request.getTongTienDaXem(), "Tổng tiền đã xác nhận");
+            if (savedTotal == null || savedTotal.compareTo(calculatedTotal) != 0
+                    || reviewedTotal.compareTo(calculatedTotal) != 0) {
+                throw new BusinessException(ErrorCode.VERSION_CONFLICT,
+                        "Tổng tiền đã thay đổi kể từ khi bạn xem. Hóa đơn chưa thanh toán; tải lại để xem và xác nhận lại.");
+            }
+            PaymentDetails payment = validatePayment(request, calculatedTotal);
             Map<String, BienThe> locked = new TreeMap<>();
             // Quản lý thêm biến thể cũng khóa sản phẩm trước, tránh vòng khóa product ↔ variant.
             java.util.SortedSet<String> productIds = new java.util.TreeSet<>();
@@ -167,11 +182,28 @@ public final class HoaDonService {
                 }
                 locked.put(id, variant);
             }
+            LocalDateTime paidAt = LocalDateTime.now(clock).withNano(0);
             for (ChiTietHoaDon line : lines) {
                 BienThe variant = locked.get(line.getBienThe().getMaBienThe());
-                variant.setSoLuongTon(variant.getSoLuongTon() - line.getSoLuong());
+                line.setTenSPSnapshot(variant.getSanPham().getTenSP());
+                line.setMauSacSnapshot(variant.getMauSac());
+                line.setKichCoSnapshot(variant.getKichCo());
+                int before = variant.getSoLuongTon();
+                int after = before - line.getSoLuong();
+                LichSuKhoService.record(em, variant, account.getNhanVien(), account.getNhanVien().getHoTen(),
+                        paidAt, NguonBienDongKho.BAN_HANG, invoice.getMaHD(),
+                        "SALE:" + invoice.getMaHD() + ":" + variant.getMaBienThe(), before,
+                        -line.getSoLuong(), after, variant.getPhienBan(), "Trừ tồn khi thanh toán hóa đơn.");
+                variant.setSoLuongTon(after);
             }
-            totals(invoice, lines); invoice.setTrangThai(TrangThaiHoaDon.DA_THANH_TOAN);
+            invoice.setTenNhanVienSnapshot(invoice.getNhanVien().getHoTen());
+            invoice.setTenKhachHangSnapshot(invoice.getKhachHang() == null ? null : invoice.getKhachHang().getHoTen());
+            invoice.setNgayThanhToan(paidAt);
+            invoice.setPhuongThucThanhToan(payment.method);
+            invoice.setTienKhachDua(payment.tendered);
+            invoice.setTienThua(payment.change);
+            invoice.setNhanVienXacNhanChuyenKhoan(payment.employeeConfirmedTransfer);
+            invoice.setTrangThai(TrangThaiHoaDon.DA_THANH_TOAN);
             em.flush(); return detailDto(em, invoice);
         });
     }
@@ -247,14 +279,58 @@ public final class HoaDonService {
         BigDecimal rounded = MoneyUtils.round(value);
         if (rounded.compareTo(MAX_MONEY) > 0) { throw invalid("Số tiền vượt miền DECIMAL(18,2)."); } return rounded;
     }
+    private static BigDecimal exactMoney(BigDecimal value, String field) {
+        if (value == null || value.signum() < 0 || value.compareTo(MAX_MONEY) > 0) {
+            throw invalid(field + " phải nằm trong miền DECIMAL(18,2).");
+        }
+        try { return value.setScale(2, RoundingMode.UNNECESSARY); }
+        catch (ArithmeticException ex) { throw invalid(field + " không được có quá 2 chữ số thập phân."); }
+    }
+    private static PaymentDetails validatePayment(HoaDonThanhToanRequest request, BigDecimal total) {
+        PhuongThucThanhToan method = request.getPhuongThucThanhToan();
+        if (method == null) { throw invalid("Chọn phương thức thu tiền."); }
+        if (method == PhuongThucThanhToan.TIEN_MAT) {
+            if (Boolean.TRUE.equals(request.getNhanVienXacNhanChuyenKhoan())) {
+                throw invalid("Không dùng xác nhận chuyển khoản cho giao dịch tiền mặt.");
+            }
+            BigDecimal tendered = exactMoney(request.getTienKhachDua(), "Tiền khách đưa");
+            if (tendered.compareTo(total) < 0) { throw invalid("Tiền khách đưa phải lớn hơn hoặc bằng tổng thanh toán."); }
+            BigDecimal change = exactMoney(tendered.subtract(total), "Tiền thừa");
+            return new PaymentDetails(method, tendered, change, null);
+        }
+        if (request.getTienKhachDua() != null) { throw invalid("Chuyển khoản không nhận trường tiền mặt."); }
+        if (!Boolean.TRUE.equals(request.getNhanVienXacNhanChuyenKhoan())) {
+            throw invalid("Nhân viên phải xác nhận đã nhận thông báo chuyển khoản.");
+        }
+        return new PaymentDetails(method, null, null, Boolean.TRUE);
+    }
+    private static final class PaymentDetails {
+        private final PhuongThucThanhToan method;
+        private final BigDecimal tendered;
+        private final BigDecimal change;
+        private final Boolean employeeConfirmedTransfer;
+        private PaymentDetails(PhuongThucThanhToan method, BigDecimal tendered, BigDecimal change,
+                Boolean employeeConfirmedTransfer) {
+            this.method = method; this.tendered = tendered; this.change = change;
+            this.employeeConfirmedTransfer = employeeConfirmedTransfer;
+        }
+    }
     private static BusinessException invalid(String message) { return new BusinessException(ErrorCode.VALIDATION_ERROR, message); }
     private static HoaDonDetailDTO detailDto(EntityManager em, HoaDon h) {
         HoaDonDetailDTO result = new HoaDonDetailDTO(); result.setHoaDon(headerDto(h));
         result.setChiTiet(lines(em, h).stream().map(c -> {
             ChiTietHoaDonDTO dto = new ChiTietHoaDonDTO();
             dto.setMaCTHD(c.getMaCTHD()); dto.setMaHD(h.getMaHD()); dto.setMaBienThe(c.getBienThe().getMaBienThe());
-            dto.setTenSP(c.getBienThe().getSanPham().getTenSP()); dto.setMauSac(c.getBienThe().getMauSac());
-            dto.setKichCo(c.getBienThe().getKichCo()); dto.setSoLuong(c.getSoLuong()); dto.setDonGia(c.getDonGia());
+            boolean paid = h.getTrangThai() == TrangThaiHoaDon.DA_THANH_TOAN;
+            boolean completeSnapshot = paid && h.getNgayThanhToan() != null
+                    && c.getTenSPSnapshot() != null && c.getMauSacSnapshot() != null && c.getKichCoSnapshot() != null;
+            dto.setTenSP(paid && c.getTenSPSnapshot() != null ? c.getTenSPSnapshot() : c.getBienThe().getSanPham().getTenSP());
+            dto.setMauSac(paid && c.getMauSacSnapshot() != null ? c.getMauSacSnapshot() : c.getBienThe().getMauSac());
+            dto.setKichCo(paid && c.getKichCoSnapshot() != null ? c.getKichCoSnapshot() : c.getBienThe().getKichCo());
+            dto.setNguonDuLieuHienThi(!paid ? NguonDuLieuHoaDon.DU_LIEU_HIEN_TAI
+                    : completeSnapshot ? NguonDuLieuHoaDon.SNAPSHOT_THANH_TOAN
+                    : NguonDuLieuHoaDon.FALLBACK_DU_LIEU_HIEN_TAI);
+            dto.setSoLuong(c.getSoLuong()); dto.setDonGia(c.getDonGia());
             dto.setThanhTien(MoneyUtils.lineTotal(c.getDonGia(), c.getSoLuong())); return dto;
         }).collect(Collectors.toList())); return result;
     }
@@ -262,6 +338,20 @@ public final class HoaDonService {
         HoaDonDTO dto = new HoaDonDTO(); dto.setMaHD(h.getMaHD()); dto.setMaNV(h.getNhanVien().getMaNV());
         dto.setMaKH(h.getKhachHang() == null ? null : h.getKhachHang().getMaKH());
         dto.setMaKM(h.getKhuyenMai() == null ? null : h.getKhuyenMai().getMaKM());
+        boolean paid = h.getTrangThai() == TrangThaiHoaDon.DA_THANH_TOAN;
+        boolean completeSnapshot = paid && h.getNgayThanhToan() != null && h.getTenNhanVienSnapshot() != null
+                && (h.getKhachHang() == null || h.getTenKhachHangSnapshot() != null);
+        dto.setTenNhanVien(paid && h.getTenNhanVienSnapshot() != null
+                ? h.getTenNhanVienSnapshot() : h.getNhanVien().getHoTen());
+        dto.setTenKhachHang(h.getKhachHang() == null ? null
+                : paid && h.getTenKhachHangSnapshot() != null ? h.getTenKhachHangSnapshot() : h.getKhachHang().getHoTen());
+        dto.setNgayThanhToan(h.getNgayThanhToan());
+        dto.setPhuongThucThanhToan(h.getPhuongThucThanhToan());
+        dto.setTienKhachDua(h.getTienKhachDua()); dto.setTienThua(h.getTienThua());
+        dto.setNhanVienXacNhanChuyenKhoan(h.getNhanVienXacNhanChuyenKhoan());
+        dto.setNguonDuLieuHienThi(!paid ? NguonDuLieuHoaDon.DU_LIEU_HIEN_TAI
+                : completeSnapshot ? NguonDuLieuHoaDon.SNAPSHOT_THANH_TOAN
+                : NguonDuLieuHoaDon.FALLBACK_DU_LIEU_HIEN_TAI);
         dto.setMaThue(h.getThue().getMaThue()); dto.setNgayLap(h.getNgayLap()); dto.setTamTinh(h.getTamTinh());
         dto.setPhanTramGiam(h.getPhanTramGiam()); dto.setTienGiam(h.getTienGiam());
         dto.setPhanTramThue(h.getPhanTramThue()); dto.setTienThue(h.getTienThue());

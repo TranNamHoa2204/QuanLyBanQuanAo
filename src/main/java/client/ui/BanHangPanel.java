@@ -1,12 +1,15 @@
 package client.ui;
 
 import java.awt.*;
+import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.util.concurrent.*;
 import java.util.function.Consumer;
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import client.api.*;
 import common.dto.*;
+import common.enums.PhuongThucThanhToan;
 import common.enums.TrangThaiHoaDon;
 import common.util.InvoiceIds;
 
@@ -27,7 +30,7 @@ public final class BanHangPanel extends JPanel implements Scrollable {
     private final JTable table = new JTable(model);
     private final JLabel total = new JLabel("—"), status = new JLabel("Tạo nháp hoặc nhập mã hóa đơn để tải lại.");
     private final JLabel subtotal = UiTheme.muted("Tạm tính: —"), discount = UiTheme.muted("Giảm giá: —"),
-            taxAmount = UiTheme.muted("Thuế: —");
+            taxAmount = UiTheme.muted("Thuế: —"), paymentInfo = UiTheme.muted("Chưa ghi nhận thu tiền.");
     private final JButton create = new JButton("Tạo nháp"), fresh = new JButton("Hóa đơn mới"),
             reload = new JButton("Tải lại"), addLine = new JButton("Thêm hàng"), change = new JButton("Đổi SL"),
             remove = new JButton("Bỏ hàng"), pay = new JButton("Thanh toán"), cancel = new JButton("Hủy nháp"),
@@ -79,7 +82,8 @@ public final class BanHangPanel extends JPanel implements Scrollable {
         for (JLabel l : new JLabel[]{subtotal, discount, taxAmount}) { figures.add(l); figures.add(Box.createVerticalStrut(12)); }
         figures.add(new JSeparator()); figures.add(Box.createVerticalStrut(12)); figures.add(UiTheme.muted("TỔNG THANH TOÁN"));
         figures.add(Box.createVerticalStrut(8)); total.setFont(total.getFont().deriveFont(Font.BOLD, 24f));
-        total.setForeground(UiTheme.PRIMARY); figures.add(total); summary.add(figures, BorderLayout.NORTH);
+        total.setForeground(UiTheme.PRIMARY); figures.add(total); figures.add(Box.createVerticalStrut(12));
+        paymentInfo.setText("Chưa ghi nhận thu tiền."); figures.add(paymentInfo); summary.add(figures, BorderLayout.NORTH);
         summary.setToolTipText("Giá và tổng tiền do server tính. Hóa đơn đã thanh toán không thể chỉnh sửa.");
         JPanel checkout = new JPanel(new GridLayout(0, 1, 0, 10)); checkout.setOpaque(false);
         checkout.add(pay); checkout.add(cancel); summary.add(checkout, BorderLayout.SOUTH);
@@ -93,7 +97,8 @@ public final class BanHangPanel extends JPanel implements Scrollable {
                     "Xác nhận", JOptionPane.YES_NO_OPTION) != JOptionPane.YES_OPTION) { return; }
             current = null; id.setText(InvoiceIds.newId()); customer.setText(""); promo.setText(""); note.setText("");
             model.setRowCount(0); total.setText("—"); subtotal.setText("Tạm tính: —"); discount.setText("Giảm giá: —");
-            taxAmount.setText("Thuế: —"); status.setText("Hóa đơn mới: chọn thuế và Tạo nháp."); controls();
+            taxAmount.setText("Thuế: —"); paymentInfo.setText("Chưa ghi nhận thu tiền.");
+            status.setText("Hóa đơn mới: chọn thuế và Tạo nháp."); controls();
         });
         reload.addActionListener(e -> { String code = id.getText().trim(); run(() -> api.detail(code), this::showInvoice); });
         create.addActionListener(e -> {
@@ -112,10 +117,8 @@ public final class BanHangPanel extends JPanel implements Scrollable {
         }); });
         addLine.addActionListener(e -> edit(0)); change.addActionListener(e -> edit(1)); remove.addActionListener(e -> edit(2));
         pay.addActionListener(e -> {
-            if (JOptionPane.showConfirmDialog(this, "Thanh toán hóa đơn " + current.getHoaDon().getMaHD() + ": " + current.getHoaDon().getTongTien()
-                    + " đồng? Sau đó không sửa được.", "Thanh toán", JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
-                HoaDonVersionRequest r = version(); run(() -> api.pay(r), this::showInvoice);
-            }
+            HoaDonThanhToanRequest r = paymentRequest();
+            if (r != null) { run(() -> api.pay(r), this::showInvoice); }
         });
         cancel.addActionListener(e -> {
             if (JOptionPane.showConfirmDialog(this, "Hủy nháp?", "Xác nhận", JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
@@ -155,6 +158,63 @@ public final class BanHangPanel extends JPanel implements Scrollable {
         HoaDonVersionRequest r = new HoaDonVersionRequest(); r.setMaHD(current.getHoaDon().getMaHD());
         r.setPhienBan(current.getHoaDon().getPhienBan()); return r;
     }
+    private HoaDonThanhToanRequest paymentRequest() {
+        if (current == null || current.getHoaDon().getTrangThai() != TrangThaiHoaDon.NHAP) { return null; }
+        HoaDonDTO invoice = current.getHoaDon();
+        BigDecimal reviewedTotal = invoice.getTongTien();
+        JRadioButton cash = new JRadioButton("Tiền mặt", true);
+        JRadioButton transfer = new JRadioButton("Chuyển khoản");
+        ButtonGroup methods = new ButtonGroup(); methods.add(cash); methods.add(transfer);
+        JTextField tendered = new JTextField(16);
+        JCheckBox transferConfirmed = new JCheckBox("Nhân viên xác nhận đã nhận tiền chuyển khoản");
+        JLabel totalPreview = new JLabel("Tổng server đã tính: " + UiTheme.money(reviewedTotal));
+        JLabel transferNotice = UiTheme.muted("<html><div style='width:340px'>Ứng dụng chỉ ghi nhận xác nhận của nhân viên; không xác minh giao dịch ngân hàng.</div></html>");
+        Runnable updateMode = () -> {
+            tendered.setEnabled(cash.isSelected()); transferConfirmed.setEnabled(transfer.isSelected());
+            transferNotice.setEnabled(transfer.isSelected());
+        };
+        cash.addActionListener(e -> updateMode.run()); transfer.addActionListener(e -> updateMode.run());
+        JPanel methodRow = new JPanel(new FlowLayout(FlowLayout.LEFT, 8, 0));
+        methodRow.setOpaque(false); methodRow.add(cash); methodRow.add(transfer);
+        JPanel form = new JPanel(); form.setLayout(new BoxLayout(form, BoxLayout.Y_AXIS)); form.setOpaque(false);
+        form.add(totalPreview); form.add(Box.createVerticalStrut(10)); form.add(methodRow);
+        form.add(UiTheme.field("Tiền khách đưa (đồng)", tendered));
+        form.add(transferConfirmed); form.add(transferNotice);
+        Object[] options = {"Xác nhận thu tiền", "Hủy"};
+        while (true) {
+            updateMode.run();
+            int choice = JOptionPane.showOptionDialog(this, form, "Thu tiền hóa đơn " + invoice.getMaHD(),
+                    JOptionPane.DEFAULT_OPTION, JOptionPane.QUESTION_MESSAGE, null, options, options[0]);
+            if (choice != 0) { return null; }
+            HoaDonThanhToanRequest request = new HoaDonThanhToanRequest();
+            request.setMaHD(invoice.getMaHD()); request.setPhienBan(invoice.getPhienBan());
+            request.setTongTienDaXem(reviewedTotal);
+            if (cash.isSelected()) {
+                BigDecimal amount;
+                try {
+                    amount = new BigDecimal(tendered.getText().trim());
+                    amount.setScale(2, RoundingMode.UNNECESSARY);
+                } catch (NumberFormatException | ArithmeticException ex) {
+                    JOptionPane.showMessageDialog(this, "Nhập tiền mặt hợp lệ, tối đa 2 chữ số thập phân.",
+                            "Thông tin chưa hợp lệ", JOptionPane.WARNING_MESSAGE); continue;
+                }
+                if (amount.compareTo(reviewedTotal) < 0) {
+                    JOptionPane.showMessageDialog(this, "Tiền khách đưa phải lớn hơn hoặc bằng tổng thanh toán.",
+                            "Thông tin chưa hợp lệ", JOptionPane.WARNING_MESSAGE); continue;
+                }
+                request.setPhuongThucThanhToan(PhuongThucThanhToan.TIEN_MAT);
+                request.setTienKhachDua(amount);
+            } else {
+                if (!transferConfirmed.isSelected()) {
+                    JOptionPane.showMessageDialog(this, "Cần xác nhận đã nhận tiền chuyển khoản. Ứng dụng không xác minh ngân hàng.",
+                            "Chưa xác nhận", JOptionPane.WARNING_MESSAGE); continue;
+                }
+                request.setPhuongThucThanhToan(PhuongThucThanhToan.CHUYEN_KHOAN);
+                request.setNhanVienXacNhanChuyenKhoan(Boolean.TRUE);
+            }
+            return request;
+        }
+    }
     public void showInvoice(HoaDonDetailDTO d) {
         current = d; HoaDonDTO h = d.getHoaDon(); id.setText(h.getMaHD()); model.setRowCount(0);
         for (ChiTietHoaDonDTO c : d.getChiTiet()) {
@@ -168,7 +228,23 @@ public final class BanHangPanel extends JPanel implements Scrollable {
         total.setText(UiTheme.money(h.getTongTien()));
         total.setToolTipText(total.getText());
         total.setFont(total.getFont().deriveFont(Font.BOLD, total.getText().length() > 16 ? 16f : 24f));
+        paymentInfo.setText("<html><div style='width:230px'>" + paymentSummary(h) + "</div></html>");
         status.setText("Hóa đơn đang mở: " + h.getMaHD() + " | " + h.getTrangThai() + " | Phiên bản " + h.getPhienBan() + " | Nhân viên " + h.getMaNV()); controls();
+    }
+    private static String paymentSummary(HoaDonDTO invoice) {
+        if (invoice.getTrangThai() != TrangThaiHoaDon.DA_THANH_TOAN) { return "Chưa ghi nhận thu tiền."; }
+        if (invoice.getPhuongThucThanhToan() == null) { return "Thông tin thu tiền: chưa có dữ liệu (hóa đơn lịch sử)."; }
+        if (invoice.getPhuongThucThanhToan() == PhuongThucThanhToan.TIEN_MAT) {
+            if (invoice.getTienKhachDua() == null || invoice.getTienThua() == null) {
+                return "Tiền mặt: dữ liệu thu tiền chưa đầy đủ.";
+            }
+            return "Tiền mặt | Khách đưa: " + UiTheme.money(invoice.getTienKhachDua())
+                    + " | Tiền thừa: " + UiTheme.money(invoice.getTienThua());
+        }
+        if (Boolean.TRUE.equals(invoice.getNhanVienXacNhanChuyenKhoan())) {
+            return "Chuyển khoản thủ công: nhân viên xác nhận đã nhận; ứng dụng không xác minh ngân hàng.";
+        }
+        return "Chuyển khoản: dữ liệu xác nhận chưa đầy đủ.";
     }
     private void history(int page) {
         HoaDonSearchRequest r = new HoaDonSearchRequest(); r.setPage(page); r.setPageSize(20);

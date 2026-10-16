@@ -22,12 +22,13 @@ public class FlatLafUiTest {
                 File dir = new File(".tmp/flatlaf-ui"); assertTrue(dir.isDirectory() || dir.mkdirs());
                 render(new DangNhapPanel(), new File(dir, "login.png"), 920, 560);
                 LoginResponse login = new LoginResponse(); login.setHoTen("Nguyễn Minh Anh"); login.setVaiTro(VaiTro.NHAN_VIEN_QUAN_LY);
-                AtomicInteger products = new AtomicInteger(), sales = new AtomicInteger(), management = new AtomicInteger();
-                MainShellPanel shell = new MainShellPanel(login, products::incrementAndGet, sales::incrementAndGet, () -> {}, () -> {}, b -> {}, management::incrementAndGet);
+                AtomicInteger products = new AtomicInteger(), sales = new AtomicInteger(), management = new AtomicInteger(), history = new AtomicInteger();
+                MainShellPanel shell = new MainShellPanel(login, products::incrementAndGet, sales::incrementAndGet, () -> {}, () -> {}, b -> {}, management::incrementAndGet, history::incrementAndGet);
                 render(shell, new File(dir, "dashboard.png"), 1320, 860);
                 findButton(shell, "Sản phẩm").doClick(); assertEquals(1, products.get());
                 findButton(shell, "Bán hàng & hóa đơn").doClick(); assertEquals(1, sales.get());
                 findButton(shell, "Danh mục & sản phẩm").doClick(); assertEquals(1, management.get());
+                findButton(shell, "Lịch sử kho").doClick(); assertEquals(1, history.get());
                 assertFalse(findButton(shell, "Nhân viên  ·  Sắp có").isEnabled());
                 login.setVaiTro(VaiTro.NHAN_VIEN_BAN_HANG);
                 MainShellPanel staff = new MainShellPanel(login, () -> {}, () -> {}, () -> {}, () -> {}, b -> {});

@@ -14,12 +14,18 @@ public final class MainShellPanel extends JPanel {
     private final JButton overview = new JButton("Tổng quan"), productsButton = new JButton("Sản phẩm"),
             salesButton = new JButton("Bán hàng & hóa đơn");
     private final JButton catalogButton = new JButton("Danh mục & sản phẩm");
+    private final JButton stockHistoryButton = new JButton("Lịch sử kho");
     public MainShellPanel(LoginResponse login, Runnable products, Runnable sales,
             Runnable profile, Runnable password, Consumer<JButton> logout) {
         this(login, products, sales, profile, password, logout, null);
     }
     public MainShellPanel(LoginResponse login, Runnable products, Runnable sales,
             Runnable profile, Runnable password, Consumer<JButton> logout, Runnable management) {
+        this(login, products, sales, profile, password, logout, management, null);
+    }
+    public MainShellPanel(LoginResponse login, Runnable products, Runnable sales,
+            Runnable profile, Runnable password, Consumer<JButton> logout, Runnable management,
+            Runnable stockHistory) {
         super(new BorderLayout());
         JPanel sidebar = new JPanel(new BorderLayout(0, 24)); sidebar.setBackground(UiTheme.NAV);
         sidebar.setPreferredSize(new Dimension(235, 0)); sidebar.setBorder(BorderFactory.createEmptyBorder(26, 18, 24, 18));
@@ -39,13 +45,21 @@ public final class MainShellPanel extends JPanel {
             nav.add(navButton(catalogButton)); nav.add(Box.createVerticalStrut(6));
             catalogButton.setEnabled(management != null);
             catalogButton.addActionListener(e -> { if (management != null) { management.run(); } });
+            nav.add(navButton(stockHistoryButton)); nav.add(Box.createVerticalStrut(6));
+            stockHistoryButton.setEnabled(stockHistory != null);
+            stockHistoryButton.setToolTipText(stockHistory == null ? "Chức năng chưa được cấu hình." : "Tra cứu lịch sử biến động kho.");
+            stockHistoryButton.addActionListener(e -> { if (stockHistory != null) { stockHistory.run(); } });
             for (String text : new String[]{"Nhân viên", "Khuyến mãi", "Thống kê"}) {
                 JButton pending = navButton(new JButton(text + "  ·  Sắp có")); pending.setEnabled(false);
                 pending.setContentAreaFilled(false);
                 pending.setToolTipText("Chức năng chưa được triển khai."); nav.add(pending); nav.add(Box.createVerticalStrut(6));
             }
         }
-        sidebar.add(nav, BorderLayout.CENTER);
+        JScrollPane navScroll = new JScrollPane(nav, ScrollPaneConstants.VERTICAL_SCROLLBAR_AS_NEEDED,
+                ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+        navScroll.setBorder(BorderFactory.createEmptyBorder()); navScroll.setOpaque(false);
+        navScroll.getViewport().setOpaque(false); navScroll.getVerticalScrollBar().setUnitIncrement(18);
+        sidebar.add(navScroll, BorderLayout.CENTER);
         JPanel account = new JPanel(new GridLayout(0, 1, 0, 6)); account.setOpaque(false);
         JButton me = navButton(new JButton("Thông tin cá nhân")), change = navButton(new JButton("Đổi mật khẩu")),
                 signout = navButton(new JButton("Đăng xuất"));
@@ -99,5 +113,6 @@ public final class MainShellPanel extends JPanel {
         productsButton.setBackground("Sản phẩm".equals(title) ? UiTheme.PRIMARY : UiTheme.NAV);
         salesButton.setBackground("Bán hàng & hóa đơn".equals(title) ? UiTheme.PRIMARY : UiTheme.NAV);
         catalogButton.setBackground("Danh mục & sản phẩm".equals(title) ? UiTheme.PRIMARY : UiTheme.NAV);
+        stockHistoryButton.setBackground("Lịch sử kho".equals(title) ? UiTheme.PRIMARY : UiTheme.NAV);
     }
 }

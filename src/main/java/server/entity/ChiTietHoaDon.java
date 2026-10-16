@@ -16,6 +16,12 @@ public class ChiTietHoaDon {
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "maBienThe", nullable = false)
     private BienThe bienThe;
+    @Nationalized @Column(name = "tenSPSnapshot", length = 200)
+    private String tenSPSnapshot;
+    @Nationalized @Column(name = "mauSacSnapshot", length = 50)
+    private String mauSacSnapshot;
+    @Nationalized @Column(name = "kichCoSnapshot", length = 20)
+    private String kichCoSnapshot;
     @Column(nullable = false)
     private int soLuong;
     @Column(nullable = false, precision = 18, scale = 2)
@@ -48,6 +54,30 @@ public class ChiTietHoaDon {
 
     public void setBienThe(BienThe bienThe) {
         this.bienThe = bienThe;
+    }
+
+    public String getTenSPSnapshot() {
+        return tenSPSnapshot;
+    }
+
+    public void setTenSPSnapshot(String tenSPSnapshot) {
+        this.tenSPSnapshot = tenSPSnapshot;
+    }
+
+    public String getMauSacSnapshot() {
+        return mauSacSnapshot;
+    }
+
+    public void setMauSacSnapshot(String mauSacSnapshot) {
+        this.mauSacSnapshot = mauSacSnapshot;
+    }
+
+    public String getKichCoSnapshot() {
+        return kichCoSnapshot;
+    }
+
+    public void setKichCoSnapshot(String kichCoSnapshot) {
+        this.kichCoSnapshot = kichCoSnapshot;
     }
 
     public int getSoLuong() {

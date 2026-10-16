@@ -14,6 +14,7 @@
     <class>server.entity.KhachHang</class>
     <class>server.entity.KhuyenMai</class>
     <class>server.entity.Thue</class>
+    <class>server.entity.LichSuKho</class>
     <exclude-unlisted-classes>true</exclude-unlisted-classes>
     <properties>
       <property name="hibernate.dialect" value="org.hibernate.dialect.SQLServer2012Dialect"/>

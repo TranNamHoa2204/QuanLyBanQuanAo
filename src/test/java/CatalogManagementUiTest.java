@@ -9,6 +9,7 @@ import javax.swing.*;
 import org.junit.Test;
 import client.ui.*;
 import client.api.SanPhamApi;
+import client.api.LichSuKhoApi;
 import client.controller.QuanLySanPhamController;
 import client.network.SocketClient;
 import client.session.ClientSession;
@@ -40,6 +41,8 @@ public class CatalogManagementUiTest {
                 b.setKichCo("M"); b.setSoLuongTon(10); b.setPhienBan(3L); detail.getBienThe().add(b);
                 BienTheManagementPanel variants = new BienTheManagementPanel(controller); variants.showProduct(detail);
                 render(variants, new File(dir, "variants.png"), 1000, 560);
+                LichSuKhoPanel history = new LichSuKhoPanel(new LichSuKhoApi(socket, new ClientSession()));
+                render(history, new File(dir, "stock-history.png"), 1000, 560);
                 LoaiSanPhamDTO l = new LoaiSanPhamDTO(); l.setMaLoai("L1"); l.setTenLoai("Áo phông");
                 ThuongHieuDTO brand = new ThuongHieuDTO(); brand.setMaThuongHieu("TH1"); brand.setTenThuongHieu("Canifa");
                 SanPhamEditorPanel editor = new SanPhamEditorPanel(p, Collections.singletonList(l), Collections.singletonList(brand));

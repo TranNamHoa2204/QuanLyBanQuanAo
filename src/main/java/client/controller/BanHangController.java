@@ -12,7 +12,7 @@ public final class BanHangController {
     public HoaDonDetailDTO create(HoaDonCreateRequest r) throws IOException { return api.create(r); }
     public HoaDonDetailDTO detail(String id) throws IOException { return api.detail(id); }
     public HoaDonDetailDTO line(HoaDonLineRequest r, int mode) throws IOException { return api.line(r, mode); }
-    public HoaDonDetailDTO pay(HoaDonVersionRequest r) throws IOException { return api.pay(r); }
+    public HoaDonDetailDTO pay(HoaDonThanhToanRequest r) throws IOException { return api.pay(r); }
     public HoaDonDetailDTO cancel(HoaDonVersionRequest r) throws IOException { return api.cancel(r); }
     public HoaDonSearchResult search(HoaDonSearchRequest r) throws IOException { return api.search(r); }
     public List<ThueDTO> taxes() throws IOException { return api.taxes(); }

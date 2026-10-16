@@ -1,26 +1,29 @@
 # Ứng dụng quản lý cửa hàng quần áo
 
-Bộ khung Maven cho nhóm 2 người, JPA + Socket Client/Server, SQL Server.
-Các package gốc: `client`, `common`, `server`; groupId: `vn.edu.iuh`.
+Ứng dụng desktop phân tầng cho quản lý cửa hàng quần áo, dùng Java Swing + FlatLaf,
+JPA/Hibernate, SQL Server và TCP Socket. Các package gốc: `client`, `common`, `server`;
+groupId: `vn.edu.iuh`.
 
 ## Trạng thái hiện tại
 
-- Có 12 mô hình dữ liệu (gồm AnhSanPham) và DTO riêng.
-- Có enum vai trò/trạng thái, danh mục Action, Request/Response generic.
-- Có đọc cấu hình UTF-8, kiểm tra vai trò cơ bản, tiện ích tính tiền và smoke test.
-- Đã triển khai JPA cho NhanVien/TaiKhoan, JpaManager và JpaTaiKhoanDao.
-- Đã có TCP Socket: JSON UTF-8 với frame độ dài, timeout và giới hạn kích thước.
-- Đã có đăng nhập, hồ sơ cá nhân, đổi mật khẩu và đăng xuất xuyên suốt client/server.
-- Giao diện Swing + FlatLaf 3.7: đăng nhập, sidebar, sản phẩm, bán hàng,
-  hồ sơ và đổi mật khẩu. Xem [docs/GIAO_DIEN_FLATLAF.md](docs/GIAO_DIEN_FLATLAF.md).
-- PBKDF2 có salt; token ngẫu nhiên hết hạn sau 30 phút; đổi mật khẩu thu hồi phiên.
-- Đã ánh xạ JPA đủ 12 entity; có bán hàng, hóa đơn nháp, chỉnh dòng, hủy nháp,
-  danh sách/chi tiết hóa đơn và thanh toán/trừ tồn trong transaction chung.
-- Đã có thêm/sửa loại, thương hiệu, sản phẩm; ngừng bán/kinh doanh lại,
-  thêm biến thể và sửa tồn/trạng thái có kiểm tra xung đột.
-- Quản lý nhân viên, khách hàng, khuyến mãi và thống kê chưa triển khai.
-- Chưa kết nối/ghi dữ liệu lên SQL Server thực tế trong quá trình viết code.
-- Công cụ AccountSetupMain chỉ tạo quản lý đầu tiên khi chạy chủ động, không có mật khẩu mặc định.
+- Giao thức TCP JSON dùng DTO `common`; JPA/Hibernate chỉ chạy ở server.
+- Có đăng nhập, hồ sơ, đổi mật khẩu, đăng xuất, sản phẩm/biến thể, bán hàng,
+  tra cứu hóa đơn, thanh toán tại quầy và lịch sử biến động kho.
+- Backend cho khách hàng, nhân viên/tài khoản, khuyến mãi và thống kê có action,
+  service, repository và test; API/màn hình Swing của các nhóm này còn rỗng hoặc
+  chưa nối vào sidebar. Không xem backend đơn lẻ là chức năng hoàn chỉnh.
+- Nếu tỷ lệ thuế/khuyến mãi đổi sau khi lập nháp, checkout hiện yêu cầu hủy nháp và
+  lập lại; chưa có luồng S10 cập nhật nháp/preview/xác nhận tổng mới không cần hủy.
+- FR11 nhà cung cấp/phiếu nhập, FR13 in/PDF/CSV, FR14 cảnh báo tồn/dashboard và
+  FR15 audit/đặt lại mật khẩu chưa được triển khai. FR16 nằm ngoài phạm vi S27.
+- Schema baseline có 12 bảng; ledger FR10 thêm bảng `LichSuKho`, nên schema hiện
+  được source ánh xạ có 13 bảng logic sau migrations. SQL Server demo chưa được
+  nghiệm thu; không dùng test H2 để tuyên bố SQL Server đã chạy.
+- `AccountSetupMain` chỉ tạo tài khoản quản lý đầu tiên khi được chạy chủ động;
+  không có tài khoản hoặc mật khẩu mặc định.
+- Báo cáo S27: [Word](ltpt/BaoCao_S27_HoanThien.docx),
+  [PDF](ltpt/BaoCao_S27_HoanThien.pdf), [Markdown](ltpt/BaoCao_S27_HoanThien.md).
+  Báo cáo ghi ma trận FR/UC, sơ đồ use case/lớp/ERD, bằng chứng test và kịch bản demo.
 
 Phần tra cứu sản phẩm đã có: lọc tên/loại/thương hiệu/màu/size, phân trang,
 chi tiết biến thể, tồn kho và ảnh theo màu. Cả hai vai trò dùng được;
@@ -30,6 +33,8 @@ Luồng bán hàng nằm ở màn hình riêng; xem [docs/BAN_HANG.md](docs/BAN_
 Xem [docs/TRA_CUU_SAN_PHAM.md](docs/TRA_CUU_SAN_PHAM.md) trước khi chạy bản cập nhật.
 
 Hướng dẫn chạy chi tiết: [docs/HUONG_DAN_CHAY.md](docs/HUONG_DAN_CHAY.md).
+Trạng thái FR/API/UI/test và giới hạn S27: [ltpt/BaoCao_S27_HoanThien.md](ltpt/BaoCao_S27_HoanThien.md).
+Schema baseline và migration: [docs/SCHEMA_BASELINE_AND_MIGRATIONS.md](docs/SCHEMA_BASELINE_AND_MIGRATIONS.md).
 
 ## Các package
 
@@ -42,9 +47,9 @@ src/main/java
 │   └── util       PropertiesLoader, MoneyUtils
 ├── server
 │   ├── config     ServerConfig, DatabaseConfig
-│   ├── repository GenericDao và 11 DAO theo bảng (giữ tên class bạn đang dùng)
+│   ├── repository DAO/JPA repository theo nghiệp vụ
 │   ├── dispatcher RequestDispatcher
-│   ├── entity     12 mô hình; 7 entity tài khoản/sản phẩm đã ánh xạ JPA
+│   ├── entity     entity nghiệp vụ được khai báo trong persistence-unit JPA
 │   ├── network    SocketServer, ClientHandler
 │   ├── persistence JpaManager
 │   ├── security   PasswordHasher, PermissionChecker
@@ -52,12 +57,12 @@ src/main/java
 │   ├── session    SessionManager
 │   └── ServerMain
 └── client
-    ├── api        Gọi chức năng qua Socket
+    ├── api        DTO/action client; một số module quản trị còn là stub
     ├── config     ClientConfig
     ├── controller Xử lý sự kiện của các màn hình
     ├── network    SocketClient
     ├── session    ClientSession
-    ├── ui         Swing cho tài khoản, tra cứu và chi tiết sản phẩm
+    ├── ui         Swing cho tài khoản, sản phẩm, bán hàng, danh mục và lịch sử kho
     └── ClientMain
 ```
 
@@ -70,12 +75,18 @@ không import server.entity/repository/service và không truy cập SQL Server 
 
 1. Chọn project, nhấn F5 để Refresh.
 2. Chuột phải project → Maven → Update Project… (Alt+F5).
-3. Kiểm tra Project → Properties → Java Compiler và Java Build Path.
-   Bộ khung giữ Java 8 theo cấu hình project ban đầu; JDK chạy terminal có thể khác.
+3. Chọn JDK 17 (hoặc JDK 9 trở lên) trong Project → Properties → Java Build Path.
+   `pom.xml` giữ bytecode Java 8 bằng Maven Compiler Plugin `release=8`.
 4. Chạy ServerMain và ClientMain bằng Run As → Java Application.
    Cấu hình biến QUANAO_DB_* cho ServerMain trước; xem docs/HUONG_DAN_CHAY.md.
-5. Chạy ScaffoldSmokeTest trong src/test/java bằng Java Application.
-   Đây là smoke test thủ công, chưa phải test JUnit do Maven tự chạy.
+5. Test hiện có: `mvn -Djava.awt.headless=true test`; ScaffoldSmokeTest được gọi
+   riêng bởi script fallback, không phải test JUnit Surefire.
+
+Kiểm thử JUnit chuẩn: `mvn -Djava.awt.headless=true test` (Maven 3.6.3+).
+Nếu không có Maven trên PATH nhưng dependency đã có trong cache, dùng
+`scripts/Test-Local.ps1`; hướng dẫn và giới hạn cache được ghi tại
+docs/HUONG_DAN_CHAY.md. `target/` đang được Git theo dõi, vì vậy tránh `mvn clean`
+trong checkout có thay đổi build output cần giữ.
 
 Không cần cấu hình một main class duy nhất: Eclipse có thể tạo hai Run Configuration.
 Các cấu hình dùng classpath resources nên không phụ thuộc đường dẫn ổ Q:.
@@ -95,10 +106,11 @@ Các cấu hình dùng classpath resources nên không phụ thuộc đường d
 - FlatLaf 3.7: giao diện Swing, không ảnh hưởng JPA hoặc giao thức Socket.
 
 Trong Eclipse: F5 → Maven → Update Project (Alt+F5), sau đó Run As → Maven build,
-Goals: test. DependencySmokeTest chỉ kiểm tra classpath và JSON, không kết nối database.
+Goals: `-Djava.awt.headless=true test`. DependencySmokeTest chỉ kiểm tra classpath và JSON, không kết nối database.
 Kiểm thử thủ công ScaffoldSmokeTest chưa chuyển sang JUnit: Surefire bỏ qua lớp đó.
-AuthIntegrationTest chạy Socket thật và JPA thật với H2 trong RAM.
-Việc kết nối SQL Server vẫn cần cấu hình URL, tài khoản DB và schema đúng.
+Trong lần cập nhật S27, script fallback chạy 88 JUnit test và ScaffoldSmokeTest đạt.
+Test tích hợp chạy Socket/JPA với H2 trong RAM; chưa có xác minh SQL Server demo.
+Việc kết nối SQL Server vẫn cần URL, tài khoản DB cục bộ và schema đúng.
 
 Nguồn đối chiếu: https://hibernate.org/orm/releases/5.6/,
 https://github.com/microsoft/mssql-jdbc/releases/tag/v13.2.1,
@@ -108,8 +120,8 @@ https://github.com/FasterXML/jackson/wiki/Jackson-Release-2.21.
 
 - Hiện dùng Swing và javax.persistence; không trộn javax.persistence
   với jakarta.persistence. Khi nâng JDK, cập nhật pom.xml và cấu hình Eclipse đồng bộ.
-- META-INF/persistence.xml đang dùng, liệt kê 7 entity tài khoản/sản phẩm.
-  Các entity khác phải ánh xạ và bổ sung vào persistence-unit khi triển khai chức năng.
+- `META-INF/persistence.xml` hiện ánh xạ 13 entity logic, gồm ledger `LichSuKho`.
+  Baseline SQL trước ledger là 12 bảng; không dùng số baseline để mô tả schema sau mở rộng.
   Production dùng validate, không tự sửa schema. File .example cũ không được nạp.
 - SQL hiện tại là nguồn đối chiếu cho mapping. maCTHD là IDENTITY; phienBan dùng
   @Version; ChiTietHoaDon.thanhTien là cột tính toán, mapping chỉ đọc.
@@ -125,14 +137,17 @@ https://github.com/FasterXML/jackson/wiki/Jackson-Release-2.21.
 - Thực hiện I/O ngoài luồng giao diện; không ghi mật khẩu hoặc session token vào log.
 - Pbkdf2PasswordHasher dùng PBKDF2-HMAC-SHA256 qua JCE, 600.000 vòng và salt ngẫu nhiên.
   Thông tin database lấy từ môi trường hoặc cấu hình cục bộ không đưa vào Git.
-- Utility tiền chỉ xử lý phép tính cơ bản, chưa thay thế chính sách hóa đơn và kiểm tra
-  hiệu lực khuyến mãi/tồn kho. Các POJO setter chưa kiểm tra nghiệp vụ.
+- Quy tắc hóa đơn và tồn nằm ở server service; DTO/UI không phải nguồn quyết định tiền.
 
-## Thứ tự triển khai gợi ý
+## Tình trạng và giới hạn cần biết
 
 Dữ liệu ảnh/Excel đã chuẩn hóa: xem data/README_DuLieu.md.
 Có sql/01_ThemBangAnhSanPham.sql và sql/02_NhapDuLieuQuanAo.sql để chạy thủ công trong SSMS.
-Hai script này không được tự chạy trong code; AnhSanPham đã ánh xạ JPA.
+`sql/04_HoaDonSnapshotVaThoiDiemThanhToan.sql`, `sql/05_LichSuBienDongKho.sql` và
+`sql/06_ThuTienTaiQuay.sql` là migration tăng dần cho snapshot/thời điểm, ledger và thu
+tiền tại quầy. Chỉ chạy theo thứ tự trong `docs/HUONG_DAN_CHAY.md` trên database demo đã
+xác định; ứng dụng không tự chạy SQL và JPA vẫn giữ `validate`.
 
-Tiếp theo: hóa đơn/thanh toán/tồn kho → quản lý danh mục/nhân viên/khuyến mãi → thống kê.
-Thống nhất hợp đồng common trước khi chia một bạn làm server và một bạn làm client.
+FR02, FR07, FR08 và FR09 hiện thiếu giao diện/API client hoàn chỉnh; FR11, FR13, FR14 và
+FR15 chưa có triển khai tương ứng. Chi tiết theo FR/UC và kịch bản demo giới hạn nằm trong
+báo cáo S27. Tài liệu gốc Chương 1–3 trong `ltpt` được giữ nguyên.

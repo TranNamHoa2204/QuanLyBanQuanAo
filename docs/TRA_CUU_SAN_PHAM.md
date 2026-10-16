@@ -2,8 +2,10 @@
 
 ## Chuẩn bị trước khi chạy bản mới
 
-Server dùng validate, không tự tạo bảng hoặc nạp dữ liệu. Nếu đã có 12 bảng và
-dữ liệu sản phẩm trong SQL Server, không cần chạy lại script.
+Server dùng validate, không tự tạo bảng hoặc nạp dữ liệu. Baseline có 12 bảng; schema
+sau migration ledger 05 có 13 bảng logic. Chỉ bỏ qua script nếu database demo đã được
+kiểm tra có đúng baseline và migrations 04/05/06 cần cho source hiện tại; số bảng đơn
+thuần không chứng minh cấu trúc/schema khớp.
 
 Nếu chưa có dbo.AnhSanPham:
 
@@ -12,7 +14,9 @@ Nếu chưa có dbo.AnhSanPham:
    Script thêm bản ghi thiếu và không ghi đè giá/tồn kho hiện có. Đọc thông báo xung đột
    nếu database đã có dữ liệu với mã/tên khác; không xóa database để xử lý.
 3. F5 → Maven Update Project → Project Clean trong Eclipse.
-4. Dừng và chạy lại ServerMain, rồi chạy lại ClientMain.
+4. Với code hiện tại cần theo đủ chuỗi migration trong
+   `SCHEMA_BASELINE_AND_MIGRATIONS.md` trước khi khởi động server. Dừng và chạy lại
+   ServerMain, rồi chạy lại ClientMain.
 
 Không chạy lại script tạo database gốc trên database đang có dữ liệu.
 Lượt code này không thực thi script hoặc cập nhật dữ liệu trong SQL Server của bạn.
@@ -109,4 +113,5 @@ Các test tài khoản trước đó vẫn được chạy lại.
 Màn hình tra cứu này chỉ đọc. Thêm/sửa/ngừng bán và sửa tồn nằm ở menu
 Danh mục & sản phẩm dành cho quản lý; xem QUAN_LY_DANH_MUC_SAN_PHAM.md.
 Lập hóa đơn/thanh toán nằm ở Bán hàng / Hóa đơn; xem BAN_HANG.md.
-Chưa có phiếu nhập hàng, đổi trả hoặc thống kê.
+Chưa có phiếu nhập hàng hoặc đổi trả. Backend thống kê đã có nhưng UI chưa được nối;
+tra cứu sản phẩm không chứa chức năng thống kê. SQL Server chưa được nghiệm thu trực tiếp.

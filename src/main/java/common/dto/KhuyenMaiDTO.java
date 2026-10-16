@@ -2,6 +2,7 @@ package common.dto;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
+import common.enums.TrangThaiHieuLucKhuyenMai;
 
 /** Dữ liệu trao đổi; không phụ thuộc entity/JPA. Không ghi mật khẩu hoặc token vào log. */
 public class KhuyenMaiDTO {
@@ -11,6 +12,8 @@ public class KhuyenMaiDTO {
     private LocalDate ngayBatDau;
     private LocalDate ngayKetThuc;
     private boolean trangThai = true;
+    /** Giá trị tính trên server khi trả kết quả; không phải cột persistence. */
+    private TrangThaiHieuLucKhuyenMai trangThaiHieuLuc;
 
     public KhuyenMaiDTO() {
     }
@@ -62,4 +65,7 @@ public class KhuyenMaiDTO {
     public void setTrangThai(boolean trangThai) {
         this.trangThai = trangThai;
     }
+
+    public TrangThaiHieuLucKhuyenMai getTrangThaiHieuLuc() { return trangThaiHieuLuc; }
+    public void setTrangThaiHieuLuc(TrangThaiHieuLucKhuyenMai trangThaiHieuLuc) { this.trangThaiHieuLuc = trangThaiHieuLuc; }
 }

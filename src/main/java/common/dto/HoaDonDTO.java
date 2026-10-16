@@ -3,6 +3,8 @@ package common.dto;
 import java.time.LocalDateTime;
 
 import common.enums.TrangThaiHoaDon;
+import common.enums.NguonDuLieuHoaDon;
+import common.enums.PhuongThucThanhToan;
 
 import java.math.BigDecimal;
 
@@ -14,6 +16,14 @@ public class HoaDonDTO {
     private String maKM;
     private String maThue;
     private LocalDateTime ngayLap;
+    private LocalDateTime ngayThanhToan;
+    private PhuongThucThanhToan phuongThucThanhToan;
+    private BigDecimal tienKhachDua;
+    private BigDecimal tienThua;
+    private Boolean nhanVienXacNhanChuyenKhoan;
+    private String tenNhanVien;
+    private String tenKhachHang;
+    private NguonDuLieuHoaDon nguonDuLieuHienThi;
     private BigDecimal tamTinh;
     private BigDecimal phanTramGiam;
     private BigDecimal tienGiam;
@@ -73,6 +83,47 @@ public class HoaDonDTO {
 
     public void setNgayLap(LocalDateTime ngayLap) {
         this.ngayLap = ngayLap;
+    }
+
+    public LocalDateTime getNgayThanhToan() {
+        return ngayThanhToan;
+    }
+
+    public void setNgayThanhToan(LocalDateTime ngayThanhToan) {
+        this.ngayThanhToan = ngayThanhToan;
+    }
+
+    public PhuongThucThanhToan getPhuongThucThanhToan() { return phuongThucThanhToan; }
+    public void setPhuongThucThanhToan(PhuongThucThanhToan value) { this.phuongThucThanhToan = value; }
+    public BigDecimal getTienKhachDua() { return tienKhachDua; }
+    public void setTienKhachDua(BigDecimal value) { this.tienKhachDua = value; }
+    public BigDecimal getTienThua() { return tienThua; }
+    public void setTienThua(BigDecimal value) { this.tienThua = value; }
+    public Boolean getNhanVienXacNhanChuyenKhoan() { return nhanVienXacNhanChuyenKhoan; }
+    public void setNhanVienXacNhanChuyenKhoan(Boolean value) { this.nhanVienXacNhanChuyenKhoan = value; }
+
+    public String getTenNhanVien() {
+        return tenNhanVien;
+    }
+
+    public void setTenNhanVien(String tenNhanVien) {
+        this.tenNhanVien = tenNhanVien;
+    }
+
+    public String getTenKhachHang() {
+        return tenKhachHang;
+    }
+
+    public void setTenKhachHang(String tenKhachHang) {
+        this.tenKhachHang = tenKhachHang;
+    }
+
+    public NguonDuLieuHoaDon getNguonDuLieuHienThi() {
+        return nguonDuLieuHienThi;
+    }
+
+    public void setNguonDuLieuHienThi(NguonDuLieuHoaDon nguonDuLieuHienThi) {
+        this.nguonDuLieuHienThi = nguonDuLieuHienThi;
     }
 
     public BigDecimal getTamTinh() {

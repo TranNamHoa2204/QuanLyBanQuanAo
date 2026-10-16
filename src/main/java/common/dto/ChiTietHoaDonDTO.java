@@ -1,6 +1,7 @@
 package common.dto;
 
 import java.math.BigDecimal;
+import common.enums.NguonDuLieuHoaDon;
 
 /** Dữ liệu trao đổi; không phụ thuộc entity/JPA. Không ghi mật khẩu hoặc token vào log. */
 public class ChiTietHoaDonDTO {
@@ -13,12 +14,15 @@ public class ChiTietHoaDonDTO {
     private String tenSP;
     private String mauSac;
     private String kichCo;
+    private NguonDuLieuHoaDon nguonDuLieuHienThi;
     public String getTenSP() { return tenSP; }
     public void setTenSP(String tenSP) { this.tenSP = tenSP; }
     public String getMauSac() { return mauSac; }
     public void setMauSac(String mauSac) { this.mauSac = mauSac; }
     public String getKichCo() { return kichCo; }
     public void setKichCo(String kichCo) { this.kichCo = kichCo; }
+    public NguonDuLieuHoaDon getNguonDuLieuHienThi() { return nguonDuLieuHienThi; }
+    public void setNguonDuLieuHienThi(NguonDuLieuHoaDon nguonDuLieuHienThi) { this.nguonDuLieuHienThi = nguonDuLieuHienThi; }
 
     public ChiTietHoaDonDTO() {
     }

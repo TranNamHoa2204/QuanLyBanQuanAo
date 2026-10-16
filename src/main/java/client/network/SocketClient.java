@@ -3,20 +3,31 @@ package client.network;
 import java.io.*;
 import java.net.*;
 import java.util.UUID;
+import java.util.concurrent.TimeUnit;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.JsonNode;
 import common.protocol.*;
 
 /** Một request tại một thời điểm; không tự gửi lại thao tác sau lỗi mạng. */
 public final class SocketClient implements AutoCloseable {
+    // Client tự mở kết nối mới trước khi handler phía server hết hạn ở mốc 60 giây.
+    private static final long DEFAULT_IDLE_RECONNECT_NANOS = TimeUnit.SECONDS.toNanos(45);
     private final String host;
     private final int port;
+    private final long idleReconnectAfterNanos;
     private Socket socket;
     private DataInputStream input;
     private DataOutputStream output;
-    public SocketClient(String host, int port) { this.host = host; this.port = port; }
+    private long lastResponseNanos;
+    public SocketClient(String host, int port) { this(host, port, DEFAULT_IDLE_RECONNECT_NANOS); }
+    SocketClient(String host, int port, long idleReconnectAfterNanos) {
+        if (idleReconnectAfterNanos <= 0) { throw new IllegalArgumentException("Idle reconnect interval must be positive."); }
+        this.host = host; this.port = port; this.idleReconnectAfterNanos = idleReconnectAfterNanos;
+    }
     public synchronized Response<JsonNode> send(Action action, String token, Object payload) throws IOException {
         try {
+            if (socket != null && lastResponseNanos != 0
+                    && System.nanoTime() - lastResponseNanos >= idleReconnectAfterNanos) { close(); }
             if (socket == null) {
                 socket = new Socket();
                 socket.connect(new InetSocketAddress(host, port), 5000);
@@ -34,11 +45,12 @@ public final class SocketClient implements AutoCloseable {
                     || (response.isSuccess() != (response.getErrorCode() == ErrorCode.NONE))) {
                 throw new IOException("Phản hồi máy chủ không hợp lệ.");
             }
+            lastResponseNanos = System.nanoTime();
             return response;
         } catch (IOException | RuntimeException failure) { close(); throw failure; }
     }
     @Override public synchronized void close() {
         if (socket != null) { try { socket.close(); } catch (IOException ignored) { } }
-        socket = null; input = null; output = null;
+        socket = null; input = null; output = null; lastResponseNanos = 0;
     }
 }

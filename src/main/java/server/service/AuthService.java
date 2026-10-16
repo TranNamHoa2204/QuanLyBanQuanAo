@@ -1,7 +1,9 @@
 package server.service;
 
 import java.util.Arrays;
+import java.util.concurrent.atomic.AtomicReference;
 import javax.persistence.EntityManager;
+import javax.persistence.LockModeType;
 import common.dto.*;
 import common.protocol.ErrorCode;
 import server.entity.NhanVien;
@@ -29,22 +31,35 @@ public final class AuthService {
         }
         String username = request.getUsername().trim();
         char[] password = request.getPassword().toCharArray();
+        AtomicReference<String> issuedToken = new AtomicReference<>();
         try {
-            LoginResult result = jpa.transaction(em -> {
-                TaiKhoan account = new JpaTaiKhoanDao(em).findById(username).orElse(null);
+            return jpa.transaction(em -> {
+                TaiKhoan account = new JpaTaiKhoanDao(em).findForUpdate(username).orElse(null);
                 boolean correct = hasher.verify(password, account == null ? dummyHash : account.getPasswordHash());
-                if (!correct || !active(account)) {
+                if (!correct || account == null) {
+                    throw new BusinessException(ErrorCode.UNAUTHENTICATED, "Tài khoản hoặc mật khẩu không hợp lệ.");
+                }
+                NhanVien employee = account.getNhanVien();
+                if (employee != null) { em.refresh(employee, LockModeType.PESSIMISTIC_WRITE); }
+                if (!active(account)) {
                     throw new BusinessException(ErrorCode.UNAUTHENTICATED, "Tài khoản hoặc mật khẩu không hợp lệ.");
                 }
                 LoginResponse dto = new LoginResponse();
                 dto.setUsername(account.getUsername());
-                dto.setMaNV(account.getNhanVien().getMaNV());
-                dto.setHoTen(account.getNhanVien().getHoTen());
+                dto.setMaNV(employee.getMaNV());
+                dto.setHoTen(employee.getHoTen());
                 dto.setVaiTro(account.getVaiTro());
-                return new LoginResult(dto, account.getPasswordHash());
+                // Đăng ký token trong khi khóa DB vẫn được giữ. Thao tác khóa/đổi quyền phải
+                // hoặc đứng trước việc kiểm tra này, hoặc thu hồi token sau khi login commit.
+                String token = sessions.create(account.getUsername(), account.getPasswordHash());
+                issuedToken.set(token);
+                dto.setSessionToken(token);
+                return dto;
             });
-            result.dto.setSessionToken(sessions.create(result.dto.getUsername(), result.hash));
-            return result.dto;
+        } catch (RuntimeException failure) {
+            // Nếu commit thất bại sau khi token đã được cấp, token không được phép sống sót.
+            sessions.revoke(issuedToken.get());
+            throw failure;
         } finally { Arrays.fill(password, '\0'); }
     }
     public void logout(String token) { sessions.require(token); sessions.revoke(token); }
@@ -101,9 +116,5 @@ public final class AuthService {
         dto.setSdt(employee.getSdt()); dto.setEmail(employee.getEmail()); dto.setDiaChi(employee.getDiaChi());
         dto.setChucVu(employee.getChucVu()); dto.setTrangThai(employee.getTrangThai());
         return dto;
-    }
-    private static final class LoginResult {
-        final LoginResponse dto; final String hash;
-        LoginResult(LoginResponse dto, String hash) { this.dto = dto; this.hash = hash; }
     }
 }

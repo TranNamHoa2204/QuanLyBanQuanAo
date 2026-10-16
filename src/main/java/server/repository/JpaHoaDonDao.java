@@ -12,7 +12,9 @@ public final class JpaHoaDonDao extends JpaGenericDao<HoaDon, String> implements
     }
     public List<HoaDon> search(HoaDonSearchRequest request, String employeeId) {
         Filter filter = filter(request, employeeId);
-        TypedQuery<HoaDon> query = em.createQuery("select h from HoaDon h" + filter.where
+        // headerDto reads employee/customer names; both joins are to-one, so paging stays row-stable.
+        TypedQuery<HoaDon> query = em.createQuery("select h from HoaDon h join fetch h.nhanVien"
+                + " left join fetch h.khachHang" + filter.where
                 + " order by h.ngayLap desc, h.maHD desc", HoaDon.class);
         filter.params.forEach(query::setParameter);
         return query.setFirstResult(request.getPage() * request.getPageSize()).setMaxResults(request.getPageSize()).getResultList();

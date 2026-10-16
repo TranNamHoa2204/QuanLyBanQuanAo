@@ -21,7 +21,7 @@ public final class ServerMain {
             Runtime.getRuntime().addShutdownHook(hook);
             server.start();
             System.out.println("Server đang chạy tại " + config.getHost() + ":" + server.getPort());
-            System.out.println("Đã bật: tài khoản, tra cứu/quản lý danh mục-sản phẩm-biến thể, hóa đơn và thanh toán/trừ tồn.");
+            System.out.println("Đã bật: tài khoản, danh mục-sản phẩm-biến thể, khách hàng, nhân viên, khuyến mãi, hóa đơn/thanh toán, lịch sử kho và thống kê.");
             try { server.await(); }
             finally {
                 try { Runtime.getRuntime().removeShutdownHook(hook); }
@@ -30,7 +30,12 @@ public final class ServerMain {
         }
     }
     private static RequestDispatcher createDispatcher(JpaManager jpa) {
-        AuthService auth = new AuthService(jpa, new SessionManager(), new Pbkdf2PasswordHasher());
-        return new RequestDispatcher(auth, new SanPhamService(jpa, auth), new server.service.HoaDonService(jpa, auth));
+        SessionManager sessions = new SessionManager();
+        Pbkdf2PasswordHasher hasher = new Pbkdf2PasswordHasher();
+        AuthService auth = new AuthService(jpa, sessions, hasher);
+        return new RequestDispatcher(auth, new SanPhamService(jpa, auth),
+                new server.service.HoaDonService(jpa, auth), new server.service.NhanVienService(jpa, auth, sessions, hasher),
+                new server.service.KhachHangService(jpa, auth), new server.service.KhuyenMaiService(jpa, auth),
+                new server.service.ThongKeService(jpa, auth), new server.service.LichSuKhoService(jpa, auth));
     }
 }

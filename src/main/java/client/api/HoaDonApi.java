@@ -20,7 +20,7 @@ public final class HoaDonApi {
     public HoaDonDetailDTO line(HoaDonLineRequest r, int mode) throws IOException {
         return invoice(mode == 0 ? Action.THEM_CHI_TIET_HOA_DON : mode == 1 ? Action.CAP_NHAT_SO_LUONG : Action.BO_MAT_HANG, r);
     }
-    public HoaDonDetailDTO pay(HoaDonVersionRequest r) throws IOException { return invoice(Action.THANH_TOAN_HOA_DON, r); }
+    public HoaDonDetailDTO pay(HoaDonThanhToanRequest r) throws IOException { return invoice(Action.THANH_TOAN_HOA_DON, r); }
     public HoaDonDetailDTO cancel(HoaDonVersionRequest r) throws IOException { return invoice(Action.HUY_HOA_DON_NHAP, r); }
     public HoaDonSearchResult search(HoaDonSearchRequest r) throws IOException {
         return call(Action.TRA_CUU_HOA_DON, r, JsonCodec.mapper().constructType(HoaDonSearchResult.class));

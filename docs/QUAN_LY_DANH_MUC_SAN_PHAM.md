@@ -57,13 +57,16 @@ Các test tự động chỉ dùng H2 trong bộ nhớ; chưa chạy hoặc ghi 
 
 ## Phạm vi còn chưa làm
 
-- Chưa có phiếu nhập kho, nhà cung cấp hay sổ lịch sử điều chỉnh tồn.
-  Sửa tồn hiện là thao tác kiểm kê cơ bản cho đồ án, không phải hệ thống nhập hàng hoàn chỉnh.
+- Đã có sổ `LichSuKho` cho mốc tồn mở đầu, khởi tạo biến thể, bán hàng và điều chỉnh tồn.
+  Chưa có nhà cung cấp hoặc phiếu nhập kho (FR11); không mô phỏng nhập hàng bằng thao tác
+  điều chỉnh tồn.
 - Chưa có tải ảnh mới qua Socket hoặc quản lý thêm/sửa metadata ảnh.
   Ảnh đã chuẩn hóa trong resources vẫn được dùng; sản phẩm mới chưa có ảnh sẽ hiện thông báo thiếu ảnh.
-- Chưa quản lý nhân viên/tài khoản, khách hàng, khuyến mãi hoặc thống kê.
-- Không có migration SQL mới; vẫn dùng schema 11 bảng gốc + AnhSanPham
-  và hbm2ddl.auto=validate. Không có xóa cứng hoặc sửa cấu trúc tự động.
+- Backend nhân viên/tài khoản, khách hàng, khuyến mãi và thống kê có service/action/test,
+  nhưng UI/API client tương ứng còn rỗng hoặc chưa nối vào sidebar.
+- Baseline trước ledger có 12 bảng; migration 05 thêm `LichSuKho`, nên schema sau mở rộng
+  có 13 bảng logic. Migrations 04/05/06 vẫn phải được kiểm tra trên SQL Server demo;
+  `hbm2ddl.auto=validate` không tạo hoặc sửa schema tự động.
 
 ## Kiểm thử
 

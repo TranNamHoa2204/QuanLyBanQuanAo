@@ -2,10 +2,13 @@ package server.service;
 
 import java.math.BigDecimal;
 import java.text.Normalizer;
+import java.time.LocalDateTime;
+import java.time.ZoneId;
 import java.util.Objects;
 import javax.persistence.*;
 import common.dto.*;
 import common.enums.VaiTro;
+import common.enums.NguonBienDongKho;
 import common.protocol.ErrorCode;
 import server.entity.*;
 import server.persistence.JpaManager;
@@ -83,7 +86,7 @@ public final class QuanLySanPhamService {
     }
     public BienTheDTO variant(String token, BienTheDTO r, boolean create) {
         return jpa.transaction(em -> {
-            manager(em, token); if (r == null) { throw invalid("Thiếu biến thể."); }
+            TaiKhoan actor = manager(em, token); if (r == null) { throw invalid("Thiếu biến thể."); }
             String id = code(r.getMaBienThe()), productId = code(r.getMaSP());
             String color = text(r.getMauSac(), 50), size = text(r.getKichCo(), 20);
             if (r.getSoLuongTon() < 0) { throw invalid("Tồn kho không được âm."); }
@@ -110,18 +113,30 @@ public final class QuanLySanPhamService {
                         || !Objects.equals(color, entity.getMauSac()) || !Objects.equals(size, entity.getKichCo())) {
                     throw invalid("Không chuyển sản phẩm/đổi màu hoặc size của biến thể đã tạo. Hãy thêm biến thể mới.");
                 }
+                if (r.getSoLuongTon() != entity.getSoLuongTon()) {
+                    throw invalid("Không sửa tồn qua cập nhật biến thể. Dùng chức năng điều chỉnh tồn có lý do và version.");
+                }
             }
             entity.setSoLuongTon(r.getSoLuongTon()); entity.setTrangThai(r.getTrangThai());
-            if (create) { em.persist(entity); } em.flush();
+            if (create) {
+                em.persist(entity);
+                LichSuKhoService.record(em, entity, actor.getNhanVien(), actor.getNhanVien().getHoTen(),
+                        LocalDateTime.now(ZoneId.of("Asia/Ho_Chi_Minh")).withNano(0),
+                        NguonBienDongKho.KHOI_TAO_BIEN_THE, id, "VARIANT_CREATE:" + id,
+                        0, r.getSoLuongTon(), r.getSoLuongTon(), entity.getPhienBan(), "Tồn khởi tạo khi tạo biến thể.");
+            }
+            em.flush();
             BienTheDTO out = new BienTheDTO(); out.setMaBienThe(id); out.setMaSP(productId); out.setMauSac(color);
             out.setKichCo(size); out.setSoLuongTon(entity.getSoLuongTon()); out.setTrangThai(entity.getTrangThai());
             out.setPhienBan(entity.getPhienBan()); return out;
         });
     }
-    private void manager(EntityManager em, String token) {
-        if (auth.requireAuthenticated(em, token).getVaiTro() != VaiTro.NHAN_VIEN_QUAN_LY) {
+    private TaiKhoan manager(EntityManager em, String token) {
+        TaiKhoan account = auth.requireAuthenticated(em, token);
+        if (account.getVaiTro() != VaiTro.NHAN_VIEN_QUAN_LY) {
             throw new BusinessException(ErrorCode.FORBIDDEN, "Chỉ nhân viên quản lý được thay đổi danh mục/sản phẩm.");
         }
+        return account;
     }
     private static void uniqueName(EntityManager em, String entity, String idColumn, String nameColumn, String id, String name) {
         Long count = em.createQuery("select count(e) from " + entity + " e where lower(e." + nameColumn + ") = :n and e." + idColumn + " <> :id", Long.class)

@@ -2,6 +2,7 @@ import static org.junit.Assert.*;
 
 import java.io.*;
 import java.net.Socket;
+import java.net.SocketTimeoutException;
 import java.time.*;
 import java.util.*;
 import org.junit.*;
@@ -165,6 +166,33 @@ public class AuthIntegrationTest {
             assertEquals(-1, bad.getInputStream().read());
         }
         assertNotNull(api.login("sales", "CorrectPass123!"));
+    }
+    @Test public void boundedWorkerQueueRejectsExcessConnectionsAndServerRecovers() throws Exception {
+        List<Socket> idleClients = new ArrayList<Socket>();
+        boolean observedRejection = false;
+        try {
+            // 16 workers + queue capacity 64; the excess accepted sockets must be closed.
+            for (int i = 0; i < 96; i++) { idleClients.add(new Socket("127.0.0.1", server.getPort())); }
+            long deadline = System.nanoTime() + java.util.concurrent.TimeUnit.SECONDS.toNanos(3);
+            while (!observedRejection && System.nanoTime() < deadline) {
+                for (int i = 80; i < idleClients.size(); i++) {
+                    Socket client = idleClients.get(i);
+                    try {
+                        client.setSoTimeout(20);
+                        if (client.getInputStream().read() == -1) { observedRejection = true; break; }
+                    } catch (SocketTimeoutException stillOpen) { }
+                }
+            }
+            assertTrue("excess idle clients should be shed when the bounded queue is full", observedRejection);
+        } finally {
+            for (Socket client : idleClients) { try { client.close(); } catch (IOException ignored) { } }
+        }
+
+        try (SocketClient recovered = new SocketClient("127.0.0.1", server.getPort())) {
+            AuthApi recoveryApi = new AuthApi(recovered, new ClientSession());
+            assertNotNull("server should keep accepting after shedding excess clients",
+                    recoveryApi.login("sales", "CorrectPass123!"));
+        }
     }
     @Test public void splitFrameIsReadCorrectlyAndMalformedJsonIsRejected() throws Exception {
         try (Socket raw = new Socket("127.0.0.1", server.getPort())) {

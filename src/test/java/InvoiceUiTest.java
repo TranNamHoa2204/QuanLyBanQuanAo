@@ -11,6 +11,7 @@ import client.network.SocketClient;
 import client.session.ClientSession;
 import client.ui.BanHangPanel;
 import common.dto.*;
+import common.enums.PhuongThucThanhToan;
 import common.enums.TrangThaiHoaDon;
 
 public class InvoiceUiTest {
@@ -30,6 +31,7 @@ public class InvoiceUiTest {
                 line.setDonGia(new BigDecimal("149000")); line.setThanhTien(h.getTamTinh()); d.getChiTiet().add(line);
                 panel.showInvoice(d); panel.setSize(1100, 780); layout(panel);
                 assertTrue(button(panel, "Thanh toán").isEnabled());
+                assertTrue(labelTextContains(panel, "Chưa ghi nhận thu tiền"));
                 JTable table = table(panel); assertEquals(1, table.getRowCount()); assertFalse(table.isCellEditable(0, 4));
                 BufferedImage image = new BufferedImage(1100, 780, BufferedImage.TYPE_INT_RGB);
                 Graphics2D g = image.createGraphics();
@@ -39,6 +41,14 @@ public class InvoiceUiTest {
                 ImageIO.write(image, "png", new File(dir, "invoice-preview.png"));
                 h.setTrangThai(TrangThaiHoaDon.DA_THANH_TOAN); panel.showInvoice(d);
                 assertFalse(button(panel, "Thanh toán").isEnabled()); assertFalse(button(panel, "Bỏ hàng").isEnabled());
+                assertTrue(labelTextContains(panel, "chưa có dữ liệu"));
+                h.setPhuongThucThanhToan(PhuongThucThanhToan.TIEN_MAT);
+                h.setTienKhachDua(new BigDecimal("300000")); h.setTienThua(new BigDecimal("2000")); panel.showInvoice(d);
+                assertTrue(labelTextContains(panel, "Tiền thừa"));
+                h.setPhuongThucThanhToan(PhuongThucThanhToan.CHUYEN_KHOAN);
+                h.setTienKhachDua(null); h.setTienThua(null); h.setNhanVienXacNhanChuyenKhoan(Boolean.TRUE); panel.showInvoice(d);
+                assertTrue(labelTextContains(panel, "không xác minh ngân hàng"));
+                assertFalse(labelTextContains(panel, "đã xác minh ngân hàng"));
                 socket.close();
             } catch (Exception ex) { throw new RuntimeException(ex); }
         });
@@ -55,5 +65,11 @@ public class InvoiceUiTest {
             if (child instanceof JTable) { return (JTable)child; }
             if (child instanceof Container) { JTable t = table((Container)child); if (t != null) { return t; } }
         } return null;
+    }
+    private static boolean labelTextContains(Container c, String value) {
+        for (Component child : c.getComponents()) {
+            if (child instanceof JLabel && ((JLabel) child).getText().contains(value)) { return true; }
+            if (child instanceof Container && labelTextContains((Container) child, value)) { return true; }
+        } return false;
     }
 }

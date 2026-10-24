@@ -23,6 +23,7 @@ public final class ManagementEditorPanel extends JPanel {
         if (value == null) {
             Object empty;
             if (kind == Kind.CUSTOMER) { empty = new KhachHangDTO(); }
+            else if (kind == Kind.TAX) { ThueDTO d = new ThueDTO(); d.setPhanTram(BigDecimal.ZERO); empty = d; }
             else if (kind == Kind.PROMOTION) {
                 KhuyenMaiDTO d = new KhuyenMaiDTO(); d.setPhanTramGiam(BigDecimal.ZERO);
                 d.setNgayBatDau(LocalDate.now(java.time.ZoneId.of("Asia/Ho_Chi_Minh")));
@@ -34,13 +35,17 @@ public final class ManagementEditorPanel extends JPanel {
         } else { original = ((ObjectNode) value).deepCopy(); }
         setBorder(BorderFactory.createEmptyBorder(12, 12, 12, 12));
         JPanel grid = new JPanel(new GridBagLayout()); grid.setOpaque(false);
-        String id = kind == Kind.CUSTOMER ? "maKH" : kind == Kind.EMPLOYEE ? "maNV" : "maKM";
+        String id = kind == Kind.CUSTOMER ? "maKH" : kind == Kind.EMPLOYEE ? "maNV" : kind == Kind.TAX ? "maThue" : "maKM";
         addText(grid, id, "Mã *", false); fields.get(id).setEnabled(create);
-        addText(grid, kind == Kind.PROMOTION ? "tenKM" : "hoTen", kind == Kind.PROMOTION ? "Tên khuyến mãi *" : "Họ tên *", false);
+        String nameKey = kind == Kind.PROMOTION ? "tenKM" : kind == Kind.TAX ? "tenThue" : "hoTen";
+        addText(grid, nameKey, kind == Kind.PROMOTION ? "Tên khuyến mãi *" : kind == Kind.TAX ? "Tên cấu hình *" : "Họ tên *", false);
         if (kind == Kind.PROMOTION) {
             addText(grid, "phanTramGiam", "Giảm (%) * · dấu thập phân .", false);
             addText(grid, "ngayBatDau", "Ngày bắt đầu * · yyyy-MM-dd", false);
             addText(grid, "ngayKetThuc", "Ngày kết thúc * · yyyy-MM-dd", false);
+        } else if (kind == Kind.TAX) {
+            addText(grid, "phanTram", "Tỷ lệ (%) * · dấu thập phân .", false);
+            addText(grid, "moTa", "Mô tả", false);
         } else {
             addText(grid, "sdt", kind == Kind.EMPLOYEE ? "Điện thoại *" : "Điện thoại", false);
             addText(grid, "email", "Email", false); addText(grid, "diaChi", "Địa chỉ", false);
@@ -66,7 +71,7 @@ public final class ManagementEditorPanel extends JPanel {
                 addField(grid, "_password", "Mật khẩu ban đầu · 8–128 ký tự", password);
             }
         }
-        addFlag(grid, "trangThai", kind == Kind.PROMOTION ? "Đang áp dụng" : "Đang hoạt động");
+        addFlag(grid, "trangThai", kind == Kind.PROMOTION || kind == Kind.TAX ? "Đang áp dụng" : "Đang hoạt động");
         add(grid, BorderLayout.CENTER);
         add(UiTheme.muted("<html>* Bắt buộc. Mã không đổi sau khi tạo.<br>Ngừng hoạt động giữ nguyên lịch sử hóa đơn.</html>"), BorderLayout.SOUTH);
     }
@@ -95,7 +100,7 @@ public final class ManagementEditorPanel extends JPanel {
             else {
                 String text = ((JTextField) field).getText().trim();
                 if (text.isEmpty()) { out.putNull(key); }
-                else if (key.equals("phanTramGiam")) { out.put(key, new BigDecimal(text)); }
+                else if (key.equals("phanTramGiam") || key.equals("phanTram")) { out.put(key, new BigDecimal(text)); }
                 else if (key.startsWith("ngay")) { out.put(key, LocalDate.parse(text).toString()); }
                 else { out.put(key, text); }
             }

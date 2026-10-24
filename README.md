@@ -20,6 +20,7 @@ Các package gốc: `client`, `common`, `server`; groupId: `vn.edu.iuh`.
   thêm biến thể và sửa tồn/trạng thái có kiểm tra xung đột.
 - Đã có khách hàng; quản lý nhân viên/cấp tài khoản, khuyến mãi và thống kê theo
   ngày/tháng/năm/sản phẩm. Xem [docs/QUAN_LY_CUA_HANG_THONG_KE.md](docs/QUAN_LY_CUA_HANG_THONG_KE.md).
+- Đã có màn quản trị Thuế và hai script SSMS để thêm thuế, khuyến mãi, hóa đơn và doanh thu minh họa.
 - Chưa kết nối/ghi dữ liệu lên SQL Server thực tế trong quá trình viết code.
 - Công cụ AccountSetupMain chỉ tạo quản lý đầu tiên khi chạy chủ động, không có mật khẩu mặc định.
 

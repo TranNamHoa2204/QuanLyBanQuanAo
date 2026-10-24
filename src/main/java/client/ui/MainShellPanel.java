@@ -12,10 +12,10 @@ public final class MainShellPanel extends JPanel {
     private final JPanel content = new JPanel(new BorderLayout()), home = new JPanel(new BorderLayout(0, 24));
     private final JLabel pageTitle = UiTheme.title("Tổng quan", 22);
     private final JButton overview = new JButton("Tổng quan"), productsButton = new JButton("Sản phẩm"),
-            salesButton = new JButton("Bán hàng & hóa đơn");
+            salesButton = new JButton("Bán hàng & hóa đơn"), invoicesButton = new JButton("Hóa đơn");
     private final JButton catalogButton = new JButton("Danh mục & sản phẩm");
     private final JButton customersButton = new JButton("Khách hàng"), employeesButton = new JButton("Nhân viên & tài khoản"),
-            promotionsButton = new JButton("Khuyến mãi"), reportsButton = new JButton("Thống kê");
+            promotionsButton = new JButton("Khuyến mãi"), taxesButton = new JButton("Thuế"), reportsButton = new JButton("Thống kê");
     public MainShellPanel(LoginResponse login, Runnable products, Runnable sales,
             Runnable profile, Runnable password, Consumer<JButton> logout) {
         this(login, products, sales, profile, password, logout, null);
@@ -27,6 +27,18 @@ public final class MainShellPanel extends JPanel {
     public MainShellPanel(LoginResponse login, Runnable products, Runnable sales,
             Runnable profile, Runnable password, Consumer<JButton> logout, Runnable management,
             Runnable customers, Runnable employees, Runnable promotions, Runnable reports) {
+        this(login, products, sales, profile, password, logout, management, customers, employees, promotions, null, reports);
+    }
+    public MainShellPanel(LoginResponse login, Runnable products, Runnable sales,
+            Runnable profile, Runnable password, Consumer<JButton> logout, Runnable management,
+            Runnable customers, Runnable employees, Runnable promotions, Runnable taxes, Runnable reports) {
+        this(login, products, sales, profile, password, logout, management, customers, employees,
+                promotions, taxes, reports, null);
+    }
+    public MainShellPanel(LoginResponse login, Runnable products, Runnable sales,
+            Runnable profile, Runnable password, Consumer<JButton> logout, Runnable management,
+            Runnable customers, Runnable employees, Runnable promotions, Runnable taxes, Runnable reports,
+            Runnable invoiceHistory) {
         super(new BorderLayout());
         JPanel sidebar = new JPanel(new BorderLayout(0, 18)); sidebar.setBackground(UiTheme.NAV);
         sidebar.setPreferredSize(new Dimension(235, 0)); sidebar.setBorder(BorderFactory.createEmptyBorder(20, 16, 20, 16));
@@ -36,9 +48,9 @@ public final class MainShellPanel extends JPanel {
         JLabel caption = new JLabel("QUẢN LÝ CỬA HÀNG QUẦN ÁO"); caption.setForeground(new Color(0x8DBAA4));
         caption.setFont(caption.getFont().deriveFont(10f)); brand.add(caption); sidebar.add(brand, BorderLayout.NORTH);
         JPanel nav = new JPanel(); nav.setLayout(new BoxLayout(nav, BoxLayout.Y_AXIS)); nav.setOpaque(false);
-        for (JButton button : new JButton[]{overview, productsButton, salesButton}) { nav.add(navButton(button)); nav.add(Box.createVerticalStrut(8)); }
+        for (JButton button : new JButton[]{overview, productsButton, salesButton, invoicesButton}) { nav.add(navButton(button)); nav.add(Box.createVerticalStrut(8)); }
         overview.addActionListener(e -> showPage("Tổng quan", home)); productsButton.addActionListener(e -> products.run());
-        salesButton.addActionListener(e -> sales.run());
+        salesButton.addActionListener(e -> sales.run()); bind(invoicesButton, invoiceHistory);
         nav.add(navButton(customersButton)); nav.add(Box.createVerticalStrut(8));
         bind(customersButton, customers);
         nav.add(Box.createVerticalStrut(24));
@@ -48,8 +60,8 @@ public final class MainShellPanel extends JPanel {
             nav.add(navButton(catalogButton)); nav.add(Box.createVerticalStrut(6));
             catalogButton.setEnabled(management != null);
             catalogButton.addActionListener(e -> { if (management != null) { management.run(); } });
-            JButton[] buttons = {employeesButton, promotionsButton, reportsButton};
-            Runnable[] callbacks = {employees, promotions, reports};
+            JButton[] buttons = {employeesButton, promotionsButton, taxesButton, reportsButton};
+            Runnable[] callbacks = {employees, promotions, taxes, reports};
             for (int i = 0; i < buttons.length; i++) {
                 nav.add(navButton(buttons[i])); nav.add(Box.createVerticalStrut(6)); bind(buttons[i], callbacks[i]);
             }
@@ -114,10 +126,12 @@ public final class MainShellPanel extends JPanel {
         overview.setBackground("Tổng quan".equals(title) ? UiTheme.PRIMARY : UiTheme.NAV);
         productsButton.setBackground("Sản phẩm".equals(title) ? UiTheme.PRIMARY : UiTheme.NAV);
         salesButton.setBackground("Bán hàng & hóa đơn".equals(title) ? UiTheme.PRIMARY : UiTheme.NAV);
+        invoicesButton.setBackground("Hóa đơn".equals(title) ? UiTheme.PRIMARY : UiTheme.NAV);
         catalogButton.setBackground("Danh mục & sản phẩm".equals(title) ? UiTheme.PRIMARY : UiTheme.NAV);
         customersButton.setBackground("Khách hàng".equals(title) ? UiTheme.PRIMARY : UiTheme.NAV);
         employeesButton.setBackground("Nhân viên & tài khoản".equals(title) ? UiTheme.PRIMARY : UiTheme.NAV);
         promotionsButton.setBackground("Khuyến mãi".equals(title) ? UiTheme.PRIMARY : UiTheme.NAV);
+        taxesButton.setBackground("Thuế".equals(title) ? UiTheme.PRIMARY : UiTheme.NAV);
         reportsButton.setBackground("Thống kê".equals(title) ? UiTheme.PRIMARY : UiTheme.NAV);
     }
 }

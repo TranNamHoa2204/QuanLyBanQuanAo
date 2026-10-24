@@ -5,7 +5,7 @@
 1. Trong Eclipse: chọn project → F5; Project → Clean nếu Eclipse còn chạy class cũ.
 2. Dừng cả ServerMain và ClientMain cũ, chạy lại server.ServerMain rồi client.ClientMain.
 3. Đăng nhập bằng tài khoản quản lý để thấy đủ menu.
-4. Không có dependency hay migration SQL mới. Giữ schema hiện tại, production dùng validate.
+4. Mã nguồn đã có mục Thuế trong Quản trị; để có dữ liệu demo, chạy thủ công hai script SQL bên dưới.
    Các thao tác trên giao diện chỉ ghi dữ liệu khi bạn bấm lưu/ngừng hoạt động/thanh toán.
    Không chạy lại script tạo CSDL hoặc import để cập nhật mã.
 
@@ -56,6 +56,42 @@
 - Thanh toán khóa/đọc lại khuyến mãi và khách hàng trước khi kiểm tra,
   tránh dùng trạng thái cũ trong khi một người khác đang sửa.
 
+## Thuế — chỉ quản lý
+
+- Mục Thuế nằm trong nhóm Quản trị; quản lý có thể tra cứu, thêm, sửa và ngừng áp dụng cấu hình.
+- Tỷ lệ nhận từ 0–100%, tối đa hai chữ số thập phân. Cấu hình được tham chiếu bởi hóa đơn thì
+  chỉ được ngừng áp dụng, không xóa; hóa đơn đã lập giữ nguyên tỷ lệ/tiền thuế đã chốt.
+- Màn Bán hàng chỉ tải cấu hình đang áp dụng để chọn khi lập nháp. Máy chủ kiểm tra lại cấu hình
+  khi thanh toán; không thể thanh toán với cấu hình đã ngừng.
+- `VAT10` là mức tiêu chuẩn; `VAT8` có thể áp dụng cho hàng hóa thuộc diện giảm theo chính sách
+  đến hết 31/12/2026; `VAT0` chỉ dành cho giao dịch đủ điều kiện (ví dụ xuất khẩu đủ hồ sơ).
+  Không mặc định mọi sản phẩm quần áo đều đủ điều kiện hưởng 8%—cần đối chiếu mã hàng với danh mục
+  loại trừ hiện hành.
+- CSDL hiện không lưu thời hạn hiệu lực của cấu hình thuế, nên quản lý phải ngừng/cập nhật VAT8
+  khi hết hạn hoặc khi có thay đổi chính sách. Chọn 0% không tự xác minh điều kiện xuất khẩu.
+- Mức 1,5% của hộ kinh doanh bán lẻ (1% GTGT + 0,5% TNCN) không phải một thuế suất VAT để cộng
+  vào hóa đơn khách hàng. Ứng dụng hiện chưa hỗ trợ phương pháp tính theo tỷ lệ trên doanh thu;
+  cần mô hình thuế riêng và xác định đúng chế độ/ngưỡng áp dụng trước khi triển khai.
+
+## Tạo dữ liệu minh họa cho hóa đơn, khuyến mãi và doanh thu
+
+Trong SSMS, trên bản sao/demo database, chạy theo thứ tự:
+
+1. `sql/02_NhapDuLieuQuanAo.sql` nếu chưa có danh mục và biến thể mẫu.
+2. Chọn đúng database trong SSMS rồi chạy `sql/03_CauHinhThueBanLe.sql` để thêm các cấu hình VAT.
+3. `sql/04_DuLieuMauHoaDon_KhuyenMai_DoanhThu.sql` để thêm hai khách hàng,
+   hai khuyến mãi và sáu hóa đơn mẫu (bốn đã thanh toán, một nháp, một đã hủy).
+
+Script 04 cần ít nhất một nhân viên có tài khoản đang hoạt động và tồn kho đủ cho các
+hóa đơn đã thanh toán. Hóa đơn demo dùng các mã biến thể thuộc bộ dữ liệu trong script 02.
+Chạy 04 lần đầu sẽ trừ tồn kho cho hóa đơn đã thanh toán; chạy lại không tạo trùng hoặc trừ
+tồn lần hai. Các script chỉ thêm mã demo còn thiếu, không tự sửa/xóa dữ liệu cửa hàng.
+Không chạy lên database thật nếu không muốn có giao dịch minh họa và thay đổi tồn kho.
+
+Sau khi chạy SQL, khởi động lại server/client. Mục Khuyến mãi và Thuế sẽ hiển thị dữ liệu;
+màn Thống kê lọc theo ngày lập hóa đơn và chỉ tính bốn hóa đơn `DA_THANH_TOAN`.
+Màn Bán hàng có thể chọn các cấu hình thuế demo đang áp dụng.
+
 ## Thống kê — chỉ quản lý
 
 - Chọn từ/đến (bao gồm cả hai ngày), rồi Xem thống kê.
@@ -104,4 +140,4 @@ Cần thử trên CSDL demo SQL Server trước khi dùng dữ liệu thật.
 ## Ngoài phạm vi bản này
 
 Chưa có in hóa đơn, đổi/trả/hoàn tiền hóa đơn đã thanh toán, phiếu nhập kho,
-sổ điều chỉnh tồn, tải ảnh mới, quản lý cấu hình thuế hoặc tích hợp thanh toán ngân hàng.
+sổ điều chỉnh tồn, tải ảnh mới hoặc tích hợp thanh toán ngân hàng.

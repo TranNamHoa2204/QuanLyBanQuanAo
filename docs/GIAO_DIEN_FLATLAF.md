@@ -33,7 +33,7 @@ thêm dependency Socket. Không chạy SQL mới cho thay đổi giao diện nà
 
 Danh mục & sản phẩm đã mở cho quản lý, gồm bốn tab: sản phẩm, loại, thương hiệu,
 biến thể & tồn. Xem QUAN_LY_DANH_MUC_SAN_PHAM.md.
-Nhân viên & tài khoản / Khuyến mãi / Thống kê đã mở cho quản lý;
+Nhân viên & tài khoản / Khuyến mãi / Thuế / Thống kê đã mở cho quản lý;
 Khách hàng mở cho cả hai vai trò. Xem QUAN_LY_CUA_HANG_THONG_KE.md.
 Sidebar có thanh cuộn khi không đủ chiều cao.
 Không có số liệu thống kê giả trên Tổng quan.

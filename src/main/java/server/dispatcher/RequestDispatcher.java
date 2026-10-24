@@ -18,6 +18,7 @@ public final class RequestDispatcher {
     private server.service.KhachHangService customers;
     private server.service.KhuyenMaiService promotions;
     private server.service.ThongKeService reports;
+    private server.service.ThueService taxes;
     public RequestDispatcher(AuthService auth) { this(auth, null); }
     public RequestDispatcher(AuthService auth, SanPhamService sanPham) {
         this(auth, sanPham, null);
@@ -32,6 +33,7 @@ public final class RequestDispatcher {
         customers = new server.service.KhachHangService(jpa, auth);
         promotions = new server.service.KhuyenMaiService(jpa, auth);
         reports = new server.service.ThongKeService(jpa, auth);
+        taxes = new server.service.ThueService(jpa, auth);
     }
     public Response<?> dispatch(Request<JsonNode> request) {
         String id = request == null ? null : request.getRequestId();
@@ -63,6 +65,13 @@ public final class RequestDispatcher {
             case NGUNG_HOAT_DONG_KHUYEN_MAI:
                 configured(promotions); return Response.success(id, promotions.save(request.getSessionToken(), payload(request, ManagementSaveRequest.class),
                         request.getAction() == Action.THEM_KHUYEN_MAI ? 0 : request.getAction() == Action.CAP_NHAT_KHUYEN_MAI ? 1 : 2));
+            case TRA_CUU_THUE_QUAN_LY:
+                configured(taxes); return Response.success(id, taxes.search(request.getSessionToken(), payload(request, ManagementSearchRequest.class)));
+            case THEM_THUE:
+            case CAP_NHAT_THUE:
+            case NGUNG_AP_DUNG_THUE:
+                configured(taxes); return Response.success(id, taxes.save(request.getSessionToken(), payload(request, ManagementSaveRequest.class),
+                        request.getAction() == Action.THEM_THUE ? 0 : request.getAction() == Action.CAP_NHAT_THUE ? 1 : 2));
             case THONG_KE_DOANH_THU_THEO_THOI_GIAN:
             case THONG_KE_DOANH_THU_THEO_SAN_PHAM:
                 configured(reports); return Response.success(id, reports.report(request.getSessionToken(), payload(request, RevenueRequest.class),

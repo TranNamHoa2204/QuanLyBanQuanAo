@@ -2,6 +2,7 @@ package common.dto;
 
 /** DTO độc lập với JPA, truyền bằng JSON qua Socket. */
 public class SanPhamSearchRequest {
+    private String maSP;
     private String tenSP;
     private String maLoai;
     private String maThuongHieu;
@@ -11,6 +12,8 @@ public class SanPhamSearchRequest {
     private int pageSize = 20;
     private boolean includeInactive;
     public SanPhamSearchRequest() { }
+    public String getMaSP() { return maSP; }
+    public void setMaSP(String maSP) { this.maSP = maSP; }
     public String getTenSP() { return tenSP; }
     public void setTenSP(String tenSP) { this.tenSP = tenSP; }
     public String getMaLoai() { return maLoai; }

@@ -33,7 +33,14 @@ public final class JpaSanPhamDao extends JpaGenericDao<SanPham, String> implemen
     private static Filter filter(SanPhamSearchRequest request) {
         Filter f = new Filter();
         if (!request.getIncludeInactive()) { f.where += " and p.trangThai = true"; }
-        if (request.getTenSP() != null) {
+        if (request.getMaSP() != null && request.getTenSP() != null) {
+            f.where += " and (lower(p.maSP) like :code escape '!' or lower(p.tenSP) like :name escape '!')";
+            f.params.put("code", "%" + escapeLike(request.getMaSP().toLowerCase(Locale.ROOT)) + "%");
+            f.params.put("name", "%" + escapeLike(request.getTenSP().toLowerCase(Locale.ROOT)) + "%");
+        } else if (request.getMaSP() != null) {
+            f.where += " and lower(p.maSP) like :code escape '!'";
+            f.params.put("code", "%" + escapeLike(request.getMaSP().toLowerCase(Locale.ROOT)) + "%");
+        } else if (request.getTenSP() != null) {
             f.where += " and lower(p.tenSP) like :name escape '!'";
             f.params.put("name", "%" + escapeLike(request.getTenSP().toLowerCase(Locale.ROOT)) + "%");
         }

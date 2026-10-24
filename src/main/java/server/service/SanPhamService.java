@@ -85,6 +85,7 @@ public final class SanPhamService {
             throw invalid("Trang phải từ 0 đến 1.000.000; số dòng mỗi trang từ 1 đến 100.");
         }
         SanPhamSearchRequest result = new SanPhamSearchRequest();
+        result.setMaSP(text(input.getMaSP(), 20, "Mã sản phẩm"));
         result.setTenSP(text(input.getTenSP(), 200, "Tên sản phẩm"));
         result.setMaLoai(text(input.getMaLoai(), 20, "Mã loại"));
         result.setMaThuongHieu(text(input.getMaThuongHieu(), 20, "Mã thương hiệu"));

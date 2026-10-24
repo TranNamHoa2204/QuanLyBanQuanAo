@@ -1,11 +1,17 @@
 package client.ui;
 
 import java.awt.*;
+import java.math.BigDecimal;
+import java.time.LocalDate;
 import java.util.concurrent.*;
 import java.util.function.Consumer;
 import javax.swing.*;
+import javax.swing.event.DocumentEvent;
+import javax.swing.event.DocumentListener;
 import javax.swing.table.DefaultTableModel;
+import com.fasterxml.jackson.databind.JsonNode;
 import client.api.*;
+import client.api.ManagementApi.Kind;
 import common.dto.*;
 import common.enums.TrangThaiHoaDon;
 import common.util.InvoiceIds;
@@ -16,8 +22,12 @@ public final class BanHangPanel extends JPanel implements Scrollable {
     private final client.controller.BanHangController api;
     private final SanPhamApi products;
     private final JTextField id = new JTextField(20), customer = new JTextField(10),
-            promo = new JTextField(10), note = new JTextField(24), product = new JTextField(12);
+            note = new JTextField(24), product = new JTextField(18);
+    private final ManagementApi management;
     private final JComboBox<String> tax = new JComboBox<>(), variant = new JComboBox<>();
+    private final JComboBox<PromotionOption> promo = new JComboBox<>();
+    private final JPopupMenu productPopup = new JPopupMenu();
+    private final JList<ProductOption> productSuggestions = new JList<>();
     private final JSpinner qty = new JSpinner(new SpinnerNumberModel(1, 1, 1000000, 1));
     private final DefaultTableModel model = new DefaultTableModel(
             new Object[]{"Biến thể", "Sản phẩm", "Màu", "Size", "SL", "Đơn giá", "Thành tiền"}, 0) {
@@ -33,24 +43,75 @@ public final class BanHangPanel extends JPanel implements Scrollable {
             remove = new JButton("Bỏ hàng"), pay = new JButton("Thanh toán"), cancel = new JButton("Hủy nháp"),
             lookup = new JButton("Tải biến thể"), taxes = new JButton("Tải thuế"), history = new JButton("Danh sách");
     private HoaDonDetailDTO current;
+    private SanPhamDTO selectedProduct;
     private boolean busy;
+    private boolean settingProductText;
+    private int suggestionSequence;
+    private final Timer suggestionTimer;
     public BanHangPanel(HoaDonApi api, SanPhamApi products) {
+        this(api, products, null);
+    }
+    public BanHangPanel(HoaDonApi api, SanPhamApi products, ManagementApi management) {
         super(new BorderLayout(8, 8)); this.api = new client.controller.BanHangController(api); this.products = products;
+        this.management = management;
         setBorder(BorderFactory.createEmptyBorder(24, 24, 20, 24));
         setPreferredSize(new Dimension(1000, 780));
         UiTheme.primary(create); UiTheme.primary(addLine); UiTheme.primary(pay); UiTheme.danger(cancel); UiTheme.danger(remove);
-        id.setColumns(15); customer.setColumns(8); promo.setColumns(8); note.setColumns(14); product.setColumns(8);
-        product.putClientProperty("JTextField.placeholderText", "VD: SP1001");
+        id.setColumns(15); customer.setColumns(8); note.setColumns(14);
+        product.putClientProperty("JTextField.placeholderText", "Nhập mã hoặc tên sản phẩm");
         id.putClientProperty("JTextField.placeholderText", "Tự tạo khi lập nháp");
         customer.putClientProperty("JTextField.placeholderText", "Khách vãng lai");
-        promo.putClientProperty("JTextField.placeholderText", "Không khuyến mãi");
+        promo.addItem(PromotionOption.none());
+        promo.setRenderer(new DefaultListCellRenderer() {
+            private static final long serialVersionUID = 1L;
+            @Override public Component getListCellRendererComponent(JList<?> list, Object value, int index,
+                    boolean selected, boolean focus) {
+                return super.getListCellRendererComponent(list, value == null ? "Không khuyến mãi" : value.toString(),
+                        index, selected, focus);
+            }
+        });
+        productSuggestions.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+        productSuggestions.setVisibleRowCount(8);
+        productSuggestions.setCellRenderer(new DefaultListCellRenderer() {
+            private static final long serialVersionUID = 1L;
+            @Override public Component getListCellRendererComponent(JList<?> list, Object value, int index,
+                    boolean selected, boolean focus) {
+                return super.getListCellRendererComponent(list, value == null ? "" : value.toString(),
+                        index, selected, focus);
+            }
+        });
+        productPopup.setFocusable(false); productPopup.add(new JScrollPane(productSuggestions));
+        suggestionTimer = new Timer(350, e -> suggestProducts(product.getText().trim()));
+        suggestionTimer.setRepeats(false);
+        product.getDocument().addDocumentListener(new DocumentListener() {
+            private void changed() {
+                if (settingProductText) { return; }
+                selectedProduct = null;
+                String query = product.getText().trim();
+                if (query.length() < 2) { suggestionTimer.stop(); productPopup.setVisible(false); return; }
+                suggestionTimer.restart();
+            }
+            @Override public void insertUpdate(DocumentEvent e) { changed(); }
+            @Override public void removeUpdate(DocumentEvent e) { changed(); }
+            @Override public void changedUpdate(DocumentEvent e) { changed(); }
+        });
+        productSuggestions.addMouseListener(new java.awt.event.MouseAdapter() {
+            @Override public void mouseClicked(java.awt.event.MouseEvent e) {
+                if (e.getClickCount() == 1) { chooseProductSuggestion(); }
+            }
+        });
+        product.addFocusListener(new java.awt.event.FocusAdapter() {
+            @Override public void focusLost(java.awt.event.FocusEvent e) {
+                SwingUtilities.invokeLater(() -> { if (!productPopup.isFocusOwner() && !productSuggestions.isFocusOwner()) { productPopup.setVisible(false); } });
+            }
+        });
         JPanel top = new JPanel(new BorderLayout(0, 16));
         top.add(UiTheme.heading("Quầy bán hàng", "Nháp được lưu trên máy chủ. Chỉ trừ tồn khi thanh toán."), BorderLayout.NORTH);
         JPanel invoice = UiTheme.card(new BorderLayout(0, 14));
         invoice.add(row(new JLabel("Mã hóa đơn"), id, reload, fresh, history), BorderLayout.NORTH);
         JPanel info = new JPanel(new GridLayout(1, 4, 12, 0)); info.setOpaque(false);
         info.add(UiTheme.field("Thuế áp dụng", tax)); info.add(UiTheme.field("Khách hàng (mã, tùy chọn)", customer));
-        info.add(UiTheme.field("Khuyến mãi (mã, tùy chọn)", promo)); info.add(UiTheme.field("Ghi chú", note));
+        info.add(UiTheme.field("Khuyến mãi (tùy chọn)", promo)); info.add(UiTheme.field("Ghi chú", note));
         invoice.add(info, BorderLayout.CENTER); invoice.add(row(taxes, create), BorderLayout.SOUTH);
         top.add(invoice, BorderLayout.CENTER); add(top, BorderLayout.NORTH);
         table.setSelectionMode(ListSelectionModel.SINGLE_SELECTION); UiTheme.table(table);
@@ -68,7 +129,7 @@ public final class BanHangPanel extends JPanel implements Scrollable {
         JPanel cart = new JPanel(new BorderLayout(0, 12));
         JPanel entry = UiTheme.card(new BorderLayout(0, 12));
         JPanel inputs = new JPanel(new BorderLayout(12, 0)); inputs.setOpaque(false);
-        inputs.add(UiTheme.field("Mã sản phẩm", product), BorderLayout.WEST);
+        inputs.add(UiTheme.field("Sản phẩm (mã hoặc tên)", product), BorderLayout.WEST);
         inputs.add(UiTheme.field("Biến thể / màu / size / tồn", variant), BorderLayout.CENTER);
         qty.setPreferredSize(new Dimension(80, 38)); inputs.add(UiTheme.field("Số lượng", qty), BorderLayout.EAST);
         entry.add(inputs, BorderLayout.CENTER); entry.add(row(lookup, addLine, change, remove), BorderLayout.SOUTH);
@@ -91,7 +152,8 @@ public final class BanHangPanel extends JPanel implements Scrollable {
             if (current != null && current.getHoaDon().getTrangThai() == TrangThaiHoaDon.NHAP
                     && JOptionPane.showConfirmDialog(this, "Nháp hiện tại vẫn được lưu. Mở hóa đơn mới?",
                     "Xác nhận", JOptionPane.YES_NO_OPTION) != JOptionPane.YES_OPTION) { return; }
-            current = null; id.setText(InvoiceIds.newId()); customer.setText(""); promo.setText(""); note.setText("");
+            current = null; id.setText(InvoiceIds.newId()); customer.setText(""); promo.setSelectedIndex(0); note.setText("");
+            product.setText(""); selectedProduct = null; variant.removeAllItems();
             model.setRowCount(0); total.setText("—"); subtotal.setText("Tạm tính: —"); discount.setText("Giảm giá: —");
             taxAmount.setText("Thuế: —"); status.setText("Hóa đơn mới: chọn thuế và Tạo nháp."); controls();
         });
@@ -101,15 +163,19 @@ public final class BanHangPanel extends JPanel implements Scrollable {
             if (id.getText().trim().isEmpty()) { id.setText(InvoiceIds.newId()); }
             HoaDonCreateRequest r = new HoaDonCreateRequest(); r.setMaHD(id.getText().trim());
             r.setMaThue(((String)tax.getSelectedItem()).split(" / ")[0]); r.setMaKH(customer.getText());
-            r.setMaKM(promo.getText()); r.setGhiChu(note.getText()); run(() -> api.create(r), this::showInvoice);
+            PromotionOption selectedPromo = (PromotionOption) promo.getSelectedItem();
+            r.setMaKM(selectedPromo == null ? null : selectedPromo.maKM);
+            r.setGhiChu(note.getText()); run(() -> api.create(r), this::showInvoice);
         });
-        lookup.addActionListener(e -> { String code = product.getText().trim(); run(() -> products.detail(code), d -> {
-            variant.removeAllItems();
-            for (BienTheDTO b : d.getBienThe()) {
-                if (b.getTrangThai()) { variant.addItem(b.getMaBienThe() + " / " + b.getMauSac() + " / " + b.getKichCo() + " / tồn " + b.getSoLuongTon()); }
+        lookup.addActionListener(e -> {
+            if (selectedProduct != null && selectedProduct.getMaSP().equals(product.getText().trim())) {
+                loadVariants(selectedProduct.getMaSP());
+            } else {
+                String query = product.getText().trim();
+                if (query.length() < 2) { JOptionPane.showMessageDialog(this, "Nhập ít nhất 2 ký tự của mã hoặc tên sản phẩm."); }
+                else { suggestProducts(query); }
             }
-            status.setText("Tồn hiển thị chỉ tham khảo; server kiểm tra lại khi thanh toán.");
-        }); });
+        });
         addLine.addActionListener(e -> edit(0)); change.addActionListener(e -> edit(1)); remove.addActionListener(e -> edit(2));
         pay.addActionListener(e -> {
             if (JOptionPane.showConfirmDialog(this, "Thanh toán hóa đơn " + current.getHoaDon().getMaHD() + ": " + current.getHoaDon().getTongTien()
@@ -134,10 +200,94 @@ public final class BanHangPanel extends JPanel implements Scrollable {
     }
     public void loadTaxes() {
         run(api::taxes, rows -> {
-            tax.removeAllItems(); for (ThueDTO t : rows) { tax.addItem(t.getMaThue() + " / " + t.getTenThue() + " / " + t.getPhanTram() + "%"); }
+            tax.removeAllItems(); for (ThueDTO t : rows) { tax.addItem(t.getMaThue() + " / " + t.getTenThue() + " / " + percent(t.getPhanTram()) + "%"); }
             if (current != null) { selectInvoiceTax(current.getHoaDon()); }
             if (rows.isEmpty()) { status.setText("Chưa có thuế. Xem docs/BAN_HANG.md."); }
         });
+    }
+    public void loadReferenceData() {
+        if (management == null) { loadTaxes(); return; }
+        ManagementSearchRequest request = new ManagementSearchRequest(); request.setPage(0); request.setPageSize(100);
+        run(() -> new ReferenceData(api.taxes(), management.search(Kind.PROMOTION, request)), data -> {
+            tax.removeAllItems();
+            for (ThueDTO t : data.taxes) {
+                tax.addItem(t.getMaThue() + " / " + t.getTenThue() + " / " + percent(t.getPhanTram()) + "%");
+            }
+            if (current != null) { selectInvoiceTax(current.getHoaDon()); }
+            promo.removeAllItems(); promo.addItem(PromotionOption.none());
+            for (JsonNode row : data.promotions.getItems()) {
+                LocalDate today = LocalDate.now();
+                String startText = row.path("ngayBatDau").asText("");
+                String endText = row.path("ngayKetThuc").asText("");
+                if (!row.path("trangThai").asBoolean(false) || startText.isEmpty() || endText.isEmpty()
+                        || today.isBefore(LocalDate.parse(startText)) || today.isAfter(LocalDate.parse(endText))) { continue; }
+                promo.addItem(new PromotionOption(row.path("maKM").asText(),
+                        row.path("tenKM").asText("Khuyến mãi"), row.path("phanTramGiam").decimalValue()));
+            }
+            if (current != null) { selectInvoicePromotion(current.getHoaDon()); }
+            if (data.taxes.isEmpty()) { status.setText("Chưa có thuế đang áp dụng. Xem docs/BAN_HANG.md."); }
+        });
+    }
+    private void suggestProducts(String query) {
+        if (query == null || query.length() < 2 || busy) { productPopup.setVisible(false); return; }
+        final int requestId = ++suggestionSequence;
+        final String requested = query;
+        SanPhamSearchRequest search = new SanPhamSearchRequest();
+        search.setMaSP(query); search.setTenSP(query); search.setPage(0); search.setPageSize(8);
+        new SwingWorker<SanPhamSearchResult, Void>() {
+            @Override protected SanPhamSearchResult doInBackground() throws Exception { return products.search(search); }
+            @Override protected void done() {
+                if (requestId != suggestionSequence || !requested.equals(product.getText().trim()) || !product.isShowing()) { return; }
+                try {
+                    SanPhamSearchResult result = get(); DefaultListModel<ProductOption> options = new DefaultListModel<>();
+                    for (SanPhamDTO item : result.getItems()) { options.addElement(new ProductOption(item)); }
+                    productSuggestions.setModel(options);
+                    if (options.isEmpty()) { productPopup.setVisible(false); return; }
+                    int width = Math.max(product.getWidth(), 380);
+                    productSuggestions.setFixedCellWidth(width - 20);
+                    productPopup.setPopupSize(width, Math.min(8, options.size()) * 42 + 8);
+                    if (productPopup.isVisible()) { productPopup.setVisible(false); }
+                    productPopup.show(product, 0, product.getHeight());
+                } catch (InterruptedException ex) { Thread.currentThread().interrupt(); }
+                catch (ExecutionException ex) {
+                    productPopup.setVisible(false);
+                    status.setText("Không tải được gợi ý sản phẩm. Kiểm tra kết nối máy chủ.");
+                }
+            }
+        }.execute();
+    }
+    private void chooseProductSuggestion() {
+        ProductOption option = productSuggestions.getSelectedValue();
+        if (option == null) {
+            Point mouse = productSuggestions.getMousePosition();
+            int row = mouse == null ? -1 : productSuggestions.locationToIndex(mouse);
+            if (row >= 0) { option = productSuggestions.getModel().getElementAt(row); }
+        }
+        if (option == null) { return; }
+        selectedProduct = option.product; settingProductText = true; product.setText(selectedProduct.getMaSP()); settingProductText = false;
+        productPopup.setVisible(false); loadVariants(selectedProduct.getMaSP());
+    }
+    private void loadVariants(String maSP) {
+        run(() -> products.detail(maSP), detail -> {
+            selectedProduct = detail.getSanPham(); product.setText(selectedProduct.getMaSP());
+            variant.removeAllItems();
+            for (BienTheDTO b : detail.getBienThe()) {
+                if (b.getTrangThai()) { variant.addItem(b.getMaBienThe() + " / " + b.getMauSac() + " / " + b.getKichCo() + " / tồn " + b.getSoLuongTon()); }
+            }
+            status.setText("Đã chọn " + selectedProduct.getMaSP() + " / " + selectedProduct.getTenSP()
+                    + ". Tồn hiển thị chỉ tham khảo; máy chủ kiểm tra lại khi thanh toán.");
+        });
+    }
+    private void selectInvoicePromotion(HoaDonDTO invoice) {
+        if (invoice.getMaKM() == null || invoice.getMaKM().trim().isEmpty()) { promo.setSelectedIndex(0); return; }
+        for (int i = 0; i < promo.getItemCount(); i++) {
+            if (invoice.getMaKM().equals(promo.getItemAt(i).maKM)) { promo.setSelectedIndex(i); return; }
+        }
+        PromotionOption snapshot = new PromotionOption(invoice.getMaKM(), "Đã chốt " + invoice.getPhanTramGiam() + "%", invoice.getPhanTramGiam());
+        promo.addItem(snapshot); promo.setSelectedItem(snapshot);
+    }
+    private static String percent(BigDecimal value) {
+        return value == null ? "0" : value.stripTrailingZeros().toPlainString();
     }
     private void edit(int mode) {
         String code;
@@ -160,11 +310,11 @@ public final class BanHangPanel extends JPanel implements Scrollable {
         for (ChiTietHoaDonDTO c : d.getChiTiet()) {
             model.addRow(new Object[]{c.getMaBienThe(), c.getTenSP(), c.getMauSac(), c.getKichCo(), c.getSoLuong(), c.getDonGia(), c.getThanhTien()});
         }
-        customer.setText(h.getMaKH()); promo.setText(h.getMaKM()); note.setText(h.getGhiChu());
-        selectInvoiceTax(h);
+        customer.setText(h.getMaKH()); note.setText(h.getGhiChu());
+        selectInvoiceTax(h); selectInvoicePromotion(h);
         subtotal.setText("Tạm tính: " + UiTheme.money(h.getTamTinh()));
         discount.setText("Giảm giá: " + UiTheme.money(h.getTienGiam()));
-        taxAmount.setText("Thuế (" + h.getPhanTramThue() + "%): " + UiTheme.money(h.getTienThue()));
+        taxAmount.setText("Thuế (" + percent(h.getPhanTramThue()) + "%): " + UiTheme.money(h.getTienThue()));
         total.setText(UiTheme.money(h.getTongTien()));
         total.setToolTipText(total.getText());
         total.setFont(total.getFont().deriveFont(Font.BOLD, total.getText().length() > 16 ? 16f : 24f));
@@ -198,7 +348,7 @@ public final class BanHangPanel extends JPanel implements Scrollable {
         for (int i = 0; i < tax.getItemCount(); i++) {
             if (tax.getItemAt(i).startsWith(h.getMaThue() + " / ")) { tax.setSelectedIndex(i); return; }
         }
-        String selected = h.getMaThue() + " / Đã chốt " + h.getPhanTramThue() + "%";
+        String selected = h.getMaThue() + " / Đã chốt " + percent(h.getPhanTramThue()) + "%";
         tax.addItem(selected); tax.setSelectedItem(selected);
     }
     private void controls() {
@@ -206,7 +356,8 @@ public final class BanHangPanel extends JPanel implements Scrollable {
         for (JButton b : new JButton[]{fresh, reload, lookup, taxes, history}) { b.setEnabled(!busy); }
         create.setEnabled(!busy && current == null);
         for (JButton b : new JButton[]{addLine, change, remove, pay, cancel}) { b.setEnabled(!busy && draft); }
-        for (JTextField f : new JTextField[]{customer, promo, note}) { f.setEnabled(!busy && current == null); }
+        for (JTextField f : new JTextField[]{customer, note}) { f.setEnabled(!busy && current == null); }
+        promo.setEnabled(!busy && current == null);
         tax.setEnabled(!busy && current == null); id.setEnabled(!busy); product.setEnabled(!busy);
         variant.setEnabled(!busy); qty.setEnabled(!busy);
     }
@@ -226,5 +377,29 @@ public final class BanHangPanel extends JPanel implements Scrollable {
                 }
             }
         }.execute();
+    }
+    private static final class PromotionOption {
+        final String maKM;
+        final String label;
+        final BigDecimal percent;
+        PromotionOption(String maKM, String label, BigDecimal percent) {
+            this.maKM = maKM; this.label = label; this.percent = percent;
+        }
+        static PromotionOption none() { return new PromotionOption(null, "Không khuyến mãi", null); }
+        @Override public String toString() {
+            return maKM == null ? label : maKM + " / " + label + " / " + percent(percent) + "%";
+        }
+    }
+    private static final class ProductOption {
+        final SanPhamDTO product;
+        ProductOption(SanPhamDTO product) { this.product = product; }
+        @Override public String toString() { return product.getMaSP() + " / " + product.getTenSP(); }
+    }
+    private static final class ReferenceData {
+        final java.util.List<ThueDTO> taxes;
+        final ManagementSearchResult promotions;
+        ReferenceData(java.util.List<ThueDTO> taxes, ManagementSearchResult promotions) {
+            this.taxes = taxes; this.promotions = promotions;
+        }
     }
 }

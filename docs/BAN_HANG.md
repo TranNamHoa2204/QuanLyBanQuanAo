@@ -6,10 +6,10 @@
 2. Dừng rồi chạy lại server.ServerMain với cấu hình QUANAO_DB_* hiện tại.
 3. CSDL cần đầy đủ bảng của script gốc và bảng AnhSanPham của bước trước.
    JPA chỉ validate schema, không tự tạo/sửa bảng hay nhập dữ liệu.
-4. Cần ít nhất một bản ghi dbo.Thue đang hoạt động. Nếu chỉ demo đồ án,
-   bạn có thể chủ động chạy sql/03_ThueDemo_0PhanTram.sql trong SSMS,
-   trên đúng database. Script không sửa bản ghi thuế đã có.
-   0% ở đây chỉ là dữ liệu thử, không phải kết luận nghĩa vụ thuế thực tế.
+4. Cần ít nhất một bản ghi dbo.Thue đang hoạt động. Để nạp cấu hình VAT đồ án,
+   chọn đúng database trong SSMS rồi chạy sql/03_CauHinhThueBanLe.sql.
+   Script chỉ thêm mã chưa có. Mức 8% hiện có thời hạn theo chính sách đến hết 31/12/2026;
+   mức 0% chỉ dùng khi giao dịch đủ điều kiện. Ứng dụng chưa tự quản lý ngày hiệu lực thuế.
 5. Chạy client.ClientMain, đăng nhập, chọn Bán hàng / Hóa đơn.
 6. Chọn thuế, để mã KH/KM trống khi bán cho khách vãng lai, không khuyến mãi.
    Nếu điền mã thì bản ghi phải tồn tại và đang hoạt động; khuyến mãi phải còn hạn.

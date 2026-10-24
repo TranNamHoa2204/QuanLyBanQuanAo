@@ -16,6 +16,8 @@ public final class MainForm extends JFrame {
     private NhanVienForm employeesPanel;
     private KhuyenMaiForm promotionsPanel;
     private ThongKeForm reportsPanel;
+    private ThueForm taxesPanel;
+    private HoaDonPanel invoicesPanel;
     private MainShellPanel shell;
     public MainForm(AuthApi api, ClientSession session) {
         super("Quản lý cửa hàng quần áo");
@@ -26,10 +28,9 @@ public final class MainForm extends JFrame {
                     new client.controller.SanPhamController(api.products()), login.getVaiTro()); }
             shell.showPage("Sản phẩm", productPanel); productPanel.reload();
         }, () -> {
-            boolean first = salesPanel == null;
-            if (first) { salesPanel = new BanHangPanel(api.invoices(), api.products()); }
+            if (salesPanel == null) { salesPanel = new BanHangPanel(api.invoices(), api.products(), api.management()); }
             shell.showPage("Bán hàng & hóa đơn", salesPanel);
-            if (first) { salesPanel.loadTaxes(); }
+            salesPanel.loadReferenceData();
         }, () -> new ThongTinCaNhanForm(this, api).setVisible(true),
         () -> new DoiMatKhauForm(this, api, () -> {
             dispose(); new DangNhapForm(api, session).setVisible(true);
@@ -50,8 +51,14 @@ public final class MainForm extends JFrame {
             if (promotionsPanel == null) { promotionsPanel = new KhuyenMaiForm(api.management()); }
             shell.showPage("Khuyến mãi", promotionsPanel); promotionsPanel.initialize();
         }, () -> {
+            if (taxesPanel == null) { taxesPanel = new ThueForm(api.management()); }
+            shell.showPage("Thuế", taxesPanel); taxesPanel.initialize();
+        }, () -> {
             if (reportsPanel == null) { reportsPanel = new ThongKeForm(api.management()); }
             shell.showPage("Thống kê", reportsPanel);
+        }, () -> {
+            if (invoicesPanel == null) { invoicesPanel = new HoaDonPanel(api.invoices()); }
+            shell.showPage("Hóa đơn", invoicesPanel); invoicesPanel.initialize();
         });
         add(shell);
         Rectangle screen = getGraphicsConfiguration().getBounds();

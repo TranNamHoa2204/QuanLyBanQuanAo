@@ -89,7 +89,9 @@ Hash cũ không đúng định dạng PBKDF2 của project sẽ không xác th�
 7. Đăng xuất: thu hồi token ở server và trở về đăng nhập.
 
 MainForm có Tra cứu sản phẩm và Bán hàng / Hóa đơn; xem BAN_HANG.md để thử
-tạo nháp, thêm/đổi/bỏ hàng, hủy nháp và thanh toán/trừ tồn.
+tạo nháp, thêm/đổi/bỏ hàng, hủy nháp và thanh toán/trừ tồn. Quản lý khách hàng,
+nhân viên/tài khoản, khuyến mãi, thuế và thống kê đã có; xem
+docs/QUAN_LY_CUA_HANG_THONG_KE.md để chạy dữ liệu hóa đơn/khuyến mãi/thuế minh họa.
 Giao diện đã dùng Swing + FlatLaf: xem GIAO_DIEN_FLATLAF.md.
 Sau khi Refresh phải Maven → Update Project để có dependency FlatLaf trước khi chạy ClientMain.
 Hồ sơ chỉ đọc; chưa có sửa hồ sơ cá nhân.
@@ -137,9 +139,13 @@ có thể dùng PowerShell với JDK 9+ để biên dịch --release 8:
   Nếu đổi mật khẩu bị mất phản hồi, kiểm tra đăng nhập lại trước khi thử tiếp.
 - Phiên lưu trong RAM: restart server sẽ khiến mọi người dùng phải đăng nhập lại.
 
-## 8. Phần tiếp theo
+## 8. Dữ liệu minh họa và phần tiếp theo
 
 Tra cứu sản phẩm/biến thể/ảnh đã triển khai; xem TRA_CUU_SAN_PHAM.md.
 Hóa đơn, thanh toán và trừ tồn kho đã triển khai; xem BAN_HANG.md.
 Quản lý danh mục/sản phẩm đã có; xem QUAN_LY_DANH_MUC_SAN_PHAM.md.
-Tiếp theo bổ sung quản lý nhân viên/tài khoản, khách hàng/khuyến mãi, in hóa đơn và thống kê.
+Để có doanh thu mẫu, chọn database đúng trong SSMS rồi chạy thủ công `sql/03_CauHinhThueBanLe.sql`, sau đó
+`sql/04_DuLieuMauHoaDon_KhuyenMai_DoanhThu.sql` trong SSMS sau khi đã nạp danh mục/biến thể
+và tạo tài khoản hoạt động. Đây là giao dịch minh họa, không chạy trên database thật;
+script 04 trừ tồn một lần cho hóa đơn demo đã thanh toán. Chi tiết và thứ tự đầy đủ ở
+`docs/QUAN_LY_CUA_HANG_THONG_KE.md`. In hóa đơn/đổi trả/phiếu nhập kho vẫn chưa thuộc bản này.

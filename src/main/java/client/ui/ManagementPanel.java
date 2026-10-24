@@ -1,5 +1,6 @@
 package client.ui;
 import java.awt.*;
+import java.math.BigDecimal;
 import java.util.*;
 import java.util.List;
 import java.util.concurrent.Callable;
@@ -30,13 +31,17 @@ public class ManagementPanel extends JPanel {
     public ManagementPanel(ManagementApi api, Kind kind) {
         super(new BorderLayout(0, 16)); this.api = api; this.kind = kind;
         setBorder(BorderFactory.createEmptyBorder(24, 24, 24, 24));
-        String title = kind == Kind.CUSTOMER ? "Khách hàng" : kind == Kind.EMPLOYEE ? "Nhân viên & tài khoản" : "Khuyến mãi";
+        String title = kind == Kind.CUSTOMER ? "Khách hàng" : kind == Kind.EMPLOYEE ? "Nhân viên & tài khoản"
+                : kind == Kind.TAX ? "Thuế" : "Khuyến mãi";
         JPanel top = new JPanel(new BorderLayout(0, 16)); top.setOpaque(false);
-        top.add(UiTheme.heading(title, "Tìm theo mã, tên" + (kind == Kind.PROMOTION ? "." : " hoặc số điện thoại.")), BorderLayout.NORTH);
+        top.add(UiTheme.heading(title, kind == Kind.PROMOTION ? "Tìm theo mã, tên."
+                : kind == Kind.TAX ? "Tìm theo mã, tên hoặc mô tả cấu hình."
+                : "Tìm theo mã, tên hoặc số điện thoại."), BorderLayout.NORTH);
         JPanel filters = new JPanel(new FlowLayout(FlowLayout.LEFT, 8, 0)); filters.setOpaque(false);
         filters.add(query); filters.add(inactive); filters.add(load); filters.add(add); top.add(filters, BorderLayout.CENTER); add(top, BorderLayout.NORTH);
         String[] columns = kind == Kind.CUSTOMER ? new String[]{"Mã", "Họ tên", "Điện thoại", "Email", "Hoạt động"}
                 : kind == Kind.EMPLOYEE ? new String[]{"Mã", "Họ tên", "Điện thoại", "Tài khoản", "Vai trò", "Hoạt động", "Đăng nhập"}
+                : kind == Kind.TAX ? new String[]{"Mã", "Tên cấu hình", "Tỷ lệ (%)", "Mô tả", "Áp dụng"}
                 : new String[]{"Mã", "Khuyến mãi", "Giảm (%)", "Bắt đầu", "Kết thúc", "Áp dụng"};
         model = new DefaultTableModel(columns, 0) { @Override public boolean isCellEditable(int row, int column) { return false; } };
         table = new JTable(model); UiTheme.table(table); table.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
@@ -65,7 +70,8 @@ public class ManagementPanel extends JPanel {
             else if (kind == Kind.EMPLOYEE) { model.addRow(new Object[]{text(d, "maNV"), text(d, "hoTen"), text(d, "sdt"), text(d, "username"),
                     text(d, "vaiTro").equals("NHAN_VIEN_QUAN_LY") ? "Quản lý" : text(d, "username").isEmpty() ? "—" : "Bán hàng",
                     flag(d, "trangThai"), flag(d, "taiKhoanHoatDong")}); }
-            else { model.addRow(new Object[]{text(d, "maKM"), text(d, "tenKM"), text(d, "phanTramGiam"), text(d, "ngayBatDau"), text(d, "ngayKetThuc"), flag(d, "trangThai")}); }
+            else if (kind == Kind.TAX) { model.addRow(new Object[]{text(d, "maThue"), text(d, "tenThue"), percent(d, "phanTram"), text(d, "moTa"), flag(d, "trangThai")}); }
+            else { model.addRow(new Object[]{text(d, "maKM"), text(d, "tenKM"), percent(d, "phanTramGiam"), text(d, "ngayBatDau"), text(d, "ngayKetThuc"), flag(d, "trangThai")}); }
         }
         pages.setText("Trang " + (page + 1) + " · " + total + " bản ghi"); controls();
     }
@@ -121,5 +127,11 @@ public class ManagementPanel extends JPanel {
         previous.setEnabled(!busy && page > 0); next.setEnabled(!busy && (long) (page + 1) * 25 < total);
     }
     private static String text(JsonNode d, String key) { return d.path(key).isNull() ? "" : d.path(key).asText(""); }
+    private static String percent(JsonNode d, String key) {
+        JsonNode value = d.path(key);
+        if (!value.isNumber()) { return ""; }
+        BigDecimal rate = value.decimalValue().stripTrailingZeros();
+        return rate.toPlainString() + "%";
+    }
     private static String flag(JsonNode d, String key) { return d.path(key).asBoolean() ? "Có" : "Không"; }
 }

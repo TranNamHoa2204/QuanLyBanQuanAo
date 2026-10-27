@@ -8,7 +8,12 @@ import common.util.PropertiesLoader;
 public final class ClientConfig {
     private final String host;
     private final int port;
-    private ClientConfig(String host, int port) { this.host = host; this.port = port; }
+
+    private ClientConfig(String host, int port) {
+        this.host = host;
+        this.port = port;
+    }
+
     public static ClientConfig load() throws IOException {
         Properties properties = PropertiesLoader.load("config/client.properties");
         String host = properties.getProperty("server.host", "").trim();
@@ -18,6 +23,12 @@ public final class ClientConfig {
         }
         return new ClientConfig(host, port);
     }
-    public String getHost() { return host; }
-    public int getPort() { return port; }
+
+    public String getHost() {
+        return host;
+    }
+
+    public int getPort() {
+        return port;
+    }
 }

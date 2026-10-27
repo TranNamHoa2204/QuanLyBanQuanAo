@@ -7,9 +7,24 @@ import common.dto.*;
 
 public final class SanPhamController {
     private final SanPhamApi api;
-    public SanPhamController(SanPhamApi api) { this.api = api; }
-    public SanPhamSearchResult search(SanPhamSearchRequest request) throws IOException { return api.search(request); }
-    public SanPhamDetailDTO detail(String maSP) throws IOException { return api.detail(maSP); }
-    public List<LoaiSanPhamDTO> categories() throws IOException { return api.categories(); }
-    public List<ThuongHieuDTO> brands() throws IOException { return api.brands(); }
+
+    public SanPhamController(SanPhamApi api) {
+        this.api = api;
+    }
+
+    public SanPhamSearchResult search(SanPhamSearchRequest request) throws IOException {
+        return api.search(request);
+    }
+
+    public SanPhamDetailDTO detail(String maSP) throws IOException {
+        return api.detail(maSP);
+    }
+
+    public List<LoaiSanPhamDTO> categories() throws IOException {
+        return api.categories();
+    }
+
+    public List<ThuongHieuDTO> brands() throws IOException {
+        return api.brands();
+    }
 }

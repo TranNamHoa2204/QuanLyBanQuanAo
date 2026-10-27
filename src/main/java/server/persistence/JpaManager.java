@@ -7,9 +7,11 @@ import javax.persistence.*;
 /** Factory dùng chung; mỗi tác vụ có EntityManager và transaction riêng. */
 public final class JpaManager implements AutoCloseable {
     private final EntityManagerFactory factory;
+
     public JpaManager(Map<String, Object> properties) {
         factory = Persistence.createEntityManagerFactory("QuanAoPU", properties);
     }
+
     public <T> T transaction(Function<EntityManager, T> work) {
         EntityManager em = factory.createEntityManager();
         EntityTransaction tx = em.getTransaction();
@@ -19,9 +21,19 @@ public final class JpaManager implements AutoCloseable {
             tx.commit();
             return result;
         } catch (RuntimeException failure) {
-            if (tx.isActive()) { tx.rollback(); }
+            if (tx.isActive()) {
+                tx.rollback();
+            }
             throw failure;
-        } finally { em.close(); }
+        } finally {
+            em.close();
+        }
     }
-    @Override public void close() { if (factory.isOpen()) { factory.close(); } }
+
+    @Override
+    public void close() {
+        if (factory.isOpen()) {
+            factory.close();
+        }
+    }
 }

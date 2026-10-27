@@ -8,9 +8,11 @@ import org.hibernate.annotations.Nationalized;
 @Entity
 @Table(name = "NhanVien", schema = "dbo")
 public class NhanVien {
-    @Id @Column(length = 20)
+    @Id
+    @Column(length = 20)
     private String maNV;
-    @Nationalized @Column(nullable = false, length = 100)
+    @Nationalized
+    @Column(nullable = false, length = 100)
     private String hoTen;
     private Boolean gioiTinh;
     private LocalDate ngaySinh;
@@ -18,9 +20,11 @@ public class NhanVien {
     private String sdt;
     @Column(length = 254)
     private String email;
-    @Nationalized @Column(length = 255)
+    @Nationalized
+    @Column(length = 255)
     private String diaChi;
-    @Nationalized @Column(length = 100)
+    @Nationalized
+    @Column(length = 100)
     private String chucVu;
     @Column(nullable = false)
     private boolean trangThai = true;

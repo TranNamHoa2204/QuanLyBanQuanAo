@@ -1,4 +1,5 @@
 package server.entity;
+
 import javax.persistence.*;
 import org.hibernate.annotations.Nationalized;
 
@@ -6,9 +7,11 @@ import java.math.BigDecimal;
 
 /** Entity JPA phía server; không truyền entity qua Socket. */
 @Entity
-@Table(name = "ChiTietHoaDon", schema = "dbo", uniqueConstraints = @UniqueConstraint(columnNames = {"maHD", "maBienThe"}))
+@Table(name = "ChiTietHoaDon", schema = "dbo", uniqueConstraints = @UniqueConstraint(columnNames = { "maHD",
+        "maBienThe" }))
 public class ChiTietHoaDon {
-    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long maCTHD;
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "maHD", nullable = false)

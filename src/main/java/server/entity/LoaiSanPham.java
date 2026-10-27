@@ -1,4 +1,5 @@
 package server.entity;
+
 import javax.persistence.*;
 import org.hibernate.annotations.Nationalized;
 
@@ -6,9 +7,11 @@ import org.hibernate.annotations.Nationalized;
 @Entity
 @Table(name = "LoaiSanPham", schema = "dbo")
 public class LoaiSanPham {
-    @Id @Column(length = 20)
+    @Id
+    @Column(length = 20)
     private String maLoai;
-    @Nationalized @Column(nullable = false, length = 100, unique = true)
+    @Nationalized
+    @Column(nullable = false, length = 100, unique = true)
     private String tenLoai;
 
     public LoaiSanPham() {

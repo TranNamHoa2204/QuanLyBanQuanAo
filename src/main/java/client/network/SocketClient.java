@@ -14,7 +14,12 @@ public final class SocketClient implements AutoCloseable {
     private Socket socket;
     private DataInputStream input;
     private DataOutputStream output;
-    public SocketClient(String host, int port) { this.host = host; this.port = port; }
+
+    public SocketClient(String host, int port) {
+        this.host = host;
+        this.port = port;
+    }
+
     public synchronized Response<JsonNode> send(Action action, String token, Object payload) throws IOException {
         try {
             if (socket == null) {
@@ -28,17 +33,32 @@ public final class SocketClient implements AutoCloseable {
             String id = UUID.randomUUID().toString();
             FrameIO.write(output, JsonCodec.mapper().writeValueAsBytes(new Request<>(id, action, token, payload)));
             byte[] frame = FrameIO.read(input);
-            if (frame == null) { throw new EOFException("Máy chủ đã ngắt kết nối."); }
-            Response<JsonNode> response = JsonCodec.mapper().readValue(frame, new TypeReference<Response<JsonNode>>() { });
+            if (frame == null) {
+                throw new EOFException("Máy chủ đã ngắt kết nối.");
+            }
+            Response<JsonNode> response = JsonCodec.mapper().readValue(frame, new TypeReference<Response<JsonNode>>() {
+            });
             if (response == null || !id.equals(response.getRequestId()) || response.getErrorCode() == null
                     || (response.isSuccess() != (response.getErrorCode() == ErrorCode.NONE))) {
                 throw new IOException("Phản hồi máy chủ không hợp lệ.");
             }
             return response;
-        } catch (IOException | RuntimeException failure) { close(); throw failure; }
+        } catch (IOException | RuntimeException failure) {
+            close();
+            throw failure;
+        }
     }
-    @Override public synchronized void close() {
-        if (socket != null) { try { socket.close(); } catch (IOException ignored) { } }
-        socket = null; input = null; output = null;
+
+    @Override
+    public synchronized void close() {
+        if (socket != null) {
+            try {
+                socket.close();
+            } catch (IOException ignored) {
+            }
+        }
+        socket = null;
+        input = null;
+        output = null;
     }
 }

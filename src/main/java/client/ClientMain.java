@@ -8,7 +8,9 @@ import client.ui.DangNhapForm;
 import javax.swing.SwingUtilities;
 
 public final class ClientMain {
-    private ClientMain() { }
+    private ClientMain() {
+    }
+
     public static void main(String[] args) throws Exception {
         ClientConfig config = ClientConfig.load();
         SocketClient socket = new SocketClient(config.getHost(), config.getPort());

@@ -1,4 +1,5 @@
 package server.entity;
+
 import javax.persistence.*;
 import org.hibernate.annotations.Nationalized;
 
@@ -12,7 +13,8 @@ import java.math.BigDecimal;
 @Entity
 @Table(name = "HoaDon", schema = "dbo")
 public class HoaDon {
-    @Id @Column(length = 20)
+    @Id
+    @Column(length = 20)
     private String maHD;
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "maNV", nullable = false)
@@ -40,11 +42,14 @@ public class HoaDon {
     private BigDecimal tienThue;
     @Column(nullable = false, precision = 18, scale = 2)
     private BigDecimal tongTien;
-    @Enumerated(EnumType.STRING) @Column(nullable = false, length = 20)
+    @Enumerated(EnumType.STRING)
+    @Column(nullable = false, length = 20)
     private TrangThaiHoaDon trangThai = TrangThaiHoaDon.NHAP;
-    @Nationalized @Column(length = 500)
+    @Nationalized
+    @Column(length = 500)
     private String ghiChu;
-    @Version @Column(nullable = false)
+    @Version
+    @Column(nullable = false)
     private Long phienBan = 0L;
 
     public HoaDon() {

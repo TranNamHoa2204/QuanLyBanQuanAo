@@ -1,4 +1,5 @@
 package server.entity;
+
 import javax.persistence.*;
 import org.hibernate.annotations.Nationalized;
 
@@ -9,9 +10,11 @@ import java.time.LocalDate;
 @Entity
 @Table(name = "KhuyenMai", schema = "dbo")
 public class KhuyenMai {
-    @Id @Column(length = 20)
+    @Id
+    @Column(length = 20)
     private String maKM;
-    @Nationalized @Column(nullable = false, length = 200)
+    @Nationalized
+    @Column(nullable = false, length = 200)
     private String tenKM;
     @Column(nullable = false, precision = 5, scale = 2)
     private BigDecimal phanTramGiam;

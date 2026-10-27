@@ -13,12 +13,30 @@ public class ChiTietHoaDonDTO {
     private String tenSP;
     private String mauSac;
     private String kichCo;
-    public String getTenSP() { return tenSP; }
-    public void setTenSP(String tenSP) { this.tenSP = tenSP; }
-    public String getMauSac() { return mauSac; }
-    public void setMauSac(String mauSac) { this.mauSac = mauSac; }
-    public String getKichCo() { return kichCo; }
-    public void setKichCo(String kichCo) { this.kichCo = kichCo; }
+
+    public String getTenSP() {
+        return tenSP;
+    }
+
+    public void setTenSP(String tenSP) {
+        this.tenSP = tenSP;
+    }
+
+    public String getMauSac() {
+        return mauSac;
+    }
+
+    public void setMauSac(String mauSac) {
+        this.mauSac = mauSac;
+    }
+
+    public String getKichCo() {
+        return kichCo;
+    }
+
+    public void setKichCo(String kichCo) {
+        this.kichCo = kichCo;
+    }
 
     public ChiTietHoaDonDTO() {
     }

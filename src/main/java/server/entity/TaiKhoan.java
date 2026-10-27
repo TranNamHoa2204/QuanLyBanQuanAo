@@ -7,14 +7,16 @@ import javax.persistence.*;
 @Entity
 @Table(name = "TaiKhoan", schema = "dbo")
 public class TaiKhoan {
-    @Id @Column(length = 50)
+    @Id
+    @Column(length = 50)
     private String username;
     @OneToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "maNV", nullable = false, unique = true)
     private NhanVien nhanVien;
     @Column(nullable = false, length = 255)
     private String passwordHash;
-    @Enumerated(EnumType.STRING) @Column(nullable = false, length = 30)
+    @Enumerated(EnumType.STRING)
+    @Column(nullable = false, length = 30)
     private VaiTro vaiTro;
     @Column(nullable = false)
     private boolean trangThai = true;

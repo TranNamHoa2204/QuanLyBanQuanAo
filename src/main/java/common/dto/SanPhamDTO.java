@@ -16,8 +16,14 @@ public class SanPhamDTO {
 
     public SanPhamDTO() {
     }
-    public long getTongTon() { return tongTon; }
-    public void setTongTon(long tongTon) { this.tongTon = tongTon; }
+
+    public long getTongTon() {
+        return tongTon;
+    }
+
+    public void setTongTon(long tongTon) {
+        this.tongTon = tongTon;
+    }
 
     public String getMaSP() {
         return maSP;

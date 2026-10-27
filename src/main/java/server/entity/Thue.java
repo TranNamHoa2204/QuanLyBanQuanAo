@@ -1,4 +1,5 @@
 package server.entity;
+
 import javax.persistence.*;
 import org.hibernate.annotations.Nationalized;
 
@@ -8,13 +9,16 @@ import java.math.BigDecimal;
 @Entity
 @Table(name = "Thue", schema = "dbo")
 public class Thue {
-    @Id @Column(length = 20)
+    @Id
+    @Column(length = 20)
     private String maThue;
-    @Nationalized @Column(nullable = false, length = 100)
+    @Nationalized
+    @Column(nullable = false, length = 100)
     private String tenThue;
     @Column(nullable = false, precision = 5, scale = 2)
     private BigDecimal phanTram;
-    @Nationalized @Column(length = 255)
+    @Nationalized
+    @Column(length = 255)
     private String moTa;
     @Column(nullable = false)
     private boolean trangThai = true;

@@ -1,4 +1,5 @@
 package server.entity;
+
 import javax.persistence.*;
 import org.hibernate.annotations.Nationalized;
 
@@ -8,9 +9,11 @@ import java.math.BigDecimal;
 @Entity
 @Table(name = "SanPham", schema = "dbo")
 public class SanPham {
-    @Id @Column(length = 20)
+    @Id
+    @Column(length = 20)
     private String maSP;
-    @Nationalized @Column(nullable = false, length = 200)
+    @Nationalized
+    @Column(nullable = false, length = 200)
     private String tenSP;
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "maLoai", nullable = false)

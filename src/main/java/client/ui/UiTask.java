@@ -8,16 +8,25 @@ import javax.swing.*;
 import client.api.ApiException;
 
 public final class UiTask {
-    private UiTask() { }
+    private UiTask() {
+    }
+
     public static <T> void run(Component parent, JButton button, Callable<T> job, Consumer<T> success) {
         button.setEnabled(false);
         new SwingWorker<T, Void>() {
-            @Override protected T doInBackground() throws Exception { return job.call(); }
-            @Override protected void done() {
+            @Override
+            protected T doInBackground() throws Exception {
+                return job.call();
+            }
+
+            @Override
+            protected void done() {
                 button.setEnabled(true);
-                try { success.accept(get()); }
-                catch (InterruptedException failure) { Thread.currentThread().interrupt(); }
-                catch (ExecutionException failure) {
+                try {
+                    success.accept(get());
+                } catch (InterruptedException failure) {
+                    Thread.currentThread().interrupt();
+                } catch (ExecutionException failure) {
                     Throwable cause = failure.getCause();
                     String message = cause instanceof ApiException ? cause.getMessage()
                             : "Không kết nối/xử lý được máy chủ. Kiểm tra ServerMain và cấu hình mạng.";

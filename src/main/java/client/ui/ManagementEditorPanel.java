@@ -51,8 +51,17 @@ public final class ManagementEditorPanel extends JPanel {
         grid.setOpaque(false);
         String id = kind == Kind.CUSTOMER ? "maKH"
                 : kind == Kind.EMPLOYEE ? "maNV" : kind == Kind.TAX ? "maThue" : "maKM";
-        addText(grid, id, "Mã *", false);
-        fields.get(id).setEnabled(create);
+        boolean generatedCode = create
+                && (kind == Kind.CUSTOMER || kind == Kind.EMPLOYEE || kind == Kind.PROMOTION);
+        addText(grid, id, generatedCode ? "Mã (tự cấp khi lưu)" : "Mã *", false);
+        if (generatedCode) {
+            JTextField code = (JTextField) fields.get(id);
+            code.setEditable(false);
+            code.putClientProperty("JTextField.placeholderText", "Tự động cấp khi lưu");
+            code.setToolTipText("Máy chủ cấp mã tăng dần khi lưu bản ghi mới.");
+        } else {
+            fields.get(id).setEnabled(create);
+        }
         String nameKey = kind == Kind.PROMOTION ? "tenKM" : kind == Kind.TAX ? "tenThue" : "hoTen";
         addText(grid, nameKey,
                 kind == Kind.PROMOTION ? "Tên khuyến mãi *" : kind == Kind.TAX ? "Tên cấu hình *" : "Họ tên *", false);
@@ -102,9 +111,9 @@ public final class ManagementEditorPanel extends JPanel {
         }
         addFlag(grid, "trangThai", kind == Kind.PROMOTION || kind == Kind.TAX ? "Đang áp dụng" : "Đang hoạt động");
         add(grid, BorderLayout.CENTER);
-        add(UiTheme.muted(
-                "<html>* Bắt buộc. Mã không đổi sau khi tạo.<br>Ngừng hoạt động giữ nguyên lịch sử hóa đơn.</html>"),
-                BorderLayout.SOUTH);
+        String codeNote = generatedCode ? "Mã tăng dần được cấp khi lưu. " : "Mã không đổi sau khi tạo. ";
+        add(UiTheme.muted("<html>* Bắt buộc. " + codeNote
+                + "<br>Ngừng hoạt động giữ nguyên lịch sử hóa đơn.</html>"), BorderLayout.SOUTH);
     }
 
     private void addText(JPanel grid, String key, String label, boolean unused) {

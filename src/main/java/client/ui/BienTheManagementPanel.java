@@ -93,14 +93,20 @@ public final class BienTheManagementPanel extends JPanel {
         JTextField id = new JTextField(original == null ? "" : original.getMaBienThe(), 18),
                 color = new JTextField(original == null ? "" : original.getMauSac(), 18),
                 size = new JTextField(original == null ? "" : original.getKichCo(), 18);
-        id.setEditable(original == null);
+        if (original == null) {
+            id.setEditable(false);
+            id.putClientProperty("JTextField.placeholderText", "Tự động cấp khi lưu");
+            id.setToolTipText("Máy chủ cấp mã biến thể tăng dần khi lưu.");
+        } else {
+            id.setEditable(false);
+        }
         color.setEditable(original == null);
         size.setEditable(original == null);
         JSpinner stock = new JSpinner(
                 new SpinnerNumberModel(original == null ? 0 : original.getSoLuongTon(), 0, Integer.MAX_VALUE, 1));
         JCheckBox active = new JCheckBox("Đang bán", original == null || original.getTrangThai());
         JPanel fields = UiTheme.card(new GridLayout(0, 2, 14, 16));
-        fields.add(UiTheme.field("Mã biến thể", id));
+        fields.add(UiTheme.field(original == null ? "Mã biến thể (tự sinh)" : "Mã biến thể", id));
         fields.add(UiTheme.field("Sản phẩm", new JLabel(parent)));
         fields.add(UiTheme.field("Màu", color));
         fields.add(UiTheme.field("Size", size));
@@ -135,6 +141,9 @@ public final class BienTheManagementPanel extends JPanel {
             r.setPhienBan(original == null ? null : original.getPhienBan());
             UiTask.run(dialog, save, () -> controller.variant(r, original == null), out -> {
                 dialog.dispose();
+                if (original == null) {
+                    JOptionPane.showMessageDialog(this, "Đã thêm biến thể " + out.getMaBienThe() + ".");
+                }
                 loadProduct(parent);
             });
         });

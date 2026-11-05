@@ -40,7 +40,9 @@ public final class KhuyenMaiService {
         return jpa.transaction(em -> {
             ManagementSupport.manager(auth, em, token);
             KhuyenMaiDTO v = ManagementSupport.value(r, KhuyenMaiDTO.class);
-            String id = ManagementSupport.code(v.getMaKM());
+            String id = mode == 0
+                    ? SequentialCodeGenerator.next(em, KhuyenMai.class, "maKM", "KM", 3)
+                    : ManagementSupport.code(v.getMaKM());
             KhuyenMai e = em.find(KhuyenMai.class, id, mode == 0 ? LockModeType.NONE : LockModeType.PESSIMISTIC_WRITE);
             if (mode == 0) {
                 if (e != null) {

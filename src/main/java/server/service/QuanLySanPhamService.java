@@ -26,7 +26,9 @@ public final class QuanLySanPhamService {
             if (r == null) {
                 throw invalid("Thiếu dữ liệu loại.");
             }
-            String id = code(r.getCode()), name = text(r.getName(), 100);
+            String id = create ? SequentialCodeGenerator.next(em, LoaiSanPham.class, "maLoai", "LSP", 3)
+                    : code(r.getCode());
+            String name = text(r.getName(), 100);
             LoaiSanPham entity = em.find(LoaiSanPham.class, id,
                     create ? LockModeType.NONE : LockModeType.PESSIMISTIC_WRITE);
             if (create) {
@@ -60,7 +62,10 @@ public final class QuanLySanPhamService {
             if (r == null) {
                 throw invalid("Thiếu dữ liệu thương hiệu.");
             }
-            String id = code(r.getCode()), name = text(r.getName(), 100);
+            String id = create
+                    ? SequentialCodeGenerator.next(em, ThuongHieu.class, "maThuongHieu", "TH", 3)
+                    : code(r.getCode());
+            String name = text(r.getName(), 100);
             ThuongHieu entity = em.find(ThuongHieu.class, id,
                     create ? LockModeType.NONE : LockModeType.PESSIMISTIC_WRITE);
             if (create) {
@@ -95,7 +100,9 @@ public final class QuanLySanPhamService {
                 throw invalid("Thiếu dữ liệu sản phẩm.");
             }
             SanPhamDTO value = r.getValue();
-            String id = code(value.getMaSP());
+            String id = mode == 0
+                    ? SequentialCodeGenerator.next(em, SanPham.class, "maSP", "SP", 3)
+                    : code(value.getMaSP());
             SanPham entity = em.find(SanPham.class, id, mode == 0 ? LockModeType.NONE : LockModeType.PESSIMISTIC_WRITE);
             if (mode == 0) {
                 if (entity != null) {
@@ -150,7 +157,10 @@ public final class QuanLySanPhamService {
             if (r == null) {
                 throw invalid("Thiếu biến thể.");
             }
-            String id = code(r.getMaBienThe()), productId = code(r.getMaSP());
+            String id = create
+                    ? SequentialCodeGenerator.next(em, BienThe.class, "maBienThe", "BT", 4)
+                    : code(r.getMaBienThe());
+            String productId = code(r.getMaSP());
             String color = text(r.getMauSac(), 50), size = text(r.getKichCo(), 20);
             if (r.getSoLuongTon() < 0) {
                 throw invalid("Tồn kho không được âm.");

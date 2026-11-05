@@ -18,18 +18,23 @@ public final class SanPhamEditorPanel extends JPanel {
         super(new BorderLayout(0, 16));
         this.original = original;
         add(UiTheme.heading(original == null ? "Thêm sản phẩm" : "Cập nhật sản phẩm",
-                "Mã cố định. Giá được áp dụng cho lần thêm hàng mới."), BorderLayout.NORTH);
+                original == null ? "Mã sản phẩm được cấp tự động khi lưu. Giá áp dụng cho lần thêm hàng mới."
+                        : "Mã cố định. Giá được áp dụng cho lần thêm hàng mới."), BorderLayout.NORTH);
         JPanel fields = UiTheme.card(new GridLayout(0, 2, 14, 16));
         categories.forEach(c -> category.addItem(new Choice(c.getMaLoai(), c.getTenLoai())));
         brands.forEach(b -> brand.addItem(new Choice(b.getMaThuongHieu(), b.getTenThuongHieu())));
-        fields.add(UiTheme.field("Mã sản phẩm", id));
+        fields.add(UiTheme.field(original == null ? "Mã sản phẩm (tự cấp khi lưu)" : "Mã sản phẩm", id));
         fields.add(UiTheme.field("Tên sản phẩm", name));
         fields.add(UiTheme.field("Loại sản phẩm", category));
         fields.add(UiTheme.field("Thương hiệu", brand));
         fields.add(UiTheme.field("Giá bán (VD: 149000 hoặc 149000.50)", price));
         fields.add(active);
         add(fields, BorderLayout.CENTER);
-        if (original != null) {
+        if (original == null) {
+            id.setEditable(false);
+            id.putClientProperty("JTextField.placeholderText", "Tự động cấp khi lưu");
+            id.setToolTipText("Máy chủ cấp mã sản phẩm tăng dần khi lưu.");
+        } else {
             id.setText(original.getMaSP());
             id.setEditable(false);
             name.setText(original.getTenSP());

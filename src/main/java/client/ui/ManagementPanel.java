@@ -179,7 +179,10 @@ public class ManagementPanel extends JPanel {
                     if (create) {
                         page = 0;
                     }
-                    JOptionPane.showMessageDialog(this, "Đã lưu thông tin.");
+                    String code = value == null ? "" : value.path(idField()).asText("");
+                    JOptionPane.showMessageDialog(this, create && !code.isEmpty()
+                            ? "Đã thêm bản ghi với mã " + code + "."
+                            : "Đã lưu thông tin.");
                     reload();
                 });
                 return;
@@ -249,6 +252,19 @@ public class ManagementPanel extends JPanel {
 
     private static String text(JsonNode d, String key) {
         return d.path(key).isNull() ? "" : d.path(key).asText("");
+    }
+
+    private String idField() {
+        if (kind == Kind.CUSTOMER) {
+            return "maKH";
+        }
+        if (kind == Kind.EMPLOYEE) {
+            return "maNV";
+        }
+        if (kind == Kind.PROMOTION) {
+            return "maKM";
+        }
+        return "maThue";
     }
 
     private static String percent(JsonNode d, String key) {

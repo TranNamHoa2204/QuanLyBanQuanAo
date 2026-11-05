@@ -36,7 +36,9 @@ public final class KhachHangService {
         return jpa.transaction(em -> {
             auth.requireAuthenticated(em, token);
             KhachHangDTO v = ManagementSupport.value(r, KhachHangDTO.class);
-            String id = ManagementSupport.code(v.getMaKH());
+            String id = mode == 0
+                    ? SequentialCodeGenerator.next(em, KhachHang.class, "maKH", "KH", 3)
+                    : ManagementSupport.code(v.getMaKH());
             KhachHang e = em.find(KhachHang.class, id, mode == 0 ? LockModeType.NONE : LockModeType.PESSIMISTIC_WRITE);
             if (mode == 0) {
                 if (e != null) {

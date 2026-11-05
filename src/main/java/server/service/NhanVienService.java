@@ -44,7 +44,9 @@ public final class NhanVienService {
             Change change = jpa.transaction(em -> {
                 TaiKhoan caller = ManagementSupport.manager(auth, em, token);
                 NhanVienAccountDTO v = ManagementSupport.value(r, NhanVienAccountDTO.class);
-                String id = ManagementSupport.code(v.getMaNV());
+                String id = mode == 0
+                        ? SequentialCodeGenerator.next(em, NhanVien.class, "maNV", "NV", 3)
+                        : ManagementSupport.code(v.getMaNV());
                 TaiKhoan a = account(em, id, mode != 0);
                 NhanVien e = em.find(NhanVien.class, id,
                         mode == 0 ? LockModeType.NONE : LockModeType.PESSIMISTIC_WRITE);

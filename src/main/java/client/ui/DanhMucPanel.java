@@ -80,9 +80,15 @@ public final class DanhMucPanel extends JPanel {
         panel.setBorder(BorderFactory.createEmptyBorder(24, 24, 24, 24));
         JTextField id = new JTextField(code == null ? "" : code, 20),
                 name = new JTextField(before == null ? "" : before, 24);
-        id.setEditable(code == null);
+        if (code == null) {
+            id.setEditable(false);
+            id.putClientProperty("JTextField.placeholderText", "Tự động cấp khi lưu");
+            id.setToolTipText("Máy chủ cấp mã tăng dần khi lưu.");
+        } else {
+            id.setEditable(code == null);
+        }
         JPanel fields = UiTheme.card(new GridLayout(0, 1, 0, 16));
-        fields.add(UiTheme.field("Mã (tối đa 20 ký tự)", id));
+        fields.add(UiTheme.field(code == null ? "Mã (tự cấp khi lưu)" : "Mã (tối đa 20 ký tự)", id));
         fields.add(UiTheme.field("Tên", name));
         panel.add(fields, BorderLayout.CENTER);
         JButton save = new JButton("Lưu");
@@ -95,6 +101,10 @@ public final class DanhMucPanel extends JPanel {
             r.setExpectedName(before);
             UiTask.run(dialog, save, () -> controller.catalog(r, brand, code == null), out -> {
                 dialog.dispose();
+                if (code == null) {
+                    JOptionPane.showMessageDialog(this, "Đã thêm " + (brand ? "thương hiệu " : "loại sản phẩm ")
+                            + out + ".");
+                }
                 initialize();
             });
         });

@@ -126,6 +126,9 @@ public final class QuanLySanPhamPanel extends JPanel {
             }
             UiTask.run(dialog, save, () -> controller.product(r, original == null ? 0 : 1), out -> {
                 dialog.dispose();
+                if (original == null) {
+                    JOptionPane.showMessageDialog(this, "Đã thêm sản phẩm " + out + ".");
+                }
                 list.reload();
             });
         });

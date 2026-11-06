@@ -58,6 +58,8 @@ import client.api.NgoaiLeGoiDichVu;
 import client.controllers.DieuKhienBanHang;
 import client.gui.components.ChuDeGiaoDien;
 import client.gui.components.TienIchBangSanPham;
+import client.gui.inchungtu.BanInChungTu;
+import client.gui.inchungtu.HopThoaiInChungTu;
 import client.utils.TaiAnh;
 import common.dto.danhmuc.DuLieuThue;
 import common.dto.hoadon.DuLieuChiTietHoaDon;
@@ -112,11 +114,11 @@ public final class KhungBanHang extends JPanel implements Scrollable {
             return false;
         }
     };
-    private final JTable table = ChuDeGiaoDien.tableWithHorizontalScroll(model, 90, 150, 70, 44, 42, 86, 94);
+    private final JTable table = ChuDeGiaoDien.tableWithHorizontalScroll(model, 88, 130, 64, 42, 38, 88, 95);
     private final DefaultTableModel catalogModel = TienIchBangSanPham.model(
             new String[] { "Mã SP", "Sản phẩm", "Đơn giá", "Tồn" },
             new Class<?>[] { String.class, String.class, BigDecimal.class, Long.class });
-    private final JTable catalog = ChuDeGiaoDien.tableWithHorizontalScroll(catalogModel, 80, 205, 94, 66);
+    private final JTable catalog = ChuDeGiaoDien.tableWithHorizontalScroll(catalogModel, 72, 178, 87, 63);
     private final JLabel catalogStatus = ChuDeGiaoDien.muted("Danh mục sản phẩm"),
             cartTitle = ChuDeGiaoDien.title("Giỏ hàng", 15);
     private final JLabel total = new JLabel("—"),
@@ -129,7 +131,8 @@ public final class KhungBanHang extends JPanel implements Scrollable {
             change = new JButton("Đổi số lượng"), remove = new JButton("Xóa khỏi giỏ"),
             pay = new JButton("Thanh toán (F9)"), cancel = new JButton("Hủy hóa đơn"),
             taxes = new JButton("Thử lại thuế"), options = new JButton("Tùy chọn đơn"),
-            history = new JButton("Hóa đơn đã lưu"), chooseCustomer = new JButton("Tra cứu"),
+            history = new JButton("Hóa đơn đã lưu"), printInvoice = new JButton("In hóa đơn…"),
+            chooseCustomer = new JButton("Tra cứu"),
             createCustomer = new JButton("+ Khách mới"), clearCustomer = new JButton("Khách lẻ"),
             search = new JButton("Tìm"),
             previous = new JButton("‹"), next = new JButton("›");
@@ -267,6 +270,7 @@ public final class KhungBanHang extends JPanel implements Scrollable {
             }
         });
         history.addActionListener(e -> openInvoiceHistory());
+        printInvoice.addActionListener(e -> HopThoaiInChungTu.open(this, BanInChungTu.hoaDon(current)));
         table.getSelectionModel().addListSelectionListener(e -> controls());
         TienIchBangSanPham.onOpenRow(table, () -> change.doClick());
         method.addActionListener(e -> updateCheckout());
@@ -300,7 +304,6 @@ public final class KhungBanHang extends JPanel implements Scrollable {
 
         TienIchBangSanPham.configure(catalog);
         catalog.setAutoCreateRowSorter(false);
-        catalog.setRowHeight(36);
         catalog.setDefaultRenderer(Long.class, new javax.swing.table.DefaultTableCellRenderer() {
             private static final long serialVersionUID = 1L;
 
@@ -351,7 +354,7 @@ public final class KhungBanHang extends JPanel implements Scrollable {
         JPanel heading = new JPanel(new BorderLayout());
         heading.setOpaque(false);
         heading.add(ChuDeGiaoDien.title("Đơn hàng", 22), BorderLayout.WEST);
-        heading.add(row(history, fresh), BorderLayout.EAST);
+        heading.add(row(printInvoice, history, fresh), BorderLayout.EAST);
 
         JPanel customerLookup = new JPanel(new BorderLayout(6, 0));
         customerLookup.setOpaque(false);
@@ -375,7 +378,6 @@ public final class KhungBanHang extends JPanel implements Scrollable {
 
         table.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
         ChuDeGiaoDien.table(table);
-        table.setRowHeight(34);
         table.getTableHeader().setReorderingAllowed(false);
         table.setDefaultRenderer(Object.class, new javax.swing.table.DefaultTableCellRenderer() {
             private static final long serialVersionUID = 1L;
@@ -929,7 +931,7 @@ public final class KhungBanHang extends JPanel implements Scrollable {
         String progress;
         switch (h.getTrangThai()) {
         case DA_THANH_TOAN:
-            progress = "Đã thanh toán.";
+            progress = "Đã thanh toán. Bấm In hóa đơn để xem trước bản in.";
             break;
         case DA_HUY:
             progress = "Đã hủy.";
@@ -1061,6 +1063,9 @@ public final class KhungBanHang extends JPanel implements Scrollable {
         for (JButton button : new JButton[] { fresh, history }) {
             button.setEnabled(!busy && !needsCheck);
         }
+        boolean paid = current != null && current.getHoaDon().getTrangThai() == TrangThaiHoaDon.DA_THANH_TOAN;
+        printInvoice.setVisible(paid);
+        printInvoice.setEnabled(paid && !busy && !needsCheck);
         search.setEnabled(!busy);
         catalog.setEnabled(!busy);
         table.setEnabled(!busy);

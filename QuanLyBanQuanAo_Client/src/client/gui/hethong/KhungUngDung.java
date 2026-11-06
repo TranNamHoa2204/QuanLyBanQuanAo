@@ -3,6 +3,9 @@ package client.gui.hethong;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Font;
+import java.awt.GradientPaint;
+import java.awt.Graphics;
+import java.awt.Graphics2D;
 import java.awt.GridLayout;
 import java.awt.event.KeyEvent;
 import java.time.LocalDate;
@@ -90,11 +93,24 @@ public final class KhungUngDung extends JPanel {
 
         JPanel top = new JPanel(new BorderLayout());
         top.add(menuBar, BorderLayout.NORTH);
-        JPanel identityBar = new JPanel(new BorderLayout(20, 0));
-        identityBar.setBackground(Color.WHITE);
+        JPanel identityBar = new JPanel(new BorderLayout(20, 0)) {
+            private static final long serialVersionUID = 1L;
+
+            @Override
+            protected void paintComponent(Graphics graphics) {
+                Graphics2D g = (Graphics2D) graphics.create();
+                try {
+                    g.setPaint(new GradientPaint(0, 0, new Color(0xF8FAFF), 0, getHeight(), ChuDeGiaoDien.SOFT));
+                    g.fillRect(0, 0, getWidth(), getHeight());
+                } finally {
+                    g.dispose();
+                }
+            }
+        };
+        pageTitle.setForeground(ChuDeGiaoDien.NAV);
         identityBar.setBorder(BorderFactory.createCompoundBorder(
                 BorderFactory.createMatteBorder(0, 0, 1, 0, ChuDeGiaoDien.LINE),
-                BorderFactory.createEmptyBorder(10, 16, 10, 16)));
+                BorderFactory.createEmptyBorder(7, 12, 7, 12)));
         JPanel identity = new JPanel(new BorderLayout(12, 0));
         identity.setOpaque(false);
         identity.add(new JLabel(new BieuTuongCuaHang(36, ChuDeGiaoDien.PRIMARY)), BorderLayout.WEST);
@@ -141,10 +157,10 @@ public final class KhungUngDung extends JPanel {
             Runnable employees, Runnable promotions, Runnable statistics, Runnable customers,
             Runnable suppliers, Runnable receipts, Consumer<KhungQuanLySanPham.Section> catalogSection,
             Runnable invoices) {
-        menuBar.setBackground(Color.WHITE);
+        menuBar.setBackground(ChuDeGiaoDien.BACKGROUND);
         menuBar.setBorder(BorderFactory.createCompoundBorder(
                 BorderFactory.createMatteBorder(0, 0, 1, 0, ChuDeGiaoDien.LINE),
-                BorderFactory.createEmptyBorder(3, 16, 3, 16)));
+                BorderFactory.createEmptyBorder(0, 6, 0, 6)));
         JMenu system = menu("Hệ thống", KeyEvent.VK_H);
         item(system, "Trang chủ", this::showHome,
                 KeyStroke.getKeyStroke(KeyEvent.VK_HOME, KeyEvent.CTRL_DOWN_MASK));

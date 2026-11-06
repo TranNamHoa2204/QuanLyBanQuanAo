@@ -3,6 +3,10 @@
 Ứng dụng desktop Java Swing + FlatLaf, trao đổi dữ liệu qua TCP JSON.
 Server dùng JPA/Hibernate và SQL Server. Client làm việc qua DTO và API.
 
+Client dùng tông Windows cổ điển trên thanh menu, cửa sổ và các bảng. Có thể mở bản xem
+trước A4 từ **In hóa đơn…** ở đơn đã thanh toán hoặc **In phiếu nhập…** ở phiếu đã xác nhận.
+Để lưu PDF trên Windows, chọn **Microsoft Print to PDF** trong hộp thoại in.
+
 ## Mở workspace Eclipse
 
 1. Chọn `C:\Users\KHOA\Desktop\QuanLyBanQuanAo` làm workspace.

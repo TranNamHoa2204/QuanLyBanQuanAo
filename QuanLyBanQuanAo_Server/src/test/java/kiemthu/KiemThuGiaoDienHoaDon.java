@@ -44,6 +44,7 @@ public class KiemThuGiaoDienHoaDon {
                 assertNull(button(panel, "Lập hóa đơn"));
                 assertTrue(button(panel, "Đơn mới").isVisible());
                 assertFalse(button(panel, "+ Thêm vào giỏ").isEnabled());
+                assertFalse(button(panel, "In hóa đơn…").isVisible());
                 DuLieuDayDuHoaDon d = new DuLieuDayDuHoaDon();
                 DuLieuHoaDon h = new DuLieuHoaDon();
                 d.setHoaDon(h);
@@ -95,6 +96,8 @@ public class KiemThuGiaoDienHoaDon {
                 ImageIO.write(image, "png", new File(dir, "invoice-preview.png"));
                 h.setTrangThai(TrangThaiHoaDon.DA_THANH_TOAN);
                 panel.showInvoice(d);
+                assertTrue(button(panel, "In hóa đơn…").isEnabled());
+                assertTrue(button(panel, "In hóa đơn…").isVisible());
                 assertFalse(button(panel, "Thanh toán (F9)").isEnabled());
                 assertFalse(button(panel, "Xóa khỏi giỏ").isEnabled());
                 assertFalse(button(panel, "Tra cứu").isEnabled());

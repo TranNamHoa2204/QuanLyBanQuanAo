@@ -42,6 +42,8 @@ import client.api.NgoaiLeGoiDichVu;
 import client.controllers.DieuKhienPhieuNhap;
 import client.gui.components.ChuDeGiaoDien;
 import client.gui.components.TienIchBangSanPham;
+import client.gui.inchungtu.BanInChungTu;
+import client.gui.inchungtu.HopThoaiInChungTu;
 import common.dto.nhacungcap.DuLieuNhaCungCap;
 import common.dto.nhacungcap.YeuCauTraCuuNhaCungCap;
 import common.dto.phieunhap.DuLieuChiTietPhieuNhap;
@@ -69,7 +71,8 @@ public final class ManHinhPhieuNhap extends JPanel {
             previous = new JButton("Trang trước"), next = new JButton("Trang sau"),
             addLine = new JButton("Thêm hàng"), updateLine = new JButton("Sửa số lượng / giá nhập"),
             removeLine = new JButton("Xóa khỏi phiếu"), confirm = new JButton("Xác nhận nhập kho"),
-            cancel = new JButton("Hủy phiếu"), retry = new JButton("Gửi lại thao tác");
+            cancel = new JButton("Hủy phiếu"), retry = new JButton("Gửi lại thao tác"),
+            printReceipt = new JButton("In phiếu nhập…");
     private final JLabel summary = ChuDeGiaoDien.muted("Chọn hoặc tạo một phiếu nhập."),
             status = ChuDeGiaoDien.muted("Chọn phiếu để xem chi tiết hoặc lập phiếu mới.");
     private final DefaultTableModel receiptModel = TienIchBangSanPham.model(
@@ -147,6 +150,7 @@ public final class ManHinhPhieuNhap extends JPanel {
         actions.add(confirm);
         actions.add(cancel);
         actions.add(retry);
+        actions.add(printReceipt);
         ChuDeGiaoDien.primary(confirm);
         ChuDeGiaoDien.danger(cancel);
         detailPanel.add(actions, BorderLayout.SOUTH);
@@ -183,6 +187,7 @@ public final class ManHinhPhieuNhap extends JPanel {
         confirm.addActionListener(e -> confirmDraft());
         cancel.addActionListener(e -> cancelDraft());
         retry.addActionListener(e -> retryPending());
+        printReceipt.addActionListener(e -> HopThoaiInChungTu.open(this, BanInChungTu.phieuNhap(current)));
         receiptTable.getSelectionModel().addListSelectionListener(e -> {
             if (!e.getValueIsAdjusting() && !busy && !replacingReceipts) {
                 loadSelectedReceipt();
@@ -568,6 +573,8 @@ public final class ManHinhPhieuNhap extends JPanel {
         removeLine.setEnabled(!busy && !pending && draft && selected);
         confirm.setEnabled(!busy && !pending && draft && current != null && !current.getChiTiet().isEmpty());
         cancel.setEnabled(!busy && !pending && draft);
+        printReceipt.setEnabled(!busy && !pending && current != null
+                && current.getPhieuNhap().getTrangThai() == TrangThaiPhieuNhap.DA_XAC_NHAN);
         retry.setVisible(pending);
         retry.setEnabled(!busy && pending);
     }

@@ -5,37 +5,38 @@ import java.awt.Color;
 import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.Font;
-import java.awt.Graphics;
-import java.awt.Graphics2D;
 import java.awt.Insets;
 import java.awt.LayoutManager;
-import java.awt.RenderingHints;
 import java.awt.event.MouseEvent;
 import java.text.NumberFormat;
 import java.util.Locale;
 
+import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JComponent;
+import javax.swing.JDialog;
+import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JViewport;
 import javax.swing.UIManager;
+import javax.swing.border.BevelBorder;
 import javax.swing.plaf.ColorUIResource;
 import javax.swing.table.TableModel;
 
+import com.formdev.flatlaf.FlatLaf;
 import com.formdev.flatlaf.FlatLightLaf;
 import com.formdev.flatlaf.ui.FlatLineBorder;
 
 /** Màu, khoảng cách và kiểu chữ dùng chung; không chứa nghiệp vụ hoặc I/O. */
 public final class ChuDeGiaoDien {
-    public static final Color BACKGROUND = new Color(0xEFF4FA), SURFACE = Color.WHITE,
-            INK = new Color(0x142542), MUTED = new Color(0x53647B), PRIMARY = new Color(0x145FC4),
-            NAV = new Color(0x132C52), LINE = new Color(0xDCE5F1), SOFT = new Color(0xE8F1FF),
-            SECONDARY = new Color(0x067B86), TABLE_HEADER = new Color(0xEFF4FC);
-    private static final int CARD_ARC = 16;
-    private static final Color TABLE_GRID = new Color(0xBCCBDB), TABLE_BORDER = new Color(0x859CB6);
+    public static final Color BACKGROUND = new Color(0xECE9D8), SURFACE = Color.WHITE,
+            INK = new Color(0x192638), MUTED = new Color(0x475A70), PRIMARY = new Color(0x245FAD),
+            NAV = new Color(0x174799), LINE = new Color(0x9C9A88), SOFT = new Color(0xDCE6F7),
+            SECONDARY = new Color(0x067B86), TABLE_HEADER = new Color(0xECE9D8);
+    private static final Color TABLE_GRID = new Color(0xC1CEDB), TABLE_BORDER = new Color(0x7F9DB9);
 
     private ChuDeGiaoDien() {
     }
@@ -44,19 +45,32 @@ public final class ChuDeGiaoDien {
         if (!FlatLightLaf.setup()) {
             throw new IllegalStateException("Không khởi tạo được FlatLaf.");
         }
-        UIManager.put("defaultFont", new Font("Segoe UI", Font.PLAIN, 14));
+        FlatLaf.setUseNativeWindowDecorations(false);
+        JFrame.setDefaultLookAndFeelDecorated(true);
+        JDialog.setDefaultLookAndFeelDecorated(true);
+        UIManager.put("TitlePane.background", NAV);
+        UIManager.put("TitlePane.foreground", Color.WHITE);
+        UIManager.put("TitlePane.inactiveBackground", new Color(0x526D97));
+        UIManager.put("TitlePane.inactiveForeground", Color.WHITE);
+        UIManager.put("TitlePane.buttonHoverBackground", PRIMARY);
+        UIManager.put("TitlePane.menuBarEmbedded", false);
+        UIManager.put("defaultFont", new Font("Tahoma", Font.PLAIN, 13));
         UIManager.put("Panel.background", BACKGROUND);
         UIManager.put("Label.foreground", INK);
         UIManager.put("Component.borderColor", LINE);
         UIManager.put("Component.focusColor", PRIMARY);
         UIManager.put("Component.accentColor", PRIMARY);
         UIManager.put("Component.focusWidth", 1);
-        UIManager.put("Component.arc", 12);
-        UIManager.put("Button.arc", 12);
-        UIManager.put("TextComponent.arc", 12);
-        UIManager.put("Component.minimumHeight", 36);
-        UIManager.put("Button.minimumHeight", 34);
-        UIManager.put("Button.background", new Color(0xF5F8FD));
+        UIManager.put("Component.arc", 0);
+        UIManager.put("Button.arc", 0);
+        UIManager.put("TextComponent.arc", 0);
+        UIManager.put("Component.minimumHeight", 31);
+        UIManager.put("Button.minimumHeight", 31);
+        UIManager.put("Button.background", BACKGROUND);
+        UIManager.put("Button.startBackground", new Color(0xFFFEF9));
+        UIManager.put("Button.endBackground", new Color(0xDDD8C1));
+        UIManager.put("Button.startBorderColor", new Color(0xB2B19F));
+        UIManager.put("Button.endBorderColor", new Color(0x7C7B6D));
         UIManager.put("Button.foreground", INK);
         UIManager.put("Button.borderColor", LINE);
         UIManager.put("Button.hoverBorderColor", PRIMARY);
@@ -66,20 +80,24 @@ public final class ChuDeGiaoDien {
         UIManager.put("PasswordField.foreground", INK);
         UIManager.put("TextArea.foreground", INK);
         UIManager.put("ComboBox.foreground", INK);
-        UIManager.put("PopupMenu.background", SURFACE);
+        UIManager.put("PopupMenu.background", BACKGROUND);
         UIManager.put("OptionPane.background", BACKGROUND);
         UIManager.put("OptionPane.messageForeground", INK);
-        UIManager.put("MenuBar.background", SURFACE);
+        UIManager.put("MenuBar.background", BACKGROUND);
+        UIManager.put("Menu.background", BACKGROUND);
+        UIManager.put("MenuItem.background", BACKGROUND);
         UIManager.put("Menu.foreground", INK);
         UIManager.put("MenuItem.foreground", INK);
-        UIManager.put("MenuItem.selectionBackground", SOFT);
-        UIManager.put("MenuItem.selectionForeground", NAV);
-        UIManager.put("MenuItem.selectionArc", 8);
+        UIManager.put("Menu.selectionBackground", PRIMARY);
+        UIManager.put("Menu.selectionForeground", Color.WHITE);
+        UIManager.put("MenuItem.selectionBackground", PRIMARY);
+        UIManager.put("MenuItem.selectionForeground", Color.WHITE);
+        UIManager.put("MenuItem.selectionArc", 0);
         UIManager.put("TabbedPane.background", BACKGROUND);
         UIManager.put("TabbedPane.foreground", INK);
         UIManager.put("TabbedPane.underlineColor", PRIMARY);
         UIManager.put("TabbedPane.tabHeight", 36);
-        UIManager.put("Table.rowHeight", 38);
+        UIManager.put("Table.rowHeight", 29);
         UIManager.put("Table.background", new ColorUIResource(SURFACE));
         UIManager.put("Table.foreground", INK);
         UIManager.put("Table.alternateRowColor", new Color(0xEFF5FB));
@@ -93,8 +111,10 @@ public final class ChuDeGiaoDien {
         UIManager.put("TableHeader.background", TABLE_HEADER);
         UIManager.put("TableHeader.foreground", MUTED);
         UIManager.put("TableHeader.bottomSeparatorColor", TABLE_GRID);
-        UIManager.put("TableHeader.height", 42);
-        UIManager.put("ScrollBar.width", 10);
+        UIManager.put("TableHeader.height", 31);
+        UIManager.put("ScrollBar.width", 16);
+        UIManager.put("ScrollBar.showButtons", true);
+        UIManager.put("ScrollBar.thumbArc", 0);
     }
 
     public static JLabel title(String text, float size) {
@@ -114,25 +134,12 @@ public final class ChuDeGiaoDien {
     }
 
     public static JPanel card(LayoutManager layout, int padding) {
-        JPanel p = new JPanel(layout) {
-            private static final long serialVersionUID = 1L;
-
-            @Override
-            protected void paintComponent(Graphics graphics) {
-                super.paintComponent(graphics);
-                Graphics2D g = (Graphics2D) graphics.create();
-                try {
-                    g.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
-                    g.setColor(getBackground());
-                    g.fillRoundRect(0, 0, getWidth(), getHeight(), CARD_ARC, CARD_ARC);
-                } finally {
-                    g.dispose();
-                }
-            }
-        };
-        p.setOpaque(false);
+        JPanel p = new JPanel(layout);
         p.setBackground(SURFACE);
-        p.setBorder(new FlatLineBorder(new Insets(padding, padding, padding, padding), LINE, 1, CARD_ARC));
+        p.setBorder(BorderFactory.createCompoundBorder(
+                BorderFactory.createBevelBorder(BevelBorder.LOWERED,
+                        Color.WHITE, new Color(0xF5F3E8), LINE, TABLE_BORDER),
+                BorderFactory.createEmptyBorder(padding, padding, padding, padding)));
         return p;
     }
 
@@ -205,13 +212,13 @@ public final class ChuDeGiaoDien {
     }
 
     public static void table(JTable table) {
-        table.setRowHeight(38);
+        table.setRowHeight(29);
         table.setShowVerticalLines(true);
         table.setShowHorizontalLines(true);
         table.setGridColor(TABLE_GRID);
         table.setIntercellSpacing(new Dimension(1, 1));
         table.getTableHeader().setFont(table.getFont().deriveFont(Font.BOLD, 12f));
-        table.getTableHeader().setPreferredSize(new Dimension(0, 42));
+        table.getTableHeader().setPreferredSize(new Dimension(0, 31));
         table.setFillsViewportHeight(true);
     }
 

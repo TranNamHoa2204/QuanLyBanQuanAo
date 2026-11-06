@@ -5,6 +5,9 @@ import java.awt.Color;
 import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.Font;
+import java.awt.GradientPaint;
+import java.awt.Graphics;
+import java.awt.Graphics2D;
 import java.awt.Insets;
 import java.awt.LayoutManager;
 import java.awt.event.MouseEvent;
@@ -23,11 +26,14 @@ import javax.swing.JTable;
 import javax.swing.JViewport;
 import javax.swing.UIManager;
 import javax.swing.border.BevelBorder;
+import javax.swing.border.TitledBorder;
 import javax.swing.plaf.ColorUIResource;
+import javax.swing.plaf.FontUIResource;
 import javax.swing.table.TableModel;
 
 import com.formdev.flatlaf.FlatLaf;
 import com.formdev.flatlaf.FlatLightLaf;
+import com.formdev.flatlaf.ui.FlatEmptyBorder;
 import com.formdev.flatlaf.ui.FlatLineBorder;
 
 /** Màu, khoảng cách và kiểu chữ dùng chung; không chứa nghiệp vụ hoặc I/O. */
@@ -54,7 +60,14 @@ public final class ChuDeGiaoDien {
         UIManager.put("TitlePane.inactiveForeground", Color.WHITE);
         UIManager.put("TitlePane.buttonHoverBackground", PRIMARY);
         UIManager.put("TitlePane.menuBarEmbedded", false);
-        UIManager.put("defaultFont", new Font("Tahoma", Font.PLAIN, 13));
+        FontUIResource regular = new FontUIResource("Tahoma", Font.PLAIN, 12);
+        FontUIResource bold = new FontUIResource(regular.deriveFont(Font.BOLD));
+        UIManager.put("defaultFont", regular);
+        UIManager.put("Button.font", bold);
+        UIManager.put("Menu.font", regular);
+        UIManager.put("MenuItem.font", regular);
+        UIManager.put("Table.font", regular);
+        UIManager.put("TitlePane.font", bold);
         UIManager.put("Panel.background", BACKGROUND);
         UIManager.put("Label.foreground", INK);
         UIManager.put("Component.borderColor", LINE);
@@ -62,28 +75,29 @@ public final class ChuDeGiaoDien {
         UIManager.put("Component.accentColor", PRIMARY);
         UIManager.put("Component.focusWidth", 1);
         UIManager.put("Component.arc", 0);
-        UIManager.put("Button.arc", 0);
+        UIManager.put("ButtonUI", GiaoDienNutCoDien.class.getName());
         UIManager.put("TextComponent.arc", 0);
         UIManager.put("Component.minimumHeight", 31);
-        UIManager.put("Button.minimumHeight", 31);
         UIManager.put("Button.background", BACKGROUND);
-        UIManager.put("Button.startBackground", new Color(0xFFFEF9));
-        UIManager.put("Button.endBackground", new Color(0xDDD8C1));
-        UIManager.put("Button.startBorderColor", new Color(0xB2B19F));
-        UIManager.put("Button.endBorderColor", new Color(0x7C7B6D));
+        UIManager.put("Button.border", new FlatEmptyBorder(4, 10, 4, 10));
         UIManager.put("Button.foreground", INK);
-        UIManager.put("Button.borderColor", LINE);
-        UIManager.put("Button.hoverBorderColor", PRIMARY);
+        UIManager.put("Button.textShiftOffset", 1);
         UIManager.put("TextComponent.margin", new Insets(6, 10, 6, 10));
-        UIManager.put("Button.margin", new Insets(5, 12, 5, 12));
         UIManager.put("TextField.foreground", INK);
         UIManager.put("PasswordField.foreground", INK);
         UIManager.put("TextArea.foreground", INK);
         UIManager.put("ComboBox.foreground", INK);
+        UIManager.put("Component.arrowType", "triangle");
+        UIManager.put("ComboBox.buttonStyle", "button");
+        UIManager.put("ComboBox.buttonBackground", new Color(0xD8E7FB));
+        UIManager.put("ComboBox.buttonEditableBackground", new Color(0xD8E7FB));
+        UIManager.put("ComboBox.buttonArrowColor", NAV);
+        UIManager.put("ComboBox.buttonSeparatorColor", TABLE_BORDER);
         UIManager.put("PopupMenu.background", BACKGROUND);
         UIManager.put("OptionPane.background", BACKGROUND);
         UIManager.put("OptionPane.messageForeground", INK);
         UIManager.put("MenuBar.background", BACKGROUND);
+        UIManager.put("MenuBar.itemMargins", new Insets(2, 6, 2, 6));
         UIManager.put("Menu.background", BACKGROUND);
         UIManager.put("MenuItem.background", BACKGROUND);
         UIManager.put("Menu.foreground", INK);
@@ -96,8 +110,11 @@ public final class ChuDeGiaoDien {
         UIManager.put("TabbedPane.background", BACKGROUND);
         UIManager.put("TabbedPane.foreground", INK);
         UIManager.put("TabbedPane.underlineColor", PRIMARY);
-        UIManager.put("TabbedPane.tabHeight", 36);
-        UIManager.put("Table.rowHeight", 29);
+        UIManager.put("TabbedPane.tabType", "card");
+        UIManager.put("TabbedPane.cardTabArc", 4);
+        UIManager.put("TabbedPane.showTabSeparators", true);
+        UIManager.put("TabbedPane.tabHeight", 29);
+        UIManager.put("Table.rowHeight", 27);
         UIManager.put("Table.background", new ColorUIResource(SURFACE));
         UIManager.put("Table.foreground", INK);
         UIManager.put("Table.alternateRowColor", new Color(0xEFF5FB));
@@ -114,6 +131,10 @@ public final class ChuDeGiaoDien {
         UIManager.put("TableHeader.height", 31);
         UIManager.put("ScrollBar.width", 16);
         UIManager.put("ScrollBar.showButtons", true);
+        UIManager.put("ScrollBar.squareButtons", true);
+        UIManager.put("ScrollBar.buttonArrowColor", NAV);
+        UIManager.put("ScrollBar.thumb", new Color(0xAFCAE9));
+        UIManager.put("ScrollBar.thumbInsets", new Insets(1, 1, 1, 1));
         UIManager.put("ScrollBar.thumbArc", 0);
     }
 
@@ -127,6 +148,36 @@ public final class ChuDeGiaoDien {
         JLabel l = new JLabel(text);
         l.setForeground(MUTED);
         return l;
+    }
+
+    public static JLabel sectionBar(String text) {
+        JLabel label = new JLabel(text) {
+            private static final long serialVersionUID = 1L;
+
+            @Override
+            protected void paintComponent(Graphics graphics) {
+                Graphics2D g = (Graphics2D) graphics.create();
+                try {
+                    g.setPaint(new GradientPaint(0, 0, new Color(0x548DD7), 0, getHeight(), NAV));
+                    g.fillRect(0, 0, getWidth(), getHeight());
+                } finally {
+                    g.dispose();
+                }
+                super.paintComponent(graphics);
+            }
+        };
+        label.setForeground(Color.WHITE);
+        label.setFont(label.getFont().deriveFont(Font.BOLD, 14f));
+        label.setBorder(BorderFactory.createEmptyBorder(5, 9, 5, 9));
+        return label;
+    }
+
+    public static JPanel group(String title, LayoutManager layout) {
+        JPanel panel = new JPanel(layout);
+        TitledBorder border = BorderFactory.createTitledBorder(BorderFactory.createLineBorder(TABLE_BORDER), title);
+        border.setTitleColor(NAV);
+        panel.setBorder(BorderFactory.createCompoundBorder(border, BorderFactory.createEmptyBorder(6, 8, 8, 8)));
+        return panel;
     }
 
     public static JPanel card(LayoutManager layout) {
@@ -195,7 +246,7 @@ public final class ChuDeGiaoDien {
     public static JPanel heading(String title, String subtitle) {
         JPanel p = new JPanel(new BorderLayout(0, 4));
         p.setOpaque(false);
-        p.add(title(title, 24), BorderLayout.NORTH);
+        p.add(title(title, 16), BorderLayout.NORTH);
         p.add(muted(subtitle), BorderLayout.CENTER);
         return p;
     }
@@ -208,11 +259,11 @@ public final class ChuDeGiaoDien {
 
     public static void danger(JButton button) {
         button.setForeground(new Color(0xB54141));
-        button.setBackground(new Color(0xFFF2F0));
+        button.setBackground(BACKGROUND);
     }
 
     public static void table(JTable table) {
-        table.setRowHeight(29);
+        table.setRowHeight(27);
         table.setShowVerticalLines(true);
         table.setShowHorizontalLines(true);
         table.setGridColor(TABLE_GRID);

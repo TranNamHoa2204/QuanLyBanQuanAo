@@ -1,6 +1,7 @@
 package client.gui.hethong;
 
 import java.util.Arrays;
+import java.awt.event.WindowEvent;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -28,6 +29,7 @@ public final class ManHinhDangNhap extends JFrame {
         setResizable(false);
         setLocationRelativeTo(null);
         getRootPane().setDefaultButton(login);
+        panel.exit.addActionListener(e -> dispatchEvent(new WindowEvent(this, WindowEvent.WINDOW_CLOSING)));
         SwingUtilities.invokeLater(username::requestFocusInWindow);
         DieuKhienDangNhap controller = new DieuKhienDangNhap(api);
         login.addActionListener(e -> {

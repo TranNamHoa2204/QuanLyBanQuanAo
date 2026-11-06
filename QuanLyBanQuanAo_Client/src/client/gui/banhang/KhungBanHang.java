@@ -171,7 +171,7 @@ public final class KhungBanHang extends JPanel implements Scrollable {
         ChuDeGiaoDien.danger(remove);
         pay.setBackground(new Color(0xFFD34E));
         pay.setForeground(ChuDeGiaoDien.INK);
-        pay.setFont(pay.getFont().deriveFont(Font.BOLD, 15f));
+        pay.setFont(pay.getFont().deriveFont(Font.BOLD, 13f));
         pay.setToolTipText("Kiểm tra và xác nhận thu tiền (F9)");
         increase.getAccessibleContext().setAccessibleName("Tăng số lượng");
         increase.setToolTipText("Tăng số lượng dòng đang chọn");
@@ -300,7 +300,7 @@ public final class KhungBanHang extends JPanel implements Scrollable {
         filter.setOpaque(false);
         filter.add(catalogQuery, BorderLayout.CENTER);
         filter.add(search, BorderLayout.EAST);
-        card.add(stack(ChuDeGiaoDien.title("Sản phẩm", 22), filter), BorderLayout.NORTH);
+        card.add(stack(ChuDeGiaoDien.title("Sản phẩm", 16), filter), BorderLayout.NORTH);
 
         TienIchBangSanPham.configure(catalog);
         catalog.setAutoCreateRowSorter(false);
@@ -353,7 +353,7 @@ public final class KhungBanHang extends JPanel implements Scrollable {
         JPanel order = ChuDeGiaoDien.card(new BorderLayout(0, 8), 14);
         JPanel heading = new JPanel(new BorderLayout());
         heading.setOpaque(false);
-        heading.add(ChuDeGiaoDien.title("Đơn hàng", 22), BorderLayout.WEST);
+        heading.add(ChuDeGiaoDien.title("Đơn hàng", 16), BorderLayout.WEST);
         heading.add(row(printInvoice, history, fresh), BorderLayout.EAST);
 
         JPanel customerLookup = new JPanel(new BorderLayout(6, 0));

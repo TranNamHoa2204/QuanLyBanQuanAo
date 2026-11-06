@@ -3,9 +3,11 @@ package client.gui.hethong;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Font;
+import java.awt.FlowLayout;
 import java.awt.GradientPaint;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
+import java.awt.GridBagLayout;
 import java.awt.GridLayout;
 import java.awt.event.KeyEvent;
 import java.time.LocalDate;
@@ -38,8 +40,8 @@ import common.enums.VaiTro;
 public final class KhungUngDung extends JPanel {
     private static final long serialVersionUID = 1L;
     private final JPanel content = new JPanel(new BorderLayout());
-    private final JPanel home = new JPanel(new BorderLayout(0, 24));
-    private final JLabel pageTitle = ChuDeGiaoDien.title("Trang chủ", 19);
+    private final JPanel home = new JPanel(new BorderLayout(0, 8));
+    private final JLabel pageTitle = ChuDeGiaoDien.title("Trang chủ", 16);
     private final JLabel date = ChuDeGiaoDien.muted("");
     private final JMenuBar menuBar = new JMenuBar();
     private final JButton homeButton = new JButton("Trang chủ");
@@ -122,7 +124,7 @@ public final class KhungUngDung extends JPanel {
         identityBar.add(identity, BorderLayout.CENTER);
         JPanel account = new JPanel(new GridLayout(0, 1, 0, 3));
         account.setOpaque(false);
-        JLabel name = ChuDeGiaoDien.title(login.getHoTen(), 14);
+        JLabel name = ChuDeGiaoDien.title(login.getHoTen(), 12);
         name.setHorizontalAlignment(SwingConstants.RIGHT);
         JLabel role = ChuDeGiaoDien.muted(manager ? "Nhân viên quản lý" : "Nhân viên bán hàng");
         role.setHorizontalAlignment(SwingConstants.RIGHT);
@@ -132,7 +134,10 @@ public final class KhungUngDung extends JPanel {
         tools.setOpaque(false);
         homeButton.setToolTipText("Về trang chủ (Ctrl+Home)");
         homeButton.addActionListener(e -> showHome());
-        tools.add(homeButton, BorderLayout.WEST);
+        JPanel homeCommands = new JPanel(new GridBagLayout());
+        homeCommands.setOpaque(false);
+        homeCommands.add(homeButton);
+        tools.add(homeCommands, BorderLayout.WEST);
         tools.add(date, BorderLayout.CENTER);
         tools.add(account, BorderLayout.EAST);
         identityBar.add(tools, BorderLayout.EAST);
@@ -216,7 +221,9 @@ public final class KhungUngDung extends JPanel {
     private JMenu menu(String title, int mnemonic) {
         JMenu menu = new JMenu(title);
         menu.setMnemonic(mnemonic);
-        menu.setFont(menu.getFont().deriveFont(Font.BOLD));
+        if (menuBar.getMenuCount() == 0) {
+            menu.setFont(menu.getFont().deriveFont(Font.BOLD));
+        }
         menuBar.add(menu);
         return menu;
     }
@@ -233,73 +240,54 @@ public final class KhungUngDung extends JPanel {
 
     private void buildHome(KetQuaDangNhap login, boolean manager, Runnable products, Runnable sales,
             Runnable management, Runnable customers, Runnable receipts, Runnable statistics) {
-        home.setBorder(BorderFactory.createEmptyBorder(12, 24, 28, 24));
-        JPanel greeting = ChuDeGiaoDien.card(new BorderLayout(24, 0));
-        greeting.setBackground(ChuDeGiaoDien.SOFT);
-        greeting.add(
-                ChuDeGiaoDien.heading("Xin chào, " + login.getHoTen(),
-                        "Chọn chức năng trên thanh menu hoặc sử dụng các lối tắt bên dưới."),
-                BorderLayout.CENTER);
-        greeting.add(new JLabel(new BieuTuongCuaHang(66, ChuDeGiaoDien.PRIMARY)), BorderLayout.EAST);
-        home.add(greeting, BorderLayout.NORTH);
-        JPanel body = new JPanel(new BorderLayout(0, 16));
-        body.setOpaque(false);
-        body.add(ChuDeGiaoDien.title("Lối tắt công việc", 19), BorderLayout.NORTH);
-        JPanel tasks = new JPanel(new GridLayout(0, manager ? 3 : 2, 16, 16));
+        home.setBorder(BorderFactory.createEmptyBorder(8, 12, 10, 12));
+        JPanel workspace = new JPanel(new BorderLayout(0, 8));
+        workspace.setOpaque(false);
+        workspace.add(ChuDeGiaoDien.heading("Xin chào, " + login.getHoTen(),
+                "Chọn nghiệp vụ bên dưới hoặc mở chức năng từ thanh menu."), BorderLayout.NORTH);
+
+        JPanel shortcuts = new JPanel(new BorderLayout());
+        shortcuts.setBorder(BorderFactory.createLineBorder(ChuDeGiaoDien.LINE));
+        shortcuts.setBackground(ChuDeGiaoDien.SURFACE);
+        shortcuts.add(ChuDeGiaoDien.sectionBar("Nghiệp vụ thường dùng"), BorderLayout.NORTH);
+        JPanel tasks = new JPanel(new FlowLayout(FlowLayout.LEFT, 7, 8));
         tasks.setOpaque(false);
-        tasks.add(taskCard("01", "Bán hàng", "Lập hóa đơn, chọn khách hàng<br>và thu tiền tại quầy.",
-                "Mở quầy bán hàng", sales));
-        tasks.add(taskCard("02", "Tra cứu sản phẩm",
-                "Tìm sản phẩm, xem hình ảnh,<br>màu sắc, kích cỡ và tồn kho.", "Tìm sản phẩm", products));
+        tasks.add(task("Mở quầy bán hàng", "Lập hóa đơn và thu tiền tại quầy.", sales));
+        tasks.add(task("Tìm sản phẩm", "Xem sản phẩm, màu sắc, kích cỡ và tồn kho.", products));
         if (manager) {
             if (management != null) {
-                tasks.add(taskCard("03", "Danh mục sản phẩm",
-                        "Quản lý sản phẩm, loại hàng,<br>thương hiệu và biến thể.", "Mở danh mục",
-                        management));
+                tasks.add(task("Mở danh mục", "Quản lý sản phẩm, loại hàng, thương hiệu và biến thể.", management));
             }
             if (receipts != null) {
-                tasks.add(taskCard("04", "Nhập hàng",
-                        "Lập phiếu nhập từ nhà cung cấp<br>và xác nhận hàng vào kho.", "Mở phiếu nhập",
-                        receipts));
+                tasks.add(task("Mở phiếu nhập", "Lập phiếu nhập và xác nhận hàng vào kho.", receipts));
             }
             if (customers != null) {
-                tasks.add(taskCard("05", "Khách hàng",
-                        "Tra cứu và cập nhật hồ sơ<br>khách hàng của cửa hàng.", "Mở khách hàng", customers));
+                tasks.add(task("Mở khách hàng", "Tra cứu và cập nhật hồ sơ khách hàng.", customers));
             }
             if (statistics != null) {
-                tasks.add(taskCard("06", "Báo cáo doanh thu",
-                        "Xem kết quả bán hàng theo<br>thời gian hoặc sản phẩm.", "Xem thống kê", statistics));
+                tasks.add(task("Xem thống kê", "Xem doanh thu theo thời gian hoặc sản phẩm.", statistics));
             }
         }
-        body.add(tasks, BorderLayout.CENTER);
-        JLabel note = ChuDeGiaoDien.muted(
-                "Hóa đơn nháp được giữ khi chuyển màn hình. Tồn kho được cập nhật khi thanh toán hoặc xác nhận nhập hàng.");
-        note.setBorder(BorderFactory.createEmptyBorder(4, 0, 0, 0));
-        body.add(note, BorderLayout.SOUTH);
-        home.add(body, BorderLayout.CENTER);
+        shortcuts.add(tasks, BorderLayout.CENTER);
+        workspace.add(shortcuts, BorderLayout.CENTER);
+
+        JPanel notes = ChuDeGiaoDien.group("Thông tin làm việc", new GridLayout(0, 1, 0, 5));
+        notes.add(new JLabel("Hóa đơn nháp được giữ khi chuyển màn hình."));
+        notes.add(new JLabel("Tồn kho được cập nhật khi thanh toán hoặc xác nhận nhập hàng."));
+        workspace.add(notes, BorderLayout.SOUTH);
+        home.add(workspace, BorderLayout.NORTH);
     }
 
-    private static JPanel taskCard(String number, String title, String description, String action,
-            Runnable callback) {
-        JPanel card = ChuDeGiaoDien.card(new BorderLayout(0, 16));
-        JPanel heading = new JPanel(new BorderLayout(10, 0));
-        heading.setOpaque(false);
-        JLabel index = ChuDeGiaoDien.title(number, 14);
-        index.setForeground(ChuDeGiaoDien.PRIMARY);
-        heading.add(index, BorderLayout.WEST);
-        heading.add(ChuDeGiaoDien.title(title, 18), BorderLayout.CENTER);
-        card.add(heading, BorderLayout.NORTH);
-        card.add(ChuDeGiaoDien.muted("<html>" + description + "</html>"), BorderLayout.CENTER);
+    private static JButton task(String action, String description, Runnable callback) {
         JButton button = new JButton(action);
-        ChuDeGiaoDien.primary(button);
+        button.setToolTipText(description);
         button.setEnabled(callback != null);
         button.addActionListener(e -> {
             if (callback != null) {
                 callback.run();
             }
         });
-        card.add(button, BorderLayout.SOUTH);
-        return card;
+        return button;
     }
 
     public JMenuBar getMenuBar() {

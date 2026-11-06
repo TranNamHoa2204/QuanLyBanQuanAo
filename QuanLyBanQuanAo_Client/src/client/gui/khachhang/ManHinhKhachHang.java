@@ -22,6 +22,7 @@ import javax.swing.table.DefaultTableModel;
 
 import client.api.NgoaiLeGoiDichVu;
 import client.controllers.DieuKhienKhachHang;
+import client.gui.components.BieuTuongCoDien;
 import client.gui.components.ChuDeGiaoDien;
 import client.gui.components.TienIchBangSanPham;
 import common.dto.khachhang.DuLieuKhachHang;
@@ -37,7 +38,7 @@ public final class ManHinhKhachHang extends JPanel {
     private final JTextField keyword = new JTextField(18);
     private final JComboBox<String> activeFilter = new JComboBox<String>(
             new String[] { "Tất cả", "Đang hoạt động", "Ngừng hoạt động" });
-    private final JButton search = new JButton("Tìm khách hàng"), add = new JButton("Thêm khách hàng"),
+    private final JButton search = new JButton("Tìm khách hàng", BieuTuongCoDien.TIM_KIEM), add = new JButton("Thêm khách hàng", BieuTuongCoDien.THEM),
             edit = new JButton("Sửa thông tin"), toggle = new JButton("Ngừng hoạt động"), previous = new JButton("Trang trước"),
             next = new JButton("Trang sau");
     private final JLabel status = ChuDeGiaoDien.muted("Chưa tải danh sách khách hàng.");

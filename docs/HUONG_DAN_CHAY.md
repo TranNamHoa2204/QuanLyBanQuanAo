@@ -132,8 +132,8 @@ và đúng, rồi đăng xuất để kiểm tra thu hồi token.
 ManHinhChinh có Tra cứu sản phẩm, Bán hàng / Hóa đơn, Danh mục & sản phẩm và Lịch sử kho.
 Xem `BAN_HANG.md` để thử nháp, thêm/đổi/bỏ hàng, hủy nháp và thanh toán/trừ tồn;
 `LICH_SU_KHO.md` để thử truy vấn ledger và điều chỉnh tồn.
-Giao diện đã dùng Swing + FlatLaf: xem GIAO_DIEN_FLATLAF.md.
-FlatLaf được nạp từ `lib` của Client. Sau khi xuất lại JAR, nhấn F5 trên Client.
+Giao diện dùng Swing của JDK. Xem [giao diện cổ điển](GIAO_DIEN_SWING.md).
+Sau khi xuất lại JAR, nhấn F5 trên Client.
 I/O và phép chờ server chạy bằng SwingWorker, không chặn Event Dispatch Thread.
 
 Sidebar quản lý hiện có màn hình Nhân viên, Khuyến mãi và Thống kê với dữ liệu qua

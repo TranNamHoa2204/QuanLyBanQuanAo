@@ -24,6 +24,7 @@ import javax.swing.table.DefaultTableModel;
 
 import client.api.GoiDichVuLichSuKho;
 import client.api.NgoaiLeGoiDichVu;
+import client.gui.components.BieuTuongCoDien;
 import client.gui.components.ChuDeGiaoDien;
 import client.gui.components.TienIchBangSanPham;
 import common.dto.kho.DuLieuLichSuKho;
@@ -41,7 +42,7 @@ public final class KhungLichSuKho extends JPanel {
     private final JComboBox<Object> source = new JComboBox<Object>(
             new Object[] { "Tất cả", NguonBienDongKho.TON_MO_DAU, NguonBienDongKho.KHOI_TAO_BIEN_THE,
                     NguonBienDongKho.BAN_HANG, NguonBienDongKho.NHAP_HANG, NguonBienDongKho.DIEU_CHINH_TON });
-    private final JButton search = new JButton("Xem lịch sử"), previous = new JButton("Trang trước"),
+    private final JButton search = new JButton("Xem lịch sử", BieuTuongCoDien.TIM_KIEM), previous = new JButton("Trang trước"),
             next = new JButton("Trang sau");
     private final JLabel status = ChuDeGiaoDien.muted("Lịch sử tăng và giảm tồn kho.");
     private final DefaultTableModel model = TienIchBangSanPham.model(

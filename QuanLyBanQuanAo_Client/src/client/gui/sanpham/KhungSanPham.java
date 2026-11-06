@@ -32,6 +32,7 @@ import javax.swing.table.DefaultTableModel;
 
 import client.api.NgoaiLeGoiDichVu;
 import client.controllers.DieuKhienSanPham;
+import client.gui.components.BieuTuongCoDien;
 import client.gui.components.ChuDeGiaoDien;
 import client.gui.components.TienIchBangSanPham;
 import common.dto.danhmuc.DuLieuLoaiSanPham;
@@ -50,7 +51,7 @@ public final class KhungSanPham extends JPanel {
     private final JComboBox<Option> category = new JComboBox<>(), brand = new JComboBox<>();
     private final JCheckBox inactive = new JCheckBox("Gồm hàng/biến thể ngừng bán");
     private final JComboBox<Integer> pageSize = new JComboBox<>(new Integer[] { 10, 20, 50, 100 });
-    private final JButton search = new JButton("Tìm sản phẩm"), reset = new JButton("Xóa bộ lọc"),
+    private final JButton search = new JButton("Tìm sản phẩm", BieuTuongCoDien.TIM_KIEM), reset = new JButton("Xóa bộ lọc"),
             previous = new JButton("Trang trước"), next = new JButton("Trang sau"),
             detail = new JButton("Xem chi tiết");
     private final JLabel status = new JLabel("Chọn một sản phẩm để xem ảnh và chi tiết."),
@@ -106,9 +107,9 @@ public final class KhungSanPham extends JPanel {
         top.add(actions, BorderLayout.SOUTH);
         add(top, BorderLayout.NORTH);
         ChuDeGiaoDien.primary(search);
-        name.putClientProperty("JTextField.placeholderText", "Nhập tên sản phẩm...");
-        color.putClientProperty("JTextField.placeholderText", "Ví dụ: Đỏ");
-        size.putClientProperty("JTextField.placeholderText", "Ví dụ: M");
+        ChuDeGiaoDien.hint(name, "Nhập tên sản phẩm...");
+        ChuDeGiaoDien.hint(color, "Ví dụ: Đỏ");
+        ChuDeGiaoDien.hint(size, "Ví dụ: M");
         TienIchBangSanPham.configure(table);
         JScrollPane scroll = ChuDeGiaoDien.tableScroll(table);
         JPanel content = new JPanel(new BorderLayout(10, 0));

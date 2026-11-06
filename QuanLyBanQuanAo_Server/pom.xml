@@ -12,7 +12,6 @@
     <jackson.version>2.21.4</jackson.version>
     <mssql.jdbc.version>13.2.1.jre8</mssql.jdbc.version>
     <slf4j.version>2.0.20</slf4j.version>
-    <flatlaf.version>3.7</flatlaf.version>
   </properties>
   <dependencyManagement>
     <dependencies>
@@ -26,12 +25,6 @@
     </dependencies>
   </dependencyManagement>
   <dependencies>
-    <dependency>
-      <groupId>com.formdev</groupId>
-      <artifactId>flatlaf</artifactId>
-      <version>${flatlaf.version}</version>
-      <scope>test</scope>
-    </dependency>
     <dependency>
       <groupId>com.h2database</groupId>
       <artifactId>h2</artifactId>
@@ -144,7 +137,7 @@
             </goals>
             <configuration>
               <outputDirectory>${project.basedir}/../QuanLyBanQuanAo_Client/lib</outputDirectory>
-              <includeArtifactIds>flatlaf,jackson-core,jackson-databind,jackson-annotations,jackson-datatype-jsr310</includeArtifactIds>
+              <includeArtifactIds>jackson-core,jackson-databind,jackson-annotations,jackson-datatype-jsr310</includeArtifactIds>
               <includeScope>test</includeScope>
               <overWriteReleases>true</overWriteReleases>
             </configuration>

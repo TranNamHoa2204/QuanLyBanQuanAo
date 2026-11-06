@@ -75,6 +75,6 @@ kiemthu.KiemThuTichHopDanhMuc: 12 test qua TCP/JPA/H2, bao gồm thêm/sửa,
 trùng mã/tên/màu-size, validation, khóa tài khoản, kiểm tra mọi action ghi bằng vai trò bán hàng,
 xung đột khi hai client cùng sửa, điều chỉnh tồn đồng thời thanh toán và giữ giá chốt hóa đơn.
 
-kiemthu.KiemThuGiaoDienDanhMuc render các tab và editor với FlatLaf ở .tmp/catalog-management-ui,
+kiemthu.KiemThuGiaoDienDanhMuc render các tab và editor Swing ở .tmp/catalog-management-ui,
 kiểm tra bảng chỉ đọc và editor tạo DTO mới, không làm thay đổi ảnh chụp expected.
 Các test đăng nhập, tra cứu và hóa đơn trước đó cũng được chạy lại.

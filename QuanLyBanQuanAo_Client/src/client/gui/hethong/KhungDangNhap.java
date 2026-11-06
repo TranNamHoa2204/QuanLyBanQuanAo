@@ -15,6 +15,7 @@ import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
 import client.gui.components.BieuTuongCuaHang;
+import client.gui.components.BieuTuongCoDien;
 import client.gui.components.ChuDeGiaoDien;
 
 /** View có thể render headless; form bên ngoài nối hành động đăng nhập qua controller. */
@@ -22,8 +23,8 @@ public final class KhungDangNhap extends JPanel {
     private static final long serialVersionUID = 1L;
     final JTextField username = new JTextField(22);
     final JPasswordField password = new JPasswordField(22);
-    final JButton login = new JButton("Đăng nhập");
-    final JButton exit = new JButton("Thoát");
+    final JButton login = new JButton("Đăng nhập", BieuTuongCoDien.KHOA);
+    final JButton exit = new JButton("Thoát", BieuTuongCoDien.THOAT);
 
     public KhungDangNhap() {
         super(new BorderLayout(0, 8));
@@ -54,9 +55,8 @@ public final class KhungDangNhap extends JPanel {
         passwordLabel.setLabelFor(password);
         labels.add(userLabel);
         labels.add(passwordLabel);
-        username.putClientProperty("JTextField.placeholderText", "Tên đăng nhập");
-        password.putClientProperty("JTextField.placeholderText", "Mật khẩu");
-        password.putClientProperty("JPasswordField.showRevealButton", true);
+        ChuDeGiaoDien.hint(username, "Tên đăng nhập");
+        ChuDeGiaoDien.hint(password, "Mật khẩu");
         fields.add(username);
         fields.add(password);
         JPanel credentials = new JPanel(new BorderLayout(10, 0));
@@ -64,7 +64,11 @@ public final class KhungDangNhap extends JPanel {
         credentials.add(labels, BorderLayout.WEST);
         credentials.add(fields, BorderLayout.CENTER);
         form.add(credentials, BorderLayout.NORTH);
-        form.add(ChuDeGiaoDien.muted("Quên mật khẩu? Liên hệ nhân viên quản lý."), BorderLayout.CENTER);
+        JPanel help = new JPanel(new FlowLayout(FlowLayout.LEFT, 0, 3));
+        help.setOpaque(false);
+        help.add(ChuDeGiaoDien.showPasswords(password));
+        help.add(new JLabel("   Quên mật khẩu? Liên hệ quản lý."));
+        form.add(help, BorderLayout.CENTER);
         ChuDeGiaoDien.primary(login);
         login.setMnemonic(KeyEvent.VK_N);
         JPanel actions = new JPanel(new FlowLayout(FlowLayout.RIGHT, 6, 0));

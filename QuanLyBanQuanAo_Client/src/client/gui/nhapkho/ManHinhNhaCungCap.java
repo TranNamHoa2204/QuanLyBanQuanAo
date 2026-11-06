@@ -23,6 +23,7 @@ import javax.swing.table.DefaultTableModel;
 
 import client.api.NgoaiLeGoiDichVu;
 import client.controllers.DieuKhienNhaCungCap;
+import client.gui.components.BieuTuongCoDien;
 import client.gui.components.ChuDeGiaoDien;
 import client.gui.components.TienIchBangSanPham;
 import common.dto.nhacungcap.DuLieuNhaCungCap;
@@ -38,7 +39,7 @@ public final class ManHinhNhaCungCap extends JPanel {
     private final JTextField keyword = new JTextField(18);
     private final JComboBox<String> activeFilter = new JComboBox<String>(
             new String[] { "Tất cả", "Đang hoạt động", "Ngừng hoạt động" });
-    private final JButton search = new JButton("Tìm nhà cung cấp"), add = new JButton("Thêm nhà cung cấp"),
+    private final JButton search = new JButton("Tìm nhà cung cấp", BieuTuongCoDien.TIM_KIEM), add = new JButton("Thêm nhà cung cấp", BieuTuongCoDien.THEM),
             edit = new JButton("Sửa thông tin"), toggle = new JButton("Ngừng hợp tác"), previous = new JButton("Trang trước"),
             next = new JButton("Trang sau");
     private final JLabel status = ChuDeGiaoDien.muted("Chưa tải danh sách nhà cung cấp.");

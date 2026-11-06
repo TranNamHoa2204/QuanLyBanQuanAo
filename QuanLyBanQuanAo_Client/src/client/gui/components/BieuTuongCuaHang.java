@@ -6,6 +6,7 @@ import java.awt.Component;
 import java.awt.Graphics2D;
 import java.awt.Graphics;
 import java.awt.RenderingHints;
+import java.awt.image.BufferedImage;
 
 import javax.swing.Icon;
 
@@ -17,6 +18,19 @@ public final class BieuTuongCuaHang implements Icon {
     public BieuTuongCuaHang(int size, Color color) {
         this.size = size;
         this.color = color;
+    }
+
+    public static BufferedImage windowIcon() {
+        BufferedImage image = new BufferedImage(32, 32, BufferedImage.TYPE_INT_ARGB);
+        Graphics2D g = image.createGraphics();
+        try {
+            g.setColor(ChuDeGiaoDien.NAV);
+            g.fillRoundRect(0, 0, 32, 32, 4, 4);
+            new BieuTuongCuaHang(28, Color.WHITE).paintIcon(null, g, 2, 2);
+        } finally {
+            g.dispose();
+        }
+        return image;
     }
 
     public int getIconWidth() {

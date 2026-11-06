@@ -11,6 +11,7 @@ import javax.swing.SwingUtilities;
 
 import client.api.GoiDichVuXacThuc;
 import client.controllers.DieuKhienDangNhap;
+import client.gui.components.BieuTuongCuaHang;
 import client.gui.components.TacVuGiaoDien;
 import client.session.PhienDangNhap;
 
@@ -19,6 +20,7 @@ public final class ManHinhDangNhap extends JFrame {
 
     public ManHinhDangNhap(GoiDichVuXacThuc api, PhienDangNhap session) {
         super("Cửa hàng quần áo — Đăng nhập");
+        setIconImage(BieuTuongCuaHang.windowIcon());
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         KhungDangNhap panel = new KhungDangNhap();
         JTextField username = panel.username;

@@ -8,13 +8,14 @@ import javax.swing.JButton;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 
+import client.gui.components.BieuTuongCoDien;
 import client.gui.components.ChuDeGiaoDien;
 
 public final class KhungDoiMatKhau extends JPanel {
     private static final long serialVersionUID = 1L;
     final JPasswordField oldPassword = new JPasswordField(22), newPassword = new JPasswordField(22),
             confirm = new JPasswordField(22);
-    final JButton save = new JButton("Đổi mật khẩu");
+    final JButton save = new JButton("Đổi mật khẩu", BieuTuongCoDien.KHOA);
 
     public KhungDoiMatKhau() {
         super(new BorderLayout(0, 20));
@@ -25,9 +26,7 @@ public final class KhungDoiMatKhau extends JPanel {
         fields.add(ChuDeGiaoDien.field("Mật khẩu hiện tại", oldPassword));
         fields.add(ChuDeGiaoDien.field("Mật khẩu mới (8–128 ký tự)", newPassword));
         fields.add(ChuDeGiaoDien.field("Nhập lại mật khẩu mới", confirm));
-        for (JPasswordField input : new JPasswordField[] { oldPassword, newPassword, confirm }) {
-            input.putClientProperty("JPasswordField.showRevealButton", true);
-        }
+        fields.add(ChuDeGiaoDien.showPasswords(oldPassword, newPassword, confirm));
         add(fields, BorderLayout.CENTER);
         ChuDeGiaoDien.primary(save);
         add(save, BorderLayout.SOUTH);

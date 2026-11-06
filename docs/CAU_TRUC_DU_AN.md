@@ -5,7 +5,7 @@
 Bài `SM36_TCPSocket_11111` tách Server Maven Project và Client Java Project.
 Workspace này áp dụng cùng bố cục. Server chứa `server` và `common` trong `src/main/java`.
 Client chứa source Swing và tài nguyên trong `src`, kết quả biên dịch vào `bin`.
-Java Build Path của Client nạp `lib/server.jar`, FlatLaf và Jackson. Maven `package`
+Java Build Path của Client nạp `lib/server.jar` và Jackson. Maven `package`
 trên Server tạo `target/server.jar` và cập nhật JAR trong `lib` của Client.
 
 Maven dùng nguồn Client trong bước kiểm thử tích hợp của Server. JAR xuất từ Server

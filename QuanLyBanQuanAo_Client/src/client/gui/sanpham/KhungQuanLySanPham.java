@@ -16,6 +16,7 @@ import javax.swing.SwingUtilities;
 
 import client.controllers.DieuKhienQuanLySanPham;
 import client.controllers.DieuKhienSanPham;
+import client.gui.components.BieuTuongCoDien;
 import client.gui.components.ChuDeGiaoDien;
 import client.gui.components.TacVuGiaoDien;
 import client.gui.danhmuc.KhungDanhMuc;
@@ -30,17 +31,25 @@ public final class KhungQuanLySanPham extends JPanel {
     private static final long serialVersionUID = 1L;
 
     public enum Section {
-        PRODUCTS("Danh sách sản phẩm"), CATEGORIES("Loại sản phẩm"), BRANDS("Thương hiệu"),
-        VARIANTS("Màu, size và tồn kho");
+        PRODUCTS("Danh sách sản phẩm", BieuTuongCoDien.SAN_PHAM),
+        CATEGORIES("Loại sản phẩm", BieuTuongCoDien.THU_MUC),
+        BRANDS("Thương hiệu", BieuTuongCoDien.KHUYEN_MAI),
+        VARIANTS("Màu, size và tồn kho", BieuTuongCoDien.KHO);
 
         private final String title;
+        private final BieuTuongCoDien icon;
 
-        Section(String title) {
+        Section(String title, BieuTuongCoDien icon) {
             this.title = title;
+            this.icon = icon;
         }
 
         public String getTitle() {
             return title;
+        }
+
+        public BieuTuongCoDien getIcon() {
+            return icon;
         }
     }
 
@@ -61,9 +70,9 @@ public final class KhungQuanLySanPham extends JPanel {
         variants = new KhungQuanLyBienThe(controller);
         JPanel products = new JPanel(new BorderLayout());
         products.add(list, BorderLayout.CENTER);
-        JButton add = new JButton("Thêm sản phẩm"), edit = new JButton("Sửa sản phẩm"),
+        JButton add = new JButton("Thêm sản phẩm", BieuTuongCoDien.THEM), edit = new JButton("Sửa sản phẩm"),
                 stop = new JButton("Ngừng bán"), variant = new JButton("Màu, size và tồn kho"),
-                reload = new JButton("Làm mới");
+                reload = new JButton("Làm mới", BieuTuongCoDien.LAM_MOI);
         ChuDeGiaoDien.primary(add);
         ChuDeGiaoDien.danger(stop);
         JPanel actions = new JPanel(new FlowLayout(FlowLayout.LEFT, 8, 0));
@@ -72,10 +81,10 @@ public final class KhungQuanLySanPham extends JPanel {
             actions.add(b);
         }
         products.add(actions, BorderLayout.NORTH);
-        tabs.addTab("Sản phẩm", products);
-        tabs.addTab("Loại sản phẩm", categories);
-        tabs.addTab("Thương hiệu", brands);
-        tabs.addTab(Section.VARIANTS.getTitle(), variants);
+        tabs.addTab("Sản phẩm", Section.PRODUCTS.getIcon(), products);
+        tabs.addTab(Section.CATEGORIES.getTitle(), Section.CATEGORIES.getIcon(), categories);
+        tabs.addTab(Section.BRANDS.getTitle(), Section.BRANDS.getIcon(), brands);
+        tabs.addTab(Section.VARIANTS.getTitle(), Section.VARIANTS.getIcon(), variants);
         add(tabs, BorderLayout.CENTER);
         refreshActions = () -> {
             DuLieuSanPham selected = list.selectedProduct();

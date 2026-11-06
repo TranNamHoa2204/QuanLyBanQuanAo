@@ -29,7 +29,6 @@
         'com/fasterxml/jackson/core/jackson-databind/2.21.4/jackson-databind-2.21.4.jar',
         'com/fasterxml/jackson/core/jackson-annotations/2.21/jackson-annotations-2.21.jar',
         'com/fasterxml/jackson/datatype/jackson-datatype-jsr310/2.21.4/jackson-datatype-jsr310-2.21.4.jar',
-        'com/formdev/flatlaf/3.7/flatlaf-3.7.jar'
     )
     KiemThu = @(
         'com/h2database/h2/2.1.214/h2-2.1.214.jar',

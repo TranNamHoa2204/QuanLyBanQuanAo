@@ -32,6 +32,8 @@ import javax.swing.SwingConstants;
 import javax.swing.SwingUtilities;
 import javax.swing.SwingWorker;
 
+import client.gui.components.BieuTuongCoDien;
+
 /** Xem từng trang A4 rồi mở hộp thoại máy in của hệ điều hành. */
 public final class HopThoaiInChungTu extends JDialog {
     private static final long serialVersionUID = 1L;
@@ -40,7 +42,7 @@ public final class HopThoaiInChungTu extends JDialog {
     private final JLabel page = new JLabel("Đang tạo bản xem trước…", SwingConstants.CENTER);
     private final JLabel status = new JLabel(" ");
     private final JButton previous = new JButton("Trang trước"), next = new JButton("Trang sau"),
-            printButton = new JButton("In…");
+            printButton = new JButton("In…", BieuTuongCoDien.IN);
     private final JScrollPane scroll = new JScrollPane(page);
     private int currentPage;
     private int lastPage = -1;

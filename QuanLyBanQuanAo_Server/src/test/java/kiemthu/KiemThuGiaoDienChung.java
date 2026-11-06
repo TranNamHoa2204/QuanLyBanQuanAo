@@ -46,6 +46,7 @@ import client.controllers.DieuKhienNhanVien;
 import client.controllers.DieuKhienPhieuNhap;
 import client.controllers.DieuKhienThongKe;
 import client.gui.banhang.KhungBanHang;
+import client.gui.components.BieuTuongCoDien;
 import client.gui.components.ChuDeGiaoDien;
 import client.gui.hethong.KhungDangNhap;
 import client.gui.hethong.KhungDoiMatKhau;
@@ -64,15 +65,15 @@ import common.dto.nhanvien.DuLieuNhanVien;
 import common.dto.taikhoan.KetQuaDangNhap;
 import common.enums.VaiTro;
 
-/** View thực, không mock ảnh: render headless bằng FlatLaf và chạy hành động điều hướng. */
+/** Render view Swing và kiểm tra hành động điều hướng ở chế độ headless. */
 public class KiemThuGiaoDienChung {
     @Test
     public void loginAndDashboardRenderAndNavigate() throws Exception {
         SwingUtilities.invokeAndWait(() -> {
             try {
                 ChuDeGiaoDien.install();
-                assertEquals("FlatLaf Light", UIManager.getLookAndFeel().getName());
-                File dir = new File(".tmp/flatlaf-ui");
+                assertEquals("Metal", UIManager.getLookAndFeel().getName());
+                File dir = new File(".tmp/swing-classic-ui");
                 assertTrue(dir.isDirectory() || dir.mkdirs());
                 render(new KhungDangNhap(), new File(dir, "login.png"), 920, 560);
                 KetQuaDangNhap login = new KetQuaDangNhap();
@@ -106,6 +107,7 @@ public class KiemThuGiaoDienChung {
                 }
                 findMenu(shell, "Tra cứu sản phẩm").doClick();
                 assertEquals(1, products.get());
+                assertSame(BieuTuongCoDien.TIM_KIEM, findMenu(shell, "Tra cứu sản phẩm").getIcon());
                 findMenu(shell, "Bán hàng & thanh toán").doClick();
                 assertEquals(1, sales.get());
                 for (KhungQuanLySanPham.Section section : sections.keySet()) {

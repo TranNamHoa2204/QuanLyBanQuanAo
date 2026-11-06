@@ -27,6 +27,7 @@ import javax.swing.SpinnerNumberModel;
 import javax.swing.SwingUtilities;
 
 import client.api.GoiDichVuSanPham;
+import client.gui.components.BieuTuongCoDien;
 import client.gui.components.ChuDeGiaoDien;
 import client.gui.components.TacVuGiaoDien;
 import common.dto.sanpham.DuLieuBienThe;
@@ -40,7 +41,7 @@ public final class HopThoaiThemHangNhap extends JDialog {
     private final JComboBox<DuLieuSanPham> products = new JComboBox<>();
     private final JComboBox<DuLieuBienThe> variants = new JComboBox<>();
     private final JSpinner quantity = new JSpinner(new SpinnerNumberModel(1, 1, 1000000, 1));
-    private final JButton search = new JButton("Tìm sản phẩm"), add = new JButton("Thêm vào phiếu");
+    private final JButton search = new JButton("Tìm sản phẩm", BieuTuongCoDien.TIM_KIEM), add = new JButton("Thêm vào phiếu", BieuTuongCoDien.THEM);
     private final JLabel status = ChuDeGiaoDien.muted(" ");
     private boolean busy;
     private Selection result;
@@ -56,8 +57,8 @@ public final class HopThoaiThemHangNhap extends JDialog {
         JPanel find = new JPanel(new BorderLayout(8, 0));
         find.add(keyword, BorderLayout.CENTER);
         find.add(search, BorderLayout.EAST);
-        keyword.putClientProperty("JTextField.placeholderText", "Nhập tên sản phẩm");
-        price.putClientProperty("JTextField.placeholderText", "Ví dụ: 95000");
+        ChuDeGiaoDien.hint(keyword, "Nhập tên sản phẩm");
+        ChuDeGiaoDien.hint(price, "Ví dụ: 95000");
         products.setRenderer(renderer(DuLieuSanPham.class, p -> p.getMaSP() + " — " + p.getTenSP(),
                 "Chọn sản phẩm"));
         variants.setRenderer(renderer(DuLieuBienThe.class, v -> v.getMauSac() + " / " + v.getKichCo()

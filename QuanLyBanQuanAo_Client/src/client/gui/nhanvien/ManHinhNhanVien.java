@@ -27,6 +27,7 @@ import javax.swing.table.DefaultTableModel;
 
 import client.api.NgoaiLeGoiDichVu;
 import client.controllers.DieuKhienNhanVien;
+import client.gui.components.BieuTuongCoDien;
 import client.gui.components.ChuDeGiaoDien;
 import client.gui.components.TienIchBangSanPham;
 import common.dto.nhanvien.DuLieuHoSoNhanVien;
@@ -49,7 +50,7 @@ public final class ManHinhNhanVien extends JPanel {
     private final JTextField keyword = new JTextField(18);
     private final JComboBox<String> statusFilter = new JComboBox<String>(
             new String[] { "Tất cả", "Đang hoạt động", "Ngừng hoạt động" });
-    private final JButton search = new JButton("Tìm nhân viên"), add = new JButton("Thêm nhân viên"),
+    private final JButton search = new JButton("Tìm nhân viên", BieuTuongCoDien.TIM_KIEM), add = new JButton("Thêm nhân viên", BieuTuongCoDien.THEM),
             edit = new JButton("Sửa hồ sơ"), createAccount = new JButton("Cấp tài khoản"),
             employeeStatus = new JButton("Ngừng hoạt động"), accountStatus = new JButton("Khóa tài khoản"),
             role = new JButton("Đổi quyền"), previous = new JButton("Trang trước"), next = new JButton("Trang sau");

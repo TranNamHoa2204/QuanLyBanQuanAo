@@ -1,9 +1,9 @@
-# Giao diện Java Swing + FlatLaf
+# Giao diện Java Swing cổ điển
 
 ## Chạy trên Eclipse
 
 1. Import hai project theo hướng dẫn ở README.
-2. Kiểm tra **Java Build Path → Libraries** của Client có `lib/server.jar`, FlatLaf và Jackson.
+2. Kiểm tra **Java Build Path → Libraries** của Client có `lib/server.jar` và Jackson.
 3. Chạy `server.app.ServerMain` trong Server, sau đó `client.app.ClientMain` trong Client.
 4. Khi xuất lại thư viện bằng Maven `package` của Server, nhấn F5 trên Client.
 
@@ -60,7 +60,8 @@ F6 phiếu nhập kho (quản lý). Alt+H/D/C/X/T/B chọn các nhóm menu tươ
 
 ## Tổ chức mã giao diện
 
-- ChuDeGiaoDien: FlatLightLaf, màu xanh đậm, nền sáng, font, thẻ, bảng và định dạng tiền.
+- ChuDeGiaoDien: Metal Look and Feel của JDK, phông Tahoma, bảng và định dạng tiền.
+- BieuTuongCoDien: icon 18×18 cho menu, tab và nút, vẽ trực tiếp bằng Java2D.
 - BieuTuongCuaHang: biểu tượng móc áo vẽ vector bằng Graphics2D, không cần tải ảnh ngoài.
 - KhungUngDung: khung điều hướng, không tự gọi mạng.
 - ManHinhChinh: nối điều hướng với các panel và API/controller hiện có.
@@ -75,9 +76,9 @@ trạng thái hóa đơn, phiên bản và transaction tồn kho không chuyển
 
 ## Kiểm thử
 
-kiemthu.KiemThuGiaoDienChung render view thật vào .tmp/flatlaf-ui, kiểm tra look-and-feel,
+kiemthu.KiemThuGiaoDienChung render view thật vào .tmp/swing-classic-ui, kiểm tra look-and-feel,
 điều hướng, quyền hiển thị menu và thanh cuộn ở cửa sổ nhỏ.
-kiemthu.KiemThuGiaoDienSanPham và kiemthu.KiemThuGiaoDienHoaDon cũng dùng ChuDeGiaoDien/FlatLaf để kiểm tra bố cục hiện tại.
+kiemthu.KiemThuGiaoDienSanPham và kiemthu.KiemThuGiaoDienHoaDon cũng dùng ChuDeGiaoDien để kiểm tra bố cục hiện tại.
 Ảnh render dùng dữ liệu fixture cho QA, không phải dữ liệu từ SQL Server của bạn.
 
 Kiểm tra ngày 06/11/2026: 98/98 JUnit test và scaffold smoke đạt. Đã kiểm tra riêng
@@ -89,5 +90,3 @@ chuyển trang và nhân viên bán hàng chỉ thấy 3 nhóm menu. Dữ liệu
 Trong Eclipse dùng Run As → Maven build → Goals: test.
 scripts/KiemThuCucBo.ps1 hỗ trợ dependency trong .m2 và bản jar tạm .tmp/dependencies
 để kiểm thử cục bộ; Eclipse vẫn lấy dependency chính thức từ pom.xml.
-
-Tham khảo chính thức: https://www.formdev.com/flatlaf/

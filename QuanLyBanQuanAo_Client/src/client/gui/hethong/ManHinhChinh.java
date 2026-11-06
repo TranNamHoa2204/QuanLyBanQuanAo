@@ -17,6 +17,7 @@ import client.controllers.DieuKhienQuanLySanPham;
 import client.controllers.DieuKhienSanPham;
 import client.controllers.DieuKhienThongKe;
 import client.gui.banhang.KhungBanHang;
+import client.gui.components.BieuTuongCuaHang;
 import client.gui.components.TacVuGiaoDien;
 import client.gui.khachhang.ManHinhKhachHang;
 import client.gui.kho.KhungLichSuKho;
@@ -46,6 +47,7 @@ public final class ManHinhChinh extends JFrame {
 
     public ManHinhChinh(GoiDichVuXacThuc api, PhienDangNhap session) {
         super("Quản lý cửa hàng quần áo");
+        setIconImage(BieuTuongCuaHang.windowIcon());
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         KetQuaDangNhap login = session.getLogin();
         shell = new KhungUngDung(login, () -> {

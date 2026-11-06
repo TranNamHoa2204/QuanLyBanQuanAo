@@ -56,6 +56,7 @@ import client.api.GoiDichVuKhachHang;
 import client.api.GoiDichVuSanPham;
 import client.api.NgoaiLeGoiDichVu;
 import client.controllers.DieuKhienBanHang;
+import client.gui.components.BieuTuongCoDien;
 import client.gui.components.ChuDeGiaoDien;
 import client.gui.components.TienIchBangSanPham;
 import client.gui.inchungtu.BanInChungTu;
@@ -126,15 +127,18 @@ public final class KhungBanHang extends JPanel implements Scrollable {
     private final JLabel subtotal = new JLabel("—"), discount = new JLabel("—"),
             taxAmount = new JLabel("—"), taxCaption = ChuDeGiaoDien.muted("Thuế"),
             paymentInfo = ChuDeGiaoDien.muted(" ");
-    private final JButton fresh = new JButton("Đơn mới"), reload = new JButton("Kiểm tra lại đơn"),
-            addLine = new JButton("+ Thêm vào giỏ"), increase = new JButton("+"), decrease = new JButton("−"),
+    private final JButton fresh = new JButton("Đơn mới", BieuTuongCoDien.THEM),
+            reload = new JButton("Kiểm tra lại đơn", BieuTuongCoDien.LAM_MOI),
+            addLine = new JButton("+ Thêm vào giỏ", BieuTuongCoDien.SAN_PHAM),
+            increase = new JButton("+"), decrease = new JButton("−"),
             change = new JButton("Đổi số lượng"), remove = new JButton("Xóa khỏi giỏ"),
-            pay = new JButton("Thanh toán (F9)"), cancel = new JButton("Hủy hóa đơn"),
+            pay = new JButton("Thanh toán (F9)", BieuTuongCoDien.BAN_HANG), cancel = new JButton("Hủy hóa đơn"),
             taxes = new JButton("Thử lại thuế"), options = new JButton("Tùy chọn đơn"),
-            history = new JButton("Hóa đơn đã lưu"), printInvoice = new JButton("In hóa đơn…"),
-            chooseCustomer = new JButton("Tra cứu"),
-            createCustomer = new JButton("+ Khách mới"), clearCustomer = new JButton("Khách lẻ"),
-            search = new JButton("Tìm"),
+            history = new JButton("Hóa đơn đã lưu", BieuTuongCoDien.HOA_DON),
+            printInvoice = new JButton("In hóa đơn…", BieuTuongCoDien.IN),
+            chooseCustomer = new JButton("Tra cứu", BieuTuongCoDien.TIM_KIEM),
+            createCustomer = new JButton("+ Khách mới", BieuTuongCoDien.KHACH_HANG),
+            clearCustomer = new JButton("Khách lẻ"), search = new JButton("Tìm", BieuTuongCoDien.TIM_KIEM),
             previous = new JButton("‹"), next = new JButton("›");
     private DuLieuDayDuHoaDon current;
     private YeuCauTaoHoaDon pendingCreate;
@@ -162,7 +166,6 @@ public final class KhungBanHang extends JPanel implements Scrollable {
         for (JButton button : new JButton[] { fresh, reload, addLine, increase, decrease, change, remove, pay, cancel,
                 options, taxes, history, chooseCustomer, createCustomer, clearCustomer, search, previous, next }) {
             button.setMargin(new Insets(3, 10, 3, 10));
-            button.putClientProperty("JComponent.minimumHeight", 32);
         }
         ChuDeGiaoDien.primary(fresh);
         ChuDeGiaoDien.primary(search);
@@ -180,13 +183,13 @@ public final class KhungBanHang extends JPanel implements Scrollable {
         remove.setToolTipText("Xóa dòng đang chọn khỏi giỏ hàng");
         reload.setToolTipText("Đối chiếu lại đơn với máy chủ sau khi mất phản hồi");
         fresh.setToolTipText("Bắt đầu đơn khác. Hóa đơn đang mở vẫn được lưu.");
-        catalogQuery.putClientProperty("JTextField.placeholderText", "Tên hoặc mã sản phẩm");
-        customerQuery.putClientProperty("JTextField.placeholderText", "Mã, tên hoặc số điện thoại");
-        tendered.putClientProperty("JTextField.placeholderText", "VD: 500.000");
+        ChuDeGiaoDien.hint(catalogQuery, "Tên hoặc mã sản phẩm");
+        ChuDeGiaoDien.hint(customerQuery, "Mã, tên hoặc số điện thoại");
+        ChuDeGiaoDien.hint(tendered, "VD: 500.000");
         catalogQuery.getAccessibleContext().setAccessibleName("Tìm theo tên hoặc mã sản phẩm");
         customerQuery.getAccessibleContext().setAccessibleName("Tìm khách hàng");
-        promo.putClientProperty("JTextField.placeholderText", "Mã khuyến mãi");
-        note.putClientProperty("JTextField.placeholderText", "Tùy chọn");
+        ChuDeGiaoDien.hint(promo, "Mã khuyến mãi");
+        ChuDeGiaoDien.hint(note, "Tùy chọn");
         variant.setPrototypeDisplayValue(new DuLieuBienThe());
         variant.setRenderer(new DefaultListCellRenderer() {
             private static final long serialVersionUID = 1L;

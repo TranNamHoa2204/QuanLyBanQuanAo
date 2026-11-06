@@ -1,6 +1,6 @@
 # Quản lý cửa hàng quần áo
 
-Ứng dụng desktop Java Swing + FlatLaf, trao đổi dữ liệu qua TCP JSON.
+Ứng dụng desktop Java Swing, trao đổi dữ liệu qua TCP JSON.
 Server dùng JPA/Hibernate và SQL Server. Client làm việc qua DTO và API.
 
 Client dùng tông Windows cổ điển trên thanh menu, cửa sổ và các bảng. Có thể mở bản xem
@@ -51,7 +51,7 @@ QuanLyBanQuanAo/
 └── application.local.properties
 ```
 
-`lib` đã có `server.jar`, FlatLaf và Jackson. Khi sửa source Server hoặc `common`, chạy **Run As → Maven build… → Goals `package`** trên Server. Maven tạo `target/server.jar` rồi sao chép bản mới vào `Client/lib`. Nhấn **F5** trên Client để Eclipse nhận bản JAR mới. Nếu dùng cache Maven và JDK trên máy, có thể chạy `scripts/XuatThuVienClient.cmd`.
+`lib` đã có `server.jar` và Jackson. Khi sửa source Server hoặc `common`, chạy **Run As → Maven build… → Goals `package`** trên Server. Maven tạo `target/server.jar` rồi sao chép bản mới vào `Client/lib`. Nhấn **F5** trên Client để Eclipse nhận bản JAR mới. Nếu dùng cache Maven và JDK trên máy, có thể chạy `scripts/XuatThuVienClient.cmd`.
 
 ## Chức năng hiện có
 
@@ -92,7 +92,7 @@ Maven đã chạy **107/107 test** và xuất JAR vào `lib` của Client.
 - [Cấu hình và chạy local](docs/CAU_HINH_LOCAL.md)
 - [Hướng dẫn chạy chi tiết](docs/HUONG_DAN_CHAY.md)
 - [Database mới và tài khoản](docs/DATABASE_MOI.md)
-- [Giao diện và menu chức năng](docs/GIAO_DIEN_FLATLAF.md)
+- [Giao diện và menu chức năng](docs/GIAO_DIEN_SWING.md)
 - [Bán hàng](docs/BAN_HANG.md), [lịch sử kho](docs/LICH_SU_KHO.md)
 
 File `sql/08_TaoDatabaseMoiDayDu.sql` tạo database mới đầy đủ khi cần chuyển máy.

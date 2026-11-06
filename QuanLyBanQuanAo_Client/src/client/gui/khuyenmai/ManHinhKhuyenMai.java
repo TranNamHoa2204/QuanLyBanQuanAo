@@ -25,6 +25,7 @@ import javax.swing.table.DefaultTableModel;
 
 import client.api.NgoaiLeGoiDichVu;
 import client.controllers.DieuKhienKhuyenMai;
+import client.gui.components.BieuTuongCoDien;
 import client.gui.components.ChuDeGiaoDien;
 import client.gui.components.TienIchBangSanPham;
 import common.dto.khuyenmai.DuLieuKhuyenMai;
@@ -41,7 +42,7 @@ public final class ManHinhKhuyenMai extends JPanel {
     private final JTextField keyword = new JTextField(18);
     private final JComboBox<String> activeFilter = new JComboBox<String>(
             new String[] { "Tất cả", "Đang bật", "Đã ngừng" });
-    private final JButton search = new JButton("Tìm khuyến mãi"), add = new JButton("Thêm khuyến mãi"),
+    private final JButton search = new JButton("Tìm khuyến mãi", BieuTuongCoDien.TIM_KIEM), add = new JButton("Thêm khuyến mãi", BieuTuongCoDien.THEM),
             edit = new JButton("Sửa khuyến mãi"), toggle = new JButton("Ngừng áp dụng"), previous = new JButton("Trang trước"),
             next = new JButton("Trang sau");
     private final JLabel status = ChuDeGiaoDien.muted("Chưa tải khuyến mãi.");

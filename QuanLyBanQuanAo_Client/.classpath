@@ -3,7 +3,6 @@
     <classpathentry kind="src" path="src" />
     <classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-17" />
     <classpathentry kind="lib" path="lib/server.jar" />
-    <classpathentry kind="lib" path="lib/flatlaf-3.7.jar" />
     <classpathentry kind="lib" path="lib/jackson-core-2.21.4.jar" />
     <classpathentry kind="lib" path="lib/jackson-databind-2.21.4.jar" />
     <classpathentry kind="lib" path="lib/jackson-annotations-2.21.jar" />

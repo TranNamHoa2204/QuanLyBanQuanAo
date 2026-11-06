@@ -69,7 +69,7 @@ public final class KhungQuanLyBienThe extends JPanel {
         top.add(ChuDeGiaoDien.heading("Màu, size và tồn kho",
                 "Chọn sản phẩm, sau đó chọn màu và size cần chỉnh."),
                 BorderLayout.NORTH);
-        keyword.putClientProperty("JTextField.placeholderText", "Nhập tên sản phẩm");
+        ChuDeGiaoDien.hint(keyword, "Nhập tên sản phẩm");
         products.getAccessibleContext().setAccessibleName("Chọn sản phẩm");
         products.setPrototypeDisplayValue(new ProductOption(null, "Chọn sản phẩm trong danh sách"));
         products.addItem(new ProductOption(null, "Chọn sản phẩm"));

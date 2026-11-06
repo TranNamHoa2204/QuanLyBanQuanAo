@@ -40,6 +40,7 @@ import client.api.GoiDichVuNhaCungCap;
 import client.api.GoiDichVuSanPham;
 import client.api.NgoaiLeGoiDichVu;
 import client.controllers.DieuKhienPhieuNhap;
+import client.gui.components.BieuTuongCoDien;
 import client.gui.components.ChuDeGiaoDien;
 import client.gui.components.TienIchBangSanPham;
 import client.gui.inchungtu.BanInChungTu;
@@ -67,12 +68,12 @@ public final class ManHinhPhieuNhap extends JPanel {
     private final JTextField keyword = new JTextField(12), from = new JTextField(9), to = new JTextField(9);
     private final JComboBox<String> statusFilter = new JComboBox<String>(
             new String[] { "Tất cả", "Chưa nhập kho", "Đã nhập kho", "Đã hủy" });
-    private final JButton search = new JButton("Tìm phiếu nhập"), create = new JButton("Lập phiếu nhập"),
+    private final JButton search = new JButton("Tìm phiếu nhập", BieuTuongCoDien.TIM_KIEM), create = new JButton("Lập phiếu nhập", BieuTuongCoDien.THEM),
             previous = new JButton("Trang trước"), next = new JButton("Trang sau"),
-            addLine = new JButton("Thêm hàng"), updateLine = new JButton("Sửa số lượng / giá nhập"),
-            removeLine = new JButton("Xóa khỏi phiếu"), confirm = new JButton("Xác nhận nhập kho"),
+            addLine = new JButton("Thêm hàng", BieuTuongCoDien.SAN_PHAM), updateLine = new JButton("Sửa số lượng / giá nhập"),
+            removeLine = new JButton("Xóa khỏi phiếu"), confirm = new JButton("Xác nhận nhập kho", BieuTuongCoDien.XAC_NHAN),
             cancel = new JButton("Hủy phiếu"), retry = new JButton("Gửi lại thao tác"),
-            printReceipt = new JButton("In phiếu nhập…");
+            printReceipt = new JButton("In phiếu nhập…", BieuTuongCoDien.IN);
     private final JLabel summary = ChuDeGiaoDien.muted("Chọn hoặc tạo một phiếu nhập."),
             status = ChuDeGiaoDien.muted("Chọn phiếu để xem chi tiết hoặc lập phiếu mới.");
     private final DefaultTableModel receiptModel = TienIchBangSanPham.model(

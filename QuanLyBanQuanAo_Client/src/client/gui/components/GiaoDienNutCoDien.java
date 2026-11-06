@@ -17,8 +17,6 @@ import javax.swing.plaf.ComponentUI;
 import javax.swing.plaf.basic.BasicButtonUI;
 import javax.swing.plaf.basic.BasicGraphicsUtils;
 
-import com.formdev.flatlaf.util.UIScale;
-
 /** Vẽ nút nổi kiểu Windows XP. Swing xử lý bàn phím và thao tác bấm. */
 public final class GiaoDienNutCoDien extends BasicButtonUI {
     public static ComponentUI createUI(JComponent component) {
@@ -36,7 +34,7 @@ public final class GiaoDienNutCoDien extends BasicButtonUI {
     public Dimension getPreferredSize(JComponent component) {
         Dimension size = super.getPreferredSize(component);
         if (size != null) {
-            size.height = Math.max(size.height, UIScale.scale(29));
+            size.height = Math.max(size.height, 29);
         }
         return size;
     }
@@ -63,7 +61,7 @@ public final class GiaoDienNutCoDien extends BasicButtonUI {
         }
         int width = button.getWidth() - 1;
         int height = button.getHeight() - 1;
-        int arc = UIScale.scale(5);
+        int arc = 5;
         Graphics2D g = (Graphics2D) graphics.create();
         try {
             g.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
@@ -104,7 +102,7 @@ public final class GiaoDienNutCoDien extends BasicButtonUI {
 
     @Override
     protected void paintFocus(Graphics graphics, AbstractButton button, Rectangle view, Rectangle text, Rectangle icon) {
-        int inset = UIScale.scale(4);
+        int inset = 4;
         Graphics2D g = (Graphics2D) graphics.create();
         try {
             g.setColor(button.getForeground());

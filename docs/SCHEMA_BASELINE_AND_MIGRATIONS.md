@@ -2,16 +2,18 @@
 
 ## Phạm vi và kết luận
 
-Đây là đối chiếu source/DDL giữa `DatabaseConfig`, `META-INF/persistence.xml`, các entity,
+Đây là đối chiếu source/DDL giữa `CauHinhCoSoDuLieu`, `META-INF/persistence.xml`, các entity,
 `sql/TaoCSDL_QuanLyCuaHangQuanAo_SQLServer.sql` và các migration đang có. Baseline trước
 ledger có 12 bảng; migration 05 thêm `LichSuKho`, nên schema sau S15 có 13 bảng logic.
 Migrations 04/06 thêm cột vào `HoaDon`, không tạo bảng. Không kết nối SQL Server và không
 chạy SQL trong S27; một database SQL Server cụ thể vẫn chưa được nghiệm thu.
 
 Persistence unit khai báo tường minh 13 entity hiện có và giữ
-`hibernate.hbm2ddl.auto=validate`. `DatabaseConfig` chỉ lấy URL/user/password từ
-`QUANAO_DB_URL`, `QUANAO_DB_USER`, `QUANAO_DB_PASSWORD`. Khi khởi động, server tạo
-EntityManagerFactory trước khi mở Socket; schema sai hoặc thiếu sẽ làm server không sẵn sàng.
+hibernate.hbm2ddl.auto=validate. CauHinhCoSoDuLieu đọc application.local.properties;
+QUANAO_DB_URL, QUANAO_DB_USER và QUANAO_DB_PASSWORD chỉ bù khóa chưa khai báo trong file.
+File local trên máy đã được cấu hình cho
+database demo local đã chọn. Khi khởi động, server tạo EntityManagerFactory trước
+khi mở Socket; schema sai hoặc thiếu sẽ làm server không sẵn sàng.
 
 Baseline schema B1 gồm 11 bảng từ script khởi tạo cộng `dbo.AnhSanPham` từ
 `sql/01_ThemBangAnhSanPham.sql`, tổng cộng 12 bảng baseline và 11 FK. Migration 04 thêm
@@ -96,10 +98,11 @@ migration. Không chạy hướng dẫn này trên database thật hoặc databa
    tiền khách đưa, tiền thừa và cờ xác nhận thủ công chuyển khoản vào `HoaDon`;
    trường mới nullable, không backfill lịch sử và CHECK ràng buộc hai dạng thanh toán.
    Chạy lại chỉ thành công nếu định nghĩa cột/ràng buộc tương thích.
-8. Cấp cho server tài khoản database demo phù hợp, đặt `QUANAO_DB_URL`,
-   `QUANAO_DB_USER`, `QUANAO_DB_PASSWORD` trong Run Configuration/môi trường cục bộ rồi
-   chạy `server.ServerMain`. Hibernate phải validate thành công trước khi server mở
-   Socket. Không ghi thông tin kết nối thật vào source hoặc báo cáo.
+8. Với database demo local đã cấu hình, chạy `server.app.ServerMain` bằng **Run As → Java Application**.
+   Nếu dùng một database demo khác, đặt QUANAO_DB_URL, QUANAO_DB_USER và
+   QUANAO_DB_PASSWORD trong môi trường cục bộ để ghi đè mặc định. Hibernate phải
+   validate thành công trước khi server mở Socket. Không đưa thông tin kết nối của
+   môi trường khác vào source hoặc báo cáo.
 
 Không chạy lại script khởi tạo trên database đã có bảng. Nếu `AnhSanPham` đã tồn tại,
 `01_ThemBangAnhSanPham.sql` chỉ in thông báo và bỏ qua kiểm tra cột, kiểu, FK, check,
@@ -169,7 +172,7 @@ hay SQL. SQL Server fresh install, JPA validate, Unicode, computed column, optim
 locking và migration rerun vẫn **chưa được kiểm thử**.
 
 Tình trạng S11: entity/DTO/detail mapping và migration cộng thêm đã cập nhật. Bộ
-`scripts/Test-Local.ps1` ở mốc S11 chạy 73 JUnit tests; lần S27 chạy lại source hiện tại
+`scripts/KiemThuCucBo.ps1` ở mốc S11 chạy 73 JUnit tests; lần S27 chạy lại source hiện tại
 đạt 88 JUnit tests cùng scaffold smoke test trên H2. Hai con số thuộc hai mốc chạy khác
 nhau. SQL Server demo chưa có nên migration, Hibernate validate với SQL Server và rerun
 trên database có dữ liệu vẫn **chưa được kiểm thử**.

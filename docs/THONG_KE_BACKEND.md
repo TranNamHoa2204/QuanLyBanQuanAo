@@ -3,8 +3,8 @@
 ## Hợp đồng
 
 Server nhận hai action `THONG_KE_DOANH_THU_THEO_THOI_GIAN` và
-`THONG_KE_DOANH_THU_THEO_SAN_PHAM` với `ThongKeDoanhThuRequest`, trả
-`ThongKeDoanhThuDTO`. Cả hai action yêu cầu phiên hợp lệ của quản lý; quyền được
+`THONG_KE_DOANH_THU_THEO_SAN_PHAM` với `YeuCauThongKeDoanhThu`, trả
+`DuLieuThongKeDoanhThu`. Cả hai action yêu cầu phiên hợp lệ của quản lý; quyền được
 kiểm tra tại server trong transaction. Trang đánh số từ 0, mặc định 50 dòng, tối đa
 100 dòng/trang.
 
@@ -46,11 +46,12 @@ sản phẩm chỉ ảnh hưởng nhãn hiển thị; không thay đổi số ti
 
 ## Kiểm thử và giới hạn xác minh
 
-`ThongKeIntegrationTest` chạy JPA/H2 và Socket TCP với fixture tính tay: nhiều dòng và
+`kiemthu.KiemThuTichHopThongKe` chạy JPA/H2 và Socket TCP với fixture tính tay: nhiều dòng và
 biến thể cùng sản phẩm, giảm/thuế, nháp/hủy, biên ngày/tháng/năm, cập nhật danh mục,
 phân bổ phần xu, dữ liệu rỗng, trang, giới hạn khoảng, fallback tên và quyền quản lý.
 SQL Server chưa được kiểm thử trực tiếp; không chạy SQL hoặc kết nối database thật.
-`ThongKeApi`, `ThongKeController` và `ThongKeForm` hiện vẫn là lớp TODO/rỗng; sidebar
-hiển thị “Sắp có”. Vì vậy FR09 có backend/test nhưng chưa phải chức năng Swing đầu cuối.
+`GoiDichVuThongKe`, `DieuKhienThongKe` và `ManHinhThongKe` đã nối với hai action Socket:
+lọc khoảng ngày, nhóm theo ngày/tháng/năm hoặc sản phẩm, hiển thị chỉ tiêu do server
+trả về và biểu đồ cho trang hiện tại. Export CSV/PDF không thuộc màn hình này.
 Trong lần S27, bộ test hiện tại chạy 88 JUnit test qua script fallback; test thống kê
 vẫn dùng H2/Socket và không xác minh schema hoặc hiệu năng SQL Server.

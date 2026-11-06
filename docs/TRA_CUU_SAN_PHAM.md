@@ -79,10 +79,10 @@ Tổng tồn trong cả hai vai trò chỉ tính biến thể đang hoạt độ
 
 Dùng các action có sẵn:
 
-- TRA_CUU_SAN_PHAM: SanPhamSearchRequest → SanPhamSearchResult.
-- XEM_CHI_TIET_SAN_PHAM: SanPhamDetailRequest → SanPhamDetailDTO.
-- TRA_CUU_LOAI_SAN_PHAM → danh sách LoaiSanPhamDTO.
-- TRA_CUU_THUONG_HIEU → danh sách ThuongHieuDTO.
+- TRA_CUU_SAN_PHAM: YeuCauTraCuuSanPham → KetQuaTraCuuSanPham.
+- XEM_CHI_TIET_SAN_PHAM: YeuCauChiTietSanPham → DuLieuDayDuSanPham.
+- TRA_CUU_LOAI_SAN_PHAM → danh sách DuLieuLoaiSanPham.
+- TRA_CUU_THUONG_HIEU → danh sách DuLieuThuongHieu.
 
 page trong DTO bắt đầu từ 0; UI hiển thị bắt đầu từ 1.
 pageSize từ 1 đến 100; page tối đa 1.000.000; sort server theo maSP để phân trang ổn định.
@@ -96,15 +96,15 @@ Nếu giá/tồn thay đổi trong khi người dùng tra cứu, dữ liệu l�
 
 ## Kiểm thử
 
-ProductIntegrationTest chạy Socket và JPA thật với H2 trong bộ nhớ:
+kiemthu.KiemThuTichHopSanPham chạy Socket và JPA thật với H2 trong bộ nhớ:
 phân trang, lọc kết hợp, màu/size cùng biến thể, quyền quản lý, token/tài khoản bị khóa,
 hàng không có biến thể/ảnh, mã không tồn tại, kiểm tra pagination, tiền chính xác và tổng tồn lớn.
 
-NormalizedCatalogTest nhập catalog JSON chỉ vào H2, kiểm tra 40 sản phẩm, 152 biến thể,
+kiemthu.KiemThuDuLieuSanPham nhập catalog JSON chỉ vào H2, kiểm tra 40 sản phẩm, 152 biến thể,
 255 ảnh qua API, khớp màu và đường dẫn ảnh classpath. Đây không phải trình import SQL Server
 tự động trong ứng dụng.
 
-ProductUiTest render hai panel Swing bằng dữ liệu thật vào PNG trong .tmp/product-ui
+kiemthu.KiemThuGiaoDienSanPham render hai panel Swing bằng dữ liệu thật vào PNG trong .tmp/product-ui
 để kiểm tra bố cục headless, bảng chỉ đọc và tải ảnh ngoài EDT.
 Các test tài khoản trước đó vẫn được chạy lại.
 

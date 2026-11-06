@@ -3,16 +3,17 @@
 ## Chạy và thử trên Eclipse
 
 1. F5 để Refresh project. Maven → Update Project nếu cần.
-2. Dừng và chạy lại cả server.ServerMain và client.ClientMain.
+2. Dừng và chạy lại cả server.app.ServerMain và client.app.ClientMain.
    Cấu hình QUANAO_DB_* giữ nguyên. Không tạo lại database, không chạy lại script nhập dữ liệu.
 3. Đăng nhập bằng tài khoản NHAN_VIEN_QUAN_LY.
-4. Chọn Danh mục & sản phẩm ở sidebar. Nhân viên bán hàng không có mục này.
+4. Chọn Danh mục → Sản phẩm trên thanh menu, rồi chọn danh sách, loại, thương hiệu
+   hoặc biến thể & tồn. Nhân viên bán hàng không có menu này.
 5. Tab Loại sản phẩm / Thương hiệu: Tải lại, Thêm mới hoặc chọn dòng rồi Sửa tên.
    Mã cố định sau khi tạo. Tên không trùng; không có nút xóa các danh mục này.
 6. Tab Sản phẩm: Thêm sản phẩm, hoặc chọn dòng rồi Sửa sản phẩm / Ngừng bán.
    Chọn loại, thương hiệu và nhập giá bằng số không có dấu phân cách hàng nghìn,
    ví dụ 149000 hoặc 149000.50. Tên và giá được kiểm tra lại tại server.
-7. Chọn sản phẩm → Biến thể / tồn, hoặc vào tab Biến thể & tồn và nhập mã sản phẩm.
+7. Chọn sản phẩm để xem ảnh. Bấm **Màu, size và tồn kho**, hoặc mở tab cùng tên rồi tìm và chọn sản phẩm theo tên. Các dòng màu và size sẽ tự hiện.
    Thêm mã biến thể, màu, size, tồn ban đầu. Tồn 0 là hợp lệ.
 8. Chọn biến thể → Sửa tồn / trạng thái. Tồn mới là số lượng tuyệt đối,
    không phải số lượng cộng thêm. Khi thay đổi tồn có hộp xác nhận.
@@ -70,10 +71,10 @@ Các test tự động chỉ dùng H2 trong bộ nhớ; chưa chạy hoặc ghi 
 
 ## Kiểm thử
 
-CatalogManagementIntegrationTest: 12 test qua TCP/JPA/H2, bao gồm thêm/sửa,
+kiemthu.KiemThuTichHopDanhMuc: 12 test qua TCP/JPA/H2, bao gồm thêm/sửa,
 trùng mã/tên/màu-size, validation, khóa tài khoản, kiểm tra mọi action ghi bằng vai trò bán hàng,
 xung đột khi hai client cùng sửa, điều chỉnh tồn đồng thời thanh toán và giữ giá chốt hóa đơn.
 
-CatalogManagementUiTest render các tab và editor với FlatLaf ở .tmp/catalog-management-ui,
+kiemthu.KiemThuGiaoDienDanhMuc render các tab và editor với FlatLaf ở .tmp/catalog-management-ui,
 kiểm tra bảng chỉ đọc và editor tạo DTO mới, không làm thay đổi ảnh chụp expected.
 Các test đăng nhập, tra cứu và hóa đơn trước đó cũng được chạy lại.

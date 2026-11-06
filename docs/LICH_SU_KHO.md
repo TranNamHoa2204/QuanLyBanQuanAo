@@ -61,5 +61,5 @@ cho SQL Server.
 
 Migration chỉ biết số tồn hiện hành, nên tạo mốc tại thời điểm triển khai. Báo cáo không
 thể suy ra thời điểm/actor/lý do của các lần nhập, bán hoặc chỉnh tồn trước đó. Mọi đường
-ghi tồn trong ứng dụng cần tiếp tục đi qua `HoaDonService`, `QuanLySanPhamService` hoặc
+ghi tồn trong ứng dụng cần tiếp tục đi qua `DichVuHoaDon`, `DichVuQuanLySanPham` hoặc
 service ledger; cập nhật trực tiếp SQL ngoài ứng dụng không được ledger ghi nhận.

@@ -16,22 +16,21 @@
 6. Chạy `sql/06_ThuTienTaiQuay.sql` sau S15. Nó thêm các cột thu tiền nullable,
    không gán phương thức cho hóa đơn cũ. Cả migration 05 và 06 chỉ áp dụng trên
    database demo đã xác định.
-7. Khởi động `server.ServerMain` với cấu hình QUANAO_DB_* của database demo.
+7. Khởi động `server.app.ServerMain` với cấu hình QUANAO_DB_* của database demo.
    JPA giữ `hbm2ddl.auto=validate`, không tự tạo/sửa schema hay nhập dữ liệu.
-8. Chạy `client.ClientMain`, đăng nhập, chọn Bán hàng / Hóa đơn.
-9. Chọn thuế. Có thể để mã KH/KM trống để bán cho khách vãng lai/không khuyến mãi.
-   Form hiện chỉ nhận mã KH/KM gõ trực tiếp; chưa có tìm kiếm, chọn hoặc tạo hồ sơ từ
-   màn hình bán hàng. Nếu nhập mã, khách phải đang hoạt động và khuyến mãi phải còn hạn.
-10. Tạo nháp. Nhập mã SP lấy từ Tra cứu sản phẩm (ví dụ SP1001),
-   bấm Tải biến thể, chọn màu/size, số lượng và Thêm hàng.
-11. Chọn dòng trong bảng để Đổi SL (số lượng mới tuyệt đối) hoặc Bỏ hàng.
-12. Kiểm tra tổng rồi chọn phương thức thu. Tiền mặt yêu cầu nhập số tiền khách
-   đưa; server xác nhận không thấp hơn tổng và tự tính tiền thừa. Chuyển khoản là
+8. Chạy `client.app.ClientMain`, đăng nhập, chọn Bán hàng / Hóa đơn.
+9. Chọn sản phẩm trong danh sách hoặc tìm theo tên hay mã. Chọn màu, size, số lượng và bấm
+   **Thêm vào giỏ**. Lần thêm đầu tiên tự mở đơn. Nếu cần đổi thuế, nhập mã khuyến mãi hoặc ghi chú,
+   mở **Tùy chọn đơn** trước khi thêm. Có thể tra cứu hoặc tạo khách hàng ngay trên đơn.
+10. Chọn một dòng trong giỏ rồi dùng **+**, **−**, **Đổi số lượng** hoặc **Xóa khỏi giỏ**.
+11. Chọn phương thức thu và nhập thông tin ngay dưới giỏ, rồi bấm **Thanh toán (F9)**.
+   Khi thu tiền mặt, màn hình hiện tiền thừa. Server xác nhận số tiền khách đưa không thấp hơn tổng.
+   Chuyển khoản là
    xác nhận thủ công của nhân viên rằng đã nhận thông báo tiền; ứng dụng không
    kết nối hoặc xác minh với ngân hàng. Chỉ sau khi server lưu thành công, trạng thái
    chuyển DA_THANH_TOAN, tồn giảm và thông tin thu tiền được lưu cùng ledger.
-13. Danh sách cho phép xem các trang 20 hóa đơn và mở lại chi tiết.
-    Có thể nhập trực tiếp mã hóa đơn và Tải lại.
+12. **Hóa đơn đã lưu** cho phép xem các trang 20 hóa đơn và mở lại chi tiết.
+    Khi biết mã, chọn **Mở theo mã** trong hộp thoại này.
 
 ## Quy tắc đã cài đặt
 
@@ -50,13 +49,13 @@
   Đây là quy tắc tính tiền của đồ án; chưa có hóa đơn điện tử.
 - Tỷ lệ được chốt trong nháp. Nếu thuế/khuyến mãi đổi tỷ lệ, ngừng hoạt động
   hoặc khuyến mãi hết hạn, server không cho thanh toán theo cấu hình cũ.
-  **Giới hạn hiện tại:** `HoaDonService.pay` yêu cầu hủy nháp và tạo hóa đơn mới khi tỷ lệ
+  **Giới hạn hiện tại:** `DichVuHoaDon.pay` yêu cầu hủy nháp và tạo hóa đơn mới khi tỷ lệ
   đã đổi; chưa có luồng cập nhật nháp, preview và xác nhận tổng mới mà không hủy nháp theo
   yêu cầu S10.
 - Ghi hóa đơn và trừ tồn trong cùng một transaction JPA.
   Server khóa hóa đơn, các sản phẩm rồi từng biến thể theo thứ tự mã cố định; kiểm tra tất cả
   tồn trước khi trừ. Lỗi ở một mặt hàng rollback cả giao dịch.
-- phienBan + @Version kiểm tra màn hình cũ; nếu VERSION_CONFLICT, Tải lại
+- phienBan + @Version kiểm tra màn hình cũ; nếu VERSION_CONFLICT, bấm **Kiểm tra lại đơn**
   trước khi chỉnh tiếp. Nếu tổng đã xem cũ, server từ chối trước khi đổi trạng thái
   hoặc tồn; tải lại, rà tổng mới, nhập/kiểm tra lại tiền đưa rồi xác nhận lần nữa.
   Phiên bản tăng nhưng không cần tăng đúng một đơn vị.
@@ -64,9 +63,9 @@
   bao gồm phương thức, tiền khách đưa, tiền thừa hoặc xác nhận chuyển khoản;
   không thay thông tin cũ và không trừ tồn lần hai. Hủy lại hóa đơn đã hủy cũng không làm thay đổi tồn.
 - Mã hóa đơn tạo trên client được giữ lại để truy hồi khi mất phản hồi tạo nháp.
-  Không tự gửi lại yêu cầu mạng. Khi mất phản hồi, dùng mã đã hiển thị để Tải lại
+  Khi mất phản hồi, bấm **Kiểm tra lại đơn**
   và kiểm tra trạng thái trước khi thao tác tiếp. Không tạo mã mới để thử thanh toán.
-- Bấm Hóa đơn mới không xóa nháp cũ. Nháp lưu trong database, mở lại từ Danh sách.
+- Bấm **Đơn mới** để bắt đầu đơn khác. Hóa đơn nháp cũ vẫn lưu trong database và mở lại được từ **Hóa đơn đã lưu**.
 - Khi thanh toán, server lưu `ngayThanhToan` theo giờ địa phương `Asia/Ho_Chi_Minh`
   và chụp tên nhân viên/khách cùng tên sản phẩm/màu/size trong cùng transaction
   với việc trừ kho. Đổi danh mục sau đó không đổi thông tin chứng từ đã thanh toán.
@@ -84,7 +83,7 @@
 
 ## Kiểm thử và giới hạn xác minh
 
-InvoiceIntegrationTest kiểm tra qua TCP Socket thật, JPA và H2 trong bộ nhớ:
+kiemthu.KiemThuTichHopHoaDon kiểm tra qua TCP Socket thật, JPA và H2 trong bộ nhớ:
 tính tiền, phiên bản cũ, thêm/đổi/bỏ dòng, quyền sở hữu, phân trang cơ bản,
 giá chốt, cấu hình thuế đổi, hủy nháp, vượt miền tiền, hàng ngừng bán,
 khuyến mãi hết hạn, rollback khi thiếu tồn, thanh toán lặp lại và hai client
@@ -94,7 +93,7 @@ thu, rollback tiền/kho/ledger và hóa đơn cũ chưa có thông tin thu.
 Kiểm tra S11 còn xác nhận snapshot tên trước/sau khi danh mục đổi, retry thanh toán,
 fallback hóa đơn cũ thiếu timestamp/snapshot và chuyển timestamp UTC sang giờ nghiệp vụ.
 
-InvoiceUiTest render màn hình Swing headless và kiểm tra bảng chỉ đọc,
+kiemthu.KiemThuGiaoDienHoaDon render màn hình Swing headless và kiểm tra bảng chỉ đọc,
 vô hiệu hóa sửa/thanh toán khi đã thanh toán.
 
 Chưa kiểm thử trực tiếp SQL Server demo; các script `sql/04_HoaDonSnapshotVaThoiDiemThanhToan.sql`,

@@ -34,11 +34,11 @@ backups/resource-data-original-20261008; catalog mới thống nhất với Exce
 
 ## Dữ liệu dùng trong ứng dụng
 
-- src/main/resources/images/: ảnh và ba Excel chuẩn hóa.
-- src/main/resources/data/catalog.json: dữ liệu sản phẩm/biến thể/ảnh và mapping nguồn.
-- src/main/resources/data/image-paths.txt: danh sách 267 resource dùng để kiểm tra.
-- client.util.ImageLoader.load("images/products/1001/red-1.jpg"): đọc ảnh từ classpath.
-- server.entity.AnhSanPham, common.dto.AnhSanPhamDTO và repository.AnhSanPhamDao:
+- `QuanLyBanQuanAo_Client/src/images/` chứa ảnh và ba Excel chuẩn hóa.
+- `QuanLyBanQuanAo_Client/src/data/catalog.json` chứa sản phẩm, biến thể, ảnh và mapping nguồn.
+- `QuanLyBanQuanAo_Client/src/data/image-paths.txt` liệt kê 267 ảnh dùng để kiểm tra.
+- client.utils.TaiAnh.load("images/products/1001/red-1.jpg"): đọc ảnh từ classpath.
+- server.entities.AnhSanPham, common.dto.sanpham.DuLieuAnhSanPham và repository.LuuTruAnhSanPham:
   khung dữ liệu cho bảng ảnh bổ sung. Chưa có ánh xạ JPA hoặc repository implementation.
 
 ## Nhập vào SQL Server bằng SSMS
@@ -63,7 +63,7 @@ Các DOCX/sơ đồ hiện có chưa được sửa trong lượt chuẩn hóa d
   chỉ chuẩn hóa Unicode/khoảng trắng cùng những mapping/màu đã nêu.
 - Kiểm tra đường dẫn theo đúng chữ hoa/thường, màu/size và ràng buộc mã <= 20 ký tự.
 - Đã render và xem các sheet Excel bị ảnh hưởng; giữ tên sheet và native table.
-- AssetSmokeCheck là kiểm tra thủ công qua Java ImageIO, chạy được với resource đóng gói JAR.
+- kiemthu.KiemTraTaiNguyenAnh là kiểm tra thủ công qua Java ImageIO, chạy được với resource đóng gói JAR.
 - Trong Eclipse nhấn F5, sau đó Project → Clean để làm mới resource cache cũ.
 - Chuẩn hóa asset không có nghĩa ứng dụng đã có UI, Socket, JPA mapping hay dữ liệu trong database.
 

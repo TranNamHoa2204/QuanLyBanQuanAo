@@ -46,17 +46,22 @@ BEGIN TRY
 
     IF NOT EXISTS (SELECT 1 FROM sys.check_constraints WHERE parent_object_id = OBJECT_ID(N'dbo.HoaDon')
         AND name = N'CK_HoaDon_ThuTien')
-        ALTER TABLE dbo.HoaDon ADD CONSTRAINT CK_HoaDon_ThuTien CHECK (
-            (phuongThucThanhToan IS NULL AND tienKhachDua IS NULL AND tienThua IS NULL
-                AND nhanVienXacNhanChuyenKhoan IS NULL)
-            OR (trangThai = 'DA_THANH_TOAN' AND phuongThucThanhToan = 'TIEN_MAT'
-                AND tienKhachDua IS NOT NULL AND tienThua IS NOT NULL
-                AND tienKhachDua >= 0 AND tienThua >= 0
-                AND tienKhachDua >= tongTien AND tienThua = tienKhachDua - tongTien
-                AND nhanVienXacNhanChuyenKhoan IS NULL)
-            OR (trangThai = 'DA_THANH_TOAN' AND phuongThucThanhToan = 'CHUYEN_KHOAN'
-                AND tienKhachDua IS NULL AND tienThua IS NULL AND nhanVienXacNhanChuyenKhoan = 1)
-        );
+    BEGIN
+        -- Compile this DDL after the conditional ALTER TABLE ADD statements above.
+        -- SQL Server otherwise resolves the new column names before those ALTERs run.
+        EXEC sys.sp_executesql N'
+            ALTER TABLE dbo.HoaDon ADD CONSTRAINT CK_HoaDon_ThuTien CHECK (
+                (phuongThucThanhToan IS NULL AND tienKhachDua IS NULL AND tienThua IS NULL
+                    AND nhanVienXacNhanChuyenKhoan IS NULL)
+                OR (trangThai = ''DA_THANH_TOAN'' AND phuongThucThanhToan = ''TIEN_MAT''
+                    AND tienKhachDua IS NOT NULL AND tienThua IS NOT NULL
+                    AND tienKhachDua >= 0 AND tienThua >= 0
+                    AND tienKhachDua >= tongTien AND tienThua = tienKhachDua - tongTien
+                    AND nhanVienXacNhanChuyenKhoan IS NULL)
+                OR (trangThai = ''DA_THANH_TOAN'' AND phuongThucThanhToan = ''CHUYEN_KHOAN''
+                    AND tienKhachDua IS NULL AND tienThua IS NULL AND nhanVienXacNhanChuyenKhoan = 1)
+            );';
+    END;
 
     IF NOT EXISTS (SELECT 1 FROM sys.check_constraints WHERE parent_object_id = OBJECT_ID(N'dbo.HoaDon')
         AND name = N'CK_HoaDon_ThuTien' AND is_disabled = 0 AND is_not_trusted = 0

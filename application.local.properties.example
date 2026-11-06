@@ -1,0 +1,16 @@
+# Sao chép thành application.local.properties tại thư mục gốc dự án.
+# File UTF-8; server và client tự đọc, không cần biến môi trường.
+db.url=jdbc:sqlserver://localhost:1433;databaseName=QuanLyCuaHangQuanAo;encrypt=true;trustServerCertificate=true;loginTimeout=10
+db.username=sa
+db.password=DIEN_MAT_KHAU_SQL_SERVER
+
+server.bind.host=127.0.0.1
+server.host=localhost
+server.port=8888
+
+# Chỉ dùng khi chủ động chạy AccountSetupMain trên database chưa có tài khoản.
+setup.username=QUAN_LY
+setup.password=123456
+setup.employee.id=NVQL001
+setup.employee.name=Nguyễn Minh Anh
+setup.employee.phone=0123456789

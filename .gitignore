@@ -1,2 +1,20 @@
 /.tmp/
 /target/
+/QuanLyBanQuanAo_Server/target/
+/QuanLyBanQuanAo_Client/bin/
+/.metadata/
+*.class
+*.log
+
+# Local credentials
+application.local.properties
+.env
+.env.*
+!.env.example
+!.env.sample
+
+# Local SQL Server data and dumps
+*.bak
+*.bacpac
+*.mdf
+*.ldf

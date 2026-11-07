@@ -20,6 +20,7 @@ import javax.swing.table.DefaultTableModel;
 
 import client.controllers.DieuKhienQuanLySanPham;
 import client.gui.components.ChuDeGiaoDien;
+import client.utils.SinhMaTuDong;
 import client.gui.components.TacVuGiaoDien;
 import client.gui.components.TienIchBangSanPham;
 import common.dto.danhmuc.DuLieuLoaiSanPham;
@@ -102,11 +103,11 @@ public final class KhungDanhMuc extends JPanel {
                 code == null ? "Thêm mới" : "Sửa tên", Dialog.ModalityType.APPLICATION_MODAL);
         JPanel panel = new JPanel(new BorderLayout(0, 18));
         panel.setBorder(BorderFactory.createEmptyBorder(24, 24, 24, 24));
-        JTextField id = new JTextField(code == null ? "" : code, 20),
+        JTextField id = new JTextField(code == null ? SinhMaTuDong.tao(brand ? "TH" : "LSP") : code, 20),
                 name = new JTextField(before == null ? "" : before, 24);
-        id.setEditable(code == null);
+        id.setEditable(false);
         JPanel fields = ChuDeGiaoDien.card(new GridLayout(0, 1, 0, 16));
-        fields.add(ChuDeGiaoDien.field("Mã (tối đa 20 ký tự)", id));
+        fields.add(ChuDeGiaoDien.field("Mã (tự sinh)", id));
         fields.add(ChuDeGiaoDien.field("Tên", name));
         panel.add(fields, BorderLayout.CENTER);
         JButton save = new JButton("Lưu");

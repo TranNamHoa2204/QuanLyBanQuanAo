@@ -8,13 +8,14 @@ import javax.swing.JButton;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 
+import client.gui.components.BieuTuongCoDien;
 import client.gui.components.ChuDeGiaoDien;
 
 public final class KhungDoiMatKhau extends JPanel {
     private static final long serialVersionUID = 1L;
     final JPasswordField oldPassword = new JPasswordField(22), newPassword = new JPasswordField(22),
             confirm = new JPasswordField(22);
-    final JButton save = new JButton("Đổi mật khẩu");
+    final JButton save = new JButton("Đổi mật khẩu", BieuTuongCoDien.KHOA);
 
     public KhungDoiMatKhau() {
         super(new BorderLayout(0, 20));

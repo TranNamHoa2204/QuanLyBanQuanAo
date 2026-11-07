@@ -27,6 +27,7 @@ import javax.swing.SpinnerNumberModel;
 import javax.swing.SwingUtilities;
 
 import client.api.GoiDichVuSanPham;
+import client.gui.components.BieuTuongCoDien;
 import client.gui.components.ChuDeGiaoDien;
 import client.gui.components.TacVuGiaoDien;
 import common.dto.sanpham.DuLieuBienThe;
@@ -40,7 +41,7 @@ public final class HopThoaiThemHangNhap extends JDialog {
     private final JComboBox<DuLieuSanPham> products = new JComboBox<>();
     private final JComboBox<DuLieuBienThe> variants = new JComboBox<>();
     private final JSpinner quantity = new JSpinner(new SpinnerNumberModel(1, 1, 1000000, 1));
-    private final JButton search = new JButton("Tìm sản phẩm"), add = new JButton("Thêm vào phiếu");
+    private final JButton search = new JButton("Tìm sản phẩm", BieuTuongCoDien.TIM_KIEM), add = new JButton("Thêm vào phiếu", BieuTuongCoDien.THEM);
     private final JLabel status = ChuDeGiaoDien.muted(" ");
     private boolean busy;
     private Selection result;

@@ -14,6 +14,7 @@ import java.awt.event.MouseEvent;
 import java.text.NumberFormat;
 import java.util.Locale;
 
+import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JComponent;
 import javax.swing.JLabel;
@@ -170,7 +171,7 @@ public final class ChuDeGiaoDien {
         JScrollPane pane = new JScrollPane(table);
         pane.setColumnHeaderView(table.getTableHeader());
         pane.getViewport().setBackground(SURFACE);
-        pane.setBorder(new FlatLineBorder(new Insets(2, 2, 2, 2), TABLE_BORDER, 2, 0));
+        pane.setBorder(BorderFactory.createLineBorder(TABLE_BORDER, 1));
         return pane;
     }
 

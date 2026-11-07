@@ -40,6 +40,7 @@ import client.api.GoiDichVuNhaCungCap;
 import client.api.GoiDichVuSanPham;
 import client.api.NgoaiLeGoiDichVu;
 import client.controllers.DieuKhienPhieuNhap;
+import client.gui.components.BieuTuongCoDien;
 import client.gui.components.ChuDeGiaoDien;
 import client.gui.components.TienIchBangSanPham;
 import common.dto.nhacungcap.DuLieuNhaCungCap;
@@ -65,11 +66,11 @@ public final class ManHinhPhieuNhap extends JPanel {
     private final JTextField keyword = new JTextField(12), from = new JTextField(9), to = new JTextField(9);
     private final JComboBox<String> statusFilter = new JComboBox<String>(
             new String[] { "Tất cả", "Chưa nhập kho", "Đã nhập kho", "Đã hủy" });
-    private final JButton search = new JButton("Tìm phiếu nhập"), create = new JButton("Lập phiếu nhập"),
+    private final JButton search = new JButton("Tìm phiếu nhập", BieuTuongCoDien.TIM_KIEM), create = new JButton("Lập phiếu nhập", BieuTuongCoDien.THEM),
             previous = new JButton("Trang trước"), next = new JButton("Trang sau"),
-            addLine = new JButton("Thêm hàng"), updateLine = new JButton("Sửa số lượng / giá nhập"),
-            removeLine = new JButton("Xóa khỏi phiếu"), confirm = new JButton("Xác nhận nhập kho"),
-            cancel = new JButton("Hủy phiếu"), retry = new JButton("Gửi lại thao tác");
+            addLine = new JButton("Thêm hàng", BieuTuongCoDien.SAN_PHAM), updateLine = new JButton("Sửa số lượng / giá nhập"),
+            removeLine = new JButton("Xóa khỏi phiếu"), confirm = new JButton("Xác nhận nhập kho", BieuTuongCoDien.XAC_NHAN),
+            cancel = new JButton("Hủy phiếu"), retry = new JButton("Gửi lại thao tác", BieuTuongCoDien.LAM_MOI);
     private final JLabel summary = ChuDeGiaoDien.muted("Chọn hoặc tạo một phiếu nhập."),
             status = ChuDeGiaoDien.muted("Chọn phiếu để xem chi tiết hoặc lập phiếu mới.");
     private final DefaultTableModel receiptModel = TienIchBangSanPham.model(
@@ -88,6 +89,8 @@ public final class ManHinhPhieuNhap extends JPanel {
     private int page;
     private long total, sequence;
     private boolean busy, replacingReceipts;
+    private boolean loadingReceipt;
+    private String requestedReceiptCode;
     private Object pendingRequest;
     private String pendingKind;
 
@@ -244,6 +247,7 @@ public final class ManHinhPhieuNhap extends JPanel {
                 clearReceipt();
             }
             replacingReceipts = false;
+            requestedReceiptCode = current == null ? null : current.getPhieuNhap().getMaPhieuNhap();
             status.setText(total + " phiếu • Trang " + (page + 1) + "/"
                     + Math.max(1, (total + PAGE_SIZE - 1) / PAGE_SIZE)
                     + (receipts.isEmpty() ? " • Không có kết quả." : "")
@@ -253,20 +257,66 @@ public final class ManHinhPhieuNhap extends JPanel {
     }
 
     private void loadSelectedReceipt() {
-        DuLieuPhieuNhap selected = selectedReceipt();
-        clearReceipt();
-        if (selected != null) {
-            runRead(() -> controller.detail(selected.getMaPhieuNhap()), value -> {
-                showReceipt(value);
-                status.setText("Đang xem phiếu " + selected.getMaPhieuNhap() + ".");
-            });
-        } else {
-            status.setText("Chọn phiếu để xem chi tiết hoặc lập phiếu mới.");
+        if (busy) {
+            return;
         }
+        DuLieuPhieuNhap selected = selectedReceipt();
+        if (selected == null) {
+            clearReceipt();
+            status.setText("Chọn phiếu để xem chi tiết hoặc lập phiếu mới.");
+            return;
+        }
+        String code = selected.getMaPhieuNhap();
+        if (code.equals(requestedReceiptCode) && (loadingReceipt
+                || current != null && code.equals(current.getPhieuNhap().getMaPhieuNhap()))) {
+            return;
+        }
+        requestedReceiptCode = code;
+        loadReceiptDetail();
+        refreshControls();
+    }
+
+    private void loadReceiptDetail() {
+        if (loadingReceipt || requestedReceiptCode == null) {
+            return;
+        }
+        String code = requestedReceiptCode;
+        long operation = sequence;
+        loadingReceipt = true;
+        new SwingWorker<DuLieuDayDuPhieuNhap, Void>() {
+            @Override
+            protected DuLieuDayDuPhieuNhap doInBackground() throws Exception {
+                return controller.detail(code);
+            }
+
+            @Override
+            protected void done() {
+                loadingReceipt = false;
+                if (operation != sequence) {
+                    refreshControls();
+                    return;
+                }
+                if (!code.equals(requestedReceiptCode)) {
+                    loadReceiptDetail();
+                } else {
+                    try {
+                        showReceipt(get());
+                        status.setText("Đang xem phiếu " + code + ".");
+                    } catch (InterruptedException interrupted) {
+                        Thread.currentThread().interrupt();
+                    } catch (ExecutionException failure) {
+                        clearReceipt();
+                        status.setText("Chưa mở được phiếu. Bấm đúp dòng phiếu để thử lại.");
+                    }
+                }
+                refreshControls();
+            }
+        }.execute();
     }
 
     private void clearReceipt() {
         current = null;
+        requestedReceiptCode = null;
         lineModel.setRowCount(0);
         summary.setText("Chọn hoặc lập một phiếu nhập.");
         refreshControls();
@@ -286,6 +336,7 @@ public final class ManHinhPhieuNhap extends JPanel {
 
     private void showReceipt(DuLieuDayDuPhieuNhap value) {
         current = value;
+        requestedReceiptCode = value.getPhieuNhap().getMaPhieuNhap();
         lineModel.setRowCount(0);
         if (value.getChiTiet() != null)
             for (DuLieuChiTietPhieuNhap row : value.getChiTiet())
@@ -460,7 +511,9 @@ public final class ManHinhPhieuNhap extends JPanel {
     }
 
     private boolean canEdit() {
-        return current != null && current.getPhieuNhap().getTrangThai() == TrangThaiPhieuNhap.NHAP;
+        return !loadingReceipt && current != null
+                && current.getPhieuNhap().getMaPhieuNhap().equals(requestedReceiptCode)
+                && current.getPhieuNhap().getTrangThai() == TrangThaiPhieuNhap.NHAP;
     }
 
     private void retryPending() {
@@ -553,8 +606,6 @@ public final class ManHinhPhieuNhap extends JPanel {
 
     private void refreshControls() {
         boolean draft = canEdit(), pending = pendingRequest != null, selected = selectedLine() != null;
-        receiptTable.setEnabled(!busy);
-        lineTable.setEnabled(!busy);
         search.setEnabled(!busy);
         create.setEnabled(!busy && !pending);
         keyword.setEnabled(!busy);

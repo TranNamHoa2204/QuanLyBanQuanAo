@@ -30,6 +30,7 @@ import javax.swing.table.DefaultTableModel;
 
 import client.controllers.DieuKhienQuanLySanPham;
 import client.gui.components.ChuDeGiaoDien;
+import client.utils.SinhMaTuDong;
 import client.gui.components.TacVuGiaoDien;
 import client.gui.components.TienIchBangSanPham;
 import common.dto.kho.YeuCauDieuChinhTonKho;
@@ -105,7 +106,9 @@ public final class KhungQuanLyBienThe extends JPanel {
             if (!updatingPicker) {
                 ProductOption option = (ProductOption) products.getSelectedItem();
                 if (option != null && option.id != null) {
-                    loadProduct(option.id);
+                    if (current == null || !option.id.equals(current.getSanPham().getMaSP())) {
+                        loadProduct(option.id);
+                    }
                 } else {
                     clearDetail();
                     status.setText("Chọn một sản phẩm để xem màu, size và tồn kho.");
@@ -173,8 +176,8 @@ public final class KhungQuanLyBienThe extends JPanel {
             queuedProduct = id;
             return;
         }
-        clearDetail();
         read(() -> controller.detail(id), this::showProduct, message -> {
+            clearDetail();
             failedProduct = id;
             status.setText("Chưa mở được sản phẩm " + id + ". Bấm Thử lại.");
         });
@@ -289,14 +292,14 @@ public final class KhungQuanLyBienThe extends JPanel {
                 Dialog.ModalityType.APPLICATION_MODAL);
         JPanel panel = new JPanel(new BorderLayout(0, 16));
         panel.setBorder(BorderFactory.createEmptyBorder(24, 24, 24, 24));
-        JTextField id = new JTextField(creating ? "" : original.getMaBienThe(), 18),
+        JTextField id = new JTextField(creating ? SinhMaTuDong.tao("BT") : original.getMaBienThe(), 18),
                 color = new JTextField(creating ? "" : original.getMauSac(), 18),
                 size = new JTextField(creating ? "" : original.getKichCo(), 18);
-        id.setEditable(creating);
+        id.setEditable(false);
         color.setEditable(creating);
         size.setEditable(creating);
         JPanel fields = ChuDeGiaoDien.card(new GridLayout(0, 2, 14, 16));
-        fields.add(ChuDeGiaoDien.field("Mã biến thể", id));
+        fields.add(ChuDeGiaoDien.field("Mã biến thể (tự sinh)", id));
         fields.add(ChuDeGiaoDien.field("Sản phẩm", new JLabel(parent)));
         fields.add(ChuDeGiaoDien.field("Màu", color));
         fields.add(ChuDeGiaoDien.field("Size", size));

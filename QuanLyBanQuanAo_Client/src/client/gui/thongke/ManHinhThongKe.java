@@ -34,6 +34,7 @@ import javax.swing.table.DefaultTableModel;
 
 import client.api.NgoaiLeGoiDichVu;
 import client.controllers.DieuKhienThongKe;
+import client.gui.components.BieuTuongCoDien;
 import client.gui.components.ChuDeGiaoDien;
 import client.gui.components.TienIchBangSanPham;
 import common.dto.thongke.DuLieuThongKeDoanhThu;
@@ -53,7 +54,7 @@ public final class ManHinhThongKe extends JPanel implements Scrollable {
     private final JComboBox<Mode> mode = new JComboBox<Mode>(new Mode[] {
             new Mode("Theo ngày", NhomThongKe.NGAY), new Mode("Theo tháng", NhomThongKe.THANG),
             new Mode("Theo năm", NhomThongKe.NAM), new Mode("Theo sản phẩm", null) });
-    private final JButton search = new JButton("Xem báo cáo"), previous = new JButton("Trang trước"),
+    private final JButton search = new JButton("Xem báo cáo", BieuTuongCoDien.BAO_CAO), previous = new JButton("Trang trước"),
             next = new JButton("Trang sau");
     private final JLabel status = ChuDeGiaoDien.muted("Chưa tải thống kê."),
             legacyWarning = ChuDeGiaoDien.muted(""), invoices = new JLabel("—"), gross = new JLabel("—"),

@@ -11,6 +11,7 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 
 import client.gui.components.ChuDeGiaoDien;
+import client.utils.SinhMaTuDong;
 import common.dto.danhmuc.DuLieuLoaiSanPham;
 import common.dto.danhmuc.DuLieuThuongHieu;
 import common.dto.sanpham.DuLieuSanPham;
@@ -28,12 +29,14 @@ public final class KhungChinhSuaSanPham extends JPanel {
             List<DuLieuThuongHieu> brands) {
         super(new BorderLayout(0, 16));
         this.original = original;
+        id.setText(original == null ? SinhMaTuDong.tao("SP") : original.getMaSP());
+        id.setEditable(false);
         add(ChuDeGiaoDien.heading(original == null ? "Thêm sản phẩm" : "Cập nhật sản phẩm",
                 "Mã cố định. Giá được áp dụng cho lần thêm hàng mới."), BorderLayout.NORTH);
         JPanel fields = ChuDeGiaoDien.card(new GridLayout(0, 2, 14, 16));
         categories.forEach(c -> category.addItem(new Choice(c.getMaLoai(), c.getTenLoai())));
         brands.forEach(b -> brand.addItem(new Choice(b.getMaThuongHieu(), b.getTenThuongHieu())));
-        fields.add(ChuDeGiaoDien.field("Mã sản phẩm", id));
+        fields.add(ChuDeGiaoDien.field("Mã sản phẩm (tự sinh)", id));
         fields.add(ChuDeGiaoDien.field("Tên sản phẩm", name));
         fields.add(ChuDeGiaoDien.field("Loại sản phẩm", category));
         fields.add(ChuDeGiaoDien.field("Thương hiệu", brand));

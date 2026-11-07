@@ -56,9 +56,11 @@ import client.api.GoiDichVuKhachHang;
 import client.api.GoiDichVuSanPham;
 import client.api.NgoaiLeGoiDichVu;
 import client.controllers.DieuKhienBanHang;
+import client.gui.components.BieuTuongCoDien;
 import client.gui.components.ChuDeGiaoDien;
 import client.gui.components.TienIchBangSanPham;
 import client.utils.TaiAnh;
+import client.utils.SinhMaTuDong;
 import common.dto.danhmuc.DuLieuThue;
 import common.dto.hoadon.DuLieuChiTietHoaDon;
 import common.dto.hoadon.DuLieuDayDuHoaDon;
@@ -124,14 +126,14 @@ public final class KhungBanHang extends JPanel implements Scrollable {
     private final JLabel subtotal = new JLabel("—"), discount = new JLabel("—"),
             taxAmount = new JLabel("—"), taxCaption = ChuDeGiaoDien.muted("Thuế"),
             paymentInfo = ChuDeGiaoDien.muted(" ");
-    private final JButton fresh = new JButton("Đơn mới"), reload = new JButton("Kiểm tra lại đơn"),
-            addLine = new JButton("+ Thêm vào giỏ"), increase = new JButton("+"), decrease = new JButton("−"),
+    private final JButton fresh = new JButton("Đơn mới", BieuTuongCoDien.THEM), reload = new JButton("Kiểm tra lại đơn", BieuTuongCoDien.LAM_MOI),
+            addLine = new JButton("+ Thêm vào giỏ", BieuTuongCoDien.SAN_PHAM), increase = new JButton("+"), decrease = new JButton("−"),
             change = new JButton("Đổi số lượng"), remove = new JButton("Xóa khỏi giỏ"),
-            pay = new JButton("Thanh toán (F9)"), cancel = new JButton("Hủy hóa đơn"),
+            pay = new JButton("Thanh toán (F9)", BieuTuongCoDien.BAN_HANG), cancel = new JButton("Hủy hóa đơn"),
             taxes = new JButton("Thử lại thuế"), options = new JButton("Tùy chọn đơn"),
-            history = new JButton("Hóa đơn đã lưu"), chooseCustomer = new JButton("Tra cứu"),
-            createCustomer = new JButton("+ Khách mới"), clearCustomer = new JButton("Khách lẻ"),
-            search = new JButton("Tìm"),
+            history = new JButton("Hóa đơn đã lưu", BieuTuongCoDien.HOA_DON), chooseCustomer = new JButton("Tra cứu", BieuTuongCoDien.TIM_KIEM),
+            createCustomer = new JButton("+ Khách mới", BieuTuongCoDien.KHACH_HANG), clearCustomer = new JButton("Khách lẻ"),
+            search = new JButton("Tìm", BieuTuongCoDien.TIM_KIEM),
             previous = new JButton("‹"), next = new JButton("›");
     private DuLieuDayDuHoaDon current;
     private YeuCauTaoHoaDon pendingCreate;
@@ -292,6 +294,8 @@ public final class KhungBanHang extends JPanel implements Scrollable {
 
     private JPanel buildCatalog() {
         JPanel card = ChuDeGiaoDien.card(new BorderLayout(0, 10), 14);
+        card.setPreferredSize(new Dimension(450, 600));
+        card.setMinimumSize(new Dimension(0, 0));
         JPanel filter = new JPanel(new BorderLayout(8, 0));
         filter.setOpaque(false);
         filter.add(catalogQuery, BorderLayout.CENTER);
@@ -348,6 +352,8 @@ public final class KhungBanHang extends JPanel implements Scrollable {
 
     private JPanel buildOrder() {
         JPanel order = ChuDeGiaoDien.card(new BorderLayout(0, 8), 14);
+        order.setPreferredSize(new Dimension(650, 600));
+        order.setMinimumSize(new Dimension(0, 0));
         JPanel heading = new JPanel(new BorderLayout());
         heading.setOpaque(false);
         heading.add(ChuDeGiaoDien.title("Đơn hàng", 22), BorderLayout.WEST);
@@ -1062,8 +1068,6 @@ public final class KhungBanHang extends JPanel implements Scrollable {
             button.setEnabled(!busy && !needsCheck);
         }
         search.setEnabled(!busy);
-        catalog.setEnabled(!busy);
-        table.setEnabled(!busy);
         catalogQuery.setEnabled(!busy);
         previous.setEnabled(!busy && catalogPage > 0);
         next.setEnabled(!busy && (catalogPage + 1L) * CATALOG_PAGE_SIZE < catalogTotal);
@@ -1210,10 +1214,11 @@ public final class KhungBanHang extends JPanel implements Scrollable {
         if (customers == null) {
             return;
         }
-        JTextField code = new JTextField(), name = new JTextField(), phone = new JTextField(),
+        JTextField code = new JTextField(SinhMaTuDong.tao("KH")), name = new JTextField(), phone = new JTextField(),
                 email = new JTextField(), address = new JTextField();
         JPanel form = new JPanel(new GridLayout(0, 2, 8, 8));
-        form.add(new JLabel("Mã khách hàng *"));
+        code.setEditable(false);
+        form.add(new JLabel("Mã khách hàng (tự sinh)"));
         form.add(code);
         form.add(new JLabel("Họ tên *"));
         form.add(name);

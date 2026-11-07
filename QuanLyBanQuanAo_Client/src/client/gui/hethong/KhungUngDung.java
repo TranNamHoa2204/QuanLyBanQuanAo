@@ -26,6 +26,7 @@ import javax.swing.Scrollable;
 import javax.swing.SwingConstants;
 
 import client.gui.components.BieuTuongCuaHang;
+import client.gui.components.BieuTuongCoDien;
 import client.gui.components.ChuDeGiaoDien;
 import client.gui.sanpham.KhungQuanLySanPham;
 import common.dto.taikhoan.KetQuaDangNhap;
@@ -39,7 +40,7 @@ public final class KhungUngDung extends JPanel {
     private final JLabel pageTitle = ChuDeGiaoDien.title("Trang chủ", 19);
     private final JLabel date = ChuDeGiaoDien.muted("");
     private final JMenuBar menuBar = new JMenuBar();
-    private final JButton homeButton = new JButton("Trang chủ");
+    private final JButton homeButton = new JButton("Trang chủ", BieuTuongCoDien.TRANG_CHU);
 
     public KhungUngDung(KetQuaDangNhap login, Runnable products, Runnable sales, Runnable profile,
             Runnable password, Consumer<AbstractButton> logout) {
@@ -146,13 +147,13 @@ public final class KhungUngDung extends JPanel {
                 BorderFactory.createMatteBorder(0, 0, 1, 0, ChuDeGiaoDien.LINE),
                 BorderFactory.createEmptyBorder(3, 16, 3, 16)));
         JMenu system = menu("Hệ thống", KeyEvent.VK_H);
-        item(system, "Trang chủ", this::showHome,
+        item(system, "Trang chủ", BieuTuongCoDien.TRANG_CHU, this::showHome,
                 KeyStroke.getKeyStroke(KeyEvent.VK_HOME, KeyEvent.CTRL_DOWN_MASK));
         system.addSeparator();
-        item(system, "Thông tin cá nhân", profile, null);
-        item(system, "Đổi mật khẩu", password, null);
+        item(system, "Thông tin cá nhân", BieuTuongCoDien.NHAN_VIEN, profile, null);
+        item(system, "Đổi mật khẩu", BieuTuongCoDien.KHOA, password, null);
         system.addSeparator();
-        JMenuItem signout = new JMenuItem("Đăng xuất");
+        JMenuItem signout = new JMenuItem("Đăng xuất", BieuTuongCoDien.THOAT);
         signout.addActionListener(e -> logout.accept(signout));
         system.add(signout);
 
@@ -160,35 +161,36 @@ public final class KhungUngDung extends JPanel {
             JMenu catalog = menu("Danh mục", KeyEvent.VK_D);
             if (management != null) {
                 JMenu product = new JMenu("Sản phẩm");
+                product.setIcon(BieuTuongCoDien.SAN_PHAM);
                 if (catalogSection == null) {
-                    item(product, "Danh mục & sản phẩm", management, null);
+                    item(product, "Danh mục & sản phẩm", BieuTuongCoDien.SAN_PHAM, management, null);
                 } else {
                     for (KhungQuanLySanPham.Section section : KhungQuanLySanPham.Section.values()) {
-                        item(product, section.getTitle(), () -> catalogSection.accept(section), null);
+                        item(product, section.getTitle(), section.getIcon(), () -> catalogSection.accept(section), null);
                     }
                 }
                 catalog.add(product);
             }
             JMenu update = menu("Cập nhật", KeyEvent.VK_C);
-            item(update, "Nhân viên & tài khoản", employees, null);
-            item(update, "Khách hàng", customers, null);
-            item(update, "Khuyến mãi", promotions, null);
-            item(update, "Nhà cung cấp", suppliers, null);
+            item(update, "Nhân viên & tài khoản", BieuTuongCoDien.NHAN_VIEN, employees, null);
+            item(update, "Khách hàng", BieuTuongCoDien.KHACH_HANG, customers, null);
+            item(update, "Khuyến mãi", BieuTuongCoDien.KHUYEN_MAI, promotions, null);
+            item(update, "Nhà cung cấp", BieuTuongCoDien.KHO, suppliers, null);
         }
         JMenu operations = menu("Xử lý", KeyEvent.VK_X);
-        item(operations, "Bán hàng & thanh toán", sales, KeyStroke.getKeyStroke(KeyEvent.VK_F2, 0));
+        item(operations, "Bán hàng & thanh toán", BieuTuongCoDien.BAN_HANG, sales, KeyStroke.getKeyStroke(KeyEvent.VK_F2, 0));
         if (manager) {
-            item(operations, "Phiếu nhập kho", receipts, KeyStroke.getKeyStroke(KeyEvent.VK_F6, 0));
+            item(operations, "Phiếu nhập kho", BieuTuongCoDien.KHO, receipts, KeyStroke.getKeyStroke(KeyEvent.VK_F6, 0));
         }
         JMenu lookup = menu("Tìm kiếm", KeyEvent.VK_T);
-        item(lookup, "Tra cứu sản phẩm", products, KeyStroke.getKeyStroke(KeyEvent.VK_F3, 0));
-        item(lookup, "Tra cứu hóa đơn", invoices, KeyStroke.getKeyStroke(KeyEvent.VK_F4, 0));
+        item(lookup, "Tra cứu sản phẩm", BieuTuongCoDien.TIM_KIEM, products, KeyStroke.getKeyStroke(KeyEvent.VK_F3, 0));
+        item(lookup, "Tra cứu hóa đơn", BieuTuongCoDien.HOA_DON, invoices, KeyStroke.getKeyStroke(KeyEvent.VK_F4, 0));
         if (manager) {
-            item(lookup, "Lịch sử kho", stockHistory, null);
+            item(lookup, "Lịch sử kho", BieuTuongCoDien.KHO, stockHistory, null);
         }
         if (manager) {
             JMenu reports = menu("Báo biểu", KeyEvent.VK_B);
-            item(reports, "Thống kê doanh thu", statistics, null);
+            item(reports, "Thống kê doanh thu", BieuTuongCoDien.BAO_CAO, statistics, null);
         }
         for (int i = menuBar.getMenuCount() - 1; i >= 0; i--) {
             if (menuBar.getMenu(i).getItemCount() == 0) {
@@ -205,11 +207,11 @@ public final class KhungUngDung extends JPanel {
         return menu;
     }
 
-    private static void item(JMenu menu, String title, Runnable callback, KeyStroke shortcut) {
+    private static void item(JMenu menu, String title, BieuTuongCoDien icon, Runnable callback, KeyStroke shortcut) {
         if (callback == null) {
             return;
         }
-        JMenuItem item = new JMenuItem(title);
+        JMenuItem item = new JMenuItem(title, icon);
         item.setAccelerator(shortcut);
         item.addActionListener(e -> callback.run());
         menu.add(item);
@@ -231,27 +233,27 @@ public final class KhungUngDung extends JPanel {
         body.add(ChuDeGiaoDien.title("Lối tắt công việc", 19), BorderLayout.NORTH);
         JPanel tasks = new JPanel(new GridLayout(0, manager ? 3 : 2, 16, 16));
         tasks.setOpaque(false);
-        tasks.add(taskCard("01", "Bán hàng", "Lập hóa đơn, chọn khách hàng<br>và thu tiền tại quầy.",
+        tasks.add(taskCard("01", BieuTuongCoDien.BAN_HANG, "Bán hàng", "Lập hóa đơn, chọn khách hàng<br>và thu tiền tại quầy.",
                 "Mở quầy bán hàng", sales));
-        tasks.add(taskCard("02", "Tra cứu sản phẩm",
+        tasks.add(taskCard("02", BieuTuongCoDien.TIM_KIEM, "Tra cứu sản phẩm",
                 "Tìm sản phẩm, xem hình ảnh,<br>màu sắc, kích cỡ và tồn kho.", "Tìm sản phẩm", products));
         if (manager) {
             if (management != null) {
-                tasks.add(taskCard("03", "Danh mục sản phẩm",
+                tasks.add(taskCard("03", BieuTuongCoDien.THU_MUC, "Danh mục sản phẩm",
                         "Quản lý sản phẩm, loại hàng,<br>thương hiệu và biến thể.", "Mở danh mục",
                         management));
             }
             if (receipts != null) {
-                tasks.add(taskCard("04", "Nhập hàng",
+                tasks.add(taskCard("04", BieuTuongCoDien.KHO, "Nhập hàng",
                         "Lập phiếu nhập từ nhà cung cấp<br>và xác nhận hàng vào kho.", "Mở phiếu nhập",
                         receipts));
             }
             if (customers != null) {
-                tasks.add(taskCard("05", "Khách hàng",
+                tasks.add(taskCard("05", BieuTuongCoDien.KHACH_HANG, "Khách hàng",
                         "Tra cứu và cập nhật hồ sơ<br>khách hàng của cửa hàng.", "Mở khách hàng", customers));
             }
             if (statistics != null) {
-                tasks.add(taskCard("06", "Báo cáo doanh thu",
+                tasks.add(taskCard("06", BieuTuongCoDien.BAO_CAO, "Báo cáo doanh thu",
                         "Xem kết quả bán hàng theo<br>thời gian hoặc sản phẩm.", "Xem thống kê", statistics));
             }
         }
@@ -263,7 +265,7 @@ public final class KhungUngDung extends JPanel {
         home.add(body, BorderLayout.CENTER);
     }
 
-    private static JPanel taskCard(String number, String title, String description, String action,
+    private static JPanel taskCard(String number, BieuTuongCoDien icon, String title, String description, String action,
             Runnable callback) {
         JPanel card = ChuDeGiaoDien.card(new BorderLayout(0, 16));
         JPanel heading = new JPanel(new BorderLayout(10, 0));
@@ -274,7 +276,7 @@ public final class KhungUngDung extends JPanel {
         heading.add(ChuDeGiaoDien.title(title, 18), BorderLayout.CENTER);
         card.add(heading, BorderLayout.NORTH);
         card.add(ChuDeGiaoDien.muted("<html>" + description + "</html>"), BorderLayout.CENTER);
-        JButton button = new JButton(action);
+        JButton button = new JButton(action, icon);
         ChuDeGiaoDien.primary(button);
         button.setEnabled(callback != null);
         button.addActionListener(e -> {

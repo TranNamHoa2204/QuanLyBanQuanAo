@@ -27,7 +27,9 @@ import javax.swing.table.DefaultTableModel;
 
 import client.api.NgoaiLeGoiDichVu;
 import client.controllers.DieuKhienNhanVien;
+import client.gui.components.BieuTuongCoDien;
 import client.gui.components.ChuDeGiaoDien;
+import client.utils.SinhMaTuDong;
 import client.gui.components.TienIchBangSanPham;
 import common.dto.nhanvien.DuLieuHoSoNhanVien;
 import common.dto.nhanvien.DuLieuNhanVien;
@@ -49,8 +51,8 @@ public final class ManHinhNhanVien extends JPanel {
     private final JTextField keyword = new JTextField(18);
     private final JComboBox<String> statusFilter = new JComboBox<String>(
             new String[] { "Tất cả", "Đang hoạt động", "Ngừng hoạt động" });
-    private final JButton search = new JButton("Tìm nhân viên"), add = new JButton("Thêm nhân viên"),
-            edit = new JButton("Sửa hồ sơ"), createAccount = new JButton("Cấp tài khoản"),
+    private final JButton search = new JButton("Tìm nhân viên", BieuTuongCoDien.TIM_KIEM), add = new JButton("Thêm nhân viên", BieuTuongCoDien.THEM),
+            edit = new JButton("Sửa hồ sơ"), createAccount = new JButton("Cấp tài khoản", BieuTuongCoDien.KHOA),
             employeeStatus = new JButton("Ngừng hoạt động"), accountStatus = new JButton("Khóa tài khoản"),
             role = new JButton("Đổi quyền"), previous = new JButton("Trang trước"), next = new JButton("Trang sau");
     private final JLabel status = ChuDeGiaoDien.muted("Chưa tải danh sách nhân viên.");
@@ -217,7 +219,7 @@ public final class ManHinhNhanVien extends JPanel {
     }
 
     private EmployeeDraft employeeDialog(DuLieuNhanVien original, boolean creating) {
-        JTextField id = new JTextField(creating ? "" : safe(original.getMaNV()));
+        JTextField id = new JTextField(creating ? SinhMaTuDong.tao("NV") : safe(original.getMaNV()));
         JTextField name = new JTextField(creating ? "" : safe(original.getHoTen()));
         JTextField phone = new JTextField(creating ? "" : safe(original.getSdt()));
         JTextField email = new JTextField(creating ? "" : safe(original.getEmail()));
@@ -229,9 +231,9 @@ public final class ManHinhNhanVien extends JPanel {
         if (!creating && original.getGioiTinh() != null) {
             gender.setSelectedIndex(original.getGioiTinh() ? 1 : 2);
         }
-        id.setEnabled(creating);
+        id.setEditable(false);
         JPanel fields = new JPanel(new GridLayout(0, 2, 8, 8));
-        fields.add(new JLabel("Mã nhân viên *"));
+        fields.add(new JLabel("Mã nhân viên (tự sinh)"));
         fields.add(id);
         fields.add(new JLabel("Họ tên *"));
         fields.add(name);
@@ -452,7 +454,6 @@ public final class ManHinhNhanVien extends JPanel {
         DuLieuHoSoNhanVien row = selected();
         boolean selected = row != null;
         boolean hasAccount = selected && row.getTaiKhoan() != null;
-        table.setEnabled(!busy);
         search.setEnabled(!busy);
         add.setEnabled(!busy);
         keyword.setEnabled(!busy);

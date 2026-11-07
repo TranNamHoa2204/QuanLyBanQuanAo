@@ -25,7 +25,9 @@ import javax.swing.table.DefaultTableModel;
 
 import client.api.NgoaiLeGoiDichVu;
 import client.controllers.DieuKhienKhuyenMai;
+import client.gui.components.BieuTuongCoDien;
 import client.gui.components.ChuDeGiaoDien;
+import client.utils.SinhMaTuDong;
 import client.gui.components.TienIchBangSanPham;
 import common.dto.khuyenmai.DuLieuKhuyenMai;
 import common.dto.khuyenmai.YeuCauLuuKhuyenMai;
@@ -41,7 +43,7 @@ public final class ManHinhKhuyenMai extends JPanel {
     private final JTextField keyword = new JTextField(18);
     private final JComboBox<String> activeFilter = new JComboBox<String>(
             new String[] { "Tất cả", "Đang bật", "Đã ngừng" });
-    private final JButton search = new JButton("Tìm khuyến mãi"), add = new JButton("Thêm khuyến mãi"),
+    private final JButton search = new JButton("Tìm khuyến mãi", BieuTuongCoDien.TIM_KIEM), add = new JButton("Thêm khuyến mãi", BieuTuongCoDien.THEM),
             edit = new JButton("Sửa khuyến mãi"), toggle = new JButton("Ngừng áp dụng"), previous = new JButton("Trang trước"),
             next = new JButton("Trang sau");
     private final JLabel status = ChuDeGiaoDien.muted("Chưa tải khuyến mãi.");
@@ -198,14 +200,14 @@ public final class ManHinhKhuyenMai extends JPanel {
     }
 
     private DuLieuKhuyenMai promotionDialog(DuLieuKhuyenMai original, boolean creating) {
-        JTextField code = new JTextField(creating ? "" : safe(original.getMaKM()));
+        JTextField code = new JTextField(creating ? SinhMaTuDong.tao("KM") : safe(original.getMaKM()));
         JTextField name = new JTextField(creating ? "" : safe(original.getTenKM()));
         JTextField rate = new JTextField(creating ? "" : String.valueOf(original.getPhanTramGiam()));
         JTextField start = new JTextField(creating ? "" : String.valueOf(original.getNgayBatDau()));
         JTextField end = new JTextField(creating ? "" : String.valueOf(original.getNgayKetThuc()));
-        code.setEnabled(creating);
+        code.setEditable(false);
         JPanel form = new JPanel(new GridLayout(0, 2, 8, 8));
-        form.add(new JLabel("Mã khuyến mãi *"));
+        form.add(new JLabel("Mã khuyến mãi (tự sinh)"));
         form.add(code);
         form.add(new JLabel("Tên chương trình *"));
         form.add(name);
@@ -292,7 +294,6 @@ public final class ManHinhKhuyenMai extends JPanel {
 
     private void refreshControls() {
         boolean selected = selected() != null;
-        table.setEnabled(!busy);
         search.setEnabled(!busy);
         add.setEnabled(!busy);
         keyword.setEnabled(!busy);

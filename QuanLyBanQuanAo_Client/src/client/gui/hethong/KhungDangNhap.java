@@ -16,6 +16,7 @@ import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
 import client.gui.components.BieuTuongCuaHang;
+import client.gui.components.BieuTuongCoDien;
 import client.gui.components.ChuDeGiaoDien;
 
 /** View có thể render headless; form bên ngoài nối hành động đăng nhập qua controller. */
@@ -23,7 +24,7 @@ public final class KhungDangNhap extends JPanel {
     private static final long serialVersionUID = 1L;
     final JTextField username = new JTextField(22);
     final JPasswordField password = new JPasswordField(22);
-    final JButton login = new JButton("Đăng nhập");
+    final JButton login = new JButton("Đăng nhập", BieuTuongCoDien.KHOA);
 
     public KhungDangNhap() {
         super(new GridLayout(1, 2, 14, 0));

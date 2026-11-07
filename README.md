@@ -3,6 +3,9 @@
 Ứng dụng desktop Java Swing + FlatLaf, trao đổi dữ liệu qua TCP JSON.
 Server dùng JPA/Hibernate và SQL Server. Client làm việc qua DTO và API.
 
+Các form tạo sản phẩm, biến thể, loại hàng, thương hiệu, khách hàng, nhân viên,
+nhà cung cấp và khuyến mãi tự sinh mã có tiền tố tương ứng. Mã được giữ cố định trong lần lưu.
+
 ## Mở workspace Eclipse
 
 1. Chọn `C:\Users\KHOA\Desktop\QuanLyBanQuanAo` làm workspace.

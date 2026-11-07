@@ -161,7 +161,7 @@ public final class KhungQuanLyBienThe extends JPanel {
             choicesLoaded = true;
             status.setText(rows.isEmpty() ? "Không tìm thấy sản phẩm phù hợp."
                     : total + " sản phẩm · Trang " + (page + 1) + " · Chọn một sản phẩm trong danh sách.");
-            if (rows.size() == 1 && queuedProduct == null) {
+            if (!rows.isEmpty() && queuedProduct == null) {
                 products.setSelectedIndex(1);
             }
         }, message -> status.setText("Chưa tìm được sản phẩm. Bấm Tìm sản phẩm để thử lại."));
@@ -261,7 +261,8 @@ public final class KhungQuanLyBienThe extends JPanel {
                     b.getTrangThai() ? "Đang bán" : "Ngừng bán" });
         }
         status.setText(detail.getSanPham().getMaSP() + " — " + detail.getSanPham().getTenSP() + " • "
-                + detail.getBienThe().size() + " lựa chọn màu / size");
+                + (detail.getBienThe().isEmpty() ? "Chưa có màu / size. Bấm Thêm màu / size để bổ sung."
+                        : detail.getBienThe().size() + " lựa chọn màu / size"));
         refreshControls();
     }
 

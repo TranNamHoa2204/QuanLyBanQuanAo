@@ -8,6 +8,12 @@ nhà cung cấp, khuyến mãi, hóa đơn và phiếu nhập được máy ch�
 `PHIEUNHAP001`. Bộ đếm nằm trong SQL Server. Chạy `sql/09_ChuanHoaMaVaTen.sql`
 để cập nhật database đã có. Script tạo database `08` đã bao gồm bước này.
 
+Database đã bổ sung có 60 sản phẩm, 399 biến thể, 60 khách hàng, 12 nhân viên,
+10 nhà cung cấp, 25 phiếu nhập và 200 hóa đơn, với giao dịch trong 180 ngày.
+Quản lý là **Võ Minh Khoa** (`QUAN_LY` / `123456`); nhân viên **Trần Nam Hòa**
+dùng `NAM_HOA` / `123456`. Database cũ chạy thêm `sql/10_BoSungDuLieuCuaHang.sql`
+một lần; script `08` đã gồm bước bổ sung này. Chạy lại `10` giữ nguyên số bản ghi.
+
 ## Mở workspace Eclipse
 
 1. Chọn `C:\Users\KHOA\Desktop\QuanLyBanQuanAo` làm workspace.

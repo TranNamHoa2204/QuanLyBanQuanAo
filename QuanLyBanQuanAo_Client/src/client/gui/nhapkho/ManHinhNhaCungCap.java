@@ -25,7 +25,6 @@ import client.api.NgoaiLeGoiDichVu;
 import client.controllers.DieuKhienNhaCungCap;
 import client.gui.components.BieuTuongCoDien;
 import client.gui.components.ChuDeGiaoDien;
-import client.utils.SinhMaTuDong;
 import client.gui.components.TienIchBangSanPham;
 import common.dto.nhacungcap.DuLieuNhaCungCap;
 import common.dto.nhacungcap.YeuCauLuuNhaCungCap;
@@ -188,14 +187,14 @@ public final class ManHinhNhaCungCap extends JPanel {
     }
 
     private DuLieuNhaCungCap dialog(DuLieuNhaCungCap old, boolean creating) {
-        JTextField code = new JTextField(creating ? SinhMaTuDong.tao("NCC") : safe(old.getMaNCC())),
+        JTextField code = new JTextField(creating ? "" : safe(old.getMaNCC())),
                 name = new JTextField(creating ? "" : safe(old.getTenNCC())),
                 phone = new JTextField(creating ? "" : safe(old.getSdt())),
                 email = new JTextField(creating ? "" : safe(old.getEmail())),
                 address = new JTextField(creating ? "" : safe(old.getDiaChi()));
         code.setEditable(false);
         JPanel p = new JPanel(new GridLayout(0, 2, 8, 8));
-        p.add(new JLabel("Mã NCC (tự sinh)"));
+        p.add(new JLabel("Mã NCC"));
         p.add(code);
         p.add(new JLabel("Tên nhà cung cấp *"));
         p.add(name);

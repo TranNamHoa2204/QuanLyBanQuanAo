@@ -24,7 +24,6 @@ import client.api.NgoaiLeGoiDichVu;
 import client.controllers.DieuKhienKhachHang;
 import client.gui.components.BieuTuongCoDien;
 import client.gui.components.ChuDeGiaoDien;
-import client.utils.SinhMaTuDong;
 import client.gui.components.TienIchBangSanPham;
 import common.dto.khachhang.DuLieuKhachHang;
 import common.dto.khachhang.YeuCauLuuKhachHang;
@@ -193,14 +192,14 @@ public final class ManHinhKhachHang extends JPanel {
     }
 
     private DuLieuKhachHang customerDialog(DuLieuKhachHang original, boolean creating) {
-        JTextField code = new JTextField(creating ? SinhMaTuDong.tao("KH") : safe(original.getMaKH()));
+        JTextField code = new JTextField(creating ? "" : safe(original.getMaKH()));
         JTextField name = new JTextField(creating ? "" : safe(original.getHoTen()));
         JTextField phone = new JTextField(creating ? "" : safe(original.getSdt()));
         JTextField email = new JTextField(creating ? "" : safe(original.getEmail()));
         JTextField address = new JTextField(creating ? "" : safe(original.getDiaChi()));
         code.setEditable(false);
         JPanel form = new JPanel(new GridLayout(0, 2, 8, 8));
-        form.add(new JLabel("Mã khách hàng (tự sinh)"));
+        form.add(new JLabel("Mã khách hàng"));
         form.add(code);
         form.add(new JLabel("Họ tên *"));
         form.add(name);

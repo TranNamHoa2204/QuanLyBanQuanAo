@@ -4,7 +4,9 @@
 Server dùng JPA/Hibernate và SQL Server. Client làm việc qua DTO và API.
 
 Các form tạo sản phẩm, biến thể, loại hàng, thương hiệu, khách hàng, nhân viên,
-nhà cung cấp và khuyến mãi tự sinh mã có tiền tố tương ứng. Mã được giữ cố định trong lần lưu.
+nhà cung cấp, khuyến mãi, hóa đơn và phiếu nhập được máy chủ cấp mã tăng dần như `NV001`, `NCC001`,
+`PHIEUNHAP001`. Bộ đếm nằm trong SQL Server. Chạy `sql/09_ChuanHoaMaVaTen.sql`
+để cập nhật database đã có. Script tạo database `08` đã bao gồm bước này.
 
 ## Mở workspace Eclipse
 

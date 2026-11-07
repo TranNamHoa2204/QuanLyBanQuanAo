@@ -7,8 +7,6 @@ import java.awt.FlowLayout;
 import java.awt.GridLayout;
 import java.math.BigDecimal;
 import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
 import java.util.List;
@@ -394,7 +392,6 @@ public final class ManHinhPhieuNhap extends JPanel {
             if (supplier == null)
                 return;
             YeuCauTaoPhieuNhap request = new YeuCauTaoPhieuNhap();
-            request.setMaPhieuNhap(newReceiptCode());
             request.setMaNCC(supplier.getMaNCC());
             request.setOperationId(UUID.randomUUID().toString());
             pendingRequest = request;
@@ -634,10 +631,6 @@ public final class ManHinhPhieuNhap extends JPanel {
         }
     }
 
-    private static String newReceiptCode() {
-        String time = LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyyMMddHHmmss"));
-        return "PN" + time + UUID.randomUUID().toString().replace("-", "").substring(0, 4);
-    }
 
     private static String blank(String s) {
         return s == null || s.trim().isEmpty() ? null : s.trim();

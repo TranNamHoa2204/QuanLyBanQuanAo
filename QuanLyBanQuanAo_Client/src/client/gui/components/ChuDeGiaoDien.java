@@ -75,6 +75,12 @@ public final class ChuDeGiaoDien {
         UIManager.put("MenuItem.foreground", INK);
         UIManager.put("MenuItem.selectionBackground", SOFT);
         UIManager.put("MenuItem.selectionForeground", NAV);
+        UIManager.put("Menu.selectionForeground", NAV);
+        UIManager.put("Menu.selectionBackground", SOFT);
+        for (String item : new String[] { "MenuItem", "CheckBoxMenuItem", "RadioButtonMenuItem" }) {
+            UIManager.put(item + ".acceleratorForeground", MUTED);
+            UIManager.put(item + ".acceleratorSelectionForeground", NAV);
+        }
         UIManager.put("MenuItem.selectionArc", 8);
         UIManager.put("TabbedPane.background", BACKGROUND);
         UIManager.put("TabbedPane.foreground", INK);

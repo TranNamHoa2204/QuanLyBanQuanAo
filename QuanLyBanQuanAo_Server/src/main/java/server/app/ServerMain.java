@@ -6,6 +6,7 @@ import server.dispatcher.DieuPhoiYeuCau;
 import server.network.MayChuTcp;
 import server.security.BoBamMatKhauPbkdf2;
 import server.services.DichVuHoaDon;
+import server.services.DichVuCapMa;
 import server.services.DichVuKhachHang;
 import server.services.DichVuKhuyenMai;
 import server.services.DichVuLichSuKho;
@@ -50,6 +51,6 @@ public final class ServerMain {
         return new DieuPhoiYeuCau(auth, new DichVuSanPham(jpa, auth), new DichVuHoaDon(jpa, auth),
                 new DichVuNhanVien(jpa, auth, sessions, hasher), new DichVuKhachHang(jpa, auth),
                 new DichVuKhuyenMai(jpa, auth), new DichVuThongKe(jpa, auth), new DichVuLichSuKho(jpa, auth),
-                new DichVuNhaCungCap(jpa, auth), new DichVuPhieuNhap(jpa, auth));
+                new DichVuNhaCungCap(jpa, auth), new DichVuPhieuNhap(jpa, auth), new DichVuCapMa(jpa, auth));
     }
 }

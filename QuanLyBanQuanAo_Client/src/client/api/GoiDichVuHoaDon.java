@@ -8,6 +8,8 @@ import com.fasterxml.jackson.databind.JsonNode;
 
 import client.network.KetNoiMayChu;
 import client.session.PhienDangNhap;
+import client.utils.SinhMaTuDong;
+import common.enums.LoaiMaTuDong;
 import common.dto.danhmuc.DuLieuThue;
 import common.dto.hoadon.DuLieuDayDuHoaDon;
 import common.dto.hoadon.KetQuaTraCuuHoaDon;
@@ -32,6 +34,9 @@ public final class GoiDichVuHoaDon {
     }
 
     public DuLieuDayDuHoaDon create(YeuCauTaoHoaDon r) throws IOException {
+        if (r != null) {
+            r.setMaHD(SinhMaTuDong.cap(r.getMaHD(), LoaiMaTuDong.HOA_DON, client, session));
+        }
         return invoice(HanhDong.LAP_HOA_DON, r);
     }
 

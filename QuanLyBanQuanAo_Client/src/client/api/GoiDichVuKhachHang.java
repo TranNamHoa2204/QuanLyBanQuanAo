@@ -6,6 +6,8 @@ import com.fasterxml.jackson.databind.JsonNode;
 
 import client.network.KetNoiMayChu;
 import client.session.PhienDangNhap;
+import client.utils.SinhMaTuDong;
+import common.enums.LoaiMaTuDong;
 import common.dto.khachhang.DuLieuKhachHang;
 import common.dto.khachhang.KetQuaTraCuuKhachHang;
 import common.dto.khachhang.YeuCauChiTietKhachHang;
@@ -38,6 +40,9 @@ public final class GoiDichVuKhachHang {
     }
 
     public DuLieuKhachHang create(DuLieuKhachHang request) throws IOException {
+        if (request != null) {
+            request.setMaKH(SinhMaTuDong.cap(request.getMaKH(), LoaiMaTuDong.KHACH_HANG, client, session));
+        }
         return call(HanhDong.THEM_KHACH_HANG, request, DuLieuKhachHang.class);
     }
 

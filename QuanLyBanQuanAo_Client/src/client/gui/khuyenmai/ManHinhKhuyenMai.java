@@ -27,7 +27,6 @@ import client.api.NgoaiLeGoiDichVu;
 import client.controllers.DieuKhienKhuyenMai;
 import client.gui.components.BieuTuongCoDien;
 import client.gui.components.ChuDeGiaoDien;
-import client.utils.SinhMaTuDong;
 import client.gui.components.TienIchBangSanPham;
 import common.dto.khuyenmai.DuLieuKhuyenMai;
 import common.dto.khuyenmai.YeuCauLuuKhuyenMai;
@@ -200,14 +199,14 @@ public final class ManHinhKhuyenMai extends JPanel {
     }
 
     private DuLieuKhuyenMai promotionDialog(DuLieuKhuyenMai original, boolean creating) {
-        JTextField code = new JTextField(creating ? SinhMaTuDong.tao("KM") : safe(original.getMaKM()));
+        JTextField code = new JTextField(creating ? "" : safe(original.getMaKM()));
         JTextField name = new JTextField(creating ? "" : safe(original.getTenKM()));
         JTextField rate = new JTextField(creating ? "" : String.valueOf(original.getPhanTramGiam()));
         JTextField start = new JTextField(creating ? "" : String.valueOf(original.getNgayBatDau()));
         JTextField end = new JTextField(creating ? "" : String.valueOf(original.getNgayKetThuc()));
         code.setEditable(false);
         JPanel form = new JPanel(new GridLayout(0, 2, 8, 8));
-        form.add(new JLabel("Mã khuyến mãi (tự sinh)"));
+        form.add(new JLabel("Mã khuyến mãi"));
         form.add(code);
         form.add(new JLabel("Tên chương trình *"));
         form.add(name);

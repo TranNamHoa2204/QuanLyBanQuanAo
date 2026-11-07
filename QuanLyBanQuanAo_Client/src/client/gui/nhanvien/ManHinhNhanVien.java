@@ -29,7 +29,6 @@ import client.api.NgoaiLeGoiDichVu;
 import client.controllers.DieuKhienNhanVien;
 import client.gui.components.BieuTuongCoDien;
 import client.gui.components.ChuDeGiaoDien;
-import client.utils.SinhMaTuDong;
 import client.gui.components.TienIchBangSanPham;
 import common.dto.nhanvien.DuLieuHoSoNhanVien;
 import common.dto.nhanvien.DuLieuNhanVien;
@@ -219,7 +218,7 @@ public final class ManHinhNhanVien extends JPanel {
     }
 
     private EmployeeDraft employeeDialog(DuLieuNhanVien original, boolean creating) {
-        JTextField id = new JTextField(creating ? SinhMaTuDong.tao("NV") : safe(original.getMaNV()));
+        JTextField id = new JTextField(creating ? "" : safe(original.getMaNV()));
         JTextField name = new JTextField(creating ? "" : safe(original.getHoTen()));
         JTextField phone = new JTextField(creating ? "" : safe(original.getSdt()));
         JTextField email = new JTextField(creating ? "" : safe(original.getEmail()));
@@ -233,7 +232,7 @@ public final class ManHinhNhanVien extends JPanel {
         }
         id.setEditable(false);
         JPanel fields = new JPanel(new GridLayout(0, 2, 8, 8));
-        fields.add(new JLabel("Mã nhân viên (tự sinh)"));
+        fields.add(new JLabel("Mã nhân viên"));
         fields.add(id);
         fields.add(new JLabel("Họ tên *"));
         fields.add(name);

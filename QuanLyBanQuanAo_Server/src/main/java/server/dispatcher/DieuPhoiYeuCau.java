@@ -5,6 +5,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import common.dto.danhmuc.YeuCauLuuDanhMuc;
+import common.dto.danhmuc.YeuCauCapMa;
 import common.dto.hoadon.YeuCauDongHoaDon;
 import common.dto.hoadon.YeuCauGanKhachHangHoaDon;
 import common.dto.hoadon.YeuCauPhienBanHoaDon;
@@ -52,6 +53,7 @@ import common.protocol.HanhDong;
 import common.protocol.MaLoi;
 import common.protocol.PhanHoi;
 import common.protocol.YeuCau;
+import server.services.DichVuCapMa;
 import server.services.DichVuHoaDon;
 import server.services.DichVuKhachHang;
 import server.services.DichVuKhuyenMai;
@@ -76,6 +78,7 @@ public final class DieuPhoiYeuCau {
     private final DichVuLichSuKho lichSuKho;
     private final DichVuNhaCungCap nhaCungCap;
     private final DichVuPhieuNhap phieuNhap;
+    private final DichVuCapMa capMa;
 
     public DieuPhoiYeuCau(DichVuXacThuc auth) {
         this(auth, null);
@@ -120,6 +123,13 @@ public final class DieuPhoiYeuCau {
             DichVuNhanVien nhanVien, DichVuKhachHang khachHang, DichVuKhuyenMai khuyenMai,
             DichVuThongKe thongKe, DichVuLichSuKho lichSuKho, DichVuNhaCungCap nhaCungCap,
             DichVuPhieuNhap phieuNhap) {
+        this(auth, sanPham, hoaDon, nhanVien, khachHang, khuyenMai, thongKe, lichSuKho, nhaCungCap, phieuNhap, null);
+    }
+
+    public DieuPhoiYeuCau(DichVuXacThuc auth, DichVuSanPham sanPham, DichVuHoaDon hoaDon,
+            DichVuNhanVien nhanVien, DichVuKhachHang khachHang, DichVuKhuyenMai khuyenMai,
+            DichVuThongKe thongKe, DichVuLichSuKho lichSuKho, DichVuNhaCungCap nhaCungCap,
+            DichVuPhieuNhap phieuNhap, DichVuCapMa capMa) {
         this.auth = auth;
         this.sanPham = sanPham;
         this.hoaDon = hoaDon;
@@ -130,6 +140,7 @@ public final class DieuPhoiYeuCau {
         this.lichSuKho = lichSuKho;
         this.nhaCungCap = nhaCungCap;
         this.phieuNhap = phieuNhap;
+        this.capMa = capMa;
     }
 
     public PhanHoi<?> dispatch(YeuCau<JsonNode> request) {
@@ -141,6 +152,11 @@ public final class DieuPhoiYeuCau {
         }
         try {
             switch (request.getAction()) {
+            case CAP_MA_TU_DONG:
+                if (capMa == null) {
+                    throw new NgoaiLeNghiepVu(MaLoi.SERVER_ERROR, "Chưa khởi tạo dịch vụ cấp mã.");
+                }
+                return PhanHoi.success(id, capMa.next(request.getSessionToken(), payload(request, YeuCauCapMa.class).getLoai()));
             case THEM_LOAI_SAN_PHAM:
             case CAP_NHAT_LOAI_SAN_PHAM:
                 return PhanHoi.success(id,

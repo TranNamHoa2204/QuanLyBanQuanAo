@@ -6,6 +6,8 @@ import com.fasterxml.jackson.databind.JsonNode;
 
 import client.network.KetNoiMayChu;
 import client.session.PhienDangNhap;
+import client.utils.SinhMaTuDong;
+import common.enums.LoaiMaTuDong;
 import common.dto.nhanvien.DuLieuHoSoNhanVien;
 import common.dto.nhanvien.KetQuaTraCuuNhanVien;
 import common.dto.nhanvien.YeuCauChiTietNhanVien;
@@ -44,6 +46,14 @@ public final class GoiDichVuNhanVien {
 
     public DuLieuHoSoNhanVien create(YeuCauTaoNhanVien request) throws IOException {
         try {
+            if (request != null && request.getNhanVien() != null) {
+                String code = SinhMaTuDong.cap(request.getNhanVien().getMaNV(), LoaiMaTuDong.NHAN_VIEN, client, session);
+                request.getNhanVien().setMaNV(code);
+                if (request.getTaiKhoan() != null && (request.getTaiKhoan().getMaNV() == null
+                        || request.getTaiKhoan().getMaNV().trim().isEmpty())) {
+                    request.getTaiKhoan().setMaNV(code);
+                }
+            }
             return call(HanhDong.THEM_NHAN_VIEN, request, DuLieuHoSoNhanVien.class);
         } finally {
             if (request != null && request.getTaiKhoan() != null) {

@@ -60,7 +60,6 @@ import client.gui.components.BieuTuongCoDien;
 import client.gui.components.ChuDeGiaoDien;
 import client.gui.components.TienIchBangSanPham;
 import client.utils.TaiAnh;
-import client.utils.SinhMaTuDong;
 import common.dto.danhmuc.DuLieuThue;
 import common.dto.hoadon.DuLieuChiTietHoaDon;
 import common.dto.hoadon.DuLieuDayDuHoaDon;
@@ -83,7 +82,6 @@ import common.enums.NguonDuLieuHoaDon;
 import common.enums.PhuongThucThanhToan;
 import common.enums.TrangThaiHoaDon;
 import common.protocol.MaLoi;
-import common.utils.SinhMaHoaDon;
 
 /** SwingWorker cho mọi yêu cầu mạng; không truy cập entity hoặc JPA từ client. */
 public final class KhungBanHang extends JPanel implements Scrollable {
@@ -681,7 +679,6 @@ public final class KhungBanHang extends JPanel implements Scrollable {
         }
         if (pendingCreate == null) {
             pendingCreate = new YeuCauTaoHoaDon();
-            pendingCreate.setMaHD(SinhMaHoaDon.newId());
             pendingCreate.setMaThue(((String) tax.getSelectedItem()).split(" / ")[0]);
             pendingCreate.setMaKH(selectedCustomer == null ? null : selectedCustomer.getMaKH());
             pendingCreate.setMaKM(promo.getText());
@@ -697,6 +694,11 @@ public final class KhungBanHang extends JPanel implements Scrollable {
                 status.setText("Đã mở đơn có sẵn. Kiểm tra giỏ trước khi thêm tiếp.");
             }
         }, failure -> {
+            if (pendingCreate != null && pendingCreate.getMaHD() == null) {
+                pendingCreate = null;
+                showFailure(failure);
+                return;
+            }
             if (failure instanceof NgoaiLeGoiDichVu && !mustCheck(failure)) {
                 pendingCreate = null;
                 orderCode.setText("Đơn mới");
@@ -1214,11 +1216,11 @@ public final class KhungBanHang extends JPanel implements Scrollable {
         if (customers == null) {
             return;
         }
-        JTextField code = new JTextField(SinhMaTuDong.tao("KH")), name = new JTextField(), phone = new JTextField(),
+        JTextField code = new JTextField(""), name = new JTextField(), phone = new JTextField(),
                 email = new JTextField(), address = new JTextField();
         JPanel form = new JPanel(new GridLayout(0, 2, 8, 8));
         code.setEditable(false);
-        form.add(new JLabel("Mã khách hàng (tự sinh)"));
+        form.add(new JLabel("Mã khách hàng"));
         form.add(code);
         form.add(new JLabel("Họ tên *"));
         form.add(name);

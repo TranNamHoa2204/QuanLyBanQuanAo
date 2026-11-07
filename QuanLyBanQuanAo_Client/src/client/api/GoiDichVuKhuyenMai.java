@@ -6,6 +6,8 @@ import com.fasterxml.jackson.databind.JsonNode;
 
 import client.network.KetNoiMayChu;
 import client.session.PhienDangNhap;
+import client.utils.SinhMaTuDong;
+import common.enums.LoaiMaTuDong;
 import common.dto.khuyenmai.DuLieuKhuyenMai;
 import common.dto.khuyenmai.KetQuaTraCuuKhuyenMai;
 import common.dto.khuyenmai.YeuCauChiTietKhuyenMai;
@@ -38,6 +40,9 @@ public final class GoiDichVuKhuyenMai {
     }
 
     public DuLieuKhuyenMai create(DuLieuKhuyenMai request) throws IOException {
+        if (request != null) {
+            request.setMaKM(SinhMaTuDong.cap(request.getMaKM(), LoaiMaTuDong.KHUYEN_MAI, client, session));
+        }
         return call(HanhDong.THEM_KHUYEN_MAI, request, DuLieuKhuyenMai.class);
     }
 

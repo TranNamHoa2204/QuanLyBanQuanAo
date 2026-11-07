@@ -8,6 +8,8 @@ import com.fasterxml.jackson.databind.JsonNode;
 
 import client.network.KetNoiMayChu;
 import client.session.PhienDangNhap;
+import client.utils.SinhMaTuDong;
+import common.enums.LoaiMaTuDong;
 import common.dto.danhmuc.DuLieuLoaiSanPham;
 import common.dto.danhmuc.DuLieuThuongHieu;
 import common.dto.danhmuc.YeuCauLuuDanhMuc;
@@ -32,6 +34,9 @@ public final class GoiDichVuSanPham {
     }
 
     public String saveProduct(YeuCauLuuSanPham r, int mode) throws IOException {
+        if (mode == 0 && r != null && r.getValue() != null) {
+            r.getValue().setMaSP(SinhMaTuDong.cap(r.getValue().getMaSP(), LoaiMaTuDong.SAN_PHAM, client, session));
+        }
         return call(
                 mode == 0 ? HanhDong.THEM_SAN_PHAM
                         : mode == 1 ? HanhDong.CAP_NHAT_SAN_PHAM : HanhDong.NGUNG_KINH_DOANH_SAN_PHAM,
@@ -39,16 +44,25 @@ public final class GoiDichVuSanPham {
     }
 
     public String saveCategory(YeuCauLuuDanhMuc r, boolean create) throws IOException {
+        if (create && r != null) {
+            r.setCode(SinhMaTuDong.cap(r.getCode(), LoaiMaTuDong.LOAI_SAN_PHAM, client, session));
+        }
         return call(create ? HanhDong.THEM_LOAI_SAN_PHAM : HanhDong.CAP_NHAT_LOAI_SAN_PHAM, r,
                 BoMaHoaJson.mapper().constructType(String.class));
     }
 
     public String saveBrand(YeuCauLuuDanhMuc r, boolean create) throws IOException {
+        if (create && r != null) {
+            r.setCode(SinhMaTuDong.cap(r.getCode(), LoaiMaTuDong.THUONG_HIEU, client, session));
+        }
         return call(create ? HanhDong.THEM_THUONG_HIEU : HanhDong.CAP_NHAT_THUONG_HIEU, r,
                 BoMaHoaJson.mapper().constructType(String.class));
     }
 
     public DuLieuBienThe saveVariant(DuLieuBienThe r, boolean create) throws IOException {
+        if (create && r != null) {
+            r.setMaBienThe(SinhMaTuDong.cap(r.getMaBienThe(), LoaiMaTuDong.BIEN_THE, client, session));
+        }
         return call(create ? HanhDong.THEM_BIEN_THE : HanhDong.CAP_NHAT_BIEN_THE, r,
                 BoMaHoaJson.mapper().constructType(DuLieuBienThe.class));
     }

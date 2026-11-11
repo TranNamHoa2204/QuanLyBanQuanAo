@@ -10,13 +10,13 @@ import javax.swing.BorderFactory;
 import javax.swing.Box;
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
+import javax.swing.JCheckBox;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
 import client.gui.components.BieuTuongCuaHang;
-import client.gui.components.BieuTuongCoDien;
 import client.gui.components.ChuDeGiaoDien;
 
 /** View có thể render headless; form bên ngoài nối hành động đăng nhập qua controller. */
@@ -24,7 +24,8 @@ public final class KhungDangNhap extends JPanel {
     private static final long serialVersionUID = 1L;
     final JTextField username = new JTextField(22);
     final JPasswordField password = new JPasswordField(22);
-    final JButton login = new JButton("Đăng nhập", BieuTuongCoDien.KHOA);
+    final JButton login = new JButton("Đăng nhập");
+    final JCheckBox showPassword = new JCheckBox("Hiện mật khẩu");
 
     public KhungDangNhap() {
         super(new GridLayout(1, 2, 14, 0));
@@ -38,18 +39,19 @@ public final class KhungDangNhap extends JPanel {
         wordmark.setForeground(ChuDeGiaoDien.PRIMARY);
         wordmark.setFont(wordmark.getFont().deriveFont(Font.BOLD, 13f));
         brand.add(wordmark, BorderLayout.NORTH);
-        JPanel message = new JPanel(new GridLayout(0, 1, 0, 16));
-        message.setOpaque(false);
+        Box message = Box.createVerticalBox();
         JLabel art = new JLabel(new BieuTuongCuaHang(100, ChuDeGiaoDien.PRIMARY));
+        art.setAlignmentX(CENTER_ALIGNMENT);
+        message.add(Box.createVerticalGlue());
         message.add(art);
-        JLabel headline = new JLabel("<html>Bán hàng gọn gàng.<br>Quản lý dễ dàng.</html>");
+        message.add(Box.createVerticalStrut(24));
+        JLabel headline = new JLabel("<html><center>Bán hàng gọn gàng.<br>Quản lý dễ dàng.</center></html>",
+                JLabel.CENTER);
         headline.setFont(headline.getFont().deriveFont(Font.BOLD, 30f));
+        headline.setAlignmentX(CENTER_ALIGNMENT);
         message.add(headline);
-        JLabel sub = ChuDeGiaoDien.muted(
-                "<html>Sản phẩm, màu sắc và kích cỡ.<br>Một không gian làm việc cho cửa hàng.</html>");
-        message.add(sub);
+        message.add(Box.createVerticalGlue());
         brand.add(message, BorderLayout.CENTER);
-        brand.add(ChuDeGiaoDien.muted("SẢN PHẨM  ·  BÁN HÀNG  ·  BÁO BIỂU"), BorderLayout.SOUTH);
         JPanel right = ChuDeGiaoDien.card(new GridBagLayout(), 28);
         JPanel form = new JPanel();
         form.setLayout(new BoxLayout(form, BoxLayout.Y_AXIS));
@@ -64,7 +66,10 @@ public final class KhungDangNhap extends JPanel {
         form.add(Box.createVerticalStrut(32));
         username.putClientProperty("JTextField.placeholderText", "Tên đăng nhập");
         password.putClientProperty("JTextField.placeholderText", "Mật khẩu");
-        password.putClientProperty("JPasswordField.showRevealButton", true);
+        char masked = password.getEchoChar();
+        showPassword.setOpaque(false);
+        showPassword.setAlignmentX(LEFT_ALIGNMENT);
+        showPassword.addItemListener(e -> password.setEchoChar(showPassword.isSelected() ? (char) 0 : masked));
         JPanel user = ChuDeGiaoDien.field("TÊN ĐĂNG NHẬP", username),
                 pass = ChuDeGiaoDien.field("MẬT KHẨU", password);
         user.setAlignmentX(LEFT_ALIGNMENT);
@@ -72,7 +77,9 @@ public final class KhungDangNhap extends JPanel {
         form.add(user);
         form.add(Box.createVerticalStrut(18));
         form.add(pass);
-        form.add(Box.createVerticalStrut(28));
+        form.add(Box.createVerticalStrut(8));
+        form.add(showPassword);
+        form.add(Box.createVerticalStrut(20));
         ChuDeGiaoDien.primary(login);
         login.setAlignmentX(LEFT_ALIGNMENT);
         login.setMaximumSize(new Dimension(Integer.MAX_VALUE, 44));

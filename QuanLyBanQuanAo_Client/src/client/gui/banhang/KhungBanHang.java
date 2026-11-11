@@ -122,6 +122,7 @@ public final class KhungBanHang extends JPanel implements Scrollable {
     private final JLabel total = new JLabel("—"),
             status = new JLabel("Chọn sản phẩm, màu và size để thêm vào giỏ.");
     private final JLabel subtotal = new JLabel("—"), discount = new JLabel("—"),
+            discountCaption = ChuDeGiaoDien.muted("Giảm giá"),
             taxAmount = new JLabel("—"), taxCaption = ChuDeGiaoDien.muted("Thuế"),
             paymentInfo = ChuDeGiaoDien.muted(" ");
     private final JButton fresh = new JButton("Đơn mới", BieuTuongCoDien.THEM), reload = new JButton("Kiểm tra lại đơn", BieuTuongCoDien.LAM_MOI),
@@ -182,7 +183,8 @@ public final class KhungBanHang extends JPanel implements Scrollable {
         tendered.putClientProperty("JTextField.placeholderText", "VD: 500.000");
         catalogQuery.getAccessibleContext().setAccessibleName("Tìm theo tên hoặc mã sản phẩm");
         customerQuery.getAccessibleContext().setAccessibleName("Tìm khách hàng");
-        promo.putClientProperty("JTextField.placeholderText", "Mã khuyến mãi");
+        promo.putClientProperty("JTextField.placeholderText", "Tự chọn mã giảm cao nhất");
+        promo.setToolTipText("Để trống để tự áp dụng khuyến mãi có mức giảm cao nhất.");
         note.putClientProperty("JTextField.placeholderText", "Tùy chọn");
         variant.setPrototypeDisplayValue(new DuLieuBienThe());
         variant.setRenderer(new DefaultListCellRenderer() {
@@ -413,7 +415,7 @@ public final class KhungBanHang extends JPanel implements Scrollable {
         amounts.setOpaque(false);
         amounts.add(ChuDeGiaoDien.muted("Tạm tính"));
         amounts.add(subtotal);
-        amounts.add(ChuDeGiaoDien.muted("Giảm giá"));
+        amounts.add(discountCaption);
         amounts.add(discount);
         amounts.add(taxCaption);
         amounts.add(taxAmount);
@@ -681,7 +683,9 @@ public final class KhungBanHang extends JPanel implements Scrollable {
             pendingCreate = new YeuCauTaoHoaDon();
             pendingCreate.setMaThue(((String) tax.getSelectedItem()).split(" / ")[0]);
             pendingCreate.setMaKH(selectedCustomer == null ? null : selectedCustomer.getMaKH());
-            pendingCreate.setMaKM(promo.getText());
+            String promoCode = promo.getText().trim();
+            pendingCreate.setMaKM(promoCode);
+            pendingCreate.setTuDongChonKhuyenMai(promoCode.isEmpty());
             pendingCreate.setGhiChu(note.getText());
         }
         YeuCauTaoHoaDon request = pendingCreate;
@@ -729,6 +733,7 @@ public final class KhungBanHang extends JPanel implements Scrollable {
         total.setToolTipText(null);
         subtotal.setText("—");
         discount.setText("—");
+        discountCaption.setText("Giảm giá");
         taxAmount.setText("—");
         taxCaption.setText("Thuế");
         cartTitle.setText("Giỏ hàng");
@@ -928,6 +933,7 @@ public final class KhungBanHang extends JPanel implements Scrollable {
         cartTitle.setText("Giỏ hàng (" + model.getRowCount() + ")");
         subtotal.setText(ChuDeGiaoDien.money(h.getTamTinh()));
         discount.setText(ChuDeGiaoDien.money(h.getTienGiam()));
+        discountCaption.setText(h.getMaKM() == null ? "Giảm giá" : "Giảm giá · " + h.getMaKM());
         taxCaption.setText("Thuế (" + taxRate(h) + ")");
         taxAmount.setText(ChuDeGiaoDien.money(h.getTienThue()));
         total.setText(ChuDeGiaoDien.money(h.getTongTien()));

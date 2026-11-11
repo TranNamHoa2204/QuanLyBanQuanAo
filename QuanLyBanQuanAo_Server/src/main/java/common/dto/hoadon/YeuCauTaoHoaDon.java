@@ -5,6 +5,7 @@ public class YeuCauTaoHoaDon {
     private String maThue;
     private String maKH;
     private String maKM;
+    private boolean tuDongChonKhuyenMai;
     private String ghiChu;
 
     public YeuCauTaoHoaDon() {
@@ -40,6 +41,14 @@ public class YeuCauTaoHoaDon {
 
     public void setMaKM(String maKM) {
         this.maKM = maKM;
+    }
+
+    public boolean isTuDongChonKhuyenMai() {
+        return tuDongChonKhuyenMai;
+    }
+
+    public void setTuDongChonKhuyenMai(boolean tuDongChonKhuyenMai) {
+        this.tuDongChonKhuyenMai = tuDongChonKhuyenMai;
     }
 
     public String getGhiChu() {

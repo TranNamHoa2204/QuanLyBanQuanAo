@@ -44,6 +44,7 @@ import server.entities.TaiKhoan;
 import server.entities.Thue;
 import server.repositories.impl.LuuTruChiTietHoaDonJpa;
 import server.repositories.impl.LuuTruHoaDonJpa;
+import server.repositories.impl.LuuTruKhuyenMaiJpa;
 import server.utils.QuanLyJpa;
 
 public final class DichVuHoaDon {
@@ -70,6 +71,7 @@ public final class DichVuHoaDon {
             }
             String id = code(request.getMaHD(), true), taxId = code(request.getMaThue(), true);
             String customerId = code(request.getMaKH(), false), promoId = code(request.getMaKM(), false);
+            boolean autoPromo = promoId == null && request.isTuDongChonKhuyenMai();
             String note = request.getGhiChu();
             if (note != null && note.length() > 500) {
                 throw invalid("Ghi chú tối đa 500 ký tự.");
@@ -81,8 +83,9 @@ public final class DichVuHoaDon {
                         || !Objects.equals(taxId, existing.getThue().getMaThue())
                         || !Objects.equals(customerId,
                                 existing.getKhachHang() == null ? null : existing.getKhachHang().getMaKH())
-                        || !Objects.equals(promoId,
-                                existing.getKhuyenMai() == null ? null : existing.getKhuyenMai().getMaKM())
+                        // Khi thử lại, dùng khuyến mãi đã lưu cùng đơn thay vì chọn lại theo thời điểm mới.
+                        || (!autoPromo && !Objects.equals(promoId,
+                                existing.getKhuyenMai() == null ? null : existing.getKhuyenMai().getMaKM()))
                         || !Objects.equals(note, existing.getGhiChu())) {
                     throw new NgoaiLeNghiepVu(MaLoi.VERSION_CONFLICT,
                             "Mã hóa đơn đã được dùng với thông tin khác.");
@@ -90,6 +93,7 @@ public final class DichVuHoaDon {
                 return detailDto(em, existing); // cùng mã/cùng thông tin: không tạo lần thứ hai
             }
             HoaDon invoice = new HoaDon();
+            LocalDateTime createdAt = LocalDateTime.now(clock).withNano(0);
             invoice.setMaHD(id);
             invoice.setNhanVien(account.getNhanVien());
             invoice.setThue(em.find(Thue.class, taxId));
@@ -106,12 +110,14 @@ public final class DichVuHoaDon {
                     throw invalid("Không tìm thấy khuyến mãi.");
                 }
                 invoice.setKhuyenMai(promo);
+            } else if (autoPromo) {
+                invoice.setKhuyenMai(new LuuTruKhuyenMaiJpa(em).bestEffective(createdAt.toLocalDate()).orElse(null));
             }
-            validRates(invoice);
+            validRates(invoice, createdAt.toLocalDate());
             invoice.setPhanTramThue(invoice.getThue().getPhanTram());
             invoice.setPhanTramGiam(invoice.getKhuyenMai() == null ? BigDecimal.ZERO
                     : invoice.getKhuyenMai().getPhanTramGiam());
-            invoice.setNgayLap(LocalDateTime.now(clock).withNano(0));
+            invoice.setNgayLap(createdAt);
             invoice.setGhiChu(note);
             totals(invoice, Collections.emptyList());
             em.persist(invoice);
@@ -272,7 +278,7 @@ public final class DichVuHoaDon {
             if (lines.isEmpty()) {
                 throw invalid("Hóa đơn phải có ít nhất một mặt hàng.");
             }
-            validRates(invoice);
+            validRates(invoice, LocalDate.now(clock));
             if (invoice.getPhanTramThue().compareTo(invoice.getThue().getPhanTram()) != 0
                     || invoice.getPhanTramGiam().compareTo(invoice.getKhuyenMai() == null ? BigDecimal.ZERO
                             : invoice.getKhuyenMai().getPhanTramGiam()) != 0) {
@@ -370,7 +376,7 @@ public final class DichVuHoaDon {
         });
     }
 
-    private void validRates(HoaDon invoice) {
+    private static void validRates(HoaDon invoice, LocalDate today) {
         Thue tax = invoice.getThue();
         if (tax == null || !tax.getTrangThai()) {
             throw invalid("Thuế không tồn tại hoặc đã ngừng áp dụng.");
@@ -378,7 +384,6 @@ public final class DichVuHoaDon {
         rate(tax.getPhanTram());
         KhuyenMai promo = invoice.getKhuyenMai();
         if (promo != null) {
-            LocalDate today = LocalDate.now(clock);
             if (!promo.getTrangThai() || promo.getNgayBatDau() == null || promo.getNgayKetThuc() == null
                     || today.isBefore(promo.getNgayBatDau()) || today.isAfter(promo.getNgayKetThuc())) {
                 throw invalid("Khuyến mãi chưa bắt đầu, hết hạn hoặc ngừng áp dụng.");

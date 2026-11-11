@@ -18,6 +18,9 @@ import server.repositories.LuuTruKhuyenMai;
 
 /** JPA implementation; transaction do service sở hữu. */
 public final class LuuTruKhuyenMaiJpa extends LuuTruCoBanJpa<KhuyenMai, String> implements LuuTruKhuyenMai {
+    private static final String EFFECTIVE =
+            "k.trangThai = true and k.ngayBatDau <= :today and k.ngayKetThuc >= :today";
+
     public LuuTruKhuyenMaiJpa(EntityManager em) {
         super(em, KhuyenMai.class);
     }
@@ -25,6 +28,13 @@ public final class LuuTruKhuyenMaiJpa extends LuuTruCoBanJpa<KhuyenMai, String> 
     @Override
     public Optional<KhuyenMai> findForUpdate(String maKM) {
         return Optional.ofNullable(em.find(KhuyenMai.class, maKM, LockModeType.PESSIMISTIC_WRITE));
+    }
+
+    @Override
+    public Optional<KhuyenMai> bestEffective(LocalDate today) {
+        return em.createQuery("select k from KhuyenMai k where " + EFFECTIVE
+                + " and k.phanTramGiam > 0 order by k.phanTramGiam desc, k.maKM", KhuyenMai.class)
+                .setParameter("today", today).setMaxResults(1).getResultList().stream().findFirst();
     }
 
     @Override
@@ -68,7 +78,7 @@ public final class LuuTruKhuyenMaiJpa extends LuuTruCoBanJpa<KhuyenMai, String> 
             filter.params.put("savedActive", savedActive);
         }
         if (effectiveOnly) {
-            filter.where += " and k.trangThai = true and k.ngayBatDau <= :today and k.ngayKetThuc >= :today";
+            filter.where += " and " + EFFECTIVE;
             filter.params.put("today", today);
         }
         return filter;

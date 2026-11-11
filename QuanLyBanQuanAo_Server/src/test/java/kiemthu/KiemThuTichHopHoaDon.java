@@ -5,6 +5,7 @@ import static org.junit.Assert.*;
 import java.math.BigDecimal;
 import java.time.Clock;
 import java.time.Instant;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.ZoneOffset;
 import java.util.Map;
@@ -183,6 +184,49 @@ public class KiemThuTichHopHoaDon {
 
     private DuLieuDayDuHoaDon create(String id) throws Exception {
         return create(id, null);
+    }
+
+    @Test
+    public void autoPromotionUsesBestEffectiveRateAndKeepsItOnRetry() throws Exception {
+        LocalDate today = LocalDate.of(2026, 10, 11);
+        jpa.transaction(em -> {
+            em.persist(promotion("KM_BEST", "25", today, today, true));
+            em.persist(promotion("KM_TIE", "25", today, today, true));
+            em.persist(promotion("KM_EXPIRED", "90", today.minusDays(2), today.minusDays(1), true));
+            em.persist(promotion("KM_DISABLED", "80", today, today.plusDays(1), false));
+            em.persist(promotion("KM_FUTURE", "95", today.plusDays(1), today.plusDays(2), true));
+            return null;
+        });
+        YeuCauTaoHoaDon request = new YeuCauTaoHoaDon();
+        request.setMaHD("HD_AUTO");
+        request.setMaThue("T1");
+        request.setTuDongChonKhuyenMai(true);
+        DuLieuDayDuHoaDon draft = api.create(request);
+        assertEquals("KM_BEST", draft.getHoaDon().getMaKM());
+
+        jpa.transaction(em -> {
+            em.persist(promotion("KM_NEW_BEST", "35", today, today.plusDays(1), true));
+            return null;
+        });
+        assertEquals("KM_BEST", api.create(request).getHoaDon().getMaKM());
+        DuLieuDayDuHoaDon withItem = line(draft, "BT1", 1, 0);
+        assertEquals(0, new BigDecimal("25").compareTo(withItem.getHoaDon().getTienGiam()));
+        assertEquals(0, new BigDecimal("82.50").compareTo(withItem.getHoaDon().getTongTien()));
+
+        request.setMaHD("HD_MANUAL");
+        request.setMaKM("KM1");
+        assertEquals("KM1", api.create(request).getHoaDon().getMaKM());
+    }
+
+    private static KhuyenMai promotion(String code, String rate, LocalDate start, LocalDate end, boolean active) {
+        KhuyenMai promotion = new KhuyenMai();
+        promotion.setMaKM(code);
+        promotion.setTenKM(code);
+        promotion.setPhanTramGiam(new BigDecimal(rate));
+        promotion.setNgayBatDau(start);
+        promotion.setNgayKetThuc(end);
+        promotion.setTrangThai(active);
+        return promotion;
     }
 
     private DuLieuDayDuHoaDon create(String id, String customerId) throws Exception {

@@ -11,6 +11,8 @@ import server.entities.KhuyenMai;
 public interface LuuTruKhuyenMai extends LuuTruCoBan<KhuyenMai, String> {
     Optional<KhuyenMai> findForUpdate(String maKM);
 
+    Optional<KhuyenMai> bestEffective(LocalDate today);
+
     List<KhuyenMai> search(YeuCauTraCuuKhuyenMai request, Boolean savedActive, boolean effectiveOnly,
             LocalDate today);
 

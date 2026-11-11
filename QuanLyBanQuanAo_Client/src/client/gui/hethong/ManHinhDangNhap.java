@@ -36,6 +36,7 @@ public final class ManHinhDangNhap extends JFrame {
             String secret = new String(chars);
             Arrays.fill(chars, '\0');
             password.setText("");
+            panel.showPassword.setSelected(false);
             TacVuGiaoDien.run(this, login, () -> controller.login(user, secret), result -> {
                 new ManHinhChinh(api, session).setVisible(true);
                 dispose();
